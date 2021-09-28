@@ -1,0 +1,41 @@
+@mixin stolzl {
+  $path: '~assets/fonts/stolzl';
+
+  @font-face {
+    font-family: 'Stolzl';
+    src: url(#{$path}/Stolzl-Regular.eot);
+    src: local('Stolzl Regular'), local('Stolzl-Regular'),
+        url(#{$path}/Stolzl-Regular.eot?#iefix) format('embedded-opentype'),
+        url(#{$path}/Stolzl-Regular.woff2) format('woff2'),
+        url(#{$path}/Stolzl-Regular.woff) format('woff'),
+        url(#{$path}/Stolzl-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Stolzl';
+    src: url(#{$path}/Stolzl-Bold.eot);
+    src: local('Stolzl Bold'), local('Stolzl-Bold'),
+        url(#{$path}/Stolzl-Bold.eot?#iefix) format('embedded-opentype'),
+        url(#{$path}/Stolzl-Bold.woff2) format('woff2'),
+        url(#{$path}/Stolzl-Bold.woff) format('woff'),
+        url(#{$path}/Stolzl-Bold.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Stolzl';
+    src: url(#{$path}/Stolzl-Medium.eot);
+    src: local('Stolzl Medium'), local('Stolzl-Medium'),
+        url(#{$path}/Stolzl-Medium.eot?#iefix) format('embedded-opentype'),
+        url(#{$path}/Stolzl-Medium.woff2) format('woff2'),
+        url(#{$path}/Stolzl-Medium.woff) format('woff'),
+        url(#{$path}/Stolzl-Medium.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+}
+
+@include stolzl();

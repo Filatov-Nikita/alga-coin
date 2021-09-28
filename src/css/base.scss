@@ -1,0 +1,23 @@
+body {
+  @apply tw-font-stolzl tw-text-xs tw-text-white;
+}
+
+h1, .h1 {
+  @apply tw-text-xl;
+}
+
+h2, .h2 {
+  @apply tw-text-lg;
+}
+
+h3, .h3 {
+  @apply tw-text-md2;
+}
+
+
+.app-container {
+  padding-left: 75px;
+  padding-right: 75px;
+  margin: 0 auto;
+  max-width: 1920px;
+}
