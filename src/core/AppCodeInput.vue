@@ -199,6 +199,10 @@ export default defineComponent({
       margin-left: 9px;
     }
 
+    &:focus {
+      outline: 2px solid theme('colors.blue-hover');
+    }
+
     // отмена стилей автокомплита
     &:-webkit-autofill,
     &:-webkit-autofill:hover,

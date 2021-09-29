@@ -1,0 +1,60 @@
+<template>
+  <div class="lang-toolbar">
+    <div
+      class="lang-toolbar__item"
+      :class="{ 'lang-toolbar__item--active': currentLang === 'en' }"
+      @click="updateLang('en')"
+    >
+      En
+    </div>
+    <div
+      class="lang-toolbar__item"
+      :class="{ 'lang-toolbar__item--active': currentLang === 'ru' }"
+      @click="updateLang('ru')"
+    >
+      Ru
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    currentLang: {
+      required: true,
+      type: String,
+    },
+  },
+  emits: ['update:lang'],
+  methods: {
+    updateLang(lang) {
+      this.$emit('update:lang', lang);
+    },
+  },
+};
+</script>
+
+<style scoped lang="scss">
+.lang-toolbar {
+  @apply tw-flex;
+
+  &__item {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    @apply tw-text-center tw-text-xs tw-bg-dark-blue tw-cursor-pointer;
+
+    & + & {
+      margin-left: 6px;
+    }
+
+    &--active {
+      @apply tw-bg-blue;
+    }
+
+    &:hover {
+      @apply tw-bg-primary;
+    }
+  }
+}
+</style>

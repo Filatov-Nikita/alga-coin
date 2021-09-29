@@ -13,6 +13,6 @@ export default {};
 
 <style scoped>
 .base-layout {
-  @apply tw-bg-dark;
+  background: #001233;
 }
 </style>
