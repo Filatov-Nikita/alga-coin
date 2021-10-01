@@ -25,8 +25,13 @@ h2, .h2 {
 }
 
 h3, .h3 {
+  @apply tw-text-md1;
+}
+
+h4, .h4 {
   @apply tw-text-md2;
 }
+
 
 
 .app-container {

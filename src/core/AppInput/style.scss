@@ -27,13 +27,14 @@
   &__label {
     margin-bottom: 7px;
     line-height: 1.4;
-    @apply tw-w-full;
+    @apply tw-w-full tw-text-left;
   }
 
   &__field-wrapper {
     position: relative;
+    @apply tw-w-full;
 
-    &[type='tel'] {
+    &--tel {
       width: calc(100% - 111px - 10px);
     }
   }

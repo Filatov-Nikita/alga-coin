@@ -266,7 +266,10 @@ export default defineComponent({
         h(
           'div',
           {
-            class: 'app-input__field-wrapper',
+            class: [
+              'app-input__field-wrapper',
+              { 'app-input__field-wrapper--tel': this.type === 'tel' },
+            ],
             onClick: () => {
               this.$refs.input.focus();
             },

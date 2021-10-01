@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// добавить возможность отображать часы и минуты
 export default {
   props: {
     start: {
