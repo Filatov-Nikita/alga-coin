@@ -1,5 +1,12 @@
 <script>
-import { h, defineComponent, withDirectives, resolveComponent } from 'vue';
+import {
+  h,
+  defineComponent,
+  withDirectives,
+  resolveComponent,
+  computed,
+} from 'vue';
+import { useField, Field } from 'vee-validate';
 import { mask } from 'vue-the-mask';
 
 function onMousedown(e) {
@@ -8,6 +15,7 @@ function onMousedown(e) {
 
 export default defineComponent({
   name: 'AppInput',
+  inheritAttrs: false,
   props: {
     label: {
       required: true,
@@ -21,6 +29,66 @@ export default defineComponent({
       default: 'text',
       type: String,
     },
+    withTelPrefix: {
+      default: false,
+      type: Boolean,
+    },
+    ...{ rules: Field.props.rules },
+    value: {
+      default: '',
+      type: String,
+    },
+  },
+  setup(props, { emit, attrs }) {
+    const { value, errorMessage, handleChange } = useField(
+      props.label,
+      props.rules,
+      {
+        initialValue: props.value,
+        validateOnValueUpdate: false,
+      }
+    );
+
+    const validationListeners = computed(() => {
+      const handler = (e, shouldValidate = true) => {
+        if (attrs.onInput) {
+          attrs.onInput(
+            e,
+            (val) => handleChange(val, shouldValidate),
+            () => emit('update:modelValue', value.value)
+          );
+        } else {
+          handleChange(e, shouldValidate);
+          emit('update:modelValue', value.value);
+        }
+      };
+
+      if (!errorMessage.value) {
+        // ленивая проверка
+        return {
+          onChange: handleChange,
+          onBlue: handleChange,
+          onInput: (e) => {
+            handler(e, false);
+          },
+        };
+      }
+
+      // агрессивная проверка
+      return {
+        onInput: (e) => {
+          handler(e);
+        },
+        onBlue: handleChange,
+        onChange: handleChange,
+      };
+    });
+
+    return {
+      innerValue: value,
+      errorMessage,
+      validationListeners,
+    };
   },
   data() {
     return {
@@ -28,6 +96,15 @@ export default defineComponent({
       selectShow: false,
       selected: { label: '+7', value: '+7' },
     };
+  },
+  emits: ['update:modelValue'],
+  computed: {
+    hasPrepend() {
+      return !!this.$slots.prepend;
+    },
+    hasAppend() {
+      return !!this.$slots.append;
+    },
   },
   render() {
     const InlineSvg = resolveComponent('InlineSvg');
@@ -38,8 +115,22 @@ export default defineComponent({
 
     const numberFlag = { '+7': 'ru', '+1': 'ru', '+3': 'ru' };
 
+    const createErrorMessage = () => {
+      return h('div', { class: 'app-input__error-message' }, this.errorMessage);
+    };
+
     const createDropdown = () => {
-      const optionValues = ['+7', '+1', '+3'];
+      const optionValues = [
+        '+7',
+        '+1',
+        '+3',
+        '+7',
+        '+1',
+        '+3',
+        '+7',
+        '+1',
+        '+3',
+      ];
 
       const options = optionValues.map((number) => {
         const flag = h(InlineSvg, {
@@ -123,7 +214,7 @@ export default defineComponent({
     };
 
     const createInput = () => {
-      const isPhone = this.type === 'phone';
+      const isPhone = this.type === 'tel' && this.withTelPrefix;
       const isPassword = this.type === 'password';
 
       let select, passwordEye;
@@ -136,147 +227,71 @@ export default defineComponent({
 
       const inputCnf = {
         id,
-        class: 'app-input__field app-input__field--standart',
+        ref: 'input',
+        class: [
+          'app-input__field app-input__field--standart',
+          {
+            'app-input__field--has-prepend': this.hasPrepend,
+            'app-input__field--has-append': this.hasAppend,
+            'app-input__field--invalid': !!this.errorMessage,
+            'app-input__field--valid': false,
+          },
+        ],
         placeholder: this.placeholder,
         type: isPassword && this.showPassword ? 'text' : this.type,
+        value: this.innerValue,
+        ...this.validationListeners,
       };
 
       const input = isPhone
         ? withDirectives(h('input', inputCnf), [[mask, '(###) ###-##-##']])
         : h('input', inputCnf);
 
-      return [isPhone ? select : null, input, isPassword ? passwordEye : null];
+      let prepend;
+      if (this.hasPrepend) {
+        prepend = h(
+          'div',
+          { class: 'app-input__prepend' },
+          this.$slots.prepend()
+        );
+      }
+
+      let append;
+      if (this.hasAppend) {
+        append = h('div', { class: 'app-input__append' }, this.$slots.append());
+      }
+
+      return [
+        isPhone ? select : null,
+        h(
+          'div',
+          {
+            class: 'app-input__field-wrapper',
+            onClick: () => {
+              this.$refs.input.focus();
+            },
+          },
+          [
+            prepend ? prepend : null,
+            input,
+            append ? append : null,
+            isPassword ? passwordEye : null,
+          ]
+        ),
+      ];
     };
 
     const label = h('label', { class: 'app-input__label', for: id }, [
       this.label,
     ]);
 
-    return h('div', { class: 'app-input' }, [label, ...createInput()]);
+    return h('div', { class: 'app-input' }, [
+      label,
+      ...createInput(),
+      this.errorMessage ? createErrorMessage() : null,
+    ]);
   },
 });
 </script>
 
-<style scoped lang="scss">
-%field {
-  min-height: 50px;
-  @apply tw-rounded-base tw-bg-dark-blue;
-}
-
-.app-input {
-  @apply tw-text-white tw-flex tw-flex-wrap tw-text-xs tw-relative;
-
-  &__label {
-    margin-bottom: 7px;
-    line-height: 1.4;
-    @apply tw-w-full;
-  }
-
-  &__field {
-    @extend %field;
-
-    &--standart {
-      padding: 0 21px;
-      @apply tw-w-full;
-    }
-
-    &[type='phone'] {
-      width: calc(100% - 111px - 10px);
-    }
-
-    &::placeholder {
-      @apply tw-text-primary;
-    }
-  }
-
-  &__pass-eye {
-    position: absolute;
-    right: 17px;
-    bottom: 12px;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    @apply tw-cursor-pointer tw-text-center;
-
-    svg {
-      @apply tw-inline-block;
-    }
-  }
-}
-
-.app-select {
-  @extend %field;
-  flex-basis: 111px;
-  margin-right: 10px;
-  transition: background-color 0.1s;
-  @apply tw-relative;
-
-  &__wrapper {
-    padding: 0 13px;
-    @apply tw-flex tw-items-center tw-cursor-pointer tw-rounded-base tw-h-full;
-
-    &:hover {
-      @apply tw-bg-secondary;
-    }
-
-    &:active {
-      @apply tw-bg-primary;
-    }
-  }
-
-  &__flag {
-    width: 24px;
-    margin-right: 6px;
-  }
-
-  &__arrow {
-    margin-right: 7px;
-
-    &--up {
-      transform: rotateX(180deg);
-    }
-  }
-
-  &__prefix {
-    width: 41px;
-    line-height: 41px;
-    @apply tw-text-center;
-  }
-}
-
-.app-dropdown {
-  position: absolute;
-  width: 100%;
-  bottom: 6px;
-  left: 0;
-  transform: translateY(100%);
-  @apply tw-bg-dark-blue tw-rounded-b-base;
-
-  &__option {
-    padding: 10px;
-    cursor: pointer;
-    @apply tw-flex tw-text-xxs tw-items-center;
-
-    & + & {
-      border-top: 1px solid theme('colors.dark-blue');
-    }
-
-    &:last-child {
-      @apply tw-rounded-b-base;
-    }
-
-    &:hover {
-      @apply tw-bg-blue-hover;
-    }
-
-    &:active {
-      @apply tw-bg-primary;
-    }
-  }
-
-  &__flag {
-    width: 24px;
-    margin-right: 10px;
-  }
-}
-</style>
+<style scoped lang="scss" src="./AppInput/style.scss"></style>

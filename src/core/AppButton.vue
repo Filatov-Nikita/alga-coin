@@ -1,5 +1,5 @@
 <script>
-import { h, defineComponent } from 'vue';
+import { h, defineComponent, resolveComponent } from 'vue';
 
 export default defineComponent({
   name: 'AppButton',
@@ -16,33 +16,53 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
+    icon: {
+      default: undefined,
+      type: String,
+    },
   },
   render() {
+    const createIcon = () => {
+      const InlineSvg = resolveComponent('InlineSvg');
+
+      return h(InlineSvg, {
+        class: 'app-button__icon',
+        src: this.icon,
+      });
+    };
+
     return h(
       'button',
       { class: ['app-button', { 'app-button--full-width': this.fullWidth }] },
-      this.$slots.default ? this.$slots.default : this.label
+      [
+        this.icon ? createIcon() : null,
+        h('div', this.$slots.default ? this.$slots.default : this.label),
+      ]
     );
   },
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .app-button {
   border-radius: 8px;
   padding: 21px 16px;
   @apply tw-bg-blue tw-text-white tw-text-base tw-flex tw-justify-center;
-}
 
-.app-button--full-width {
-  width: 100%;
-}
+  &--full-width {
+    width: 100%;
+  }
 
-.app-button:hover {
-  @apply tw-bg-blue-hover;
-}
+  &:hover {
+    @apply tw-bg-blue-hover;
+  }
 
-.app-button:active {
-  @apply tw-bg-primary;
+  &:active {
+    @apply tw-bg-primary;
+  }
+
+  &__icon {
+    margin-right: 10px;
+  }
 }
 </style>

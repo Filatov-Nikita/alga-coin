@@ -1,0 +1,166 @@
+%field {
+  min-height: 50px;
+  @apply tw-rounded-base tw-bg-dark-blue;
+}
+
+.app-input {
+  @apply tw-text-white tw-flex tw-flex-wrap tw-text-xs tw-relative;
+
+  &__error-message {
+    @apply tw-text-invalid tw-w-full;
+  }
+
+  &__prepend {
+    position: absolute;
+    bottom: 50%;
+    transform: translateY(50%);
+    left: 23px;
+  }
+
+  &__append {
+    position: absolute;
+    bottom: 50%;
+    transform: translateY(50%);
+    right: 23px;
+  }
+
+  &__label {
+    margin-bottom: 7px;
+    line-height: 1.4;
+    @apply tw-w-full;
+  }
+
+  &__field-wrapper {
+    position: relative;
+
+    &[type='tel'] {
+      width: calc(100% - 111px - 10px);
+    }
+  }
+
+  &__field {
+    @extend %field;
+    border: 2px solid theme('colors.dark-blue');
+
+    &--standart {
+      padding: 0 21px;
+      @apply tw-w-full;
+    }
+
+    &::placeholder {
+      @apply tw-text-primary;
+    }
+
+    &:focus {
+      border-color: theme('colors.blue-hover');
+    }
+
+    &--valid {
+      border-color: theme('colors.valid') !important;
+    }
+
+    &--invalid {
+      border-color: theme('colors.invalid') !important;
+    }
+
+    &--has-prepend {
+      padding-left: 53px;
+    }
+
+    &--has-append {
+    }
+  }
+
+  &__pass-eye {
+    position: absolute;
+    right: 17px;
+    bottom: 12px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    @apply tw-cursor-pointer tw-text-center;
+
+    svg {
+      @apply tw-inline-block;
+    }
+  }
+}
+
+.app-select {
+  @extend %field;
+  flex-basis: 111px;
+  margin-right: 10px;
+  transition: background-color 0.1s;
+  @apply tw-relative;
+
+  &__wrapper {
+    padding: 0 13px;
+    @apply tw-flex tw-items-center tw-cursor-pointer tw-rounded-base tw-h-full;
+
+    &:hover {
+      @apply tw-bg-secondary;
+    }
+
+    &:active {
+      @apply tw-bg-primary;
+    }
+  }
+
+  &__flag {
+    width: 24px;
+    margin-right: 6px;
+  }
+
+  &__arrow {
+    margin-right: 7px;
+
+    &--up {
+      transform: rotateX(180deg);
+    }
+  }
+
+  &__prefix {
+    width: 41px;
+    line-height: 41px;
+    @apply tw-text-center;
+  }
+}
+
+.app-dropdown {
+  position: absolute;
+  width: 100%;
+  bottom: 6px;
+  left: 0;
+  transform: translateY(100%);
+  z-index: 999;
+  max-height: 268px;
+  overflow: auto;
+  @apply tw-bg-dark-blue tw-rounded-b-base;
+
+  &__option {
+    padding: 10px;
+    cursor: pointer;
+    @apply tw-flex tw-text-xxs tw-items-center;
+
+    & + & {
+      border-top: 1px solid theme('colors.dark-blue');
+    }
+
+    &:last-child {
+      @apply tw-rounded-b-base;
+    }
+
+    &:hover {
+      @apply tw-bg-blue-hover;
+    }
+
+    &:active {
+      @apply tw-bg-primary;
+    }
+  }
+
+  &__flag {
+    width: 24px;
+    margin-right: 10px;
+  }
+}

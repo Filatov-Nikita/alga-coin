@@ -9,5 +9,21 @@
   }
 }
 
+@layer utilities {
+  .app-scrollbar {
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    &::-webkit-scrollbar-track {
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: theme('colors.blue-hover');
+      @apply tw-rounded-base;
+    }
+  }
+}
+
 @import './font-styles/stolzl-font.scss';
 @import './base.scss';
