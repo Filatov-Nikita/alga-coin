@@ -25,7 +25,7 @@
     <div class="label">До запуска</div>
 
     <div class="timer">
-      <Timer />
+      <Timer v-bind="{ days, hours, minutes, seconds }" />
     </div>
   </div>
 </template>
@@ -35,6 +35,12 @@ import ClockHand from './ClockHand.vue';
 import Timer from 'src/components/Timer.vue';
 
 export default {
+  props: {
+    days: { type: Number, required: true },
+    hours: { type: Number, required: true },
+    minutes: { type: Number, required: true },
+    seconds: { type: Number, required: true },
+  },
   components: {
     ClockHand,
     Timer,

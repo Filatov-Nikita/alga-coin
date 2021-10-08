@@ -13,15 +13,21 @@ import TimerItem from './Timer/TimerItem.vue';
 let ticker;
 
 export default {
+  props: {
+    days: { type: Number, required: true },
+    hours: { type: Number, required: true },
+    minutes: { type: Number, required: true },
+    seconds: { type: Number, required: true },
+  },
   mounted() {
     this.start();
   },
   data() {
     return {
-      s: 2,
-      m: 0,
-      h: 0,
-      d: 1,
+      s: this.seconds,
+      m: this.minutes,
+      h: this.hours,
+      d: this.days,
     };
   },
   watch: {
