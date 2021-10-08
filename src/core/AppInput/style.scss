@@ -7,7 +7,7 @@
   @apply tw-text-white tw-flex tw-flex-wrap tw-text-xs tw-relative;
 
   &__error-message {
-    @apply tw-text-invalid tw-w-full;
+    @apply tw-text-invalid tw-w-full tw-text-left;
   }
 
   &__prepend {
@@ -35,7 +35,7 @@
     @apply tw-w-full;
 
     &--tel {
-      width: calc(100% - 111px - 10px);
+      width: calc(100% - 111px - 10px - 4px);
     }
   }
 
@@ -92,7 +92,8 @@
   flex-basis: 111px;
   margin-right: 10px;
   transition: background-color 0.1s;
-  @apply tw-relative;
+  border: 2px solid theme('colors.dark-blue');
+  @apply tw-relative tw-flex-shrink-0;
 
   &__wrapper {
     padding: 0 13px;

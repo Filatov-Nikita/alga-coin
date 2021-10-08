@@ -16,27 +16,47 @@ body {
   @apply tw-font-stolzl tw-text-xs tw-text-white;
 }
 
+%h {
+  line-height: 1.4;
+}
+
 h1, .h1 {
+  @extend %h;
   @apply tw-text-xl;
 }
 
 h2, .h2 {
+  @extend %h;
   @apply tw-text-lg;
 }
 
 h3, .h3 {
+  @extend %h;
   @apply tw-text-md1;
 }
 
 h4, .h4 {
+  @extend %h;
   @apply tw-text-md2;
 }
 
+.h5 {
+  @extend %h;
+  @apply tw-text-sm;
+}
 
+.h6 {
+  @extend %h;
+  @apply tw-text-base;
+}
 
 .app-container {
-  padding-left: 75px;
-  padding-right: 75px;
+  padding-left: 25px;
+  padding-right: 25px;
   margin: 0 auto;
-  max-width: 1920px;
+
+  &--desktop {
+    padding-left: 75px;
+    padding-right: 75px;
+  }
 }

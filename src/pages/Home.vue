@@ -1,3 +1,5 @@
 <template>
-  <q-page> </q-page>
+  <q-page>
+
+  </q-page>
 </template>

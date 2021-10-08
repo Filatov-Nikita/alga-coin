@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="to" class="app-link" :class="`tw-text-${size}`">
+  <router-link :to="to" class="app-link">
     <slot>{{ label }}</slot>
   </router-link>
 </template>
@@ -16,10 +16,6 @@ export default {
     },
     label: {
       default: undefined,
-      type: String,
-    },
-    size: {
-      default: 'xs',
       type: String,
     },
   },

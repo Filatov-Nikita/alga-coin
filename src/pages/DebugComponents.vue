@@ -15,6 +15,24 @@
             :icon="require('assets/usdt.svg')"
           />
         </article>
+
+        <article>
+          <h3 class="h4">Кнопки в стиле flat дизайна</h3>
+          <AppButton type="flat" label="Назад">
+            <template #prepend>
+              <InlineSvg
+                :src="require('assets/arrow2.svg')"
+                style="transform: rotate(90deg)"
+              />
+            </template>
+          </AppButton>
+
+          <AppButton
+            type="flat"
+            label="Закрыть"
+            :icon="require('assets/close.svg')"
+          />
+        </article>
       </div>
     </section>
     <section class="section">
@@ -66,6 +84,16 @@
           <h3 class="h4">Ввод цифрового кода</h3>
           <AppCodeInput length="6" label="Код из СМС" v-model:code="code" />
         </article>
+
+        <article>
+          <h3 class="h4">Базовый checkbox</h3>
+          <AppCheckbox>
+            <span>
+              Я ознакомился(ась) и соглашаюсь с
+              <AppLink to="#">Условиями обслуживания</AppLink> AlgaCoin
+            </span>
+          </AppCheckbox>
+        </article>
       </div>
     </section>
     <section class="section">
@@ -82,6 +110,24 @@
         <article>
           <h3 class="h4">Выпадающее меню пользователя</h3>
           <UserMenu name="Валентина" />
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="h3">уведомления:</h2>
+      <div>
+        <article>
+          <h3 class="h4">Ошибки</h3>
+          <AppAlert type="negative" message="уведомление об ошибке" />
+        </article>
+        <article>
+          <h3 class="h4">Успешные</h3>
+          <AppAlert type="positive" message="успешное уведомление" />
+        </article>
+        <article>
+          <h3 class="h4">Нейтральные</h3>
+          <AppAlert type="neutral" message="нейтральные уведомление" />
         </article>
       </div>
     </section>

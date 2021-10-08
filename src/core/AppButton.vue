@@ -20,6 +20,10 @@ export default defineComponent({
       default: undefined,
       type: String,
     },
+    design: {
+      default: 'standart',
+      type: String,
+    },
   },
   render() {
     const createIcon = () => {
@@ -31,11 +35,24 @@ export default defineComponent({
       });
     };
 
+    let prepend = null;
+
+    if (this.$slots.prepend) {
+      prepend = h('div', { class: 'app-button__icon' }, this.$slots.prepend());
+    } else if (this.icon) {
+      prepend = createIcon();
+    }
+
     return h(
       'button',
-      { class: ['app-button', { 'app-button--full-width': this.fullWidth }] },
+      {
+        class: [
+          `app-button app-button--${this.design}`,
+          { 'app-button--full-width': this.fullWidth },
+        ],
+      },
       [
-        this.icon ? createIcon() : null,
+        prepend,
         h('div', this.$slots.default ? this.$slots.default : this.label),
       ]
     );
@@ -45,20 +62,36 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .app-button {
-  border-radius: 8px;
-  padding: 21px 16px;
-  @apply tw-bg-blue tw-text-white tw-text-base tw-flex tw-justify-center;
+  @apply tw-flex tw-justify-center tw-items-center;
 
   &--full-width {
     width: 100%;
   }
 
-  &:hover {
-    @apply tw-bg-blue-hover;
+  &--standart {
+    border-radius: 8px;
+    padding: 21px 16px;
+    @apply tw-bg-blue tw-text-base;
+
+    &:hover {
+      @apply tw-bg-blue-hover;
+    }
+
+    &:active {
+      @apply tw-bg-primary;
+    }
   }
 
-  &:active {
-    @apply tw-bg-primary;
+  &--flat {
+    @apply tw-p-2 tw-rounded;
+
+    &:hover {
+      @apply tw-bg-blue-hover tw-bg-opacity-50;
+    }
+
+    &:active {
+      @apply tw-bg-primary tw-bg-opacity-50;
+    }
   }
 
   &__icon {

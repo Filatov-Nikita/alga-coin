@@ -12,7 +12,10 @@ const KEYCODES = {
 export default defineComponent({
   name: 'AppCodeInput',
   props: {
-    length: [Number, String],
+    length: {
+      default: 6,
+      type: [Number, String],
+    },
     label: {
       required: true,
       type: String,
@@ -191,8 +194,8 @@ export default defineComponent({
   @apply tw-flex-wrap tw-flex;
 
   &__field {
-    width: 50px;
-    height: 50px;
+    width: 37px;
+    height: 37px;
     @apply tw-rounded-base tw-bg-dark-blue tw-text-md2 tw-text-center;
 
     & + & {

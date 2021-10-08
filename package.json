@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
-    "@vee-validate/i18n": "^4.5.1",
+    "@vee-validate/i18n": "^4.5.2",
     "@vee-validate/rules": "^4.5.1",
     "core-js": "^3.6.5",
     "quasar": "^2.0.0",
-    "vee-validate": "^4.5.1",
+    "vee-validate": "^4.5.2",
     "vue-inline-svg": "^3.0.0-beta.3",
     "vue-the-mask": "^0.11.1",
     "vuex": "^4.0.1",

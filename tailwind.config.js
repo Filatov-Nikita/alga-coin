@@ -1,5 +1,5 @@
 module.exports = {
-  prefix: 'tw-',
+  prefix: "tw-",
   purge: {
     content: ["./src/**/*.vue"],
   },
@@ -7,8 +7,12 @@ module.exports = {
   theme: {
     extend: {
       borderRadius: {
-        base: '8px'
-      }
+        base: "8px",
+      },
+      spacing: {
+        "4-1": "1.125rem",
+        '7-1': '1.875rem'
+      },
     },
     colors: {
       primary: "#005BAA",
@@ -19,7 +23,7 @@ module.exports = {
       dark: "#0A1E3E",
       "dark-blue": "#003870",
       "blue-hover": "#0083F5",
-      white: '#FFFFFF'
+      white: "#FFFFFF",
     },
     fontFamily: {
       stolzl: "Stolzl",

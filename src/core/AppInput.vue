@@ -33,21 +33,41 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
-    ...{ rules: Field.props.rules },
-    value: {
+    modelValue: {
       default: '',
       type: String,
     },
+    telPrefix: {
+      default: undefined,
+      validator(value) {
+        return value.value && value.label;
+      },
+    },
+    name: {
+      type: String
+    },
+    ...{ rules: Field.props.rules },
   },
   setup(props, { emit, attrs }) {
+    const DEFAULT_PREFIX = { label: '+7', value: '+7' };
+    console.log(props.name || props.label);
     const { value, errorMessage, handleChange } = useField(
-      props.label,
+      props.name || props.label,
       props.rules,
       {
         initialValue: props.value,
         validateOnValueUpdate: false,
+        label: props.label,
       }
     );
+
+    let telPrefixField;
+    if (props.withTelPrefix && props.type === 'tel') {
+      telPrefixField = useField('telPrefix', '', {
+        initialValue: props.telPrefix || DEFAULT_PREFIX,
+        validateOnValueUpdate: false,
+      });
+    }
 
     const validationListeners = computed(() => {
       const handler = (e, shouldValidate = true) => {
@@ -67,7 +87,7 @@ export default defineComponent({
         // ленивая проверка
         return {
           onChange: handleChange,
-          onBlue: handleChange,
+          onBlur: handleChange,
           onInput: (e) => {
             handler(e, false);
           },
@@ -79,7 +99,7 @@ export default defineComponent({
         onInput: (e) => {
           handler(e);
         },
-        onBlue: handleChange,
+        onBlur: handleChange,
         onChange: handleChange,
       };
     });
@@ -88,16 +108,28 @@ export default defineComponent({
       innerValue: value,
       errorMessage,
       validationListeners,
+      ...(telPrefixField && telPrefixField.value
+        ? { telPrefixInner: telPrefixField.value }
+        : {}),
     };
   },
   data() {
     return {
       showPassword: false,
       selectShow: false,
-      selected: { label: '+7', value: '+7' },
     };
   },
-  emits: ['update:modelValue'],
+  watch: {
+    // modelValue: {
+    //   handler(newVal) {
+    //     if (this.innerValue !== newVal) {
+    //       this.innerValue = newVal;
+    //     }
+    //   },
+    //   immediate: true,
+    // },
+  },
+  emits: ['update:modelValue', 'update:telPrefix', 'update:cellphone'],
   computed: {
     hasPrepend() {
       return !!this.$slots.prepend;
@@ -143,7 +175,8 @@ export default defineComponent({
           {
             class: 'app-dropdown__option',
             onClick: () => {
-              this.selected = { value: number, label: number };
+              this.telPrefixInner = { value: number, label: number };
+              this.$emit('update:telPrefix', this.telPrefixInner);
               this.selectShow = false;
             },
           },
@@ -184,7 +217,9 @@ export default defineComponent({
       const selectBtnChlildren = h('div', { class: 'app-select__wrapper' }, [
         h(InlineSvg, {
           class: 'app-select__flag',
-          src: require('assets/' + numberFlag[this.selected.value] + '.svg'),
+          src: require('assets/' +
+            numberFlag[this.telPrefixInner.value] +
+            '.svg'),
         }),
         h(InlineSvg, {
           class: [
@@ -193,14 +228,17 @@ export default defineComponent({
           ],
           src: require('assets/select-arrow.svg'),
         }),
-        h('div', { class: 'app-select__prefix' }, this.selected.label),
+        h('div', { class: 'app-select__prefix' }, this.telPrefixInner.label),
       ]);
 
       const select = h(
         'div',
         {
           role: 'select',
-          class: 'app-select',
+          class: [
+            'app-select',
+            { 'app-input__field--invalid': !!this.errorMessage },
+          ],
           onClick: (e) => {
             if (e.target.closest('.app-dropdown')) return;
             this.selectShow = !this.selectShow;
