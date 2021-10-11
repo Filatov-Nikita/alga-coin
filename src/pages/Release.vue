@@ -10,14 +10,18 @@ import ClockFace from 'src/components/Clock/ClockFace.vue';
 export default {
   setup() {
     function calcTimerValue(countDownDate) {
-      const now = new Date().getTime();
+      const now = Date.now();
       const timeleft = countDownDate - now;
 
-      const oneH = 1000 * 60 * 60;
-      const days = Math.floor(timeleft / (oneH * 24));
-      const hours = Math.floor((timeleft % (oneH * 24)) / oneH);
-      const minutes = Math.floor((timeleft % oneH) / (1000 * 60));
-      const seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+      const aS = 1000;
+      const aM = aS * 60;
+      const anH = aM * 60;
+      const aDay = anH * 24;
+
+      const days = Math.floor(timeleft / aDay);
+      const hours = Math.floor((timeleft % aDay) / anH);
+      const minutes = Math.floor((timeleft % anH) / aM);
+      const seconds = Math.floor((timeleft % aM) / aS);
 
       return {
         days,
