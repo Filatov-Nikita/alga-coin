@@ -1,3 +1,103 @@
-@mixin scrollbar() {
+$xl: theme('screens.xl');
+$columns: 24;
+$offset: 30px;
 
+@mixin gutter($val) {
+  margin-top: $val * -1;
+  margin-left: $val * -1;
+
+  & > * {
+    margin-top: $val;
+    margin-left: $val;
+  }
 }
+
+@mixin gutter-y($val) {
+  margin-top: $val * -1;
+
+  & > * {
+    margin-top: $val;
+  }
+}
+
+@mixin gutter-x($val) {
+  margin-left: $val * -1;
+
+  & > * {
+    margin-left: $val;
+  }
+}
+
+@mixin gutter-col($val) {
+  margin-top: $offset * -1;
+  margin-left: $offset * -1;
+
+  & > * {
+    margin-top: $offset;
+    margin-left: $offset;
+  }
+}
+
+@mixin gutter-col-x($val) {
+  margin-left: $offset * -1;
+
+  & > * {
+    margin-left: $offset;
+  }
+}
+
+@mixin gutter-col-y($val) {
+  margin-top: $offset * -1;
+
+  & > * {
+    margin-top: $offset;
+  }
+}
+
+@mixin row() {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin col($size) {
+  $val: 100% / $columns * $size;
+  width: #{calc(#{$val} - #{$offset})};
+}
+
+@mixin col-xl($size) {
+  $val: 100% / $columns * $size;
+
+  @media screen and (min-width: $xl) {
+    width: #{calc(#{$val} - #{$offset})};
+  }
+}
+
+@mixin space($val) {
+ > * + * {
+    margin-left: $val;
+    margin-top: $val;
+  }
+}
+
+@mixin space-x($val) {
+  > * + * {
+     margin-left: $val;
+   }
+ }
+
+ @mixin space-y($val) {
+  > * + * {
+     margin-top: $val;
+   }
+ }
+
+.app-row {
+  @include row();
+}
+
+.app-gutter-col {
+  @include gutter-col();
+}
+
+// gutter col - сетка на падингах
+// gutter - отступы на марджинах

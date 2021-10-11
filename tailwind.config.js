@@ -11,7 +11,7 @@ module.exports = {
       },
       spacing: {
         "4-1": "1.125rem",
-        '7-1': '1.875rem'
+        "7-1": "1.875rem",
       },
     },
     colors: {
@@ -37,6 +37,18 @@ module.exports = {
       md1: "2.250rem",
       lg: "3rem",
       xl: "4.5rem",
+    },
+    screens: {
+      xl: "1366px",
+    },
+    container: {
+      DEFAULT: "100%",
+      center: true,
+      xl: "1366px",
+      padding: {
+        DEFAULT: "25px",
+        xl: "30px",
+      },
     },
   },
   variants: {

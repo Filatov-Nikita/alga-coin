@@ -1,7 +1,7 @@
 <template>
   <q-layout class="base-layout">
     <q-header class="tw-py-4-1">
-      <div class="app-container">
+      <div class="tw-container">
         <img class="logo" src="~assets/images/app-logo.svg" alt="логотип" />
       </div>
     </q-header>

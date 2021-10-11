@@ -6,7 +6,6 @@ const routes = [
       {
         path: "",
         component: () => import("pages/Home.vue"),
-        redirect: { name: 'release' }
       },
       {
         path: "/registration",
