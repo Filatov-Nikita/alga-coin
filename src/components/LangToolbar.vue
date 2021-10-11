@@ -35,14 +35,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+//$
+
 .lang-toolbar {
   @apply tw-flex;
 
   &__item {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    @apply tw-text-center tw-text-xs tw-bg-dark-blue tw-cursor-pointer;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    @include screen-xl {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+    }
+
+    @apply tw-text-center tw-text-xxs xl:tw-text-xs tw-bg-dark-blue tw-cursor-pointer;
 
     & + & {
       margin-left: 6px;
@@ -52,8 +60,10 @@ export default {
       @apply tw-bg-blue;
     }
 
-    &:hover {
-      @apply tw-bg-primary;
+    @include screen-xl {
+      &:hover {
+        @apply tw-bg-primary;
+      }
     }
   }
 }

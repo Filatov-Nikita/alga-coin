@@ -5,23 +5,24 @@ const routes = [
     children: [
       {
         path: "",
-        component: () => import("pages/Home.vue"),
-      },
-      {
-        path: "/registration",
-        component: () => import("pages/Auth/AuthRegistration.vue"),
-        name: "auth.registr",
-      },
-      {
-        path: "/verifing-code",
-        component: () => import("pages/Auth/AuthVerifingCode.vue"),
-        name: "auth.verifing-code",
+        component: () => import("pages/Wallet.vue"),
       },
 
-      {
-        path: "/components",
-        component: () => import("pages/DebugComponents.vue"),
-      },
+      // {
+      //   path: "/registration",
+      //   component: () => import("pages/Auth/AuthRegistration.vue"),
+      //   name: "auth.registr",
+      // },
+      // {
+      //   path: "/verifing-code",
+      //   component: () => import("pages/Auth/AuthVerifingCode.vue"),
+      //   name: "auth.verifing-code",
+      // },
+
+      // {
+      //   path: "/components",
+      //   component: () => import("pages/DebugComponents.vue"),
+      // },
     ],
   },
 

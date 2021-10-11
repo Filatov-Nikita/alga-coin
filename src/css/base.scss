@@ -49,3 +49,7 @@ h4, .h4 {
   @extend %h;
   @apply tw-text-base;
 }
+
+a, .app-link {
+  @apply tw-text-secondary;
+}

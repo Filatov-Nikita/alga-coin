@@ -28,7 +28,7 @@ $offset: 30px;
   }
 }
 
-@mixin gutter-col($val) {
+@mixin gutter-col {
   margin-top: $offset * -1;
   margin-left: $offset * -1;
 
@@ -38,7 +38,7 @@ $offset: 30px;
   }
 }
 
-@mixin gutter-col-x($val) {
+@mixin gutter-col-x {
   margin-left: $offset * -1;
 
   & > * {
@@ -46,7 +46,7 @@ $offset: 30px;
   }
 }
 
-@mixin gutter-col-y($val) {
+@mixin gutter-col-y {
   margin-top: $offset * -1;
 
   & > * {
@@ -69,6 +69,12 @@ $offset: 30px;
 
   @media screen and (min-width: $xl) {
     width: #{calc(#{$val} - #{$offset})};
+  }
+}
+
+@mixin screen-xl {
+  @media screen and (min-width: $xl) {
+    @content;
   }
 }
 

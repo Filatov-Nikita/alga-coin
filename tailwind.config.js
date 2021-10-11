@@ -21,9 +21,10 @@ module.exports = {
       blue: "#0A8DFF",
       valid: "#4AD66D",
       dark: "#0A1E3E",
+      white: "#FFFFFF",
       "dark-blue": "#003870",
       "blue-hover": "#0083F5",
-      white: "#FFFFFF",
+      'dark-blue-cover': '#001233',
     },
     fontFamily: {
       stolzl: "Stolzl",
@@ -54,5 +55,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-safe-area'),
+  ]
 };

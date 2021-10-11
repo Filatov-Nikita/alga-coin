@@ -1,13 +1,7 @@
 <template>
   <div class="user-menu">
     <button class="user-menu__btn" @click="onClick">
-      <div class="user-menu__avatar">
-        <InlineSvg
-          v-if="avatar === 'standart'"
-          :src="require('assets/profile-avatar.svg')"
-        />
-        <img v-else :src="avatar" alt="profile avatar" />
-      </div>
+      <UserAvatar />
       <div class="user-menu__name">{{ name }}</div>
       <div class="user-menu__icon">
         <InlineSvg :src="require('assets/arrow2.svg')" />
@@ -27,6 +21,8 @@
 </template>
 
 <script>
+import UserAvatar from 'src/components/UserAvatar.vue';
+
 export default {
   props: {
     name: {
@@ -48,12 +44,16 @@ export default {
       this.showMenu = !this.showMenu;
     },
   },
+  components: {
+    UserAvatar,
+  },
 };
 </script>
 
 <style scoped lang="scss">
 .user-menu {
-  @apply tw-relative tw-inline-block;
+  width: 200px;
+  @apply tw-relative;
 
   &__dropdown {
     bottom: -8px;
@@ -63,21 +63,10 @@ export default {
 
   &__btn {
     padding: 10px 30px 10px 23px;
-    @apply tw-flex tw-items-center tw-bg-dark tw-rounded-base;
+    @apply tw-flex tw-items-center tw-bg-dark tw-rounded-base tw-w-full;
 
     &:hover {
       @apply tw-bg-primary;
-    }
-  }
-
-  &__avatar {
-    width: 36px;
-    height: 36px;
-    margin-right: 12px;
-    @apply tw-rounded-full;
-
-    img {
-      @apply tw-rounded-full;
     }
   }
 

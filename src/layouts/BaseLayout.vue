@@ -1,26 +1,29 @@
 <template>
   <q-layout class="base-layout">
-    <q-header class="tw-py-4-1">
-      <div class="tw-container">
-        <img class="logo" src="~assets/images/app-logo.svg" alt="логотип" />
-      </div>
-    </q-header>
+    <BaseHeader />
     <q-page-container>
       <router-view />
     </q-page-container>
+    <q-footer>
+      <TheBottomMenu class="xl:tw-hidden" />
+    </q-footer>
   </q-layout>
 </template>
 
 <script>
-export default {};
+import TheBottomMenu from 'src/components/TheBottomMenu.vue';
+import BaseHeader from './parts/BaseHeader.vue';
+
+export default {
+  components: {
+    TheBottomMenu,
+    BaseHeader,
+  },
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .base-layout {
-  background: #001233;
-}
-
-.logo {
-  width: 100px;
+  @apply tw-bg-dark-blue-cover;
 }
 </style>
