@@ -124,13 +124,20 @@ export default {
 
   &--hour {
     div {
-      height: 140px;
+      height: 70px;
+
+      @media screen and (min-width: 1100px) {
+        height: 140px;
+      }
     }
   }
 
   &--minute {
     div {
-      height: 200px;
+      height: 100px;
+      @media screen and (min-width: 1100px) {
+        height: 200px;
+      }
     }
   }
 }
@@ -141,9 +148,13 @@ export default {
 
   div {
     width: 2px;
-    height: 300px;
+    height: 150px;
     background: linear-gradient(rgba(0, 193, 242, 1), rgba(0, 93, 172, 1));
     transform-origin: center 40px;
+
+    @media screen and (min-width: 1100px) {
+      height: 300px;
+    }
   }
 }
 

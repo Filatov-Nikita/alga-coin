@@ -50,9 +50,15 @@ export default {
 
 <style scoped lang="scss">
 .clock-face {
-  max-width: 773px;
+  max-width: 300px;
   margin: 0 auto;
   position: relative;
+  margin-bottom: 135px;
+
+  @media screen and (min-width: 1100px) {
+    max-width: 773px;
+    margin-bottom: 0;
+  }
 
   &__middle,
   &__bottom,
@@ -61,15 +67,28 @@ export default {
   }
 
   &__middle {
-    margin: 150px 0;
+    margin: 75px 0;
+
+    @media screen and (min-width: 1100px) {
+      margin: 150px 0;
+    }
   }
 
   &__number {
-    width: 118px;
-    height: 118px;
-    font-size: 96px;
-    line-height: 118px;
+    position: relative;
+    z-index: 11;
+    width: 59px;
+    height: 59px;
+    font-size: 48px;
+    line-height: 59px;
     text-align: center;
+
+    @media screen and (min-width: 1100px) {
+      width: 118px;
+      height: 118px;
+      font-size: 96px;
+      line-height: 118px;
+    }
   }
 
   &__arrows {
@@ -90,11 +109,20 @@ export default {
 }
 
 .timer {
-  bottom: 125px;
+  bottom: -140px;
+
+  @media screen and (min-width: 1100px) {
+    bottom: 125px;
+  }
 }
 
 .label {
-  top: 125px;
-  @apply tw-text-md2 tw-text-center;
+  top: 75px;
+  @apply tw-text-sm tw-text-center;
+
+  @media screen and (min-width: 1100px) {
+    top: 125px;
+    @apply tw-text-md2;
+  }
 }
 </style>

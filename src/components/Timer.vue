@@ -78,7 +78,11 @@ export default {
 <style scoped lang="scss">
 .timer {
   &__item + &__item {
-    margin-left: 18px;
+    margin-left: 4px;
+
+    @media screen and (min-width: 1100px) {
+      margin-left: 18px;
+    }
   }
 }
 </style>

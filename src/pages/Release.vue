@@ -1,5 +1,5 @@
 <template>
-  <q-page class="tw-p-9">
+  <q-page class="tw-p-4 tw-pb-10 lg:tw-p-9">
     <ClockFace v-bind="{ days, hours, minutes, seconds }" />
   </q-page>
 </template>
@@ -43,6 +43,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>
