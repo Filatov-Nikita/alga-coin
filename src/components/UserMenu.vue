@@ -1,7 +1,7 @@
 <template>
   <div class="user-menu">
     <button class="user-menu__btn" @click="onClick">
-      <UserAvatar />
+      <UserAvatar class="tw-mr-3" />
       <div class="user-menu__name">{{ name }}</div>
       <div class="user-menu__icon">
         <InlineSvg :src="require('assets/arrow2.svg')" />
@@ -66,7 +66,7 @@ export default {
     @apply tw-flex tw-items-center tw-bg-dark tw-rounded-base tw-w-full;
 
     &:hover {
-      @apply tw-bg-primary;
+      @apply tw-bg-blue-hover;
     }
   }
 
@@ -88,7 +88,7 @@ export default {
 
   &__item {
     padding: 18px 20px;
-    @apply tw-flex tw-items-center;
+    @apply tw-flex tw-items-center tw-text-white;
 
     svg {
       margin-right: 14px;
@@ -107,7 +107,7 @@ export default {
     }
 
     &:hover {
-      @apply tw-bg-primary;
+      @apply tw-bg-blue-hover;
     }
   }
 }

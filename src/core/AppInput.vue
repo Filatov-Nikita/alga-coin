@@ -50,7 +50,6 @@ export default defineComponent({
   },
   setup(props, { emit, attrs }) {
     const DEFAULT_PREFIX = { label: '+7', value: '+7' };
-    console.log(props.name || props.label);
     const { value, errorMessage, handleChange } = useField(
       props.name || props.label,
       props.rules,

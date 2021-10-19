@@ -6,6 +6,24 @@ const routes = [
       {
         path: "",
         component: () => import("pages/Wallet.vue"),
+        name: "wallet",
+      },
+
+      {
+        path: "/output",
+        component: () => import("pages/Output.vue"),
+        name: "output",
+      },
+
+      {
+        path: "history",
+        component: () => import("pages/History.vue"),
+        name: "history",
+      },
+
+      {
+        path: '/reactivity',
+        component: () => import('pages/Reactivity.vue')
       },
 
       // {
@@ -19,10 +37,10 @@ const routes = [
       //   name: "auth.verifing-code",
       // },
 
-      // {
-      //   path: "/components",
-      //   component: () => import("pages/DebugComponents.vue"),
-      // },
+      {
+        path: "/components",
+        component: () => import("pages/DebugComponents.vue"),
+      },
     ],
   },
 

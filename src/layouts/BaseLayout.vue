@@ -1,8 +1,8 @@
 <template>
-  <q-layout class="base-layout">
+  <q-layout class="base-layout" view="lhh lpR fFf">
     <BaseHeader />
     <q-page-container>
-      <router-view />
+      <router-view :value="test" />
     </q-page-container>
     <q-footer>
       <TheBottomMenu class="xl:tw-hidden" />
@@ -15,6 +15,11 @@ import TheBottomMenu from 'src/components/TheBottomMenu.vue';
 import BaseHeader from './parts/BaseHeader.vue';
 
 export default {
+  data() {
+    return {
+      test: '2',
+    };
+  },
   components: {
     TheBottomMenu,
     BaseHeader,

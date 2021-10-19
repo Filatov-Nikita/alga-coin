@@ -27,7 +27,7 @@ export default {
   @apply tw-text-secondary;
 
   &:hover {
-    @apply tw-text-primary;
+    @apply tw-text-blue-hover;
   }
 
   &:active {

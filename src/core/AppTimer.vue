@@ -1,44 +1,47 @@
 <template>
   <div>
-    <slot :time="time" />
+    <slot v-bind="{ s, m, h, d, displayVal }" />
   </div>
 </template>
 
 <script>
 // добавить возможность отображать часы и минуты
+import useTimer from 'src/composition/useTimer';
+
 export default {
   props: {
-    start: {
-      required: true,
-      type: Number,
-    },
+    days: { default: 0, type: Number },
+    hours: { default: 0, type: Number },
+    minutes: { default: 0, type: Number },
+    seconds: { default: 0, type: Number },
   },
-  created() {
-    this.interval = null;
-  },
-  data() {
+  setup(props, { emit }) {
+    const { seconds, minutes, hours, days } = props;
+
+    function onStop() {
+      emit('finish');
+    }
+
+    const { s, m, h, d } = useTimer(seconds, minutes, hours, days, onStop);
+
     return {
-      time: this.start,
+      s,
+      m,
+      h,
+      d,
     };
   },
-  mounted() {
-    this.startTimer();
+  methods: {
+    displayVal(val) {
+      if (typeof val !== 'number') val = 0;
+
+      if (Math.floor(val / 10) <= 0) {
+        return `0${val}`;
+      }
+
+      return `${val}`;
+    },
   },
   emits: ['finish'],
-  methods: {
-    startTimer() {
-      this.interval = setInterval(() => {
-        this.tick();
-        if (this.time <= 0) this.stop();
-      }, 1000);
-    },
-    tick() {
-      this.time--;
-    },
-    stop() {
-      clearInterval(this.interval);
-      this.$emit('finish');
-    },
-  },
 };
 </script>

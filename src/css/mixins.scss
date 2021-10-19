@@ -1,6 +1,28 @@
 $xl: theme('screens.xl');
-$columns: 24;
+$columns: 18;
 $offset: 30px;
+
+@mixin scrollbar() {
+  &::-webkit-scrollbar {
+    // контейнер
+    width: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    // контейнер
+    @apply tw-bg-dark;
+  }
+
+  &::-webkit-scrollbar-button {
+    // кнопки вверх вниз
+    @apply tw-bg-dark;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    // полоса
+    @apply tw-bg-blue-hover;
+  }
+}
 
 @mixin gutter($val) {
   margin-top: $val * -1;
@@ -29,28 +51,40 @@ $offset: 30px;
 }
 
 @mixin gutter-col {
-  margin-top: $offset * -1;
-  margin-left: $offset * -1;
-
-  & > * {
-    margin-top: $offset;
-    margin-left: $offset;
-  }
+  @include gutter($offset);
 }
 
 @mixin gutter-col-x {
-  margin-left: $offset * -1;
-
-  & > * {
-    margin-left: $offset;
-  }
+  @include gutter-x($offset);
 }
 
 @mixin gutter-col-y {
+  @include gutter-y($offset);
+}
+
+@mixin gutter-p-y($offset) {
   margin-top: $offset * -1;
 
   & > * {
-    margin-top: $offset;
+    padding-top: $offset;
+  }
+}
+
+@mixin gutter-p-x($offset) {
+  margin-left: $offset * -1;
+
+  & > * {
+    padding-left: $offset;
+  }
+}
+
+@mixin gutter-p($offset) {
+  margin-top: $offset * -1;
+  margin-left: $offset * -1;
+
+  & > * {
+    padding-top: $offset;
+    padding-left: $offset;
   }
 }
 
@@ -67,13 +101,19 @@ $offset: 30px;
 @mixin col-xl($size) {
   $val: 100% / $columns * $size;
 
-  @media screen and (min-width: $xl) {
+  @include screen-xl {
     width: #{calc(#{$val} - #{$offset})};
   }
 }
 
 @mixin screen-xl {
   @media screen and (min-width: $xl) {
+    @content;
+  }
+}
+
+@mixin screen-start-xl {
+  @media screen and (min-width: 0) and (max-width: $xl) {
     @content;
   }
 }
@@ -97,12 +137,62 @@ $offset: 30px;
    }
  }
 
+ @mixin el-center {
+   transform: translateX(-50%) translateY(-50%);
+   left: 50%;
+   top: 50%;
+ }
+
+ @mixin col-shift-left($n){
+  $val: 100% / $columns * $n;
+  margin-left: #{calc(#{$val} + #{$offset})};
+}
+
+@mixin col-shift-left-xl($n){
+  @include screen-xl {
+   @include col-shift-left($n);
+  }
+}
+
 .app-row {
   @include row();
 }
 
 .app-gutter-col {
   @include gutter-col();
+}
+
+.app-gutter-col-x {
+  @include gutter-col-x();
+}
+
+.app-gutter-col-y {
+  @include gutter-col-y();
+}
+
+.xl\:app-gutter-col-x {
+  @include screen-xl {
+    @include gutter-col-x();
+  }
+}
+
+@for $i from 1 to $columns + 1 {
+  .app-col-#{$i} {
+    @include col($i);
+  }
+
+  .app-col-#{$i}-shift-l {
+    @include col-shift-left($i);
+  }
+}
+
+@for $i from 1 to $columns + 1 {
+  .xl\:app-col-#{$i} {
+    @include col-xl($i);
+  }
+  .xl\:app-col-#{$i}-shift-l {
+    @include col-shift-left-xl($i);
+  }
 }
 
 // gutter col - сетка на падингах

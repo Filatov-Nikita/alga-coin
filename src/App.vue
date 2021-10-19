@@ -6,5 +6,8 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'App',
+  created() {
+    this.$store.dispatch('user/fetchProfileData');
+  },
 });
 </script>

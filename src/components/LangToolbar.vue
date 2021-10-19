@@ -62,7 +62,7 @@ export default {
 
     @include screen-xl {
       &:hover {
-        @apply tw-bg-primary;
+        @apply tw-bg-blue-hover;
       }
     }
   }

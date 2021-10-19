@@ -100,7 +100,7 @@
     @apply tw-flex tw-items-center tw-cursor-pointer tw-rounded-base tw-h-full;
 
     &:hover {
-      @apply tw-bg-secondary;
+      @apply tw-bg-blue-hover;
     }
 
     &:active {
@@ -136,7 +136,7 @@
   transform: translateY(100%);
   z-index: 999;
   max-height: 268px;
-  overflow: auto;
+  overflow-x: hidden;
   @apply tw-bg-dark-blue tw-rounded-b-base;
 
   &__option {

@@ -24,6 +24,9 @@ export default defineComponent({
       default: 'standart',
       type: String,
     },
+    textClass: {
+      type: String,
+    },
   },
   render() {
     const createIcon = () => {
@@ -48,6 +51,7 @@ export default defineComponent({
       {
         class: [
           `app-button app-button--${this.design}`,
+          this.classes,
           { 'app-button--full-width': this.fullWidth },
         ],
       },
@@ -57,10 +61,17 @@ export default defineComponent({
       ]
     );
   },
+  computed: {
+    classes() {
+      return this.textClass === undefined ? 'tw-text-base' : this.textClass;
+    },
+  },
 });
 </script>
 
 <style scoped lang="scss">
+//$
+
 .app-button {
   @apply tw-flex tw-justify-center tw-items-center;
 
@@ -71,12 +82,13 @@ export default defineComponent({
   &--standart {
     border-radius: 8px;
     padding: 21px 16px;
-    @apply tw-bg-blue tw-text-base;
+    @apply tw-bg-blue;
 
-    &:hover {
-      @apply tw-bg-blue-hover;
+    @include screen-xl {
+      &:hover {
+        @apply tw-bg-blue-hover;
+      }
     }
-
     &:active {
       @apply tw-bg-primary;
     }
@@ -85,8 +97,10 @@ export default defineComponent({
   &--flat {
     @apply tw-p-2 tw-rounded;
 
-    &:hover {
-      @apply tw-bg-blue-hover tw-bg-opacity-50;
+    @include screen-xl {
+      &:hover {
+        @apply tw-bg-blue-hover tw-bg-opacity-50;
+      }
     }
 
     &:active {

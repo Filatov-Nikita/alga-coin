@@ -10,6 +10,8 @@ module.exports = {
         base: "8px",
       },
       spacing: {
+        "2-1": "0.625rem",
+        "3-1": "0.875rem",
         "4-1": "1.125rem",
         "7-1": "1.875rem",
       },
@@ -24,12 +26,14 @@ module.exports = {
       white: "#FFFFFF",
       "dark-blue": "#003870",
       "blue-hover": "#0083F5",
-      'dark-blue-cover': '#001233',
+      "dark-blue-cover": "#001233",
     },
     fontFamily: {
       stolzl: "Stolzl",
     },
     fontSize: {
+      "xxs-2": "0.5rem",
+      "xxs-1": "0.625rem",
       xxs: "0.750rem",
       xs: "0.875rem",
       base: "1rem",
@@ -45,7 +49,7 @@ module.exports = {
     container: {
       DEFAULT: "100%",
       center: true,
-      xl: "1366px",
+      xl: "1230px",
       padding: {
         DEFAULT: "25px",
         xl: "30px",
@@ -55,7 +59,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [
-    require('tailwindcss-safe-area'),
-  ]
+  plugins: [require("tailwindcss-safe-area")],
 };

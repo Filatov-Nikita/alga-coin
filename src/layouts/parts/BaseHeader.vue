@@ -1,21 +1,28 @@
 <template>
   <teleport to="body" :disabled="!showMenu">
-    <q-header class="tw-pt-4-1" :class="{ 'header--open': showMenu }">
+    <q-header class="tw-pt-4-1 header" :class="{ 'header--open': showMenu }">
       <div class="tw-container">
         <div class="tw-pt-safe">
-          <div
-            class="app-row app-gutter-col tw-justify-between tw-items-center"
-          >
-            <a href="#" class="header__logo">
-              <img src="~assets/images/app-logo.svg" alt="логотип" />
-            </a>
+          <div class="app-row app-gutter-col-x tw-items-center">
+            <div class="xl:app-col-5">
+              <a href="#" class="header__logo">
+                <img src="~assets/images/app-logo.svg" alt="логотип" />
+              </a>
+            </div>
+
+            <div class="xl:app-col-6 tw-hidden xl:tw-block">
+              <TheNavMenu class="tw-inline-block" />
+            </div>
+
+            <div class="tw-flex-grow"></div>
+
             <div class="app-row tw-items-center tw-space-x-4">
               <LangToolbar currentLang="ru" />
               <button class="xl:tw-hidden" @click="showMenu = !showMenu">
                 <UserAvatar width="30px" height="30px" />
               </button>
               <!-- Дексктопное меню -->
-              <UserMenu class="tw-hidden xl:tw-block" :name="'Валентина'" />
+              <UserMenu class="tw-hidden xl:tw-block" :name="username" />
             </div>
           </div>
         </div>
@@ -25,8 +32,8 @@
       <div class="header-dropdown" v-show="showMenu">
         <div class="header-dropdown__main">
           <div class="tw-flex tw-items-center tw-py-4">
-            <UserAvatar />
-            <div class="user-menu__name">{{ 'Валентина' }}</div>
+            <UserAvatar class="tw-mr-3" />
+            <div class="user-menu__name">{{ username }}</div>
           </div>
 
           <a class="user-menu__item" href="#">
@@ -78,6 +85,7 @@
         </div>
       </div>
     </q-header>
+
     <div class="header__cover" v-show="showMenu"></div>
   </teleport>
 </template>
@@ -86,6 +94,8 @@
 import LangToolbar from 'src/components/LangToolbar.vue';
 import UserMenu from 'src/components/UserMenu.vue';
 import UserAvatar from 'src/components/UserAvatar.vue';
+import TheNavMenu from 'src/components/TheNavMenu.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -93,10 +103,26 @@ export default {
       showMenu: false,
     };
   },
+  computed: {
+    ...mapGetters('user', { username: 'name' }),
+  },
   components: {
     LangToolbar,
     UserMenu,
     UserAvatar,
+    TheNavMenu,
+  },
+  watch: {
+    showMenu: {
+      handler(val) {
+        if (val) {
+          this.$scroll.stop('header');
+        } else {
+          this.$scroll.start('header');
+        }
+      },
+      immediate: true,
+    },
   },
 };
 </script>
@@ -107,7 +133,7 @@ export default {
 .header {
   &--open {
     position: absolute;
-    z-index: 10;
+    z-index: 2002;
     top: 0;
     left: 0;
     @apply tw-w-full tw-bg-dark;
@@ -117,11 +143,12 @@ export default {
     background: linear-gradient(52.21deg, #000b29 12.29%, #00173b 82.07%);
     opacity: 0.8;
     z-index: 9;
-    @apply tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full;
+    @apply tw-fixed tw-top-0 tw-left-0 tw-w-full tw-h-full;
   }
 
   &__logo {
     width: 100px;
+    @apply tw-block;
 
     @include screen-xl {
       width: 198px;

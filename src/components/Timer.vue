@@ -8,66 +8,26 @@
 </template>
 
 <script>
-import TimerItem from './Timer/TimerItem.vue';
-
-let ticker;
+import TimerItem from './TimerItem.vue';
+import useTimer from 'src/composition/useTimer';
 
 export default {
   props: {
-    days: { type: Number, required: true },
-    hours: { type: Number, required: true },
-    minutes: { type: Number, required: true },
-    seconds: { type: Number, required: true },
+    days: { type: Number, default: 0 },
+    hours: { type: Number, default: 0 },
+    minutes: { type: Number, default: 0 },
+    seconds: { type: Number, default: 0 },
   },
-  mounted() {
-    this.start();
-  },
-  data() {
+  setup(props) {
+    const { seconds, minutes, hours, days } = props;
+    const { s, m, h, d } = useTimer(seconds, minutes, hours, days);
+
     return {
-      s: this.seconds,
-      m: this.minutes,
-      h: this.hours,
-      d: this.days,
+      s,
+      m,
+      h,
+      d,
     };
-  },
-  watch: {
-    s(newVal) {
-      if (newVal < 0) {
-        this.m--;
-        this.s = 59;
-      }
-    },
-    m(newVal) {
-      if (newVal < 0) {
-        this.h--;
-        this.m = 59;
-      }
-    },
-    h(newVal) {
-      if (newVal < 0) {
-        this.d--;
-        this.h = 23;
-      }
-    },
-    d(newVal) {
-      if (newVal < 0) {
-        this.stop();
-        this.s = this.m = this.h = this.d = 0;
-      }
-    },
-  },
-  methods: {
-    start() {
-      ticker = setInterval(() => {
-        this.tick();
-      }, 1000);
-    },
-    stop() {
-      clearInterval(ticker);
-    },
-    tick() {
-      this.s--;
-    },
   },
   components: {
     TimerItem,

@@ -1,15 +1,5 @@
 *:not(body, html) {
-  &::-webkit-scrollbar {
-    width: 2px;
-  }
-
-  &::-webkit-scrollbar-track {
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: theme('colors.blue-hover');
-    @apply tw-rounded-base;
-  }
+  @include scrollbar();
 }
 
 body {

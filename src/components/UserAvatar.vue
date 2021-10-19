@@ -31,7 +31,6 @@ export default {
   &__avatar {
     width: 36px;
     height: 36px;
-    margin-right: 12px;
     @apply tw-rounded-full;
 
     img {

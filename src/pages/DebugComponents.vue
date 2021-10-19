@@ -18,7 +18,7 @@
 
         <article>
           <h3 class="h4">Кнопки в стиле flat дизайна</h3>
-          <AppButton type="flat" label="Назад">
+          <AppButton design="flat" label="Назад">
             <template #prepend>
               <InlineSvg
                 :src="require('assets/arrow2.svg')"
@@ -28,7 +28,7 @@
           </AppButton>
 
           <AppButton
-            type="flat"
+            design="flat"
             label="Закрыть"
             :icon="require('assets/close.svg')"
           />
