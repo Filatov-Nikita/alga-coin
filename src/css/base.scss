@@ -1,45 +1,71 @@
-*:not(body, html) {
-  @include scrollbar();
-}
+@layer base {
+  input {
+    outline: none;
+  }
 
-body {
-  @apply tw-font-stolzl tw-text-xs tw-text-white;
-}
+  *:not(body, html) {
+    @include scrollbar();
+  }
 
-%h {
-  line-height: 1.4;
-}
+  body {
+    @apply tw-font-stolzl tw-text-xs tw-text-white;
+  }
 
-h1, .h1 {
-  @extend %h;
-  @apply tw-text-xl;
-}
+  %h {
+    line-height: 1.4;
+  }
 
-h2, .h2 {
-  @extend %h;
-  @apply tw-text-lg;
-}
+  h1, .h1 {
+    @extend %h;
+    @apply tw-text-xl;
+  }
 
-h3, .h3 {
-  @extend %h;
-  @apply tw-text-md1;
-}
+  h2, .h2 {
+    @extend %h;
+    @apply tw-text-lg;
+  }
 
-h4, .h4 {
-  @extend %h;
-  @apply tw-text-md2;
-}
+  h3, .h3 {
+    @extend %h;
+    @apply tw-text-md1;
+  }
 
-.h5 {
-  @extend %h;
-  @apply tw-text-sm;
-}
+  h4, .h4 {
+    @extend %h;
+    @apply tw-text-md2;
+  }
 
-.h6 {
-  @extend %h;
-  @apply tw-text-base;
-}
+  .h5 {
+    @extend %h;
+    @apply tw-text-sm;
+  }
 
-a, .app-link {
-  @apply tw-text-secondary;
+  .h6 {
+    @extend %h;
+    @apply tw-text-base;
+  }
+
+  a, .app-link {
+    @apply tw-text-secondary;
+  }
+
+  .app-h1 {
+    @apply tw-text-sm xl:tw-text-md2;
+
+    &--space {
+      @apply tw-mb-6 xl:tw-mb-7-1;
+    }
+  }
+
+  .app-page-y {
+    @apply tw-pt-9 xl:tw-pt-12;
+  }
+
+  .app-page-bg {
+    @include screen-xl {
+      background: url(~assets/images/main-bg.jpg) no-repeat;
+      background-size: 100%;
+      background-position: bottom;
+    }
+  }
 }

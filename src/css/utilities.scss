@@ -1,0 +1,59 @@
+
+@layer utilities {
+  .overlay {
+    background: linear-gradient(52.21deg, #000b29 12.29%, #00173b 82.07%);
+    opacity: 0.8;
+  }
+
+  .app-rect {
+    @apply tw-bg-dark tw-rounded-base;
+  }
+
+  .el-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .app-row {
+    @include row();
+  }
+
+  .app-gutter-col {
+    @include gutter-col();
+  }
+
+  .app-gutter-col-x {
+    @include gutter-col-x();
+  }
+
+  .app-gutter-col-y {
+    @include gutter-col-y();
+  }
+
+  .xl\:app-gutter-col-x {
+    @include screen-xl {
+      @include gutter-col-x();
+    }
+  }
+
+  @for $i from 1 to $columns + 1 {
+    .app-col-#{$i} {
+      @include col($i);
+    }
+
+    .app-col-#{$i}-shift-l {
+      @include col-shift-left($i);
+    }
+  }
+
+  @for $i from 1 to $columns + 1 {
+    .xl\:app-col-#{$i} {
+      @include col-xl($i);
+    }
+    .xl\:app-col-#{$i}-shift-l {
+      @include col-shift-left-xl($i);
+    }
+  }
+}

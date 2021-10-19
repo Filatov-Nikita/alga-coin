@@ -1,7 +1,7 @@
 <template>
-  <q-page class="tw-pt-9">
+  <q-page class="app-page-y">
     <div class="tw-container">
-      <h1 class="tw-text-sm xl:tw-text-md1 tw-mb-6">Баланс кошелька</h1>
+      <h1 class="app-h1 app-h1--space">Баланс кошелька</h1>
 
       <div class="app-row app-gutter-col-x wrap">
         <div class="wallet">

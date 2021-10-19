@@ -1,7 +1,16 @@
 import { Screen } from "quasar";
 import EventBus from "src/helpers/EventBus";
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "../../tailwind.config.js";
+const twConfig = resolveConfig(tailwindConfig);
 
-Screen.setSizes({ xl: 1366 });
+let screens = {};
+
+for (let screenName in twConfig.theme.screens) {
+  screens[screenName] = parseInt(twConfig.theme.screens[screenName]);
+}
+
+Screen.setSizes(screens);
 
 // чтобы другие вызовы start не отменяли stop, который не ожидает чтобы его отменили из вне
 let stopedName;
