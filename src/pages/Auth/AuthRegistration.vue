@@ -1,63 +1,102 @@
 <template>
-  <q-page>
-    <div class="app-container tw-text-xxs">
-      <div class="app-auth">
-        <template v-if="step === 'registr'">
-          <h1 class="h4 tw-mb-2">Зарегистрируйтесь в системе AlgaCoin</h1>
-        </template>
-        <template>
-          <h1 class="h4 tw-mb-2">Верификация по номеру телефона</h1>
-        </template>
-
-        <AppFormWizard
+  <q-page class="tw-grid tw-container">
+    <div class="app-auth">
+      <AppStep name="registr">
+        <h1 class="app-auth__h1">Зарегистрируйтесь в экосистеме Alga</h1>
+        <p class="app-auth__subtitle">
+          с помощью эл. почты и мобильного телефона
+        </p>
+        <Form
+          @submit="login"
           :initialValues="initialValues"
-          v-model="step"
+          class="app-auth__form"
         >
-          <AppFormStep name="registr">
-            <p class="tw-mb-7-1">
-              Зарегистрируйтесь с помощью эл. почты и мобильного телефона
-            </p>
+          <AppInput
+            name="name"
+            label="ФИО"
+            placeholder="Иванов Иван Иванович"
+            rules="required"
+          />
+          <AppInput
+            name="email"
+            rules="required|email"
+            type="email"
+            label="E-mail"
+            placeholder="ivanov@domain.ru"
+          />
+          <AppInput
+            rules="required"
+            type="tel"
+            name="cellphone"
+            label="Телефон"
+          />
 
-            <AuthRegistrationForm />
-          </AppFormStep>
-          <AppFormStep name="verifing">
-            <p class="tw-mb-7-1">
-              Введите 6-значный код подтверждения, который был отправлен на +7
-              917 917-**-**. Код действителен в течение 30 минут.
-            </p>
-            <AuthVerifingCodeForm />
-          </AppFormStep>
-        </AppFormWizard>
-      </div>
+          <AppCheckbox
+            rules="required"
+            name="Условия обслуживания"
+            class="tw-text-left tw-mt-6"
+            labelClass="tw-text-xxs"
+          >
+            Я ознакомился(ась) и соглашаюсь <br />
+            с
+            <AppLink to="#" target="_blank"> Условиями обслуживания </AppLink>
+            AlgaCoin
+          </AppCheckbox>
+          <AppButton label="Зарегистрироваться" fullWidth type="submit" />
+        </Form>
+        <div class="app-auth__links tw-mt-6">
+          Уже зарегистрированы?
+          <AppLink :to="{ name: 'auth.login' }"> Войти </AppLink>
+        </div>
+      </AppStep>
+      <AppStep name="verifing">
+        <FormVerify :cellphone="displayCellphone"/>
+      </AppStep>
     </div>
   </q-page>
 </template>
 
 <script>
-import AuthRegistrationForm from 'src/components/Auth/AuthRegistrationForm';
-import AuthVerifingCodeForm from 'src/components/Auth/AuthVerifingCodeForm';
+import { ref } from 'vue';
+import useStep from 'src/composition/useStep';
+import FormVerify from 'src/components/FormVerify.vue';
+
+function setCellphone(prefix = '', cellphone = '') {
+  return prefix + cellphone;
+}
 
 export default {
   setup() {
+    const { changeStep, step } = useStep('registr');
+    const displayCellphone = ref('');
+    const code = ref('');
+
+    const login = (values) => {
+      setCellphone(values.telPrefix, values.cellphone);
+      changeStep('verifing');
+    };
+
+    const verify = (values) => {
+      console.log(values.code);
+    };
+
     return {
-      step: 'registr',
+      step,
+      changeStep,
+      displayCellphone,
+      login,
+      verify,
       initialValues: {
         name: 'Никита',
         email: '1@1.ru',
-        cellphone: '79174448517',
+        cellphone: '9174448517',
         conditions: true,
       },
+      code,
     };
   },
-  methods: {
-
-  },
   components: {
-    AuthVerifingCodeForm,
-    AuthRegistrationForm,
+    FormVerify,
   },
 };
 </script>
-
-<style scoped lang="scss">
-</style>

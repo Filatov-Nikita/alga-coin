@@ -20,24 +20,6 @@
     @include row();
   }
 
-  .app-gutter-col {
-    @include gutter-col();
-  }
-
-  .app-gutter-col-x {
-    @include gutter-col-x();
-  }
-
-  .app-gutter-col-y {
-    @include gutter-col-y();
-  }
-
-  .xl\:app-gutter-col-x {
-    @include screen-xl {
-      @include gutter-col-x();
-    }
-  }
-
   @for $i from 1 to $columns + 1 {
     .app-col-#{$i} {
       @include col($i);

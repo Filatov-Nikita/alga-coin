@@ -22,24 +22,46 @@ const routes = [
       },
 
       {
-        path: '/reactivity',
-        component: () => import('pages/Reactivity.vue')
+        path: "/profile",
+        component: () => import("pages/Profile.vue"),
+        name: "profile",
       },
 
-      // {
-      //   path: "/registration",
-      //   component: () => import("pages/Auth/AuthRegistration.vue"),
-      //   name: "auth.registr",
-      // },
-      // {
-      //   path: "/verifing-code",
-      //   component: () => import("pages/Auth/AuthVerifingCode.vue"),
-      //   name: "auth.verifing-code",
-      // },
+      {
+        path: "/vee-valid",
+        component: () => import("pages/VeeValid.vue"),
+      },
+
+      {
+        path: "/vee-valid-form",
+        component: () => import("pages/VeeValidForm.vue"),
+      },
 
       {
         path: "/components",
         component: () => import("pages/DebugComponents.vue"),
+      },
+    ],
+  },
+
+  {
+    path: "",
+    component: () => import("layouts/GuestLayout.vue"),
+    children: [
+      {
+        path: "/login",
+        component: () => import("pages/Auth/AuthLogin.vue"),
+        name: "auth.login",
+      },
+      {
+        path: "/registration",
+        component: () => import("pages/Auth/AuthRegistration.vue"),
+        name: "auth.registr",
+      },
+      {
+        path: "/reset-password",
+        component: () => import("pages/Auth/AuthResetPassword.vue"),
+        name: "auth.reset-password",
       },
     ],
   },

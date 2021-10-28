@@ -15,12 +15,10 @@ export default ({ app }) => {
     "AppWalletDisplay",
     require("src/core/AppWalletDisplay.vue").default
   );
+  app.component("Form", require("vee-validate").Form);
+  app.component("AppStep", require("src/core/AppStep.vue").default);
   app.component("AppAlert", require("src/core/AppAlert.vue").default);
   app.component("AppCheckbox", require("src/core/AppCheckbox.vue").default);
-  app.component("AppFormStep", require("src/core/AppFormStep.vue").default);
-  app.component("AppFormWizard", require("src/core/AppFormWizard.vue").default);
-  app.component("AppStepper", require("src/core/AppStepper.vue").default);
-  app.component("AppStep", require("src/core/AppStep.vue").default);
   app.component("AppBtnBack", require("src/core/AppBtnBack.vue").default);
   app.component("AppModal", require("src/core/AppModal.vue").default);
   app.component(

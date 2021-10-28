@@ -8,10 +8,10 @@
       </div>
     </button>
     <div class="user-menu__dropdown" v-if="showMenu">
-      <a class="user-menu__item" href="#">
+      <router-link class="user-menu__item" :to="{ name: 'profile' }">
         <InlineSvg :src="require('assets/profile.svg')" />
         <div class="user-menu__item-name">Личный кабинет</div>
-      </a>
+      </router-link>
       <a class="user-menu__item" href="#">
         <InlineSvg :src="require('assets/logout.svg')" />
         <div class="user-menu__item-name">Выйти</div>

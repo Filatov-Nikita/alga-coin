@@ -5,11 +5,7 @@
 
       <div class="app-row app-gutter-col-x wrap">
         <div class="wallet">
-          <WalletBalance
-            alg="1 232 151.348"
-            rub="25 357 000"
-            walletNumber="0xAbBDd166fD5DfFe50D294aEEe539CBB2547DE7DF"
-          />
+          <WalletBalance v-bind="walletData" />
 
           <div class="wallet__actions">
             <div class="wallet__action">
@@ -172,6 +168,7 @@
 import WalletBalance from 'src/components/Wallet/WalletBalance.vue';
 import WalletOutputForm from 'src/components/Wallet/WalletOutputForm.vue';
 import HistoryTable from 'src/components/HistoryTable.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -179,6 +176,9 @@ export default {
       step1: '',
       step2: '',
     };
+  },
+  computed: {
+    ...mapGetters('wallet', ['walletData']),
   },
   components: {
     WalletBalance,

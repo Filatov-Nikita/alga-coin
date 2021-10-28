@@ -1,4 +1,6 @@
 @layer base {
+  @import './spaces.scss';
+
   input {
     outline: none;
   }
@@ -46,7 +48,15 @@
   }
 
   a, .app-link {
-    @apply tw-text-secondary;
+    @apply tw-text-secondary tw-text-xxs xl:tw-text-xs;
+
+    &:hover {
+      @apply tw-text-blue-hover;
+    }
+
+    &:active {
+      @apply tw-text-dark-blue;
+    }
   }
 
   .app-h1 {
@@ -62,10 +72,20 @@
   }
 
   .app-page-bg {
+    background: theme('colors.dark-blue-cover');
+
     @include screen-xl {
-      background: url(~assets/images/main-bg.jpg) no-repeat;
+      background: theme('colors.dark-blue-cover') url(~assets/images/main-bg.jpg) no-repeat;
       background-size: 100%;
       background-position: bottom;
+    }
+  }
+
+  .app-logo {
+    width: 100px;
+
+    @include screen-xl {
+      width: 198px;
     }
   }
 }

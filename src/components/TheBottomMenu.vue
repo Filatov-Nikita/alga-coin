@@ -77,7 +77,11 @@ export default {
       const list = document.querySelector('.bottom-menu__list');
       const activeEl = list.querySelector('.bottom-menu__link--active');
       const indicator = document.querySelector('.bottom-menu__active');
-      if (!activeEl) return;
+
+      if (!activeEl) {
+        this.activeLeft = '-1000px';
+        return;
+      }
 
       this.activeLeft = `${
         activeEl.offsetLeft +
@@ -87,6 +91,13 @@ export default {
     },
     async nav(e, navigate) {
       await navigate(e);
+      this.$nextTick(() => {
+        this.calcIndicatorCoords();
+      });
+    },
+  },
+  watch: {
+    $route() {
       this.$nextTick(() => {
         this.calcIndicatorCoords();
       });

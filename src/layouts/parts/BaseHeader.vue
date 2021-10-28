@@ -10,7 +10,7 @@
               </a>
             </div>
 
-            <div class="xl:app-col-6 tw-hidden xl:tw-block">
+            <div class="xl:app-col-6" v-if="$q.screen.xl">
               <TheNavMenu class="tw-inline-block" />
             </div>
 
@@ -18,75 +18,80 @@
 
             <div class="app-row tw-items-center tw-space-x-4">
               <LangToolbar currentLang="ru" />
-              <button class="xl:tw-hidden" @click="showMenu = !showMenu">
+              <!-- Кнопка открыть мобильное меню -->
+              <button v-if="$q.screen.lt.xl" @click="showMenu = !showMenu">
                 <UserAvatar width="30px" height="30px" />
               </button>
               <!-- Дексктопное меню -->
-              <UserMenu class="tw-hidden xl:tw-block" :name="username" />
+              <UserMenu v-else-if="$q.screen.xl" :name="username" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- Мобильное меню -->
-      <div class="header-dropdown" v-show="showMenu">
-        <div class="header-dropdown__main">
-          <div class="tw-flex tw-items-center tw-py-4">
-            <UserAvatar class="tw-mr-3" />
-            <div class="user-menu__name">{{ username }}</div>
-          </div>
-
-          <a class="user-menu__item" href="#">
-            <InlineSvg :src="require('assets/profile.svg')" />
-            <div class="user-menu__item-name">Личный кабинет</div>
-          </a>
-          <a class="user-menu__item" href="#">
-            <InlineSvg :src="require('assets/logout.svg')" />
-            <div class="user-menu__item-name">Выйти</div>
-          </a>
-
-          <div class="header-dropdown__footer">
-            <div class="tw-flex tw-justify-between tw-mb-3">
-              <div class="header-dropdown__logo">
-                <img src="~assets/images/app-logo.svg" alt="логотип" />
-              </div>
-              <div class="tw-flex tw-space-x-3">
-                <a href="#">
-                  <InlineSvg
-                    width="24px"
-                    height="24px"
-                    :src="require('assets/fb-icon.svg')"
-                  />
-                </a>
-                <a href="#">
-                  <InlineSvg
-                    width="24px"
-                    height="24px"
-                    :src="require('assets/inst-icon.svg')"
-                  />
-                </a>
-                <a href="#">
-                  <InlineSvg
-                    width="24px"
-                    height="24px"
-                    :src="require('assets/te-icon.svg')"
-                  />
-                </a>
-              </div>
+      <template v-if="$q.screen.lt.xl">
+        <div class="header-dropdown" v-show="showMenu">
+          <div class="header-dropdown__main">
+            <div class="tw-flex tw-items-center tw-py-4">
+              <UserAvatar class="tw-mr-3" />
+              <div class="user-menu__name">{{ username }}</div>
             </div>
 
-            <div class="tw-flex tw-justify-between tw-text-xxs">
-              <div>AlgaCoin © 2021</div>
-              <div>
-                <a href="#">Условия обслуживания</a>
+            <router-link class="user-menu__item" :to="{ name: 'profile' }">
+              <InlineSvg :src="require('assets/profile.svg')" />
+              <div class="user-menu__item-name">Личный кабинет</div>
+            </router-link>
+            <a class="user-menu__item" href="#">
+              <InlineSvg :src="require('assets/logout.svg')" />
+              <div class="user-menu__item-name">Выйти</div>
+            </a>
+
+            <div class="header-dropdown__footer">
+              <div class="tw-flex tw-justify-between tw-mb-3">
+                <div class="header-dropdown__logo">
+                  <img src="~assets/images/app-logo.svg" alt="логотип" />
+                </div>
+                <div class="tw-flex tw-space-x-3">
+                  <a href="#">
+                    <InlineSvg
+                      width="24px"
+                      height="24px"
+                      :src="require('assets/fb-icon.svg')"
+                    />
+                  </a>
+                  <a href="#">
+                    <InlineSvg
+                      width="24px"
+                      height="24px"
+                      :src="require('assets/inst-icon.svg')"
+                    />
+                  </a>
+                  <a href="#">
+                    <InlineSvg
+                      width="24px"
+                      height="24px"
+                      :src="require('assets/te-icon.svg')"
+                    />
+                  </a>
+                </div>
+              </div>
+
+              <div class="tw-flex tw-justify-between tw-text-xxs">
+                <div>AlgaCoin © {{ $fullYear }}</div>
+                <div>
+                  <a href="#">Условия обслуживания</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </template>
     </q-header>
 
-    <div class="header__cover" v-show="showMenu"></div>
+    <template v-if="$q.screen.lt.xl">
+      <div class="header__cover" v-show="showMenu"></div>
+    </template>
   </teleport>
 </template>
 

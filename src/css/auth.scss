@@ -1,8 +1,40 @@
 .app-auth {
-  padding: 7vmax 0;
-  @apply tw-text-center;
+  max-width: 397px;
+  @apply tw-m-auto tw-w-full tw-py-6;
+
+  &__h1 {
+    @apply tw-text-sm xl:tw-text-md1 tw-text-center tw-mb-2;
+  }
+
+  &__subtitle {
+    @apply tw-text-xxs xl:tw-text-xs tw-text-center xl:tw-mb-6 tw-mb-4-1;
+  }
 
   &__form {
+    max-width: 340px;
+    @include space-y(18px);
     @apply tw-mx-auto;
+
+
+    & > button {
+      @apply tw-mt-7-1;
+    }
+  }
+
+  &__code {
+    max-width: 285px;
+    @apply tw-mx-auto;
+    @include screen-xl {
+      max-width: 100%;
+    }
+  }
+
+  &__links {
+    @apply tw-text-center;
+    @include space-y(8px);
+  }
+
+  &__link {
+    @apply tw-block tw-w-full;
   }
 }

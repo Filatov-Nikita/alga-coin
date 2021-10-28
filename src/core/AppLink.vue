@@ -1,5 +1,8 @@
 <template>
-  <router-link :to="to" class="app-link">
+  <a :href="to" v-if="isExternalLink">
+    <slot>{{ label }}</slot>
+  </a>
+  <router-link v-else v-bind="$props">
     <slot>{{ label }}</slot>
   </router-link>
 </template>
@@ -8,30 +11,18 @@
 import { RouterLink } from 'vue-router';
 
 export default {
+  name: 'AppLink',
   props: {
     ...RouterLink.props,
-    external: {
-      default: false,
-      type: Boolean,
-    },
     label: {
       default: undefined,
       type: String,
     },
   },
+  computed: {
+    isExternalLink() {
+      return typeof this.to === 'string' && this.to.startsWith('http');
+    },
+  },
 };
 </script>
-
-<style scoped lang="scss">
-.app-link {
-  @apply tw-text-secondary;
-
-  &:hover {
-    @apply tw-text-blue-hover;
-  }
-
-  &:active {
-    @apply tw-text-dark-blue;
-  }
-}
-</style>

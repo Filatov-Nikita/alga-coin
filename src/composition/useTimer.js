@@ -1,4 +1,4 @@
-import { onMounted, ref, watch } from "vue";
+import { onMounted, reactive, watch, toRefs } from "vue";
 let ticker;
 
 export default function (
@@ -8,16 +8,30 @@ export default function (
   days = 0,
   onStop = () => {}
 ) {
-  const s = ref(seconds);
-  const m = ref(minutes);
-  const h = ref(hours);
-  const d = ref(days);
+  const time = reactive({
+    s: seconds,
+    m: minutes,
+    h: hours,
+    d: days,
+  });
+
+  const { s, m, h, d } = toRefs(time);
 
   function start() {
     ticker = setInterval(() => {
       tick();
     }, 1000);
   }
+
+  const restart = () => {
+    time.s = seconds;
+    time.m = minutes;
+    time.h = hours;
+    time.d = days;
+
+    stop();
+    start();
+  };
 
   function tick() {
     s.value--;
@@ -64,5 +78,6 @@ export default function (
     m,
     h,
     d,
+    restart,
   };
 }

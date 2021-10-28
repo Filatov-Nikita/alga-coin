@@ -1,5 +1,5 @@
 <template>
-  <q-layout class="base-layout app-page-bg" view="lhh lpR fFf">
+  <q-layout class="app-page-bg" view="lhh lpR fff">
     <BaseHeader />
     <q-page-container>
       <router-view />
@@ -8,8 +8,10 @@
       <div v-if="$q.screen.xl">
         <div class="tw-container">
           <div class="header-desktop">
-            <span> Alga© {{ year }} </span>
-            <AppLink to="#">Условия обслуживания</AppLink>
+            <span> Alga© {{ $fullYear }} </span>
+            <AppLink to="#" target="_blank"
+              >Условия обслуживания</AppLink
+            >
           </div>
         </div>
       </div>
@@ -23,12 +25,6 @@ import TheBottomMenu from 'src/components/TheBottomMenu.vue';
 import BaseHeader from './parts/BaseHeader.vue';
 
 export default {
-  setup() {
-    const year = new Date().getFullYear();
-    return {
-      year,
-    };
-  },
   components: {
     TheBottomMenu,
     BaseHeader,
@@ -38,10 +34,6 @@ export default {
 
 <style scoped lang="scss">
 //$
-
-.base-layout {
-  @apply tw-bg-dark-blue-cover;
-}
 
 .header-desktop {
   @apply tw-py-5;

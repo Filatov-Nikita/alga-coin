@@ -1,5 +1,5 @@
 <template>
-  <slot v-if="currentStep === name" />
+  <slot v-if="name === step" />
 </template>
 
 <script>
@@ -12,15 +12,9 @@ export default {
       type: String,
     },
   },
-  setup(props) {
-    const setStep = inject('setStep');
-    const currentStep = inject('currentStep');
-    setStep(props.name);
-
-    return { currentStep };
+  setup() {
+    const step = inject('step');
+    return { step };
   },
 };
 </script>
-
-<style>
-</style>

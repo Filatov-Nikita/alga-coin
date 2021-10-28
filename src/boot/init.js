@@ -41,4 +41,6 @@ export default ({ app }) => {
       stopedName = "";
     },
   };
+
+  app.config.globalProperties.$fullYear = new Date().getFullYear();
 };

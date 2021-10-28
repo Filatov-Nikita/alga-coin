@@ -9,8 +9,7 @@ configure({
 });
 
 // переключает режим отображения ошибок на русский
-setLocale('ru');
-
+setLocale("ru");
 
 // function cellphone(value) {}
 
@@ -18,15 +17,26 @@ function decimal(value) {
   // паттерн для чисел со знаком, дробная часть опциональна
   const pattern = /^[\+,\-]?[\d\s]+(\.\d+)?$/;
 
-  if(!pattern.test(value)) {
-    return 'Число должно быть целым или дробным';
+  if (!pattern.test(value)) {
+    return "Число должно быть целым или дробным";
+  }
+
+  return true;
+}
+
+function cellphone(value) {
+  // паттерн для чисел со знаком, дробная часть опциональна
+  const pattern = /^\(\d{3}\)\s\d{3}\-\d{2}\-\d{2}$/;
+
+  if (!pattern.test(value)) {
+    return "Номер телефона введен некорректно";
   }
 
   return true;
 }
 
 // глобальные правила
-const rules = { required, email, min, decimal };
+const rules = { required, email, min, decimal, cellphone };
 
 for (let ruleName in rules) {
   defineRule(ruleName, rules[ruleName]);

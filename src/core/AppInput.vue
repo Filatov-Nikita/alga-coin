@@ -1,27 +1,34 @@
 <script>
+import _useInput from 'src/composition/inputs/useInput';
+import _useTelField from 'src/composition/inputs/useITelField';
+import _useFileField from 'src/composition/inputs/useFileField';
+import _usePasswordField from 'src/composition/inputs/usePasswordField';
+import useAppend from 'src/composition/inputs/useAppend';
+import useModel from 'src/composition/inputs/useModel';
+import { Field } from 'vee-validate';
 import {
   h,
-  defineComponent,
   withDirectives,
-  resolveComponent,
-  computed,
+  ref,
+  getCurrentInstance,
+  defineComponent,
+  toRef,
 } from 'vue';
-import { useField, Field } from 'vee-validate';
-import { mask } from 'vue-the-mask';
-
-function onMousedown(e) {
-  e.preventDefault();
-}
+import {
+  createErrorMessage,
+  createLabel,
+  createFieldWrapper,
+} from './AppInput/helpers';
 
 export default defineComponent({
   name: 'AppInput',
   inheritAttrs: false,
   props: {
-    label: {
+    name: {
       required: true,
       type: String,
     },
-    placeholder: {
+    label: {
       required: true,
       type: String,
     },
@@ -29,307 +36,96 @@ export default defineComponent({
       default: 'text',
       type: String,
     },
-    withTelPrefix: {
-      default: false,
-      type: Boolean,
-    },
-    modelValue: {
+    placeholder: {
       default: '',
       type: String,
     },
-    telPrefix: {
+    modelValue: {
       default: undefined,
-      validator(value) {
-        return value.value && value.label;
-      },
-    },
-    name: {
-      type: String
     },
     ...{ rules: Field.props.rules },
   },
-  setup(props, { emit, attrs }) {
-    const DEFAULT_PREFIX = { label: '+7', value: '+7' };
-    const { value, errorMessage, handleChange } = useField(
-      props.name || props.label,
-      props.rules,
-      {
-        initialValue: props.value,
-        validateOnValueUpdate: false,
-        label: props.label,
-      }
-    );
+  emits: ['update:modelValue'],
+  setup(props, { slots, emit, attrs }) {
+    const { label, name, type, rules } = props;
+    const inputRef = ref(null);
+    const { hasAppend, hasPrepend } = useAppend(slots.prepend, slots.append);
+    const compId = getCurrentInstance().uid;
 
-    let telPrefixField;
-    if (props.withTelPrefix && props.type === 'tel') {
-      telPrefixField = useField('telPrefix', '', {
-        initialValue: props.telPrefix || DEFAULT_PREFIX,
-        validateOnValueUpdate: false,
-      });
+    let field;
+    let opts = null;
+
+    if (type === 'tel') {
+      ({ field, ...opts } = _useTelField(name, rules, { label }));
+    } else if (type === 'password') {
+      ({ field, ...opts } = _usePasswordField(name, rules, { label }));
+    } else if (type === 'file') {
+      field = _useFileField(name, rules, { label });
+    } else {
+      ({ field, ...opts } = _useInput(name, rules, { label }, attrs.onInput));
     }
 
-    const validationListeners = computed(() => {
-      const handler = (e, shouldValidate = true) => {
-        if (attrs.onInput) {
-          attrs.onInput(
-            e,
-            (val) => handleChange(val, shouldValidate),
-            () => emit('update:modelValue', value.value)
-          );
-        } else {
-          handleChange(e, shouldValidate);
-          emit('update:modelValue', value.value);
-        }
-      };
-
-      if (!errorMessage.value) {
-        // ленивая проверка
-        return {
-          onChange: handleChange,
-          onBlur: handleChange,
-          onInput: (e) => {
-            handler(e, false);
-          },
-        };
-      }
-
-      // агрессивная проверка
-      return {
-        onInput: (e) => {
-          handler(e);
-        },
-        onBlur: handleChange,
-        onChange: handleChange,
-      };
-    });
-
-    return {
-      innerValue: value,
-      errorMessage,
-      validationListeners,
-      ...(telPrefixField && telPrefixField.value
-        ? { telPrefixInner: telPrefixField.value }
-        : {}),
+    const modelValueRef = toRef(props, 'modelValue');
+    const modelValueEmit = (val) => {
+      emit('update:modelValue', val);
     };
-  },
-  data() {
-    return {
-      showPassword: false,
-      selectShow: false,
+    const changeVal = (val) => {
+      field.setValue(val);
     };
-  },
-  watch: {
-    // modelValue: {
-    //   handler(newVal) {
-    //     if (this.innerValue !== newVal) {
-    //       this.innerValue = newVal;
-    //     }
-    //   },
-    //   immediate: true,
-    // },
-  },
-  emits: ['update:modelValue', 'update:telPrefix', 'update:cellphone'],
-  computed: {
-    hasPrepend() {
-      return !!this.$slots.prepend;
-    },
-    hasAppend() {
-      return !!this.$slots.append;
-    },
-  },
-  render() {
-    const InlineSvg = resolveComponent('InlineSvg');
+    useModel(field.value, modelValueRef, modelValueEmit, changeVal);
 
-    const {
-      _: { uid: id },
-    } = this;
+    return () => {
+      const isTel = props.type === 'tel';
+      const isPassword = props.type === 'password';
 
-    const numberFlag = { '+7': 'ru', '+1': 'ru', '+3': 'ru' };
-
-    const createErrorMessage = () => {
-      return h('div', { class: 'app-input__error-message' }, this.errorMessage);
-    };
-
-    const createDropdown = () => {
-      const optionValues = [
-        '+7',
-        '+1',
-        '+3',
-        '+7',
-        '+1',
-        '+3',
-        '+7',
-        '+1',
-        '+3',
-      ];
-
-      const options = optionValues.map((number) => {
-        const flag = h(InlineSvg, {
-          class: 'app-dropdown__flag',
-          src: require('assets/' + numberFlag[number] + '.svg'),
-        });
-
-        return h(
-          'div',
-          {
-            class: 'app-dropdown__option',
-            onClick: () => {
-              this.telPrefixInner = { value: number, label: number };
-              this.$emit('update:telPrefix', this.telPrefixInner);
-              this.selectShow = false;
-            },
-          },
-          [flag, number]
-        );
-      });
-
-      return h('div', { class: 'app-dropdown' }, options);
-    };
-
-    const createPasswordEye = () => {
-      const eye =
-        this.type === 'password' && !this.showPassword ? 'hidden' : 'visible';
-
-      const icon = h(InlineSvg, {
-        src: require('assets/password-' + eye + '.svg'),
-      });
-
-      return h(
-        'div',
-        {
-          class: 'app-input__pass-eye',
-          onClick: () => {
-            this.showPassword = !this.showPassword;
-          },
-          onMousedown,
-        },
-        icon
-      );
-    };
-
-    const createSelect = () => {
-      let dropDown;
-      if (this.selectShow) {
-        dropDown = createDropdown();
-      }
-
-      const selectBtnChlildren = h('div', { class: 'app-select__wrapper' }, [
-        h(InlineSvg, {
-          class: 'app-select__flag',
-          src: require('assets/' +
-            numberFlag[this.telPrefixInner.value] +
-            '.svg'),
-        }),
-        h(InlineSvg, {
-          class: [
-            'app-select__arrow',
-            { 'app-select__arrow--up': this.selectShow },
-          ],
-          src: require('assets/select-arrow.svg'),
-        }),
-        h('div', { class: 'app-select__prefix' }, this.telPrefixInner.label),
-      ]);
-
-      const select = h(
-        'div',
-        {
-          role: 'select',
-          class: [
-            'app-select',
-            { 'app-input__field--invalid': !!this.errorMessage },
-          ],
-          onClick: (e) => {
-            if (e.target.closest('.app-dropdown')) return;
-            this.selectShow = !this.selectShow;
-          },
-          onMousedown,
-        },
-        [selectBtnChlildren, dropDown ? dropDown : null]
-      );
-
-      return select;
-    };
-
-    const createInput = () => {
-      const isPhone = this.type === 'tel' && this.withTelPrefix;
-      const isPassword = this.type === 'password';
-
-      let select, passwordEye;
-
-      if (isPhone) {
-        select = createSelect();
-      } else if (isPassword) {
-        passwordEye = createPasswordEye();
-      }
-
-      const inputCnf = {
-        id,
-        ref: 'input',
+      const inpAttrs = {
+        id: compId,
+        ref: inputRef,
         class: [
           'app-input__field app-input__field--standart',
           {
-            'app-input__field--has-prepend': this.hasPrepend,
-            'app-input__field--has-append': this.hasAppend,
-            'app-input__field--invalid': !!this.errorMessage,
+            'app-input__field--has-prepend': hasPrepend.value,
+            'app-input__field--has-append': hasAppend.value,
+            'app-input__field--invalid': !!field.errorMessage.value,
             'app-input__field--valid': false,
           },
         ],
-        placeholder: this.placeholder,
-        type: isPassword && this.showPassword ? 'text' : this.type,
-        value: this.innerValue,
-        ...this.validationListeners,
+        placeholder: props.placeholder,
+        type:
+          props.type === 'password' && opts.showPassword.value
+            ? 'text'
+            : props.type,
+        value: field.value.value,
+        ...(opts.validationListeners && opts.validationListeners.value
+          ? opts.validationListeners.value
+          : { onInput: field.handleChange }),
       };
 
-      const input = isPhone
-        ? withDirectives(h('input', inputCnf), [[mask, '(###) ###-##-##']])
-        : h('input', inputCnf);
-
-      let prepend;
-      if (this.hasPrepend) {
-        prepend = h(
-          'div',
-          { class: 'app-input__prepend' },
-          this.$slots.prepend()
-        );
-      }
-
-      let append;
-      if (this.hasAppend) {
-        append = h('div', { class: 'app-input__append' }, this.$slots.append());
-      }
-
-      return [
-        isPhone ? select : null,
-        h(
-          'div',
+      return h('div', { class: 'app-input' }, [
+        createLabel({ id: compId, label: props.label }),
+        isTel ? opts.prefix.createSelect() : null,
+        createFieldWrapper(
           {
-            class: [
-              'app-input__field-wrapper',
-              { 'app-input__field-wrapper--tel': this.type === 'tel' },
-            ],
-            onClick: () => {
-              this.$refs.input.focus();
-            },
+            hasAppend,
+            hasPrepend,
+            prependSlot: slots.prepend,
+            appendSlot: slots.append,
+            isTel,
+            isPassword,
+            opts,
+            inputRef,
           },
-          [
-            prepend ? prepend : null,
-            input,
-            append ? append : null,
-            isPassword ? passwordEye : null,
-          ]
+          isTel
+            ? withDirectives(h('input', inpAttrs), [
+                [opts.mask, opts.phoneMask],
+              ])
+            : h('input', inpAttrs)
         ),
-      ];
+        field.errorMessage.value
+          ? createErrorMessage({ errorMessage: field.errorMessage })
+          : null,
+      ]);
     };
-
-    const label = h('label', { class: 'app-input__label', for: id }, [
-      this.label,
-    ]);
-
-    return h('div', { class: 'app-input' }, [
-      label,
-      ...createInput(),
-      this.errorMessage ? createErrorMessage() : null,
-    ]);
   },
 });
 </script>

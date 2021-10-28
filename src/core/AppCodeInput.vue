@@ -1,4 +1,5 @@
 <script>
+import { useField } from 'vee-validate';
 import { defineComponent, h } from 'vue';
 
 const KEYCODES = {
@@ -20,6 +21,22 @@ export default defineComponent({
       required: true,
       type: String,
     },
+  },
+  setup(props) {
+    const { errorMessage, setErrors, handleChange } = useField(
+      'code',
+      'required',
+      {
+        label: props.label,
+        validateOnValueUpdate: false,
+      }
+    );
+
+    return {
+      setErrors,
+      errorMessage,
+      handleChange,
+    };
   },
   data() {
     return {
@@ -45,7 +62,10 @@ export default defineComponent({
       immediate: true,
     },
     code(val) {
-      if (val.length === this.values.length) this.$emit('update:code', val);
+      this.handleChange(val);
+      if (val.length === this.values.length) {
+        this.$emit('update:code', val);
+      }
     },
   },
   emits: ['update:code'],
@@ -72,6 +92,14 @@ export default defineComponent({
       _: { uid: id },
     } = this;
 
+    const createErrorMessage = () => {
+      return h(
+        'div',
+        { class: 'app-code-input__error-message' },
+        this.errorMessage
+      );
+    };
+
     const createLabel = () => {
       return h(
         'label',
@@ -84,7 +112,10 @@ export default defineComponent({
       const inputCnf = {
         id,
         'data-index': dataIndex,
-        class: 'app-code-input__field',
+        class: [
+          'app-code-input__field',
+          { 'app-code-input__field--invalid': !!this.errorMessage },
+        ],
         type: 'tel',
         autocomplete: 'one-time-code',
       };
@@ -184,22 +215,42 @@ export default defineComponent({
       );
     }
 
-    return h('div', { class: 'app-code-input' }, [createLabel(), ...inputs]);
+    return h('div', { class: 'app-code-input' }, [
+      createLabel(),
+      ...inputs,
+      this.errorMessage ? createErrorMessage() : null,
+    ]);
   },
 });
 </script>
 
 <style scoped lang="scss">
+//$
+
 .app-code-input {
-  @apply tw-flex-wrap tw-flex;
+  @apply tw-flex tw-flex-wrap;
 
   &__field {
-    width: 37px;
-    height: 37px;
-    @apply tw-rounded-base tw-bg-dark-blue tw-text-md2 tw-text-center;
+    width: 40px;
+    height: 40px;
+    @apply tw-rounded-base tw-bg-dark-blue tw-text-sm tw-text-center;
+
+    &--invalid {
+      outline: 2px solid theme('colors.invalid') !important;
+    }
+
+    @include screen-xl {
+      width: 50px;
+      height: 50px;
+      @apply tw-text-md2;
+    }
 
     & + & {
       margin-left: 9px;
+
+      @include screen-xl {
+        margin-left: 8px;
+      }
     }
 
     &:focus {
@@ -219,6 +270,10 @@ export default defineComponent({
   &__label {
     margin-bottom: 6px;
     @apply tw-w-full;
+  }
+
+  &__error-message {
+    @apply tw-text-invalid tw-w-full tw-mt-2;
   }
 }
 </style>

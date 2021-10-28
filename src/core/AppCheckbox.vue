@@ -16,6 +16,10 @@ export default {
       required: true,
       type: String,
     },
+    labelClass: {
+      default: '',
+      type: String
+    },
     ...{ rules: Field.props.rules },
   },
   setup(props) {
@@ -36,7 +40,7 @@ export default {
 
     return h('div', [
       h('div', { class: 'app-checkbox' }, [
-        h('label', { class: 'app-checkbox__label', for: id }, [
+        h('label', { class: `app-checkbox__label ${this.labelClass}`, for: id }, [
           this.$slots.default ? this.$slots.default() : this.label || '',
         ]),
         h('div', {

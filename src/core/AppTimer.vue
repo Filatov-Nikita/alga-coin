@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot v-bind="{ s, m, h, d, displayVal }" />
+    <slot v-bind="{ s, m, h, d, displayVal, restart }" />
   </div>
 </template>
 
@@ -22,13 +22,20 @@ export default {
       emit('finish');
     }
 
-    const { s, m, h, d } = useTimer(seconds, minutes, hours, days, onStop);
+    const { s, m, h, d, restart } = useTimer(
+      seconds,
+      minutes,
+      hours,
+      days,
+      onStop
+    );
 
     return {
       s,
       m,
       h,
       d,
+      restart
     };
   },
   methods: {
