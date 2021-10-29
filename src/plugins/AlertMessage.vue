@@ -20,9 +20,18 @@ export default {
     const InlineSvg = resolveComponent('InlineSvg');
 
     let icon = null;
-    if (this.icon) {
-      icon = h(InlineSvg, { class: 'app-alert__icon', src: this.icon });
-    }
+    icon = h(InlineSvg, {
+      class: 'app-alert__icon',
+      src: !this.icon
+        ? this.type === 'positive'
+          ? require('assets/icons/alert-success.svg')
+          : this.type === 'negative'
+          ? require('assets/icons/alert-error.svg')
+          : this.type === 'neutral'
+          ? require('assets/icons/alert-info.svg')
+          : ''
+        : this.icon,
+    });
 
     const alert = h('div', { class: `app-alert app-alert--${this.type}` }, [
       icon,
@@ -37,7 +46,7 @@ export default {
 <style scoped lang="scss">
 .app-alert {
   padding: 13px 17px;
-  @apply tw-rounded-base tw-text-xxs;
+  @apply tw-rounded-base tw-text-xxs tw-flex tw-items-center;
 
   &--positive {
     @apply tw-bg-valid tw-bg-opacity-80;

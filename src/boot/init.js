@@ -3,6 +3,7 @@ import EventBus from "src/helpers/EventBus";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../tailwind.config.js";
 const twConfig = resolveConfig(tailwindConfig);
+import AppAlert from 'src/plugins/app-alert';
 
 let screens = {};
 
@@ -18,6 +19,8 @@ let stopedName;
 const evtDialog = new EventBus();
 
 export default ({ app, router, store }) => {
+  app.use(AppAlert);
+
   const dialog = (app.config.globalProperties.$aDialog = {});
 
   dialog.bus = evtDialog;

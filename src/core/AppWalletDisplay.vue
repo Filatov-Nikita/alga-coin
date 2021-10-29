@@ -26,8 +26,8 @@ export default {
   methods: {
     copy() {
       navigator.clipboard.writeText(this.walletNumber);
-      this.$q.notify({
-        type: 'positive',
+      this.$alert({
+        type: 'neutral',
         message: 'Номер кошелька скопирован в буфер обмена',
       });
     },

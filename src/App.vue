@@ -1,4 +1,5 @@
 <template>
+  <AppAlert />
   <router-view />
 </template>
 <script>
