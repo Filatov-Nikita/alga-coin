@@ -109,7 +109,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('user', { username: 'name' }),
+    ...mapGetters('profile', { username: 'name' }),
   },
   components: {
     LangToolbar,

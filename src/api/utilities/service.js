@@ -6,4 +6,10 @@ const api = new Service("http://193.176.79.85", {
   tokenName: "b2c",
 });
 
+export const testApi = new Service("", {
+  apiPath: "api",
+  timeout: 10000,
+  tokenName: "b2c",
+});
+
 export default api;

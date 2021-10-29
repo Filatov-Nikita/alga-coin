@@ -13,7 +13,7 @@ import { createStore } from "vuex";
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
-      user: require("./user.js").default,
+      profile: require("./profile.js").default,
       wallet: require("./wallet.js").default,
       auth: require("./auth.js").default,
     },
