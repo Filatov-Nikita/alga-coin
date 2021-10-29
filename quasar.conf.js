@@ -24,7 +24,8 @@ module.exports = configure(function (ctx) {
       "registr-components",
       "registr-validators",
       "registr-services",
-      'registr-router-hooks'
+      'load-critical-data',
+      'registr-router-hooks',
     ],
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css

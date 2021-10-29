@@ -1,3 +1,5 @@
+import * as walletAPI from "src/api/wallet";
+
 export default {
   namespaced: true,
   state: {
@@ -15,12 +17,14 @@ export default {
     },
   },
   actions: {
-    show({ commit }) {
+    async show({ commit }) {
+      const walletData = await walletAPI.show();
       commit("setWallet", {
-        walletNumber: "0xAbBDd166fD5DfFe50D294aEEe539CBB2547DE7DF",
-        alg: "1 232 151.348",
-        rub: "25 357 000",
+        walletNumber: walletData.wallet_number,
+        alg: walletData.alg,
+        rub: walletData.rub
       });
+      return walletData;
     },
   },
 };

@@ -1,3 +1,5 @@
+import * as ProfileAPI from "src/api/profile";
+
 export default {
   namespaced: true,
   state: {
@@ -16,8 +18,10 @@ export default {
     },
   },
   actions: {
-    show({ commit }) {
-      commit("setProfile", { name: "Никита" });
+    async show({ commit }) {
+      const profileData = await ProfileAPI.show();
+      commit("setProfile", profileData);
+      return profileData
     },
   },
 };

@@ -49,6 +49,7 @@
 <script>
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import loadCritical from 'src/store/utilities/load-critical';
 
 export default {
   setup() {
@@ -58,6 +59,7 @@ export default {
     const login = async ({ cellphoneUm: cellphone, password }) => {
       try {
         await store.dispatch('auth/login', { cellphone, password });
+        await loadCritical(store);
         router.push({ name: 'wallet' });
       } catch (e) {
         if (!e.response) throw e;
