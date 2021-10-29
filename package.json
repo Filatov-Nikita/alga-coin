@@ -13,6 +13,7 @@
     "@vee-validate/i18n": "^4.5.2",
     "@vee-validate/rules": "^4.5.1",
     "core-js": "^3.6.5",
+    "ky": "^0.28.6",
     "quasar": "^2.0.0",
     "tailwindcss-safe-area": "^0.2.1",
     "vee-validate": "^4.5.2",

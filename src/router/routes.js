@@ -1,31 +1,35 @@
+import { markAuth } from "./utilities/auth";
+
 const routes = [
   {
     path: "",
     component: () => import("layouts/BaseLayout.vue"),
     children: [
-      {
-        path: "",
-        component: () => import("pages/Wallet.vue"),
-        name: "wallet",
-      },
+      ...markAuth(
+        {
+          path: "",
+          component: () => import("pages/Wallet.vue"),
+          name: "wallet",
+        },
 
-      {
-        path: "/output",
-        component: () => import("pages/Output.vue"),
-        name: "output",
-      },
+        {
+          path: "/output",
+          component: () => import("pages/Output.vue"),
+          name: "output",
+        },
 
-      {
-        path: "history",
-        component: () => import("pages/History.vue"),
-        name: "history",
-      },
+        {
+          path: "history",
+          component: () => import("pages/History.vue"),
+          name: "history",
+        },
 
-      {
-        path: "/profile",
-        component: () => import("pages/Profile.vue"),
-        name: "profile",
-      },
+        {
+          path: "/profile",
+          component: () => import("pages/Profile.vue"),
+          name: "profile",
+        }
+      ),
 
       {
         path: "/vee-valid",

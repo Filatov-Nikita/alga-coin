@@ -6,7 +6,12 @@
         в экосистеме Alga
       </h1>
       <p class="app-auth__subtitle">с помощью мобильного телефона и пароля</p>
-      <Form @submit="login" class="app-auth__form">
+      <Form
+        @submit="login"
+        class="app-auth__form"
+        :initialValues="{ cellphone: '9174448517', password: '987412365' }"
+        v-slot="{ isSubmitting }"
+      >
         <AppInput
           name="cellphone"
           rules="required|cellphone"
@@ -22,7 +27,12 @@
           placeholder="Пароль"
         />
 
-        <AppButton type="submit" fullWidth label="Войти" />
+        <AppButton
+          :disabled="isSubmitting"
+          type="submit"
+          fullWidth
+          label="Войти"
+        />
       </Form>
       <div class="app-auth__links tw-mt-6">
         <AppLink class="app-auth__link" :to="{ name: 'auth.reset-password' }"
@@ -37,10 +47,26 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+
 export default {
   setup() {
-    const login = (values) => {
-      console.log(values);
+    const store = useStore();
+    const router = useRouter();
+
+    const login = async ({ cellphoneUm: cellphone, password }) => {
+      try {
+        await store.dispatch('auth/login', { cellphone, password });
+        router.push({ name: 'wallet' });
+      } catch (e) {
+        if (!e.response) throw e;
+        if (e.response.status === 400) {
+          console.log('неверный логин или пароль');
+        } else {
+          throw e;
+        }
+      }
     };
 
     return { login };

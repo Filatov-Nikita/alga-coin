@@ -15,6 +15,7 @@ export default store(function (/* { ssrContext } */) {
     modules: {
       user: require("./user.js").default,
       wallet: require("./wallet.js").default,
+      auth: require("./auth.js").default,
     },
 
     // enable strict mode (adds overhead!)

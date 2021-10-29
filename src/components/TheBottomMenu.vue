@@ -75,7 +75,7 @@ export default {
   methods: {
     calcIndicatorCoords() {
       const list = document.querySelector('.bottom-menu__list');
-      const activeEl = list.querySelector('.bottom-menu__link--active');
+      const activeEl = list && list.querySelector('.bottom-menu__link--active');
       const indicator = document.querySelector('.bottom-menu__active');
 
       if (!activeEl) {

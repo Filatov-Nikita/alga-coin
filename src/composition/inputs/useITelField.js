@@ -1,16 +1,31 @@
+import { watchEffect } from "vue";
 import { mask } from "vue-the-mask";
 import useInput from "./useInput";
+import { useField } from "vee-validate";
 import usePrefixDropdown from "src/composition/inputs/usePrefixDropdown";
 
 export default function (name, rules, opts) {
   const { field, validationListeners } = useInput(name, rules, opts);
+
+  const unmaskedFiled = useField(`${name}Um`, "", {
+    validateOnValueUpdate: false,
+  });
+
   const prefix = usePrefixDropdown({ errorMessage: field.errorMessage });
+
+  watchEffect(() => {
+    const fieldVal = field.value;
+    const prefixVal = prefix.fieldPrefix.value;
+    const unmaskedVal = unmaskedFiled.value;
+    const cleanVal = fieldVal.value.replace(/[^\d]/g, "");
+    unmaskedVal.value = `${prefixVal.value}${cleanVal}`;
+  });
 
   return {
     field,
     mask,
     phoneMask: "(###) ###-##-##",
     prefix,
-    validationListeners
+    validationListeners,
   };
 }

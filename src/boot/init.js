@@ -17,7 +17,7 @@ let stopedName;
 
 const evtDialog = new EventBus();
 
-export default ({ app }) => {
+export default ({ app, router, store }) => {
   const dialog = (app.config.globalProperties.$aDialog = {});
 
   dialog.bus = evtDialog;
@@ -43,4 +43,10 @@ export default ({ app }) => {
   };
 
   app.config.globalProperties.$fullYear = new Date().getFullYear();
+  app.config.globalProperties.$app = {};
+  app.config.globalProperties.$app.logout = async () => {
+    await store.dispatch("auth/logout");
+    await router.replace({ name: "auth.login" });
+    window.location.reload();
+  };
 };

@@ -17,7 +17,11 @@
 
 
     & > button {
-      @apply tw-mt-7-1;
+      @apply tw-mt-6;
+
+      @include screen-xl {
+        @apply tw-mt-7-1;
+      }
     }
   }
 
@@ -30,7 +34,7 @@
   }
 
   &__links {
-    @apply tw-text-center;
+    @apply tw-text-center tw-text-xxs xl:tw-text-xs;
     @include space-y(8px);
   }
 

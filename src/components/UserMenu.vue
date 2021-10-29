@@ -12,7 +12,7 @@
         <InlineSvg :src="require('assets/profile.svg')" />
         <div class="user-menu__item-name">Личный кабинет</div>
       </router-link>
-      <a class="user-menu__item" href="#">
+      <a class="user-menu__item" href="#" @click="$app.logout">
         <InlineSvg :src="require('assets/logout.svg')" />
         <div class="user-menu__item-name">Выйти</div>
       </a>

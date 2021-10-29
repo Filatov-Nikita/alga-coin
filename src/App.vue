@@ -6,7 +6,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'App',
-  created() {
+  async created() {
     this.$store.dispatch('user/fetchProfileData');
     this.$store.dispatch('wallet/fetchWalletData');
   },
