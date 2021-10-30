@@ -1,6 +1,6 @@
 <template>
   <div class="user-menu">
-    <button class="user-menu__btn" @click="onClick">
+    <button class="user-menu__btn" @click="onClick" v-click-outside="close">
       <UserAvatar class="tw-mr-3" />
       <div class="user-menu__name">{{ name }}</div>
       <div class="user-menu__icon">
@@ -12,7 +12,7 @@
         <InlineSvg :src="require('assets/profile.svg')" />
         <div class="user-menu__item-name">Личный кабинет</div>
       </router-link>
-      <a class="user-menu__item" href="#" @click="$app.logout">
+      <a class="user-menu__item" href="#" @click.prevent="$app.logout">
         <InlineSvg :src="require('assets/logout.svg')" />
         <div class="user-menu__item-name">Выйти</div>
       </a>
@@ -40,6 +40,9 @@ export default {
     };
   },
   methods: {
+    close() {
+      this.showMenu = false;
+    },
     onClick() {
       this.showMenu = !this.showMenu;
     },

@@ -1,6 +1,9 @@
 <template>
   <teleport to="body" :disabled="!showMenu">
-    <q-header class="tw-pt-4-1 header" :class="{ 'header--open': showMenu }">
+    <q-header
+      class="tw-pt-4-1 header"
+      :class="{ 'header--open': showMenu }"
+    >
       <div class="tw-container">
         <div class="tw-pt-safe">
           <div class="app-row app-gutter-col-x tw-items-center">
@@ -90,7 +93,7 @@
     </q-header>
 
     <template v-if="$q.screen.lt.xl">
-      <div class="header__cover" v-show="showMenu"></div>
+      <div class="header__cover" @click="close" v-show="showMenu"></div>
     </template>
   </teleport>
 </template>
@@ -107,6 +110,11 @@ export default {
     return {
       showMenu: false,
     };
+  },
+  methods: {
+    close() {
+      this.showMenu = false;
+    },
   },
   computed: {
     ...mapGetters('profile', { username: 'name' }),
@@ -127,6 +135,9 @@ export default {
         }
       },
       immediate: true,
+    },
+    $route() {
+      this.close();
     },
   },
 };
