@@ -1,0 +1,51 @@
+.page-wallet {
+  &__wrap {
+    max-width: 370px;
+    @apply tw-mx-auto;
+  }
+
+  &__form {
+    max-width: 370px;
+    @apply tw-mx-auto;
+    @include space-y(18px);
+
+    & > button {
+      @apply tw-mt-6;
+    }
+  }
+
+  &__actions {
+    @include space-y(14px);
+  }
+
+  &__action {
+    @apply tw-text-xxs xl:tw-text-base;
+  }
+
+  &__content {
+    @apply tw-px-6 tw-py-8 tw-m-auto tw-w-full;
+  }
+
+  &__balance {
+    @apply tw-mb-6;
+  }
+
+  &__title {
+    @apply tw-text-sm tw-text-center;
+  }
+
+  &__caption {
+    @apply tw-text-xxs;
+  }
+
+  &__back-btn {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    @include screen-xl {
+      top: 20px;
+      left: 20px;
+    }
+  }
+}

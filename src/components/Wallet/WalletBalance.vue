@@ -6,7 +6,7 @@
     />
 
     <div class="tw-mb-6 tw-text-center">
-      <div class="wallet-balance__icon tw-mx-auto tw-mb-3">
+      <div v-if="!hideIcon" class="wallet-balance__icon tw-mx-auto tw-mb-3">
         <InlineSvg
           :src="
             frozen
@@ -73,6 +73,10 @@ export default {
       default: undefined,
       type: String,
     },
+    hideIcon: {
+      default: false,
+      type: Boolean
+    }
   },
 };
 </script>

@@ -1,5 +1,8 @@
 <template>
-  <q-layout class="app-page-bg" view="lhh lpR fFf">
+  <q-layout
+    class="app-page-bg"
+    :view="$q.screen.xl ? 'lhh lpR fff' : 'lhh lpR fFf'"
+  >
     <BaseHeader />
     <q-page-container>
       <router-view />
@@ -9,9 +12,7 @@
         <div class="tw-container">
           <div class="header-desktop">
             <span> Alga© {{ $fullYear }} </span>
-            <AppLink to="#" target="_blank"
-              >Условия обслуживания</AppLink
-            >
+            <AppLink to="#" target="_blank">Условия обслуживания</AppLink>
           </div>
         </div>
       </div>

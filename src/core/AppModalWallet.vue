@@ -28,8 +28,8 @@ export default {
     },
     contentClass: {
       default: '',
-      type: String
-    }
+      type: String,
+    },
   },
   emit: ['update:modelValue'],
   setup(props, { emit }) {
@@ -70,7 +70,7 @@ export default {
   }
 
   &__content {
-    @apply tw-bg-dark tw-rounded-base tw-relative tw-overflow-x-hidden;
+    @apply tw-bg-dark tw-rounded-base tw-relative tw-overflow-x-hidden tw-grid;
 
     @include screen-start-xl {
       max-height: calc(
