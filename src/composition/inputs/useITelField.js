@@ -15,6 +15,9 @@ export default function (name, rules, opts) {
 
   watchEffect(() => {
     const fieldVal = field.value;
+
+    if (typeof fieldVal.value !== "string") return;
+
     const prefixVal = prefix.fieldPrefix.value;
     const unmaskedVal = unmaskedFiled.value;
     const cleanVal = fieldVal.value.replace(/[^\d]/g, "");

@@ -35,8 +35,18 @@ function cellphone(value) {
   return true;
 }
 
+function confirmed(value, [secondValue]) {
+  if (value !== secondValue) return "Пароли не совпадают";
+  return true;
+}
+
+function password(value) {
+  if (typeof value === "string" && value.length > 6) return true;
+  return "Пароль должен быть больше 6 знаков";
+}
+
 // глобальные правила
-const rules = { required, email, min, decimal, cellphone };
+const rules = { required, email, min, decimal, cellphone, confirmed, password };
 
 for (let ruleName in rules) {
   defineRule(ruleName, rules[ruleName]);

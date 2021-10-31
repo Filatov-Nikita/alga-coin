@@ -2,6 +2,10 @@
   @include space-y(18px);
 }
 
+.app-space-y-sm {
+  @include space-y(12px);
+}
+
 .app-gutter-y-md {
   @include gutter-y(18px);
 }

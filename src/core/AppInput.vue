@@ -3,6 +3,8 @@ import _useInput from 'src/composition/inputs/useInput';
 import _useTelField from 'src/composition/inputs/useITelField';
 import _useFileField from 'src/composition/inputs/useFileField';
 import _usePasswordField from 'src/composition/inputs/usePasswordField';
+import _useCreditCardField from 'src/composition/inputs/useCreditCardField';
+import _useCurrencyField from 'src/composition/inputs/useCurrencyField';
 import useAppend from 'src/composition/inputs/useAppend';
 import useModel from 'src/composition/inputs/useModel';
 import { Field } from 'vee-validate';
@@ -43,11 +45,19 @@ export default defineComponent({
     modelValue: {
       default: undefined,
     },
+    creditCard: {
+      default: undefined,
+      type: Boolean,
+    },
+    currency: {
+      default: undefined,
+      type: Boolean,
+    },
     ...{ rules: Field.props.rules },
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
-    const { label, name, type, rules } = props;
+    const { label, name, type, rules, creditCard, currency } = props;
     const inputRef = ref(null);
     const { hasAppend, hasPrepend } = useAppend(slots.prepend, slots.append);
     const compId = getCurrentInstance().uid;
@@ -61,6 +71,10 @@ export default defineComponent({
       ({ field, ...opts } = _usePasswordField(name, rules, { label }));
     } else if (type === 'file') {
       field = _useFileField(name, rules, { label });
+    } else if (type === 'text' && creditCard) {
+      ({ field, ...opts } = _useCreditCardField(name, rules, { label }));
+    } else if (type === 'text' && currency) {
+      ({ field, ...opts } = _useCurrencyField(name, rules, { label }));
     } else {
       ({ field, ...opts } = _useInput(name, rules, { label }, attrs.onInput));
     }
@@ -77,6 +91,8 @@ export default defineComponent({
     return () => {
       const isTel = props.type === 'tel';
       const isPassword = props.type === 'password';
+      const isCreditCard = props.type === 'text' && props.creditCard;
+      const isCurrency = props.type === 'text' && props.currency;
 
       const inpAttrs = {
         id: compId,
@@ -96,7 +112,9 @@ export default defineComponent({
             ? 'text'
             : props.type,
         value: field.value.value,
-        ...(opts.validationListeners && opts.validationListeners.value
+        ...(isCurrency
+          ? { onInput: opts.handleChange }
+          : opts.validationListeners && opts.validationListeners.value
           ? opts.validationListeners.value
           : { onInput: field.handleChange }),
       };
@@ -118,6 +136,10 @@ export default defineComponent({
           isTel
             ? withDirectives(h('input', inpAttrs), [
                 [opts.mask, opts.phoneMask],
+              ])
+            : isCreditCard
+            ? withDirectives(h('input', inpAttrs), [
+                [opts.mask, opts.creditCardMask],
               ])
             : h('input', inpAttrs)
         ),

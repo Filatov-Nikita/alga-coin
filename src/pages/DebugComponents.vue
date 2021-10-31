@@ -39,6 +39,21 @@
       <h2 class="h3">Инпуты:</h2>
       <div>
         <article>
+          <h3 class="h4">Валюта</h3>
+          <AppInput
+            type="text"
+            label="Валюта"
+            placeholder="Валюта"
+            currency
+          />
+        </article>
+
+        <article>
+          <h3 class="h4">Кредитка</h3>
+          <AppInput label="Кредитка" placeholder="Кредитка" creditCard />
+        </article>
+
+        <article>
           <h3 class="h4">Пароль</h3>
           <AppInput
             type="password"
@@ -114,7 +129,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <!-- <section class="section">
       <h2 class="h3">уведомления:</h2>
       <div>
         <article>
@@ -130,10 +145,18 @@
           <AppAlert type="neutral" message="нейтральные уведомление" />
         </article>
       </div>
-    </section>
+    </section> -->
 
     <section class="section">
       <h2 class="h3">Прочие компоненты:</h2>
+      <article>
+        <h3 class="h4">Отображение полного адреса кошелька</h3>
+        <div>
+          <MyWalletAddress
+            address="0xAbBDd166fD5DfFe50D294aEEe539CBB2547DE7DF"
+          />
+        </div>
+      </article>
       <article>
         <h3 class="h4">Отображение номера кошелька</h3>
         <div>
@@ -162,6 +185,7 @@
 <script>
 import UserMenu from 'src/components/UserMenu';
 import LangToolbar from 'src/components/LangToolbar';
+import MyWalletAddress from 'src/components/MyWalletAddress';
 
 export default {
   data() {
@@ -170,6 +194,7 @@ export default {
   components: {
     UserMenu,
     LangToolbar,
+    MyWalletAddress,
   },
 };
 </script>

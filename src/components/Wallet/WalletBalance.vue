@@ -1,6 +1,7 @@
 <template>
   <div class="wallet-balance">
     <AppWalletDisplay
+      v-if="!hideWalletNumber"
       class="tw-justify-center tw-mb-3-1"
       v-bind="{ walletNumber }"
     />
@@ -75,8 +76,12 @@ export default {
     },
     hideIcon: {
       default: false,
-      type: Boolean
-    }
+      type: Boolean,
+    },
+    hideWalletNumber: {
+      default: false,
+      type: Boolean,
+    },
   },
 };
 </script>

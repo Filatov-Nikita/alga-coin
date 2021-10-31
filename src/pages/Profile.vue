@@ -7,26 +7,72 @@
           <div class="tabs tw-mb-7-1">
             <button
               class="tab"
-              :class="{ 'tab--active': tab === 'data' }"
-              @click="tab = 'data'"
+              :class="{ 'tab--active': step === 'profile-data' }"
+              @click="changeStep('profile-data')"
             >
               Данные
             </button>
             <button
               class="tab"
-              :class="{ 'tab--active': tab === 'password' }"
-              @click="tab = 'password'"
+              :class="{ 'tab--active': step === 'password' }"
+              @click="changeStep('password')"
             >
               Пароль
             </button>
           </div>
-
-          <div v-if="tab === 'data'">
-            <AppButton fullWidth label="Изменить данные" />
-          </div>
-          <div v-else-if="tab === 'password'">
-            <AppButton fullWidth label="Изменить пароль" />
-          </div>
+          <AppStep name="profile-data">
+            <Form class="app-space-y-md" v-slot="{ isSubmittig }">
+              <AppInput
+                name="name"
+                label="Имя"
+                placeholder="Имя"
+                rules="required"
+              />
+              <AppInput
+                name="email"
+                label="E-mail"
+                placeholder="E-mail"
+                rules="required|email"
+              />
+              <AppInput
+                type="tel"
+                name="cellphone"
+                label="Телефон"
+                placeholder="Номер телефона"
+                rules="required"
+              />
+              <AppButton
+                type="submit"
+                :disabled="isSubmittig"
+                fullWidth
+                label="Сохранить изменения"
+              />
+            </Form>
+          </AppStep>
+          <AppStep name="password">
+            <Form class="app-space-y-md" v-slot="{ isSubmittig }">
+              <AppInput
+                type="password"
+                name="oldPass"
+                label="Старый пароль"
+                placeholder="Пароль"
+                rules="required|password"
+              />
+              <AppInput
+                type="password"
+                name="newPass"
+                label="Новый пароль"
+                placeholder="Пароль"
+                rules="required|confirmed:@oldPass"
+              />
+              <AppButton
+                type="submit"
+                :disabled="isSubmittig"
+                fullWidth
+                label="Изменить пароль"
+              />
+            </Form>
+          </AppStep>
         </div>
       </div>
     </div>
@@ -34,10 +80,14 @@
 </template>
 
 <script>
+import useStep from 'src/composition/useStep';
+
 export default {
-  data() {
+  setup() {
+    const { step, changeStep } = useStep('profile-data');
     return {
-      tab: 'data',
+      step,
+      changeStep,
     };
   },
 };

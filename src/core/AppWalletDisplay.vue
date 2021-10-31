@@ -1,13 +1,16 @@
 <template>
   <div class="app-wallet-display">
     <div class="app-wallet-display__text">{{ displayWallet }}</div>
-    <button @click="copy">
-      <InlineSvg :src="require('assets/copy.svg')" />
-    </button>
+    <CopyClip
+      :value="walletNumber"
+      message="Номер кошелька скопирован в буфер обмена"
+    />
   </div>
 </template>
 
 <script>
+import CopyClip from 'src/components/CopyClip.vue';
+
 export default {
   props: {
     walletNumber: {
@@ -23,15 +26,9 @@ export default {
       return `${start}...${end}`;
     },
   },
-  methods: {
-    copy() {
-      navigator.clipboard.writeText(this.walletNumber);
-      this.$alert({
-        type: 'neutral',
-        message: 'Номер кошелька скопирован в буфер обмена',
-      });
-    },
-  },
+  components: {
+    CopyClip
+  }
 };
 </script>
 
