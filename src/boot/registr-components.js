@@ -17,6 +17,7 @@ export default ({ app }) => {
   );
   app.component("Form", require("vee-validate").Form);
   app.component("AppStep", require("src/core/AppStep.vue").default);
+  app.component("AppStepGroup", require("src/core/AppStepGroup.vue").default);
   app.component("AppCheckbox", require("src/core/AppCheckbox.vue").default);
   app.component("AppBtnBack", require("src/core/AppBtnBack.vue").default);
   app.component("AppModal", require("src/core/AppModal.vue").default);

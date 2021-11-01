@@ -84,74 +84,78 @@
               </div>
             </AppStep>
 
-            <AppStep name="by-card">
-              <WalletBalance v-bind="walletData" hideIcon />
-              <Form class="page-wallet__form">
-                <AppInput
-                  rules="required"
-                  name="sum"
-                  fullWidth
-                  placeholder="Сумма"
-                  label="Сумма"
-                />
-                <AppButton @click="1" label="Пополнить" fullWidth />
-              </Form>
-              <div class="wallet-page__caption tw-mt-6">
-                После нажатия «Пополнить» вы будете перенаправлены на страницу
-                оплаты
-              </div>
-            </AppStep>
-
-            <AppStep name="by-crypto">
-              <WalletBalance v-bind="walletData" hideIcon />
-              <Form class="page-wallet__form">
-                <AppInput
-                  rules="required"
-                  name="sum"
-                  fullWidth
-                  placeholder="Сумма"
-                  label="Сумма"
-                />
-                <div class="page-wallet__actions">
-                  <AppButton
-                    @click="changeStep('by-crypto.usdt')"
-                    label="Пополнить в USDT"
-                    :icon="require('assets/usdt.svg')"
+            <AppStepGroup>
+              <AppStep name="by-card">
+                <WalletBalance v-bind="walletData" hideIcon />
+                <Form class="page-wallet__form">
+                  <AppInput
+                    rules="required"
+                    name="sum"
                     fullWidth
+                    placeholder="Сумма"
+                    label="Сумма"
                   />
-                  <AppButton
-                    @click="changeStep('by-crypto.busd')"
-                    label="Пополнить в BUSD"
-                    :icon="require('assets/busd.svg')"
-                    fullWidth
-                  />
+                  <AppButton @click="1" label="Пополнить" fullWidth />
+                </Form>
+                <div class="wallet-page__caption tw-mt-6">
+                  После нажатия «Пополнить» вы будете перенаправлены на страницу
+                  оплаты
                 </div>
-              </Form>
-            </AppStep>
+              </AppStep>
+            </AppStepGroup>
 
-            <AppStep name="by-crypto.busd">
-              <div class="wallet__title">Вам необходимо перевести</div>
-              <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
-                Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
-              </AppTimer>
-              <AppButton
-                @click="changeStep('by-crypto.finish')"
-                label="Я отправил"
-                fullWidth
-              />
-            </AppStep>
+            <AppStepGroup>
+              <AppStep name="by-crypto">
+                <WalletBalance v-bind="walletData" hideIcon />
+                <Form class="page-wallet__form">
+                  <AppInput
+                    rules="required"
+                    name="sum"
+                    fullWidth
+                    placeholder="Сумма"
+                    label="Сумма"
+                  />
+                  <div class="page-wallet__actions">
+                    <AppButton
+                      @click="changeStep('by-crypto.usdt')"
+                      label="Пополнить в USDT"
+                      :icon="require('assets/usdt.svg')"
+                      fullWidth
+                    />
+                    <AppButton
+                      @click="changeStep('by-crypto.busd')"
+                      label="Пополнить в BUSD"
+                      :icon="require('assets/busd.svg')"
+                      fullWidth
+                    />
+                  </div>
+                </Form>
+              </AppStep>
 
-            <AppStep name="by-crypto.usdt">
-              <div class="wallet__title">Вам необходимо перевести</div>
-              <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
-                Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
-              </AppTimer>
-              <AppButton
-                @click="changeStep('by-crypto.finish')"
-                label="Я отправил"
-                fullWidth
-              />
-            </AppStep>
+              <AppStep name="by-crypto.busd">
+                <div class="wallet__title">Вам необходимо перевести</div>
+                <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
+                  Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
+                </AppTimer>
+                <AppButton
+                  @click="changeStep('by-crypto.finish')"
+                  label="Я отправил"
+                  fullWidth
+                />
+              </AppStep>
+
+              <AppStep name="by-crypto.usdt">
+                <div class="wallet__title">Вам необходимо перевести</div>
+                <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
+                  Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
+                </AppTimer>
+                <AppButton
+                  @click="changeStep('by-crypto.finish')"
+                  label="Я отправил"
+                  fullWidth
+                />
+              </AppStep>
+            </AppStepGroup>
 
             <AppStep name="by-crypto.finish">
               <div class="wallet__title">Информация о пополнении принята</div>
