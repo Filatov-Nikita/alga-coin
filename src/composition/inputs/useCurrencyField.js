@@ -86,8 +86,6 @@ function updateValue(el, display, unmaskedVal, sign, handleChange) {
 
   // запускает проверку внутри AppInput и сохраняет внутреннее значение
   handleChange(display.value);
-
-  // this.$emit("update:modelValue", unmaskedVal);
 }
 
 function handleChange(e, handleChangeNative, prev, display) {

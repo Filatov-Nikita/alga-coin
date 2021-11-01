@@ -53,10 +53,10 @@ export default defineComponent({
       default: undefined,
       type: Boolean,
     },
-    ...{ rules: Field.props.rules },
+    ...{ rules: Field.props.rules, standalone: Field.props.standalone },
   },
   emits: ['update:modelValue'],
-  setup(props, { slots, emit, attrs }) {
+  setup(props, { slots, emit, attrs, expose }) {
     const { label, name, type, rules, creditCard, currency } = props;
     const inputRef = ref(null);
     const { hasAppend, hasPrepend } = useAppend(slots.prepend, slots.append);
@@ -65,19 +65,22 @@ export default defineComponent({
     let field;
     let opts = null;
 
+    const fieldStg = { label, standalone: props.standalone };
     if (type === 'tel') {
-      ({ field, ...opts } = _useTelField(name, rules, { label }));
+      ({ field, ...opts } = _useTelField(name, rules, fieldStg));
     } else if (type === 'password') {
-      ({ field, ...opts } = _usePasswordField(name, rules, { label }));
+      ({ field, ...opts } = _usePasswordField(name, rules, fieldStg));
     } else if (type === 'file') {
-      field = _useFileField(name, rules, { label });
+      field = _useFileField(name, rules, fieldStg);
     } else if (type === 'text' && creditCard) {
-      ({ field, ...opts } = _useCreditCardField(name, rules, { label }));
+      ({ field, ...opts } = _useCreditCardField(name, rules, fieldStg));
     } else if (type === 'text' && currency) {
-      ({ field, ...opts } = _useCurrencyField(name, rules, { label }));
+      ({ field, ...opts } = _useCurrencyField(name, rules, fieldStg));
     } else {
-      ({ field, ...opts } = _useInput(name, rules, { label }, attrs.onInput));
+      ({ field, ...opts } = _useInput(name, rules, fieldStg, attrs.onInput));
     }
+
+    expose(field);
 
     const modelValueRef = toRef(props, 'modelValue');
     const modelValueEmit = (val) => {
@@ -95,6 +98,7 @@ export default defineComponent({
       const isCurrency = props.type === 'text' && props.currency;
 
       const inpAttrs = {
+        ...attrs,
         id: compId,
         ref: inputRef,
         class: [

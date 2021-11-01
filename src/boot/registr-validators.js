@@ -45,8 +45,24 @@ function password(value) {
   return "Пароль должен быть больше 6 знаков";
 }
 
+function walletAddress(value) {
+  if (!value) return true;
+  if (value.length !== 42 || !value.startsWith("0x"))
+    return "Проверьте правильность ввода адреса кошелька";
+  return true;
+}
+
 // глобальные правила
-const rules = { required, email, min, decimal, cellphone, confirmed, password };
+const rules = {
+  required,
+  email,
+  min,
+  decimal,
+  cellphone,
+  confirmed,
+  password,
+  walletAddress,
+};
 
 for (let ruleName in rules) {
   defineRule(ruleName, rules[ruleName]);

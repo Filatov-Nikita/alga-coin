@@ -39,13 +39,23 @@
       <h2 class="h3">Инпуты:</h2>
       <div>
         <article>
-          <h3 class="h4">Валюта</h3>
+          <h3 class="h4">Инпут с проверкой адреса кошелька</h3>
           <AppInput
-            type="text"
-            label="Валюта"
-            placeholder="Валюта"
-            currency
+            name="address"
+            label="Адрес"
+            placeholder="Адрес"
+            rules="walletAddress"
           />
+        </article>
+
+        <article>
+          <h3 class="h4">Валюта c конвертацией</h3>
+          <AppConvertInput />
+        </article>
+
+        <article>
+          <h3 class="h4">Валюта</h3>
+          <AppInput type="text" label="Валюта" placeholder="Валюта" currency />
         </article>
 
         <article>
