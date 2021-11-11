@@ -3,7 +3,7 @@
     class="app-page-bg"
     :view="$q.screen.xl ? 'lhh lpR fff' : 'lhh lpR fFf'"
   >
-    <BaseHeader />
+    <HeaderBase />
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -23,12 +23,12 @@
 
 <script>
 import TheBottomMenu from 'src/components/TheBottomMenu.vue';
-import BaseHeader from './parts/BaseHeader.vue';
+import HeaderBase from './HeaderBase.vue';
 
 export default {
   components: {
     TheBottomMenu,
-    BaseHeader,
+    HeaderBase,
   },
 };
 </script>

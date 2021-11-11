@@ -24,4 +24,12 @@ export default ({ app, router, store }) => {
     await router.replace({ name: "auth.login" });
     window.location.reload();
   };
+
+  app.config.globalProperties.$app.links = {
+    twitter: "#",
+    facebook: "#",
+    instagram: "#",
+    telegram: "#",
+    serviceInfo: "#",
+  };
 };

@@ -81,7 +81,7 @@ module.exports = configure(function (ctx) {
       open: true, // opens browser window automatically
       proxy: {
         "/api": {
-          target: "http://trial.2apps.ru",
+          target: "https://alga.finance",
           changeOrigin: true,
         },
       },
@@ -107,7 +107,7 @@ module.exports = configure(function (ctx) {
 
     // animations: 'all', // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: [],
+    animations: ["fadeIn", "fadeOut"],
 
     // https://v2.quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {

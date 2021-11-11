@@ -33,6 +33,7 @@ export default {
 
     return { innerValue, errorMessage };
   },
+  emits: ['update:modelValue'],
   render() {
     const {
       _: { uid: id },

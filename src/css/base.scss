@@ -88,4 +88,12 @@
       width: 198px;
     }
   }
+
+  .app-logo-2 {
+    width: 74px;
+
+    @include screen-xl {
+      width: 136px;
+    }
+  }
 }

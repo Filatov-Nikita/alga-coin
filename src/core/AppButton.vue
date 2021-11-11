@@ -20,6 +20,12 @@ export default defineComponent({
       default: undefined,
       type: String,
     },
+    iconStg: {
+      default() {
+        return {};
+      },
+      type: Object,
+    },
     design: {
       default: 'standart',
       type: String,
@@ -27,43 +33,58 @@ export default defineComponent({
     textClass: {
       type: String,
     },
+    to: {
+      default: undefined,
+    },
   },
   render() {
+    const RouterLink = resolveComponent('router-link');
+
     const createIcon = () => {
       const InlineSvg = resolveComponent('InlineSvg');
-
       return h(InlineSvg, {
-        class: 'app-button__icon',
+        class: { 'app-button__icon': this.design !== 'round' },
         src: this.icon,
+        ...this.iconStg,
       });
     };
 
     let prepend = null;
 
     if (this.$slots.prepend) {
-      prepend = h('div', { class: 'app-button__icon' }, this.$slots.prepend());
+      prepend = h(
+        'div',
+        { class: { 'app-button__icon': this.design !== 'round' } },
+        this.$slots.prepend()
+      );
     } else if (this.icon) {
       prepend = createIcon();
     }
 
+    const isLink = this.to !== undefined;
+    const children = [
+      prepend,
+      h('div', this.$slots.default ? this.$slots.default : this.label),
+    ];
+
     return h(
-      'button',
+      isLink ? RouterLink : 'button',
       {
         class: [
           `app-button app-button--${this.design}`,
           this.classes,
           { 'app-button--full-width': this.fullWidth },
         ],
+        ...(isLink ? { to: this.to } : {}),
       },
-      [
-        prepend,
-        h('div', this.$slots.default ? this.$slots.default : this.label),
-      ]
+      isLink ? () => children : children
     );
   },
   computed: {
     classes() {
-      return this.textClass === undefined ? 'tw-text-base' : this.textClass;
+      return `
+        ${this.textClass || 'tw-text-base'}
+      `;
     },
   },
 });
@@ -73,7 +94,7 @@ export default defineComponent({
 //$
 
 .app-button {
-  @apply tw-flex tw-justify-center tw-items-center;
+  @apply tw-flex tw-justify-center tw-items-center tw-text-white;
 
   &--full-width {
     width: 100%;
@@ -91,6 +112,18 @@ export default defineComponent({
     }
     &:active {
       @apply tw-bg-primary;
+    }
+  }
+
+  &--round {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    @apply tw-bg-blue tw-text-center;
+
+    & > * {
+      @apply tw-inline-block;
     }
   }
 

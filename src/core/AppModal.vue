@@ -30,7 +30,7 @@ export default {
       type: String,
     },
   },
-  emit: ['update:modelValue'],
+  emits: ['update:modelValue'],
   mounted() {
     const dialog =
       getCurrentInstance().appContext.config.globalProperties.$aDialog;

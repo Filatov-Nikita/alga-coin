@@ -160,6 +160,48 @@
     <section class="section">
       <h2 class="h3">Прочие компоненты:</h2>
       <article>
+        <h3 class="h4">Шаги</h3>
+        <div>
+          <AppStepGroup v-slot="{ next, prev }" name="payment">
+            <AppStep name="choose-way">
+              <button @click="next({ show: 'card' })">Пополнить картой</button>
+              <button @click="next({ show: 'crypt' })">
+                Пополнить криптой
+              </button>
+            </AppStep>
+            <AppRadioGroupStep name="ways">
+              <AppStep name="card">
+                <button @click="prev">Назад</button>
+                <button>поплнить картой</button>
+              </AppStep>
+              <AppStepGroup name="crypt" v-slot="{ next, prev }">
+                <AppStep name="choose-crypt">
+                  <button @click="prev">Назад</button>
+                  <button @click="next({ show: 'busd' })">busd</button>
+                  <button @click="next({ show: 'usdt' })">usdt</button>
+                </AppStep>
+                <AppRadioGroupStep name="crypt-group">
+                  <AppStep name="busd">
+                    <button @click="prev">Назад</button>
+
+                    <button @click="next">пополнить в busd</button>
+                  </AppStep>
+                  <AppStep name="usdt">
+                    <button @click="prev">Назад</button>
+                    <button @click="next">пополнить в usdt</button>
+                  </AppStep>
+                </AppRadioGroupStep>
+                <AppStep name="finish">
+                  <button @click="prev">Назад</button>
+                  <div>Вы пополнили счет</div>
+                </AppStep>
+              </AppStepGroup>
+            </AppRadioGroupStep>
+          </AppStepGroup>
+        </div>
+      </article>
+
+      <article>
         <h3 class="h4">Отображение полного адреса кошелька</h3>
         <div>
           <MyWalletAddress

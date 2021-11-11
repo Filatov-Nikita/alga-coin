@@ -2,7 +2,18 @@ import { markAuth } from "./utilities/auth";
 
 const routes = [
   {
-    path: "",
+    path: "/",
+    component: () => import("pages/Landing.vue"),
+    name: "home",
+  },
+  // {
+  //   path: "",
+  //   component: () => import("layouts/GuestLayout.vue"),
+  //   children: [],
+  // },
+
+  {
+    path: "/lk",
     component: () => import("layouts/BaseLayout.vue"),
     children: [
       ...markAuth(
@@ -49,7 +60,7 @@ const routes = [
   },
 
   {
-    path: "",
+    path: "/",
     component: () => import("layouts/GuestLayout.vue"),
     children: [
       {
@@ -71,7 +82,7 @@ const routes = [
   },
 
   {
-    path: "",
+    path: "/",
     component: () => import("layouts/ReleaseLayout.vue"),
     children: [
       {
