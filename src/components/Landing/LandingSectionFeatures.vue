@@ -1,14 +1,23 @@
 <template>
-  <AppFullPageScreen class="ecosystem">
-    <h2>Особенности проекта</h2>
+  <AppFullPageScreen class="ecosystem tw-py-2">
+    <h2 class="app-h1 tw-text-center tw-mb-7-1">Особенности проекта</h2>
     <AppCarousel>
       <AppCarouselSlide
         v-for="(slide, index) in slides"
         :name="`${index}`"
         :key="index"
       >
-        <div class="tw-text-center tw-mb-9" v-for="block in slide" :key="block.text">
-          <InlineSvg class="tw-mx-auto tw-mb-3" :src="block.icon" />
+        <div
+          class="tw-text-center tw-mb-9"
+          v-for="block in slide"
+          :key="block.text"
+        >
+          <InlineSvg
+            width="66px"
+            height="70px"
+            class="tw-mx-auto tw-mb-3"
+            :src="block.icon"
+          />
           <p class="tw-text-xxs-1">{{ block.text }}</p>
         </div>
       </AppCarouselSlide>

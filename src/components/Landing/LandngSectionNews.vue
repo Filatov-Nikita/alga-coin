@@ -1,6 +1,6 @@
 <template>
-  <AppFullPageScreen class="ecosystem">
-    <h2>Новости</h2>
+  <AppFullPageScreen class="ecosystem tw-py-2">
+    <h2 class="app-h1 tw-mb-7-1 tw-text-center">Новости</h2>
     <AppCarousel>
       <AppCarouselSlide name="1">
         <q-img

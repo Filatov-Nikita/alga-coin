@@ -1,5 +1,8 @@
 <template>
-  <q-layout view="hHh lpR fFf" class="tw-bg-dark tw-relative tw-z-10">
+  <q-layout
+    view="hHh lpR fFf"
+    class="tw-bg-dark-blue-cover tw-relative tw-z-10"
+  >
     <HeaderLanding>
       <template #menu>
         <LandingMenu :activeIndex="menuActive" @to="toSection" />
@@ -7,11 +10,15 @@
     </HeaderLanding>
     <q-page-container>
       <q-page>
-        <AppFullPage ref="fullPage" @changeIndex="changeBg">
-          <LandingScreenAdvantages />
-          <LandingSectionFeatures />
-          <LandngEcosystem />
-        </AppFullPage>
+        <div class="tw-container">
+          <AppFullPage ref="fullPage" @changeIndex="changeBg">
+            <LandingSectionAdvantages />
+            <LandingSectionFeatures />
+            <LandingSectionEcosystem />
+            <LandingSectionProjects />
+            <LandngSectionNews />
+          </AppFullPage>
+        </div>
       </q-page>
     </q-page-container>
 
@@ -29,18 +36,25 @@
       <div class="anim-bg__purple" v-else-if="bg === 'purple'"></div>
       <div class="anim-bg__green" v-else-if="bg === 'green'"></div>
     </transition>
+    <InlineSvg
+    v-if="$q.screen.xl"
+      class="landing-bg-image"
+      :src="require('assets/images/landing/main-bg.svg')"
+    />
   </q-layout>
 </template>
 
 <script>
+import LandingSectionAdvantages from 'src/components/Landing/LandingSectionAdvantages.vue';
+import LandingSectionFeatures from 'src/components/Landing/LandingSectionFeatures.vue';
+import LandingSectionEcosystem from 'src/components/Landing/LandingSectionEcosystem.vue';
+import LandingSectionProjects from 'src/components/Landing/LandingSectionProjects.vue';
+import LandngSectionNews from 'src/components/Landing/LandngSectionNews.vue';
 import FooterLanding from 'src/layouts/FooterLanding.vue';
 import HeaderLanding from 'src/layouts/HeaderLanding.vue';
 import LandingMenu from 'src/components/Landing/LandingMenu.vue';
-import LandingScreenToken from 'src/components/Landing/LandingScreenToken.vue';
-import LandingScreenAdvantages from 'src/components/Landing/LandingScreenAdvantages.vue';
-import LandingSectionFeatures from 'src/components/Landing/LandingSectionFeatures.vue';
-import LandngEcosystem from 'src/components/Landing/LandngEcosystem.vue';
 import { ref, provide } from 'vue';
+import { Screen } from 'quasar';
 
 export default {
   setup() {
@@ -71,20 +85,26 @@ export default {
     const fullPage = ref(null);
 
     const changeBg = (index) => {
+      const isMobile = Screen.lt.xl;
+
       let val;
-      switch (index) {
-        case 0:
-          val = 'blue';
-          theme.value = 'default';
-          break;
-        case 1:
-          val = 'dark-blue';
-          theme.value = 'default';
-          break;
-        case 2:
-          val = 'green';
-          theme.value = 'darkGreen';
-          break;
+      if (isMobile) {
+        index === 0 ? (val = 'blue') : (val = '');
+      } else {
+        switch (index) {
+          case 0:
+            val = 'blue';
+            theme.value = 'default';
+            break;
+          case 1:
+            val = isMobile ? 'standart' : 'dark-blue';
+            theme.value = 'default';
+            break;
+          case 2:
+            val = 'green';
+            theme.value = 'darkGreen';
+            break;
+        }
       }
 
       bg.value = val;
@@ -104,13 +124,24 @@ export default {
     };
   },
   components: {
-    LandingScreenToken,
-    LandingScreenAdvantages,
+    LandingSectionAdvantages,
     LandingSectionFeatures,
-    LandngEcosystem,
+    LandngSectionNews,
     HeaderLanding,
     LandingMenu,
     FooterLanding,
+    LandingSectionProjects,
+    LandingSectionEcosystem,
   },
 };
 </script>
+<style scoped lang="scss">
+.landing-bg-image {
+  position: fixed;
+  z-index: -1;
+  width: 110%;
+  height: 110%;
+  left: 0;
+  top: -30px;
+}
+</style>
