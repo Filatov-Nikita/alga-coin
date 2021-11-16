@@ -64,7 +64,7 @@ export default defineComponent({
     const isLink = this.to !== undefined;
     const children = [
       prepend,
-      h('div', this.$slots.default ? this.$slots.default : this.label),
+      h('div', this.$slots.default ? this.$slots.default() : this.label),
     ];
 
     return h(

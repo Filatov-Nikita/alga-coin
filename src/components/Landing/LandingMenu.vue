@@ -3,7 +3,12 @@
     <button
       @click="to(index)"
       class="list__item"
-      :class="{ 'list__item--active': activeIndex === index }"
+      :class="[
+        { 'list__item--active': activeIndex === index },
+        ['darkBlue', 'blue', 'default'].includes(theme)
+          ? 'tw-text-secondary'
+          : 'tw-text-white',
+      ]"
       v-for="(item, index) in list"
       :key="item.label"
       :style="{ '--theme-primary': themes[theme] }"
@@ -75,7 +80,7 @@ function getItems() {
   &__item {
     border-radius: 50px;
     padding: 5px 13px;
-    @apply tw-uppercase tw-text-xxs-2 tw-text-secondary;
+    @apply tw-uppercase tw-text-xxs-2;
 
     &:first-child:not(.list__item--active) {
       margin-left: -13px;

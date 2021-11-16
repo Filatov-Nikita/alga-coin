@@ -35,9 +35,13 @@
       <div class="anim-bg__red" v-else-if="bg === 'red'"></div>
       <div class="anim-bg__purple" v-else-if="bg === 'purple'"></div>
       <div class="anim-bg__green" v-else-if="bg === 'green'"></div>
+      <div class="anim-bg__biruze" v-else-if="bg === 'biruze'"></div>
+      <div class="anim-bg__light-green" v-else-if="bg === 'light-green'"></div>
+      <div class="anim-bg__indigo" v-else-if="bg === 'indigo'"></div>
+      <div class="anim-bg__yellow" v-else-if="bg === 'yellow'"></div>
     </transition>
     <InlineSvg
-    v-if="$q.screen.xl"
+      v-if="$q.screen.xl"
       class="landing-bg-image"
       :src="require('assets/images/landing/main-bg.svg')"
     />
@@ -53,7 +57,7 @@ import LandngSectionNews from 'src/components/Landing/LandngSectionNews.vue';
 import FooterLanding from 'src/layouts/FooterLanding.vue';
 import HeaderLanding from 'src/layouts/HeaderLanding.vue';
 import LandingMenu from 'src/components/Landing/LandingMenu.vue';
-import { ref, provide } from 'vue';
+import { ref, provide, reactive } from 'vue';
 import { Screen } from 'quasar';
 
 export default {
@@ -84,30 +88,47 @@ export default {
     const menuActive = ref(0);
     const fullPage = ref(null);
 
+    const screenBgColors = reactive({
+      0: 'blue',
+      1: 'dark-blue',
+      2: 'blue',
+      3: 'blue',
+      4: 'dark-blue',
+    });
+
+    const screenTheme = reactive({
+      0: 'default',
+      1: 'default',
+      2: 'blue',
+      3: 'default',
+      4: 'default'
+    });
+
+    provide('updateBg', (name) => {
+      bg.value = name;
+      screenBgColors[menuActive.value] = name;
+    });
+
+    provide('screenActiveIndex', menuActive);
+
+    provide('updateTheme', (name) => {
+      const isMobile = Screen.lt.xl;
+      if (isMobile) return;
+
+      theme.value = name;
+      screenTheme[menuActive.value] = name;
+    });
+
     const changeBg = (index) => {
       const isMobile = Screen.lt.xl;
 
-      let val;
+      let newBg = screenBgColors[index];
       if (isMobile) {
-        index === 0 ? (val = 'blue') : (val = '');
-      } else {
-        switch (index) {
-          case 0:
-            val = 'blue';
-            theme.value = 'default';
-            break;
-          case 1:
-            val = isMobile ? 'standart' : 'dark-blue';
-            theme.value = 'default';
-            break;
-          case 2:
-            val = 'green';
-            theme.value = 'darkGreen';
-            break;
-        }
+        index === 0 ? (newBg = 'blue') : (newBg = '');
       }
 
-      bg.value = val;
+      bg.value = newBg;
+      theme.value = screenTheme[index];
       menuActive.value = index;
     };
 

@@ -1,8 +1,86 @@
 <template>
-  <AppFullPageScreen class="tw-py-1">
-    <h2 class="app-h1 tw-mb-4 tw-text-center">Направления</h2>
+  <AppFullPageScreen class="tw-py-1 xl:tw-pt-10 tw-relative">
+    <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-mb-4 tw-text-center">
+      Направления
+    </h2>
+    <h2 v-else class="landing-h2 landing-h2--space tw-uppercase">ПРОЕКТЫ</h2>
 
-    <AppCarousel>
+    <div v-if="$q.screen.xl" class="app-row app-gutter-col-x">
+      <div class="tw-text-xs tw-mt-12 app-col-4">
+        <p>
+          Alga — это стартовая инвестиционная площадка для разработки,
+          подготовки к запуску и реализации новых технологических и
+          экологических проектов по всему миру
+        </p>
+        <br />
+        <p>
+          Экосистема Alga бесконечна, как мировой океан, и каждый её участник
+          может предложить миру свой уникальный проект
+        </p>
+        <br />
+        <p>
+          Каждый проект проходит процедуру отбора, после чего получает полную
+          поддержку экосистемы до этапа запуска и дальнейшего сопровождения
+        </p>
+      </div>
+
+      <div class="app-col-14">
+        <div class="app-row app-gutter-col-x">
+          <div class="tw-bg-dark tw-rounded-base app-col-6">
+            <div class="project__cover">
+              <img
+                width="172"
+                height="181"
+                class="project__pic"
+                src="images/landing-project-1.png"
+                alt=""
+              />
+              <p class="tw-text-xs tw-text-left tw-mb-3-1">Проект AT-island</p>
+              <AppButton
+                design="flat"
+                :icon="require('assets/images/landing/landing-arrow.svg')"
+              />
+            </div>
+          </div>
+
+          <div class="tw-bg-dark tw-rounded-base app-col-6">
+            <div class="project__cover">
+              <img
+                width="172"
+                height="181"
+                class="project__pic"
+                src="images/landing-project-2.png"
+                alt=""
+              />
+              <p class="tw-text-xs tw-mb-3-1 tw-text-left">Alga NFT</p>
+              <AppButton
+                design="flat"
+                :icon="require('assets/images/landing/landing-arrow.svg')"
+              />
+            </div>
+          </div>
+
+          <div class="project__add app-col-6 tw-p-7-1">
+            <button class="project__btn tw-mb-3-1">
+              <InlineSvg
+                class="tw-inline-block"
+                fill="#208B3A"
+                width="24px"
+                height="24px"
+                :src="require('assets/icons/plus.svg')"
+              />
+            </button>
+            <div class="tw-text-xs">
+              Подать заявку <br />
+              на рассмотрение <br />
+              инвестиционного проекта
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <AppCarousel v-else>
       <AppCarouselSlide name="1">
         <div class="tw-text-center tw-mb-4-1">
           <p class="project__text">
@@ -92,10 +170,12 @@ export default {};
 </script>
 
 <style scoped lang="scss">
+//$
+
 .project {
   &__cover {
     min-height: 222px;
-    @apply tw-bg-dark tw-rounded-base tw-text-center tw-p-6;
+    @apply tw-bg-dark tw-rounded-base tw-text-center tw-p-6 xl:tw-pt-12 xl:tw-p-7-1;
   }
 
   &__text {
@@ -105,6 +185,10 @@ export default {};
   &__pic {
     width: 130px;
     @apply tw-mx-auto tw-mb-4-1;
+    @include screen-xl {
+      width: 181px;
+      @apply tw-mb-12;
+    }
   }
 
   &__add {
@@ -115,10 +199,19 @@ export default {};
       #a0e09c 100%
     );
     min-height: 400px;
+    @include screen-xl {
+      min-height: unset;
+      @apply tw-justify-between;
+    }
     @apply tw-rounded-base tw-flex tw-flex-col tw-justify-center;
   }
 
   &__btn {
+    @include screen-xl {
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+    }
     width: 90px;
     height: 90px;
     line-height: 90px;

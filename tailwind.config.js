@@ -15,6 +15,9 @@ module.exports = {
         "4-1": "1.125rem",
         "7-1": "1.875rem",
       },
+      letterSpacing: {
+        widest: '0.5em',
+      }
     },
     colors: {
       primary: "#005BAA",

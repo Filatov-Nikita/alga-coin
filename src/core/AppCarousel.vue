@@ -1,23 +1,75 @@
 <template>
   <div v-touch-swipe.mouse.horizontal="handleSwipe">
-    <slot />
-    <div class="app-carousel__control tw-px-4">
-      <button
-        class="app-carousel__dot tw-mt-6"
-        :class="{ 'app-carousel__dot--active': slide === slideName }"
-        v-for="slideName in slideList"
-        :key="slideName"
-        @click="changeSlide(slideName)"
-      ></button>
+    <div :style="{ 'min-height': height }">
+      <slot />
+    </div>
+
+    <div class="xl:tw-flex xl:tw-justify-between xl:tw-pr-5">
+      <div v-if="$q.screen.xl" class="tw-flex">
+        <AppButton
+          class="tw-rotate-180 tw-transform"
+          design="flat"
+          :icon="require('assets/images/landing/landing-arrow.svg')"
+          :iconStg="{
+            width: '60px',
+            height: '18px',
+            fill: '#fff',
+          }"
+          @click="prev"
+        />
+        <AppButton
+          @click="next"
+          design="flat"
+          :icon="require('assets/images/landing/landing-arrow.svg')"
+          :iconStg="{ width: '60px', height: '18px', fill: themes[theme] }"
+        />
+      </div>
+      <div class="app-carousel__control tw-px-4">
+        <button
+          :style="{
+            '--theme-color': colorsDotsByTheme[theme],
+            '--theme-color-active': themes[theme],
+          }"
+          class="app-carousel__dot tw-mt-6"
+          :class="{ 'app-carousel__dot--active': slide === slideName }"
+          v-for="slideName in slideList"
+          :key="slideName"
+          @click="changeSlide(slideName)"
+        ></button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { provide, ref, computed } from 'vue';
+import { provide, ref, computed, inject } from 'vue';
 
 export default {
+  props: {
+    height: {
+      default: '300px',
+      type: String,
+    },
+    theme: {},
+  },
   setup() {
+    const themes = inject('themes');
+    const theme = inject('theme');
+
+    const colorsDotsByTheme = {
+      default: '#005BAA',
+      orange: '#913417',
+      purple: '#6F1C47',
+      red: '#6C080F',
+      darkGreen: '#033A1E',
+      lightGreen: '#0D6438',
+      yellow: '#F79226',
+      indigo: '#1F2377',
+      biruze: '#063443',
+      darkBlue: '#0E3267',
+      blue: '#043267',
+    };
+
     const slides = ref(new Set());
     const slide = ref('');
 
@@ -43,14 +95,33 @@ export default {
       }, {});
     });
 
-    const handleSwipe = (evt) => {
+    const isFirst = computed(() => {
+      return slideIndexMap.value[slide.value] === 0;
+    });
+
+    const isLast = computed(() => {
+      return slideIndexMap.value[slide.value] === slides.value.size - 1;
+    });
+
+    const next = () => {
       const index = slideIndexMap.value[slide.value];
+
+      const nextIndex = Math.min(slides.value.size - 1, index + 1);
+      slide.value = slideList.value[nextIndex];
+    };
+
+    const prev = () => {
+      const index = slideIndexMap.value[slide.value];
+
+      const prevIndex = Math.max(0, index - 1);
+      slide.value = slideList.value[prevIndex];
+    };
+
+    const handleSwipe = (evt) => {
       if (evt.direction === 'right') {
-        const prevIndex = Math.max(0, index - 1);
-        slide.value = slideList.value[prevIndex];
+        prev();
       } else {
-        const nextIndex = Math.min(slides.value.size - 1, index + 1);
-        slide.value = slideList.value[nextIndex];
+        next();
       }
     };
 
@@ -59,6 +130,13 @@ export default {
       slideList,
       slide,
       handleSwipe,
+      isFirst,
+      isLast,
+      next,
+      prev,
+      themes,
+      theme,
+      colorsDotsByTheme,
     };
   },
 };
@@ -76,11 +154,12 @@ export default {
   &__dot {
     width: 6px;
     height: 6px;
-    @apply tw-rounded-base tw-bg-dark-blue;
+    background: var(--theme-color);
+    @apply tw-rounded-base;
 
     &--active {
       width: 24px;
-      @apply tw-bg-secondary;
+      background: var(--theme-color-active);
     }
   }
 }

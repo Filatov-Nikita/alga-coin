@@ -88,12 +88,13 @@ export default {
     const theme = inject('theme');
     const mobileShow = ref(false);
 
+    console.log(theme);
+
     const toggleMobile = () => {
       mobileShow.value = !mobileShow.value;
     };
 
     const coloringLogo = (svg) => {
-      console.log(themes);
       svg.children[0].style.fill = themes[theme.value];
       return svg;
     };

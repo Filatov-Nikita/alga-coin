@@ -1,13 +1,13 @@
 <template>
   <!-- <transition leave-active-class="fadeOut" enter-active-class="fadeIn"> -->
-    <div v-if="slide === name">
-      <slot />
-    </div>
+  <div v-if="slide === name">
+    <slot />
+  </div>
   <!-- </transition> -->
 </template>
 
 <script>
-import { inject, ref } from 'vue';
+import { inject, watch } from 'vue';
 
 export default {
   props: {
@@ -16,11 +16,18 @@ export default {
       type: String,
     },
   },
-  setup(props) {
+  emits: ['enter'],
+  setup(props, { emit }) {
     const registrSlide = inject('registrSlide');
     registrSlide(props.name);
 
     const slide = inject('slide');
+
+    watch(slide, (val) => {
+      if (val === props.name) {
+        emit('enter');
+      }
+    });
 
     return {
       slide,

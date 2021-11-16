@@ -1,7 +1,13 @@
 <template>
-  <AppFullPageScreen class="ecosystem tw-py-2">
-    <h2 class="app-h1 tw-text-center tw-mb-7-1">Особенности проекта</h2>
-    <AppCarousel>
+  <AppFullPageScreen class="landing-page-y tw-relative">
+    <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-7-1">
+      Особенности проекта
+    </h2>
+    <h2 v-else class="landing-h2 landing-h2--space">
+      ФИШКИ <br />
+      ПРОЕКТА
+    </h2>
+    <AppCarousel v-if="$q.screen.lt.xl">
       <AppCarouselSlide
         v-for="(slide, index) in slides"
         :name="`${index}`"
@@ -19,6 +25,23 @@
             :src="block.icon"
           />
           <p class="tw-text-xxs-1">{{ block.text }}</p>
+        </div>
+      </AppCarouselSlide>
+    </AppCarousel>
+    <AppCarousel v-else class="feat__slider-desc" height="284px">
+      <AppCarouselSlide
+        v-for="(slide, index) in flatSlides"
+        :name="`${index}`"
+        :key="index"
+      >
+        <div class="tw-mb-9" :key="slide.text">
+          <InlineSvg
+            width="140px"
+            height="148px"
+            class="tw-mb-3"
+            :src="slide.icon"
+          />
+          <p class="tw-text-sm">{{ slide.text }}</p>
         </div>
       </AppCarouselSlide>
     </AppCarousel>
@@ -63,8 +86,25 @@ export default {
       ],
     };
   },
+  computed: {
+    flatSlides() {
+      const slides = [];
+
+      this.slides.forEach((slide) => {
+        slides.push(...slide);
+      });
+
+      return slides;
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
+.feat {
+  &__slider-desc {
+    max-width: 570px;
+    @apply tw-mx-auto;
+  }
+}
 </style>

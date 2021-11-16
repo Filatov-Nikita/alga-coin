@@ -2,8 +2,18 @@
   padding-top: 24px;
 }
 
+.landing-h2 {
+  letter-spacing: 0.2em;
+  @apply tw-text-xs tw-text-secondary;
+
+  &--space {
+    top: 40px;
+    @apply tw-absolute tw-left-0;
+  }
+}
+
 .anim-bg {
-  &__orange, &__purple, &__green, &__red, &__blue, &__dark-blue {
+  &__orange, &__purple, &__green, &__red, &__blue, &__dark-blue, &__indigo, &__biruze, &__light-green, &__yellow {
       content: '';
       display: block;
       width: 2338px;
@@ -38,5 +48,21 @@
 
   &__red {
     background: linear-gradient(149.13deg, #0A1E3E 0.09%, #9E1E26 55.25%, #0A1E3E 100%);
+  }
+
+  &__indigo {
+    background: linear-gradient(149.13deg, #0A1E3E 0.09%, #3C26C9 55.25%, #0A1E3E 100%);
+  }
+
+  &__biruze {
+    background: linear-gradient(149.13deg, #0A1E3E 0.09%, #0E5B74 55.25%, #0A1E3E 100%);
+  }
+
+  &__light-green {
+    background: linear-gradient(149.13deg, #A0E09C 18.3%, #0CB65F 55.25%, #A0E09C 100%);
+  }
+
+  &__yellow {
+    background: linear-gradient(149.13deg, #0A1E3E 0.09%, #F79226 55.25%, #0A1E3E 100%);
   }
 }
