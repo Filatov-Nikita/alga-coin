@@ -15,7 +15,7 @@
             <div class="footer-landing__list">
               <AppLink
                 class="tw-text-xxs tw-text-white"
-                v-for="link in links"
+                v-for="link in footer"
                 :key="link.label"
                 :to="link.to"
               >
@@ -31,7 +31,12 @@
                 :key="item.name"
                 :to="$app.links[item.name]"
               >
-                <InlineSvg width="24px" height="24px" fill="#fff" :src="item.icon" />
+                <InlineSvg
+                  width="24px"
+                  height="24px"
+                  fill="#fff"
+                  :src="item.icon"
+                />
               </AppLink>
             </div>
           </div>
@@ -43,27 +48,20 @@
 
 <script>
 import { markRaw } from 'vue';
+import { mapGetters } from 'vuex';
 
 export default {
   setup() {
-    const links = markRaw(getItems());
     const soc = markRaw(getSoc());
 
     return {
-      links,
       soc,
     };
   },
+  computed: {
+    ...mapGetters('landing', ['footer']),
+  },
 };
-
-function getItems() {
-  return [
-    { label: 'White paper', to: '#' },
-    { label: 'Alga Ecosystem', to: '#' },
-    { label: 'Почему Alga', to: '#' },
-    { label: 'Alga Market', to: '#' },
-  ];
-}
 
 function getSoc() {
   return [

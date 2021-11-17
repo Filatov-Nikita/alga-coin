@@ -32,44 +32,7 @@
           textClass="tw-text-xxs"
         />
       </div>
-
-      <div class="header-dropdown__footer">
-        <div class="tw-flex tw-justify-between tw-mb-3">
-          <div class="header-dropdown__logo">
-            <img src="~assets/images/app-logo.svg" alt="логотип" />
-          </div>
-          <div class="tw-flex tw-space-x-3">
-            <a href="#">
-              <InlineSvg
-                width="24px"
-                height="24px"
-                :src="require('assets/fb-icon.svg')"
-              />
-            </a>
-            <a href="#">
-              <InlineSvg
-                width="24px"
-                height="24px"
-                :src="require('assets/inst-icon.svg')"
-              />
-            </a>
-            <a href="#">
-              <InlineSvg
-                width="24px"
-                height="24px"
-                :src="require('assets/te-icon.svg')"
-              />
-            </a>
-          </div>
-        </div>
-
-        <div class="tw-flex tw-justify-between tw-text-xxs">
-          <div>AlgaCoin © {{ $fullYear }}</div>
-          <div>
-            <a href="#">Условия обслуживания</a>
-          </div>
-        </div>
-      </div>
+      <HeaderBaseFooter/>
     </div>
   </div>
 </template>
@@ -77,6 +40,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import UserAvatar from 'src/components/UserAvatar.vue';
+import HeaderBaseFooter from 'src/layouts/HeaderBaseFooter';
 
 export default {
   computed: {
@@ -84,6 +48,7 @@ export default {
   },
   components: {
     UserAvatar,
+    HeaderBaseFooter
   },
 };
 </script>
@@ -102,10 +67,6 @@ export default {
 
   &__logo {
     width: 100px;
-  }
-
-  &__footer {
-    @apply tw-pt-6;
   }
 }
 

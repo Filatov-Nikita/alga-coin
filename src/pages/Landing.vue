@@ -17,6 +17,7 @@
             <LandingSectionEcosystem />
             <LandingSectionProjects />
             <LandngSectionNews />
+            <LandngSectionMobileFooter v-if="$q.screen.lt.xl" />
           </AppFullPage>
         </div>
       </q-page>
@@ -30,13 +31,19 @@
       mode="in-out"
     >
       <div class="anim-bg anim-bg__blue" v-if="bg === 'blue'"></div>
-      <div class="anim-bg anim-bg__dark-blue" v-else-if="bg === 'dark-blue'"></div>
+      <div
+        class="anim-bg anim-bg__dark-blue"
+        v-else-if="bg === 'dark-blue'"
+      ></div>
       <div class="anim-bg anim-bg__orange" v-else-if="bg === 'orange'"></div>
       <div class="anim-bg anim-bg__red" v-else-if="bg === 'red'"></div>
       <div class="anim-bg anim-bg__purple" v-else-if="bg === 'purple'"></div>
       <div class="anim-bg anim-bg__green" v-else-if="bg === 'green'"></div>
       <div class="anim-bg anim-bg__biruze" v-else-if="bg === 'biruze'"></div>
-      <div class="anim-bg anim-bg__light-green" v-else-if="bg === 'light-green'"></div>
+      <div
+        class="anim-bg anim-bg__light-green"
+        v-else-if="bg === 'light-green'"
+      ></div>
       <div class="anim-bg anim-bg__indigo" v-else-if="bg === 'indigo'"></div>
       <div class="anim-bg anim-bg__yellow" v-else-if="bg === 'yellow'"></div>
     </transition>
@@ -54,6 +61,7 @@ import LandingSectionFeatures from 'src/components/Landing/LandingSectionFeature
 import LandingSectionEcosystem from 'src/components/Landing/LandingSectionEcosystem.vue';
 import LandingSectionProjects from 'src/components/Landing/LandingSectionProjects.vue';
 import LandngSectionNews from 'src/components/Landing/LandngSectionNews.vue';
+import LandngSectionMobileFooter from 'src/components/Landing/LandngSectionMobileFooter.vue';
 import FooterLanding from 'src/layouts/FooterLanding.vue';
 import HeaderLanding from 'src/layouts/HeaderLanding.vue';
 import LandingMenu from 'src/components/Landing/LandingMenu.vue';
@@ -133,6 +141,7 @@ export default {
     FooterLanding,
     LandingSectionProjects,
     LandingSectionEcosystem,
+    LandngSectionMobileFooter
   },
 };
 </script>
