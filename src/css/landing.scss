@@ -13,18 +13,16 @@
 }
 
 .anim-bg {
-  &__orange, &__purple, &__green, &__red, &__blue, &__dark-blue, &__indigo, &__biruze, &__light-green, &__yellow {
-      content: '';
-      display: block;
-      width: 2338px;
-      height: 2338px;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      border-radius: 50%;
-      z-index: -1;
-  }
+  content: '';
+  display: block;
+  width: 2338px;
+  height: 2338px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 50%;
+  z-index: -1;
 
   &__dark-blue {
     background: linear-gradient(98.99deg, #0A1E3E 0.72%, #213960 56.32%, #0A1E3E 101.43%);

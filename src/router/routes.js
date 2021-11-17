@@ -6,6 +6,22 @@ const routes = [
     component: () => import("pages/Landing.vue"),
     name: "home",
   },
+  {
+    path: "/",
+    component: () => import("layouts/LayoutLandingDetailed.vue"),
+    children: [
+      {
+        path: "/articles/:id",
+        component: () => import("pages/ArticlesShow.vue"),
+        name: "articles.show",
+      },
+      {
+        path: "/projects/:id",
+        component: () => import("pages/ProjectsShow.vue"),
+        name: "projects.show",
+      },
+    ],
+  },
   // {
   //   path: "",
   //   component: () => import("layouts/GuestLayout.vue"),

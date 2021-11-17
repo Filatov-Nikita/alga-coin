@@ -20,6 +20,7 @@
                 биткоина
               </div>
               <AppButton
+                :to="{ name: 'articles.show', params: { id: 1 } }"
                 design="flat"
                 :icon="require('assets/images/landing/landing-arrow.svg')"
               />
@@ -41,6 +42,7 @@
             биткоина
           </div>
           <AppButton
+            :to="{ name: 'articles.show', params: { id: 1 } }"
             design="flat"
             :icon="require('assets/images/landing/landing-arrow.svg')"
           />
@@ -57,6 +59,7 @@
             биткоина 1
           </div>
           <AppButton
+            :to="{ name: 'articles.show', params: { id: 1 } }"
             design="flat"
             :icon="require('assets/images/landing/landing-arrow.svg')"
           />

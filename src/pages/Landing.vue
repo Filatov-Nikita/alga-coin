@@ -29,16 +29,16 @@
       enter-leave-class="animated fadeOut"
       mode="in-out"
     >
-      <div class="anim-bg__blue" v-if="bg === 'blue'"></div>
-      <div class="anim-bg__dark-blue" v-else-if="bg === 'dark-blue'"></div>
-      <div class="anim-bg__orange" v-else-if="bg === 'orange'"></div>
-      <div class="anim-bg__red" v-else-if="bg === 'red'"></div>
-      <div class="anim-bg__purple" v-else-if="bg === 'purple'"></div>
-      <div class="anim-bg__green" v-else-if="bg === 'green'"></div>
-      <div class="anim-bg__biruze" v-else-if="bg === 'biruze'"></div>
-      <div class="anim-bg__light-green" v-else-if="bg === 'light-green'"></div>
-      <div class="anim-bg__indigo" v-else-if="bg === 'indigo'"></div>
-      <div class="anim-bg__yellow" v-else-if="bg === 'yellow'"></div>
+      <div class="anim-bg anim-bg__blue" v-if="bg === 'blue'"></div>
+      <div class="anim-bg anim-bg__dark-blue" v-else-if="bg === 'dark-blue'"></div>
+      <div class="anim-bg anim-bg__orange" v-else-if="bg === 'orange'"></div>
+      <div class="anim-bg anim-bg__red" v-else-if="bg === 'red'"></div>
+      <div class="anim-bg anim-bg__purple" v-else-if="bg === 'purple'"></div>
+      <div class="anim-bg anim-bg__green" v-else-if="bg === 'green'"></div>
+      <div class="anim-bg anim-bg__biruze" v-else-if="bg === 'biruze'"></div>
+      <div class="anim-bg anim-bg__light-green" v-else-if="bg === 'light-green'"></div>
+      <div class="anim-bg anim-bg__indigo" v-else-if="bg === 'indigo'"></div>
+      <div class="anim-bg anim-bg__yellow" v-else-if="bg === 'yellow'"></div>
     </transition>
     <InlineSvg
       v-if="$q.screen.xl"
@@ -57,33 +57,13 @@ import LandngSectionNews from 'src/components/Landing/LandngSectionNews.vue';
 import FooterLanding from 'src/layouts/FooterLanding.vue';
 import HeaderLanding from 'src/layouts/HeaderLanding.vue';
 import LandingMenu from 'src/components/Landing/LandingMenu.vue';
+import useTheme from 'src/composition/useTheme';
 import { ref, provide, reactive } from 'vue';
 import { Screen } from 'quasar';
 
 export default {
   setup() {
-    const themes = {
-      default: '#0083F5',
-      orange: '#FF8F3E',
-      purple: '#C92579',
-      red: '#EA2B37',
-      darkGreen: '#2DA149',
-      lightGreen: '#229259',
-      yellow: '#FFCA10',
-      indigo: '#555AC3',
-      biruze: '#2C7B95',
-      darkBlue: '#497AC3',
-      blue: '#3371BA',
-    };
-
-    const theme = ref('default');
-
-    provide('themes', themes);
-    provide('theme', theme);
-    provide('switchTheme', (name) => {
-      theme.value = name;
-    });
-
+    const { theme } = useTheme();
     const bg = ref('blue');
     const menuActive = ref(0);
     const fullPage = ref(null);
@@ -101,7 +81,7 @@ export default {
       1: 'default',
       2: 'blue',
       3: 'default',
-      4: 'default'
+      4: 'default',
     });
 
     provide('updateBg', (name) => {

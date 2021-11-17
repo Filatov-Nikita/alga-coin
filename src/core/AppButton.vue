@@ -128,7 +128,7 @@ export default defineComponent({
   }
 
   &--flat {
-    @apply tw-p-2 tw-rounded;
+    @apply tw-p-2 tw-rounded tw-inline-flex;
 
     @include screen-xl {
       &:hover {

@@ -10,6 +10,14 @@
   @include gutter-y(18px);
 }
 
+.app-gutter-x-xxs {
+  @include gutter-x(6px);
+}
+
+.app-gutter-x-xl {
+  @include gutter-x(36px);
+}
+
 .app-gutter-col {
   @include gutter-col();
 }
@@ -25,5 +33,11 @@
 .xl\:app-gutter-col-x {
   @include screen-xl {
     @include gutter-col-x();
+  }
+}
+
+.xl\:app-gutter-x-xl {
+  @include screen-xl {
+    @include gutter-x(36px);
   }
 }

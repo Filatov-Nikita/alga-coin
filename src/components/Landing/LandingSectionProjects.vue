@@ -35,8 +35,11 @@
                 src="images/landing-project-1.png"
                 alt=""
               />
-              <p class="tw-text-xs tw-text-left tw-mb-3-1">Проект AT-island</p>
+              <p class="tw-text-xs tw-text-center xl:tw-text-left tw-mb-3-1">
+                Проект AT-island
+              </p>
               <AppButton
+                :to="{ name: 'projects.show', params: { id: 1 } }"
                 design="flat"
                 :icon="require('assets/images/landing/landing-arrow.svg')"
               />
@@ -52,8 +55,11 @@
                 src="images/landing-project-2.png"
                 alt=""
               />
-              <p class="tw-text-xs tw-mb-3-1 tw-text-left">Alga NFT</p>
+              <p class="tw-text-xs tw-mb-3-1 tw-text-center xl:tw-text-left">
+                Alga NFT
+              </p>
               <AppButton
+                :to="{ name: 'projects.show', params: { id: 1 } }"
                 design="flat"
                 :icon="require('assets/images/landing/landing-arrow.svg')"
               />
@@ -70,7 +76,7 @@
                 :src="require('assets/icons/plus.svg')"
               />
             </button>
-            <div class="tw-text-xs">
+            <div class="tw-text-xs tw-text-center xl:tw-text-left">
               Подать заявку <br />
               на рассмотрение <br />
               инвестиционного проекта
@@ -100,7 +106,7 @@
           </p>
         </div>
 
-        <div class="project__cover">
+        <div class="project__cover tw-text-center">
           <img
             width="130"
             height="135"
@@ -130,7 +136,7 @@
           </p>
         </div>
 
-        <div class="project__cover">
+        <div class="project__cover tw-text-center">
           <img
             width="130"
             height="135"
@@ -175,7 +181,7 @@ export default {};
 .project {
   &__cover {
     min-height: 222px;
-    @apply tw-bg-dark tw-rounded-base tw-text-center tw-p-6 xl:tw-pt-12 xl:tw-p-7-1;
+    @apply tw-bg-dark tw-rounded-base tw-p-6 xl:tw-pt-12 xl:tw-p-7-1;
   }
 
   &__text {

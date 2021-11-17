@@ -88,8 +88,6 @@ export default {
     const theme = inject('theme');
     const mobileShow = ref(false);
 
-    console.log(theme);
-
     const toggleMobile = () => {
       mobileShow.value = !mobileShow.value;
     };

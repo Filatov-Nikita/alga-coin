@@ -1,6 +1,7 @@
 import AppAlert from "src/plugins/app-alert";
 import AppDialog from "src/plugins/app-dialog";
 import AppScroll from "src/plugins/app-scroll";
+import AppCopy from "src/plugins/app-copy";
 import ClickOutside from "src/directives/click-outside";
 
 export default ({ app }) => {
@@ -8,4 +9,5 @@ export default ({ app }) => {
   app.use(AppDialog);
   app.use(AppScroll);
   app.use(ClickOutside)
+  app.use(AppCopy);
 };
