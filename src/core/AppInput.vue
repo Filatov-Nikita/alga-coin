@@ -1,5 +1,6 @@
 <script>
 import _useInput from 'src/composition/inputs/useInput';
+import _useTextarea from 'src/composition/inputs/useTextarea';
 import _useTelField from 'src/composition/inputs/useITelField';
 import _useFileField from 'src/composition/inputs/useFileField';
 import _usePasswordField from 'src/composition/inputs/usePasswordField';
@@ -71,11 +72,16 @@ export default defineComponent({
     } else if (type === 'password') {
       ({ field, ...opts } = _usePasswordField(name, rules, fieldStg));
     } else if (type === 'file') {
-      field = _useFileField(name, rules, fieldStg);
+      ({ field, ...opts } = _useFileField(name, rules, {
+        ...fieldStg,
+        initialValue: null,
+      }));
     } else if (type === 'text' && creditCard) {
       ({ field, ...opts } = _useCreditCardField(name, rules, fieldStg));
     } else if (type === 'text' && currency) {
       ({ field, ...opts } = _useCurrencyField(name, rules, fieldStg));
+    } else if (type === 'textarea') {
+      ({ field, ...opts } = _useTextarea(name, rules, fieldStg));
     } else {
       ({ field, ...opts } = _useInput(name, rules, fieldStg, attrs.onInput));
     }
@@ -96,6 +102,8 @@ export default defineComponent({
       const isPassword = props.type === 'password';
       const isCreditCard = props.type === 'text' && props.creditCard;
       const isCurrency = props.type === 'text' && props.currency;
+      const isTextarea = props.type === 'textarea';
+      const isFile = props.type === 'file';
 
       const inpAttrs = {
         ...attrs,
@@ -108,6 +116,8 @@ export default defineComponent({
             'app-input__field--has-append': hasAppend.value,
             'app-input__field--invalid': !!field.errorMessage.value,
             'app-input__field--valid': false,
+            'app-input__field--textarea': isTextarea,
+            'app-input__field--file': isFile,
           },
         ],
         placeholder: props.placeholder,
@@ -118,39 +128,73 @@ export default defineComponent({
         value: field.value.value,
         ...(isCurrency
           ? { onInput: opts.handleChange }
-          : opts.validationListeners && opts.validationListeners.value
-          ? opts.validationListeners.value
+          : opts && opts.validationListeners && opts.validationListeners.value
+          ? opts && opts.validationListeners.value
           : { onInput: field.handleChange }),
       };
 
-      return h('div', { class: 'app-input' }, [
-        createLabel({ id: compId, label: props.label }),
-        isTel ? opts.prefix.createSelect() : null,
-        createFieldWrapper(
-          {
-            hasAppend,
-            hasPrepend,
-            prependSlot: slots.prepend,
-            appendSlot: slots.append,
-            isTel,
-            isPassword,
-            opts,
-            inputRef,
-          },
-          isTel
-            ? withDirectives(h('input', inpAttrs), [
-                [opts.mask, opts.phoneMask],
-              ])
-            : isCreditCard
-            ? withDirectives(h('input', inpAttrs), [
-                [opts.mask, opts.creditCardMask],
-              ])
-            : h('input', inpAttrs)
-        ),
-        field.errorMessage.value
-          ? createErrorMessage({ errorMessage: field.errorMessage })
-          : null,
-      ]);
+      return isFile
+        ? h('div', { class: 'tw-relative app-row items-center' }, [
+            opts.createLoadFile(),
+            h(
+              'label',
+              {
+                class: [
+                  'tw-py-2',
+                  { 'tw-text-invalid': !!field.errorMessage.value },
+                ],
+                id: compId,
+              },
+              Array.isArray(field.value.value)
+                ? field.value.value[0].name
+                : props.label
+            ),
+            h('input', {
+              type: 'file',
+              onChange: field.handleChange,
+              class:
+                'tw-absolute tw-left-0 tw-top-0 tw-w-full tw-h-full tw-opacity-0',
+            }),
+            field.errorMessage.value
+              ? h(
+                  'div',
+                  { class: 'tw-text-invalid tw-w-full' },
+                  field.errorMessage.value
+                )
+              : null,
+          ])
+        : h('div', { class: 'app-input' }, [
+            createLabel({ id: compId, label: props.label }),
+            isTel ? opts.prefix.createSelect() : null,
+            createFieldWrapper(
+              {
+                hasAppend,
+                hasPrepend,
+                prependSlot: slots.prepend,
+                appendSlot: slots.append,
+                isTel,
+                isPassword,
+                opts,
+                inputRef,
+              },
+              isTel
+                ? withDirectives(h('input', inpAttrs), [
+                    [opts.mask, opts.phoneMask],
+                  ])
+                : isCreditCard
+                ? withDirectives(h('input', inpAttrs), [
+                    [opts.mask, opts.creditCardMask],
+                  ])
+                : isTextarea
+                ? h('textarea', { ...inpAttrs, type: '', rows: '6' })
+                : isFile
+                ? h('input', inpAttrs)
+                : h('input', inpAttrs)
+            ),
+            field.errorMessage.value
+              ? createErrorMessage({ errorMessage: field.errorMessage })
+              : null,
+          ]);
     };
   },
 });

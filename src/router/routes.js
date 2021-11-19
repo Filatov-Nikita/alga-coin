@@ -22,6 +22,18 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/",
+    component: () => import("layouts/LayoutGuest2.vue"),
+    children: [
+      {
+        path: "/offer-project",
+        component: () => import("pages/OfferInvestProject.vue"),
+        name: "offer-project",
+      },
+    ],
+  },
+
   // {
   //   path: "",
   //   component: () => import("layouts/GuestLayout.vue"),
@@ -55,6 +67,12 @@ const routes = [
           path: "/profile",
           component: () => import("pages/Profile.vue"),
           name: "profile",
+        },
+
+        {
+          path: "/polls",
+          component: () => import("pages/Polls.vue"),
+          name: "polls",
         }
       ),
 

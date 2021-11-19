@@ -67,7 +67,10 @@
           </div>
 
           <div class="project__add app-col-6 tw-p-7-1">
-            <button class="project__btn tw-mb-3-1">
+            <button
+              class="project__btn tw-mb-3-1"
+              @click="$router.push({ name: 'offer-project' })"
+            >
               <InlineSvg
                 class="tw-inline-block"
                 fill="#208B3A"
@@ -155,7 +158,10 @@
               на рассмотрение <br />
               инвестиционного проекта
             </div>
-            <button class="project__btn">
+            <button
+              @click="$router.push({ name: 'offer-project' })"
+              class="project__btn"
+            >
               <InlineSvg
                 class="tw-inline-block"
                 fill="#208B3A"

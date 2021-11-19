@@ -30,6 +30,16 @@
     @apply tw-w-full tw-text-left;
   }
 
+  &__file {
+    width: 14px;
+    height: 14px;
+    @apply tw-mr-3-1;
+  }
+
+  &__file-label {
+    order: 1;
+  }
+
   &__field-wrapper {
     position: relative;
     @apply tw-w-full;
@@ -69,6 +79,18 @@
     }
 
     &--has-append {
+    }
+
+    &--textarea {
+      @apply tw-py-3;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &--file {
+      @apply tw-w-auto tw-opacity-0 tw-py-3-1 tw-h-4 tw-min-h-0;
     }
   }
 

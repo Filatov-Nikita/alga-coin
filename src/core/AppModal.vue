@@ -3,7 +3,7 @@
     <div :class="[`app-modal app-modal--${design}`]" v-bind="$attrs">
       <transition name="app-modal">
         <div class="app-modal__wrap" v-if="innerValue">
-          <div class="app-modal__content app-rect">
+          <div class="app-modal__content app-rect" :class="contentClass">
             <slot v-bind="{ close }" />
           </div>
         </div>
@@ -29,6 +29,10 @@ export default {
       default: 'standart',
       type: String,
     },
+    contentClass: {
+      default: '',
+      type: String
+    }
   },
   emits: ['update:modelValue'],
   mounted() {
