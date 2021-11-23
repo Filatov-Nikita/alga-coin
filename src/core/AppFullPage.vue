@@ -13,7 +13,7 @@ export default {
   setup(props, { emit }) {
     const page = ref(null);
 
-    const { styles, sectionIndex, toByIndex } = useFullPage(page);
+    const { styles, sectionIndex, toByIndex, sections } = useFullPage(page);
 
     watch(sectionIndex, (val) => {
       emit('changeIndex', val);
@@ -22,7 +22,8 @@ export default {
     return {
       page,
       styles,
-      toByIndex
+      toByIndex,
+      sections
     };
   },
 };

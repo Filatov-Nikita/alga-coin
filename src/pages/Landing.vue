@@ -14,6 +14,7 @@
           <AppFullPage ref="fullPage" @changeIndex="changeBg">
             <LandingSectionAdvantages />
             <LandingSectionFeatures />
+            <LandingSectionDesctopEcosystem v-if="$q.screen.xl" />
             <LandingSectionEcosystem />
             <LandingSectionProjects />
             <LandngSectionNews />
@@ -59,6 +60,7 @@
 import LandingSectionAdvantages from 'src/components/Landing/LandingSectionAdvantages.vue';
 import LandingSectionFeatures from 'src/components/Landing/LandingSectionFeatures.vue';
 import LandingSectionEcosystem from 'src/components/Landing/LandingSectionEcosystem.vue';
+import LandingSectionDesctopEcosystem from 'src/components/Landing/LandingSectionDesctopEcosystem.vue';
 import LandingSectionProjects from 'src/components/Landing/LandingSectionProjects.vue';
 import LandngSectionNews from 'src/components/Landing/LandngSectionNews.vue';
 import LandngSectionMobileFooter from 'src/components/Landing/LandngSectionMobileFooter.vue';
@@ -79,17 +81,19 @@ export default {
     const screenBgColors = reactive({
       0: 'blue',
       1: 'dark-blue',
-      2: 'blue',
+      2: 'dark-blue',
       3: 'blue',
-      4: 'dark-blue',
+      4: 'blue',
+      5: 'dark-blue',
     });
 
     const screenTheme = reactive({
       0: 'default',
       1: 'default',
-      2: 'blue',
-      3: 'default',
+      2: 'default',
+      3: 'blue',
       4: 'default',
+      5: 'default',
     });
 
     provide('updateBg', (name) => {
@@ -141,7 +145,8 @@ export default {
     FooterLanding,
     LandingSectionProjects,
     LandingSectionEcosystem,
-    LandngSectionMobileFooter
+    LandingSectionDesctopEcosystem,
+    LandngSectionMobileFooter,
   },
 };
 </script>

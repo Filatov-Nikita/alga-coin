@@ -15,7 +15,17 @@ import {
 } from 'vue';
 
 export default {
-  setup() {
+  props: {
+    name: {
+      required: true,
+      type: String,
+    },
+  },
+  setup(props) {
+    const registrSection = inject('registrSection');
+    const removeSection = inject('removeSection');
+    registrSection(props.name);
+
     const { header } = inject('_q_l_');
     const height = ref(0);
 
@@ -33,12 +43,13 @@ export default {
 
     onUnmounted(() => {
       window.removeEventListener('resize', updateHeight);
+      removeSection(props.name);
     });
 
     const styles = computed(() => {
       return {
         height: `${height.value}px`,
-        paddingBottom: `${header.offset}px`
+        paddingBottom: `${header.offset}px`,
       };
     });
 

@@ -1,5 +1,5 @@
 <template>
-  <AppFullPageScreen class="tw-py-2 xl:tw-pt-10 tw-relative">
+  <AppFullPageScreen name="news" class="tw-py-2 xl:tw-pt-10 tw-relative">
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-mb-7-1 tw-text-center">
       Новости
     </h2>
@@ -20,7 +20,10 @@
                 биткоина
               </div>
               <AppButton
-                :to="{ name: 'articles.show', params: { id: 1 } }"
+                :to="{
+                  name: 'articles.show',
+                  params: { id: 1 },
+                }"
                 design="flat"
                 :icon="require('assets/images/landing/landing-arrow.svg')"
               />

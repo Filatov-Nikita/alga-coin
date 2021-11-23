@@ -1,89 +1,113 @@
 <template>
-  <AppFullPageScreen name="ecosystem" class="tw-py-2 tw-relative">
+  <AppFullPageScreen name="eco-start" class="tw-py-2 tw-relative">
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-2-1">
       Экосистема
     </h2>
-    <h2
-      v-else
-      class="landing-h2 landing-h2--space"
-      :style="{ color: themes[theme] }"
-    >
-      ЭКОСИСТЕМА
-    </h2>
+    <h2 v-else class="landing-h2 landing-h2--space">ЭКОСИСТЕМА</h2>
 
-    <AppCarousel class="eco-slider" :modelValue="$store.state.landing.curEco">
-      <AppCarouselSlide
-        v-for="item in items"
-        :key="item.name"
-        :name="item.name"
-        :style="{ background: $q.screen.lt.xl ? item.fill : '' }"
-        class="tw-py-7 tw-px-5 tw-rounded-base"
-        @enter="changeTheme(item.theme, item.screenBg)"
+    <div class="eco-start__icons tw-mx-auto">
+      <article
+        class="eco-start__icon"
+        v-for="icon in icons"
+        :key="icon.name"
+        :style="{ top: icon.y, left: icon.x }"
+        @click="setVal(icon.value)"
       >
-        <div class="tw-mb-2-1 xl:tw-flex">
-          <LandingLogo
-            width="88px"
-            height="84px"
-            class="tw-mx-auto xl:tw-mx-0 tw-mb-3-1"
-            :fill="item.logoColor"
-          />
-          <div class="xl:tw-ml-7-1">
-            <InlineSvg
-              class="tw-mx-auto xl:tw-mx-0"
-              :src="require('assets/images/alga-vector.svg')"
-            />
-            <h3
-              v-if="$q.screen.xl"
-              class="tw-font-medium tw-text-xs tw-tracking-widest tw-mt-2"
-            >
-              {{ item.name }}
-            </h3>
-          </div>
+        <div class="eco-start__img">
+          <InlineSvg :src="icon.icon" class="tw-mx-auto" />
         </div>
-        <article class="tw-text-center xl:tw-text-left">
-          <template v-if="$q.screen.lt.xl">
-            <h3 class="tw-font-medium tw-text-xxs-1 tw-mb-4-1">
-              {{ item.name }}
-            </h3>
-            <p class="tw-text-xxs-2 tw-mb-2">О НАПРАВЛЕНИИ</p>
-          </template>
-          <p class="tw-text-xxs-1 xl:tw-text-sm">{{ item.text }}</p>
-        </article>
-      </AppCarouselSlide>
-    </AppCarousel>
+        <h3 class="tw-text-xs">{{ icon.name }}</h3>
+      </article>
+    </div>
   </AppFullPageScreen>
 </template>
 
 <script>
-import { markRaw, inject, nextTick } from 'vue';
-import LandingLogo from './LandingLogo.vue';
+import { markRaw, inject } from 'vue';
 
 export default {
   setup() {
-    const theme = inject('theme');
-    const themes = inject('themes');
-    const switchTheme = inject('switchTheme');
-    const updateBg = inject('updateBg');
-    const updateTheme = inject('updateTheme');
-    const items = markRaw(getItems());
+    const icons = markRaw([
+      {
+        name: 'Alga Invest',
+        x: '104px',
+        y: '0px',
+        value: 'INVEST',
+        icon: require('assets/icons/eco-invest.svg'),
+      },
+      {
+        name: 'Alga Market',
+        x: '148px',
+        y: '145px',
+        value: 'MARKET',
+        icon: require('assets/icons/eco-market.svg'),
+      },
+      {
+        name: 'Alga Health',
+        x: '0px',
+        y: '267px',
+        value: 'HEALTH',
+        icon: require('assets/icons/eco-health.svg'),
+      },
+      {
+        name: 'Alga Education',
+        x: '79px',
+        y: '428px',
+        value: 'EDUCATION',
+        icon: require('assets/icons/eco-edu.svg'),
+      },
 
-    const changeTheme = (themeName, bgName) => {
-      setTimeout(() => {
-        switchTheme(themeName);
-        updateBg(bgName);
-        updateTheme(themeName);
-      }, 0);
-    };
+      {
+        name: 'Alga Development',
+        x: '325px',
+        y: '24px',
+        value: 'DEVELOPMENT',
+        icon: require('assets/icons/eco-dev.svg'),
+      },
+      {
+        name: 'Alga Banking',
+        x: '487px',
+        y: '63px',
+        value: 'BANKING',
+        icon: require('assets/icons/eco-bank.svg'),
+      },
+      {
+        name: 'Alga NFT',
+        x: '421px',
+        y: '183px',
+        value: 'NFT',
+        icon: require('assets/icons/eco-nft.svg'),
+      },
+      {
+        name: 'Alga Starlink',
+        x: '476px',
+        y: '318px',
+        value: 'STARLINK',
+        icon: require('assets/icons/eco-starlink.svg'),
+      },
+      {
+        name: 'Alga Consulting',
+        x: '293px',
+        y: '408px',
+        value: 'CONSULTING',
+        icon: require('assets/icons/eco-case.svg'),
+      },
+      {
+        name: 'Alga Ecology',
+        x: '443px',
+        y: '443px',
+        value: 'ECOLOGY',
+        icon: require('assets/icons/eco-eco.svg'),
+      },
+    ]);
 
-    return {
-      items,
-      theme,
-      themes,
-      changeTheme,
-    };
+    return { icons };
   },
-  components: {
-    LandingLogo,
+  methods: {
+    setVal(value) {
+      this.$store.commit('landing/setEco', value);
+      this.$router.push({ query: { section: 'ecosystem' } });
+    },
   },
 };
 
@@ -176,10 +200,41 @@ function getItems() {
 <style scoped lang="scss">
 //$
 
-.eco-slider {
-  @include screen-xl {
-    max-width: 620px;
-    @apply tw-mx-auto;
+.eco-start {
+  &__icons {
+    width: 535px;
+    height: 491px;
+    @apply tw-relative;
+  }
+
+  &__img {
+    @apply tw-mr-3-1;
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    line-height: 40px;
+    transition: width 200ms;
+    @apply tw-absolute tw-border-4 tw-border-secondary tw-rounded-full tw-bg-blue tw-text-center tw-cursor-pointer tw-flex tw-items-center tw-pr-7 tw-pl-1;
+
+    h3 {
+      @apply tw-hidden tw-whitespace-nowrap;
+    }
+
+    &:hover {
+      width: 220px;
+
+      h3 {
+        @apply tw-block;
+      }
+
+      .eco-start__img {
+        svg {
+          fill: #fff;
+        }
+      }
+    }
   }
 }
 </style>

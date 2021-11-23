@@ -1,17 +1,17 @@
 <template>
   <div class="list">
     <button
-      @click="to(index)"
+      v-for="(item, index) in list"
+      :key="item.label"
+      :style="{ '--theme-primary': themes[theme] }"
+      @click="$router.push(item.to)"
       class="list__item"
       :class="[
-        { 'list__item--active': activeIndex === index },
+        { 'list__item--active': isActive(item) },
         ['darkBlue', 'blue', 'default'].includes(theme)
           ? 'tw-text-secondary'
           : 'tw-text-white',
       ]"
-      v-for="(item, index) in list"
-      :key="item.label"
-      :style="{ '--theme-primary': themes[theme] }"
     >
       {{ item.label }}
     </button>
@@ -45,24 +45,48 @@ export default {
       themes,
     };
   },
+  methods: {
+    isActive(item) {
+      const curSection = this.$route.query.section;
+      const routeName = this.$route.name;
+      const itemSection = item.to.query.section;
+      const itemName = item.to.name;
+      const itemChildren = item.children;
+
+      if (curSection === itemSection && routeName === itemName) return true;
+      if (itemChildren?.includes(routeName)) return true;
+      if (itemChildren?.some((child) => child?.section === curSection))
+        return true;
+
+      return false;
+    },
+  },
 };
 
 function getItems() {
   return [
     {
       label: 'О токене',
+      to: { name: 'home', query: { section: 'advantages' } },
     },
     {
       label: 'Фишки проекта',
+      to: { name: 'home', query: { section: 'features' } },
     },
     {
       label: 'Экосистема',
+      to: { name: 'home', query: { section: 'ecosystem' } },
+      children: [{ section: 'eco-start' }],
     },
     {
       label: 'Проекты',
+      to: { name: 'home', query: { section: 'projects' } },
+      children: ['projects.show'],
     },
     {
       label: 'Новости',
+      to: { name: 'home', query: { section: 'news' } },
+      children: ['articles.show'],
     },
   ];
 }

@@ -1,5 +1,5 @@
 <template>
-  <AppFullPageScreen class="tw-py-1 xl:tw-pt-10 tw-relative">
+  <AppFullPageScreen name="projects" class="tw-py-1 xl:tw-pt-10 tw-relative">
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-mb-4 tw-text-center">
       Направления
     </h2>

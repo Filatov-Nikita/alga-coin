@@ -1,5 +1,5 @@
 <template>
-  <AppFullPageScreen class="landing-page-y xl:tw-pt-8">
+  <AppFullPageScreen name="advantages" class="landing-page-y xl:tw-pt-8">
     <div class="advantages advantages__bg">
       <div class="xl:tw-flex">
         <div class="advantages__coin tw-mb-3">

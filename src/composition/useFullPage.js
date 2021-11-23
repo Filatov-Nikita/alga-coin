@@ -1,106 +1,117 @@
-import { ref, onMounted, computed, inject } from "vue";
+import { ref, onMounted, computed, provide, watchEffect } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import useStopPageScroll from "./useStopPageScroll";
-
-let yDown = null;
-
-function handleTouchStart(evt) {
-  const firstTouch = evt.touches[0];
-  yDown = firstTouch.clientY;
-}
-
-function handleTouchMove(evt, down, up) {
-  if (!yDown) {
-    return;
-  }
-
-  let yUp = evt.touches[0].clientY;
-  let yDiff = yDown - yUp;
-
-  if (yDiff > 0) {
-    down();
-  } else {
-    up();
-  }
-  /* reset values */
-  yDown = null;
-}
 
 export default function (page) {
   useStopPageScroll();
+  const route = useRoute();
+  const router = useRouter();
+  const sections = ref(new Set());
+  const current = ref(route.query.section || "");
 
-  const y = ref(0);
-  let lock = false;
+  watchEffect(() => {
+    router.push({ query: { section: current.value } });
+  });
+
+  provide("registrSection", (name) => {
+    if (!current.value) current.value = name;
+    sections.value.add(name);
+  });
+
+  provide("removeSection", (name) => {
+    sections.value.delete(name);
+  });
 
   const containerH = () => {
     return document.documentElement.clientHeight;
   };
 
-  const togglView = (e) => {
-    if (lock) return;
+  const sectionList = computed(() => {
+    return Array.from(sections.value.keys());
+  });
 
+  watchEffect(() => {
+    current.value = route.query.section || sectionList.value[0];
+  });
+
+  const mapIndex = computed(() => {
+    const keys = sections.value.keys();
+    return Array.from(keys).reduce((acc, name, i) => {
+      acc[name] = i;
+      return acc;
+    }, {});
+  });
+
+  const currentIndex = computed(() => {
+    return mapIndex.value[current.value];
+  });
+
+  const calcYByIndex = (index) => {
     const windowH = containerH();
-    const pageOffsetH = page.value.offsetHeight;
+    return windowH * index * -1;
+  };
 
+  const calcYByName = (name = "") => {
+    const index = mapIndex.value[name] || 0;
+    return calcYByIndex(index);
+  };
+
+  const y = computed(() => {
+    return calcYByIndex(currentIndex.value);
+  });
+
+  const throttle = (f) => {
+    let curTime = Date.now();
+    let long = curTime;
+
+    return function () {
+      const now = Date.now();
+      const diff = now - curTime;
+      if (diff > 200 || now - long > 1400) {
+        f.apply(this, arguments);
+        long = now;
+      }
+
+      curTime = now;
+    };
+  };
+
+  const processedDecorator = (f) => {
+    let processing = false;
+
+    page.value.addEventListener("transitionend", () => {
+      processing = false;
+    });
+
+    return function decorator() {
+      if (processing) return;
+      const prev = current.value;
+      f.apply(this, arguments);
+      if (prev !== current.value) processing = true;
+    };
+  };
+
+  const toggle = function (e) {
     if (e.deltaY > 0) {
-      const newY = y.value - windowH;
-
-      if (Math.abs(newY) > pageOffsetH - windowH) return;
-
-      y.value = newY;
+      const prevIndex = Math.max(0, currentIndex.value - 1);
+      current.value = sectionList.value[prevIndex];
     } else {
-      const newY = y.value + windowH;
-
-      if (newY > 0) return;
-
-      y.value = newY;
+      const nextIndex = Math.min(
+        currentIndex.value + 1,
+        sections.value.size - 1
+      );
+      current.value = sectionList.value[nextIndex];
     }
-
-    lock = true;
   };
 
   onMounted(() => {
-    page.value.addEventListener("transitionend", () => {
-      lock = false;
-    });
-
-    page.value.addEventListener("wheel", togglView);
-    page.value.addEventListener("touchstart", handleTouchStart, false);
-    page.value.addEventListener(
-      "touchmove",
-      (e) =>
-        handleTouchMove(
-          e,
-          () => {
-            const windowH = containerH();
-            const pageOffsetH = page.value.offsetHeight;
-
-            const newY = y.value - windowH;
-
-            if (Math.abs(newY) > pageOffsetH - windowH) return;
-
-            y.value = newY;
-
-            lock = true;
-          },
-          () => {
-            const windowH = window.innerHeight;
-
-            const newY = y.value + windowH;
-
-            if (newY > 0) return;
-
-            y.value = newY;
-
-            lock = true;
-          }
-        ),
-      false
-    );
+    const smartToggle = throttle(processedDecorator(toggle));
+    page.value.addEventListener("wheel", smartToggle);
   });
 
   const styles = computed(() => {
     return {
-      transform: `translateY(${y.value}px)`,
+      transform: `translate3d(0, ${y.value}px, 0)`,
     };
   });
 
@@ -109,13 +120,13 @@ export default function (page) {
   });
 
   const toByIndex = (index) => {
-    const windowH = containerH();
-    y.value = windowH * index * -1;
+    current.value = sectionList.value[index];
   };
 
   return {
     styles,
     sectionIndex,
     toByIndex,
+    sections,
   };
 }

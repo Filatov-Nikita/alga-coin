@@ -1,5 +1,5 @@
 <template>
-  <AppFullPageScreen class="landing-page-y tw-relative">
+  <AppFullPageScreen name="features" class="landing-page-y tw-relative">
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-7-1">
       Особенности проекта
     </h2>
