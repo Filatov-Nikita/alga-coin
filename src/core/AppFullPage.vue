@@ -34,5 +34,6 @@ export default {
   transition: transform, 0.5s;
   touch-action: none;
   overflow: hidden;
+  position: relative;
 }
 </style>

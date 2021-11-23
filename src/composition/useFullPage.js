@@ -105,6 +105,8 @@ export default function (page) {
   };
 
   onMounted(() => {
+    document.documentElement.style.height = '100%';
+    document.body.style.height = '100%';
     const smartToggle = throttle(processedDecorator(toggle));
     page.value.addEventListener("wheel", smartToggle);
   });
