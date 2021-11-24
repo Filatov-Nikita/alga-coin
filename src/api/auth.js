@@ -3,7 +3,7 @@ import { CLIEND_ID, CLIENT_SECRET } from "src/env";
 
 export function login({ cellphone, password }) {
   return api.mainKy
-    .post('b2c/auth/token', {
+    .post('b2c/tokens', {
       json: {
         username: cellphone,
         password: password,

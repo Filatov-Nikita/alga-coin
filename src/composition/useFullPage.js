@@ -1,14 +1,27 @@
-import { ref, onMounted, computed, provide, watchEffect } from "vue";
+import {
+  ref,
+  onMounted,
+  computed,
+  provide,
+  watchEffect,
+  onUnmounted,
+} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import useStopPageScroll from "./useStopPageScroll";
 import swipe from "src/helpers/swipe";
+import { throttle } from "src/helpers/perfomance";
 
 export default function (page) {
+  const containerH = () => {
+    return document.documentElement.clientHeight;
+  };
+
   useStopPageScroll();
   const route = useRoute();
   const router = useRouter();
   const sections = ref(new Set());
   const current = ref(route.query.section || "");
+  const windowH = ref(containerH());
 
   watchEffect(() => {
     router.push({ query: { section: current.value } });
@@ -22,10 +35,6 @@ export default function (page) {
   provide("removeSection", (name) => {
     sections.value.delete(name);
   });
-
-  const containerH = () => {
-    return document.documentElement.clientHeight;
-  };
 
   const sectionList = computed(() => {
     return Array.from(sections.value.keys());
@@ -48,8 +57,7 @@ export default function (page) {
   });
 
   const calcYByIndex = (index) => {
-    const windowH = containerH();
-    return windowH * index * -1;
+    return windowH.value * index * -1;
   };
 
   const calcYByName = (name = "") => {
@@ -61,7 +69,7 @@ export default function (page) {
     return calcYByIndex(currentIndex.value);
   });
 
-  const throttle = (f) => {
+  const throttleScroll = (f) => {
     let curTime = Date.now();
     let long = curTime;
 
@@ -110,12 +118,22 @@ export default function (page) {
     }
   };
 
+  const optimized = throttle(() => (windowH.value = containerH()), 50);
+
   onMounted(() => {
     document.documentElement.style.height = "100%";
     document.body.style.height = "100%";
-    const smartToggle = throttle(processedDecorator(toggle));
+
+    const smartToggle = throttleScroll(processedDecorator(toggle));
     page.value.addEventListener("wheel", smartToggle);
+
     swipe(page.value, next, prev);
+
+    window.addEventListener("resize", optimized);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener("resize", optimized);
   });
 
   const styles = computed(() => {
@@ -137,5 +155,6 @@ export default function (page) {
     sectionIndex,
     toByIndex,
     sections,
+    windowH,
   };
 }

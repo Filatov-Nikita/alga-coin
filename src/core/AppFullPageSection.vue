@@ -13,6 +13,7 @@ import {
   inject,
   watchEffect,
 } from 'vue';
+import { throttle } from "src/helpers/perfomance";
 
 export default {
   props: {
@@ -37,12 +38,14 @@ export default {
       updateHeight();
     });
 
+    const optimized = throttle(updateHeight, 50);
+
     onMounted(() => {
-      window.addEventListener('resize', updateHeight);
+      window.addEventListener('resize', optimized);
     });
 
     onUnmounted(() => {
-      window.removeEventListener('resize', updateHeight);
+      window.removeEventListener('resize', optimized);
       removeSection(props.name);
     });
 

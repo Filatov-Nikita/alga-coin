@@ -81,7 +81,7 @@ module.exports = configure(function (ctx) {
       open: true, // opens browser window automatically
       proxy: {
         "/api": {
-          target: "https://alga.finance",
+          target: "http://alga.test",
           changeOrigin: true,
         },
       },

@@ -58,7 +58,6 @@ export default {
   },
   emit: ['update:modelValue'],
   setup(props, { emit }) {
-    console.log(props.modelValue);
     const themes = inject('themes');
     const theme = inject('theme');
 
