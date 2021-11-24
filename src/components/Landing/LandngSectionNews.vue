@@ -1,5 +1,9 @@
 <template>
-  <AppFullPageScreen name="news" class="tw-py-2 xl:tw-pt-10 tw-relative">
+  <AppFullPageScreen
+    name="news"
+    class="tw-py-2 xl:tw-pt-10 tw-relative"
+    :class="{ 'landing-h-center': $q.screen.lt.xl }"
+  >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-mb-7-1 tw-text-center">
       Новости
     </h2>

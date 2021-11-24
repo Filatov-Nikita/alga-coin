@@ -1,11 +1,11 @@
 <template>
-  <AppFullPageScreen name="eco-start" class="tw-py-2 tw-relative">
+  <AppFullPageScreen name="eco-start" class="tw-py-2 tw-relative landing-h-center">
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-2-1">
       Экосистема
     </h2>
     <h2 v-else class="landing-h2 landing-h2--space">ЭКОСИСТЕМА</h2>
 
-    <div class="eco-start__icons tw-mx-auto">
+    <div class="eco-start__icons tw-mx-auto landing-c-up">
       <article
         class="eco-start__icon"
         v-for="icon in icons"

@@ -1,5 +1,5 @@
 <template>
-  <AppFullPageScreen name="ecosystem" class="tw-py-2 tw-relative">
+  <AppFullPageScreen name="ecosystem" class="tw-py-2 tw-relative landing-h-center">
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-2-1">
       Экосистема
     </h2>
@@ -11,51 +11,78 @@
       ЭКОСИСТЕМА
     </h2>
 
-    <AppCarousel class="eco-slider" :modelValue="$store.state.landing.curEco">
-      <AppCarouselSlide
-        v-for="item in items"
-        :key="item.name"
-        :name="item.name"
-        :style="{ background: $q.screen.lt.xl ? item.fill : '' }"
-        class="tw-py-7 tw-px-5 tw-rounded-base"
-        @enter="changeTheme(item.theme, item.screenBg)"
+    <div class="tw-flex tw-justify-center landing-c-up">
+      <AppCarousel
+        height="370px"
+        class="eco-slider"
+        :modelValue="$store.state.landing.curEco"
+        @update:modelValue="$store.commit('landing/setEco', $event)"
       >
-        <div class="tw-mb-2-1 xl:tw-flex">
-          <LandingLogo
-            width="88px"
-            height="84px"
-            class="tw-mx-auto xl:tw-mx-0 tw-mb-3-1"
-            :fill="item.logoColor"
-          />
-          <div class="xl:tw-ml-7-1">
-            <InlineSvg
-              class="tw-mx-auto xl:tw-mx-0"
-              :src="require('assets/images/alga-vector.svg')"
+        <AppCarouselSlide
+          v-for="item in items"
+          :key="item.name"
+          :name="item.name"
+          :style="{ background: $q.screen.lt.xl ? item.fill : '' }"
+          class="tw-py-7 tw-px-5 tw-rounded-base"
+          @enter="changeTheme(item.theme, item.screenBg)"
+        >
+          <div class="tw-mb-2-1 xl:tw-flex">
+            <LandingLogo
+              width="88px"
+              height="84px"
+              class="tw-mx-auto xl:tw-mx-0 tw-mb-3-1"
+              :fill="item.logoColor"
             />
-            <h3
-              v-if="$q.screen.xl"
-              class="tw-font-medium tw-text-xs tw-tracking-widest tw-mt-2"
-            >
-              {{ item.name }}
-            </h3>
+            <div class="xl:tw-ml-7-1">
+              <InlineSvg
+                class="tw-mx-auto xl:tw-mx-0"
+                :src="require('assets/images/alga-vector.svg')"
+              />
+              <h3
+                v-if="$q.screen.xl"
+                class="tw-font-medium tw-text-xs tw-tracking-widest tw-mt-2"
+              >
+                {{ item.name }}
+              </h3>
+            </div>
           </div>
-        </div>
-        <article class="tw-text-center xl:tw-text-left">
-          <template v-if="$q.screen.lt.xl">
-            <h3 class="tw-font-medium tw-text-xxs-1 tw-mb-4-1">
-              {{ item.name }}
-            </h3>
-            <p class="tw-text-xxs-2 tw-mb-2">О НАПРАВЛЕНИИ</p>
-          </template>
-          <p class="tw-text-xxs-1 xl:tw-text-sm">{{ item.text }}</p>
-        </article>
-      </AppCarouselSlide>
-    </AppCarousel>
+          <article class="tw-text-center xl:tw-text-left">
+            <template v-if="$q.screen.lt.xl">
+              <h3 class="tw-font-medium tw-text-xxs-1 tw-mb-4-1">
+                {{ item.name }}
+              </h3>
+              <p class="tw-text-xxs-2 tw-mb-2">О НАПРАВЛЕНИИ</p>
+            </template>
+            <p class="tw-text-xxs-1 xl:tw-text-sm">{{ item.text }}</p>
+          </article>
+        </AppCarouselSlide>
+      </AppCarousel>
+
+      <div class="eco-right" v-if="$q.screen.xl">
+        <button
+          class="landing-icon-cover"
+          v-for="item in items"
+          :key="item.name"
+          @click="$store.commit('landing/setEco', item.name)"
+        >
+          <InlineSvg
+            :src="item.icon"
+            :fill="
+              $store.state.landing.curEco === item.name ? '#497AC3' : '#003870'
+            "
+            class="tw-mx-auto"
+            :class="{
+              'tw-opacity-40': $store.state.landing.curEco !== item.name,
+            }"
+          />
+        </button>
+      </div>
+    </div>
   </AppFullPageScreen>
 </template>
 
 <script>
-import { markRaw, inject, nextTick } from 'vue';
+import { markRaw, inject } from 'vue';
 import LandingLogo from './LandingLogo.vue';
 
 export default {
@@ -96,6 +123,7 @@ function getItems() {
       logoColor: 'blue',
       theme: 'blue',
       screenBg: 'blue',
+      icon: require('assets/icons/eco-bank.svg'),
     },
     {
       name: 'CONSULTING',
@@ -104,6 +132,7 @@ function getItems() {
       logoColor: 'dark-blue',
       theme: 'darkBlue',
       screenBg: 'dark-blue',
+      icon: require('assets/icons/eco-case.svg'),
     },
     {
       name: 'DEVELOPMENT',
@@ -112,6 +141,7 @@ function getItems() {
       logoColor: 'orange',
       theme: 'orange',
       screenBg: 'orange',
+      icon: require('assets/icons/eco-dev.svg'),
     },
     {
       name: 'ECOLOGY',
@@ -120,6 +150,7 @@ function getItems() {
       logoColor: 'green',
       theme: 'lightGreen',
       screenBg: 'light-green',
+      icon: require('assets/icons/eco-eco.svg'),
     },
     {
       name: 'HEALTH',
@@ -128,6 +159,7 @@ function getItems() {
       logoColor: 'red',
       theme: 'red',
       screenBg: 'red',
+      icon: require('assets/icons/eco-health.svg'),
     },
     {
       name: 'INVEST',
@@ -136,6 +168,7 @@ function getItems() {
       logoColor: 'yellow',
       theme: 'yellow',
       screenBg: 'yellow',
+      icon: require('assets/icons/eco-invest.svg'),
     },
     {
       name: 'MARKET',
@@ -144,6 +177,7 @@ function getItems() {
       logoColor: 'purple',
       theme: 'purple',
       screenBg: 'purple',
+      icon: require('assets/icons/eco-market.svg'),
     },
     {
       name: 'STARLINK',
@@ -152,6 +186,7 @@ function getItems() {
       logoColor: 'biruze',
       theme: 'biruze',
       screenBg: 'biruze',
+      icon: require('assets/icons/eco-starlink.svg'),
     },
     {
       name: 'EDUCATION',
@@ -160,6 +195,7 @@ function getItems() {
       logoColor: 'dark-green',
       theme: 'darkGreen',
       screenBg: 'green',
+      icon: require('assets/icons/eco-edu.svg'),
     },
     {
       name: 'NFT',
@@ -168,6 +204,7 @@ function getItems() {
       logoColor: 'dark-purple',
       theme: 'indigo',
       screenBg: 'indigo',
+      icon: require('assets/icons/eco-nft.svg'),
     },
   ];
 }
@@ -179,7 +216,14 @@ function getItems() {
 .eco-slider {
   @include screen-xl {
     max-width: 620px;
-    @apply tw-mx-auto;
+    margin-right: 86px;
+    width: 100%;
   }
+}
+
+.eco-right {
+  height: 350px;
+  @apply tw-inline-flex tw-flex-wrap tw-flex-col tw-items-start;
+  @include gutter(18px);
 }
 </style>

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { provide, ref, computed, inject, watchEffect } from 'vue';
+import { provide, ref, computed, inject, watchEffect, watch } from 'vue';
 
 export default {
   props: {
@@ -56,7 +56,9 @@ export default {
       type: String,
     },
   },
-  setup(props) {
+  emit: ['update:modelValue'],
+  setup(props, { emit }) {
+    console.log(props.modelValue);
     const themes = inject('themes');
     const theme = inject('theme');
 
@@ -81,6 +83,10 @@ export default {
       if (props.modelValue) {
         slide.value = props.modelValue;
       }
+    });
+
+    watch(slide, (val) => {
+      emit('update:modelValue', val);
     });
 
     provide('slides', slides);

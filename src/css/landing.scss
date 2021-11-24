@@ -1,5 +1,20 @@
 .landing-page-y {
-  padding-top: 24px;
+  padding-top: 0px;
+}
+
+.landing-h-center {
+  @apply tw-flex tw-flex-col tw-justify-center;
+}
+
+.landing-h-between {
+  @apply tw-flex tw-flex-col tw-justify-between;
+}
+
+
+.landing-c-up {
+  @include screen-xl {
+    transform: translateY(-25px);
+  }
 }
 
 .landing-h2 {
@@ -10,6 +25,13 @@
     top: 40px;
     @apply tw-absolute tw-left-0;
   }
+}
+
+.landing-icon-cover {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  @apply tw-text-center tw-bg-dark tw-bg-opacity-10 tw-rounded-full;
 }
 
 .anim-bg {

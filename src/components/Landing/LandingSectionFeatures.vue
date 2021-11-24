@@ -1,5 +1,5 @@
 <template>
-  <AppFullPageScreen name="features" class="landing-page-y tw-relative">
+  <AppFullPageScreen name="features" class="landing-page-y landing-h-center tw-relative">
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-7-1">
       Особенности проекта
     </h2>
@@ -28,23 +28,43 @@
         </div>
       </AppCarouselSlide>
     </AppCarousel>
-    <AppCarousel v-else class="feat__slider-desc" height="284px">
-      <AppCarouselSlide
-        v-for="(slide, index) in flatSlides"
-        :name="`${index}`"
-        :key="index"
-      >
-        <div class="tw-mb-9" :key="slide.text">
+
+    <div v-else class="tw-flex tw-justify-between landing-c-up">
+      <div></div>
+
+      <AppCarousel class="feat__slider-desc" height="284px" v-model="curSlide">
+        <AppCarouselSlide
+          v-for="(slide, index) in flatSlides"
+          :name="`${index}`"
+          :key="index"
+        >
+          <div class="tw-mb-9" :key="slide.text">
+            <InlineSvg
+              width="140px"
+              height="148px"
+              class="tw-mb-3"
+              :src="slide.icon"
+            />
+            <p class="tw-text-sm">{{ slide.text }}</p>
+          </div>
+        </AppCarouselSlide>
+      </AppCarousel>
+
+      <div class="app-gutter-y-md tw-inline-flex tw-flex-col tw-flex-wrap">
+        <button
+          v-for="(slide, index) in flatSlides"
+          :key="index"
+          @click="curSlide = `${index}`"
+          class="landing-icon-cover"
+        >
           <InlineSvg
-            width="140px"
-            height="148px"
-            class="tw-mb-3"
-            :src="slide.icon"
+            class="tw-mx-auto"
+            :fill="curSlide === `${index}` ? 'url(#g)' : '#0A1E3E'"
+            :src="slide.icon2"
           />
-          <p class="tw-text-sm">{{ slide.text }}</p>
-        </div>
-      </AppCarouselSlide>
-    </AppCarousel>
+        </button>
+      </div>
+    </div>
   </AppFullPageScreen>
 </template>
 
@@ -52,33 +72,40 @@
 export default {
   data() {
     return {
+      curSlide: '0',
       slides: [
         [
           {
             icon: require('assets/images/landing/landing-feat-1.svg'),
             text: 'Alga Ecosystem — децентрализованная автономная организация (DAO), создающая продукты для выхода на новые рынки в рамках традиционной и цифровой экономики',
+            icon2: require('assets/icons/feat-world.svg'),
           },
           {
             icon: require('assets/images/landing/landing-feat-2.svg'),
             text: 'Alga — это экосистема, созданная для полного обращения цифровых активов и обеспечивающая большую ликвидность на цифровом рынке',
+            icon2: require('assets/icons/feat-eco.svg'),
           },
         ],
         [
           {
             icon: require('assets/images/landing/landing-feat-3.svg'),
             text: 'Alga — это мир больших возможностей, где участники безостановочно двигаются к получению базового безусловного дохода вне зависимости от социального статуса, возраста и места работы',
+            icon2: require('assets/icons/feat-opp.svg'),
           },
           {
             icon: require('assets/images/landing/landing-feat-4.svg'),
             text: 'Alga — широкие возможности для инвестирования в цифровые активы',
+            icon2: require('assets/icons/feat-crypto.svg'),
           },
         ],
         [
           {
+            icon2: require('assets/icons/feat-community.svg'),
             icon: require('assets/images/landing/landing-feat-5.svg'),
             text: 'Alga — это сообщество, где каждый может подать предложение и голосовать за инициативы для достижения взаимного успеха',
           },
           {
+            icon2: require('assets/icons/feat-nft.svg'),
             icon: require('assets/images/landing/landing-feat-6.svg'),
             text: 'Alga — это новая стартовая NFT-площадка творческих стартапов для начинающих и опытных представителей искусства',
           },
@@ -104,7 +131,7 @@ export default {
 .feat {
   &__slider-desc {
     max-width: 570px;
-    @apply tw-mx-auto;
+    width: 100%;
   }
 }
 </style>

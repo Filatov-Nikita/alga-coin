@@ -1,6 +1,6 @@
 <template>
-  <AppFullPageScreen name="advantages" class="landing-page-y xl:tw-pt-8">
-    <div class="advantages advantages__bg">
+  <AppFullPageScreen name="advantages" class="landing-page-y landing-h-center xl:tw-pt-8">
+    <div class="advantages advantages__bg landing-c-up">
       <div class="xl:tw-flex">
         <div class="advantages__coin tw-mb-3">
           <img src="~assets/images/landing/landing-coin.png" alt="монетка" />

@@ -68,7 +68,8 @@ import FooterLanding from 'src/layouts/FooterLanding.vue';
 import HeaderLanding from 'src/layouts/HeaderLanding.vue';
 import LandingMenu from 'src/components/Landing/LandingMenu.vue';
 import useTheme from 'src/composition/useTheme';
-import { ref, provide, reactive } from 'vue';
+import { ref, provide, reactive, onUnmounted } from 'vue';
+import { useStore } from 'vuex';
 import { Screen } from 'quasar';
 
 export default {
@@ -127,6 +128,11 @@ export default {
     const toSection = (index) => {
       fullPage.value.toByIndex(index);
     };
+
+    const store = useStore();
+    onUnmounted(() => {
+      store.commit('landing/setEco', 'BANKING');
+    });
 
     return {
       bg,

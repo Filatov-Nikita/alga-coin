@@ -1,5 +1,5 @@
 <template>
-  <AppFullPageScreen name="mobile-footer" class="tw-pt-8 tw-flex tw-flex-col tw-justify-between tw-relative">
+  <AppFullPageScreen name="mobile-footer" class="tw-pt-8 landing-h-between tw-relative">
     <div></div>
     <div class="tw-space-y-1">
       <AppLink

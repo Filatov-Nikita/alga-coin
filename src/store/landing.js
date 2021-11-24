@@ -7,7 +7,7 @@ export default {
       { label: "Почему Alga", to: "#" },
       { label: "Alga Market", to: "#" },
     ],
-    curEco: "",
+    curEco: "BANKING",
   },
   getters: {
     footer(state) {
