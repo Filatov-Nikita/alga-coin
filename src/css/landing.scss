@@ -10,6 +10,12 @@
   @apply tw-flex tw-flex-col tw-justify-between;
 }
 
+.landing-eco-right {
+  flex-basis: 130px;
+  height: 350px;
+  @apply tw-inline-flex tw-flex-wrap tw-flex-col tw-items-start;
+  @include gutter(18px);
+}
 
 .landing-c-up {
   @include screen-xl {
@@ -32,6 +38,14 @@
   height: 48px;
   line-height: 48px;
   @apply tw-text-center tw-bg-dark tw-bg-opacity-10 tw-rounded-full;
+
+  &:hover {
+    @apply tw-bg-opacity-30;
+  }
+
+  &--active {
+    @apply tw-bg-opacity-30;
+  }
 }
 
 .anim-bg {

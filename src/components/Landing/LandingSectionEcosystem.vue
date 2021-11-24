@@ -58,7 +58,7 @@
         </AppCarouselSlide>
       </AppCarousel>
 
-      <div class="eco-right" v-if="$q.screen.xl">
+      <div class="landing-eco-right" v-if="$q.screen.xl">
         <button
           class="landing-icon-cover"
           v-for="item in items"
@@ -219,11 +219,5 @@ function getItems() {
     margin-right: 86px;
     width: 100%;
   }
-}
-
-.eco-right {
-  height: 350px;
-  @apply tw-inline-flex tw-flex-wrap tw-flex-col tw-items-start;
-  @include gutter(18px);
 }
 </style>

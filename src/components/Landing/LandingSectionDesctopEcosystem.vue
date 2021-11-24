@@ -1,29 +1,67 @@
 <template>
-  <AppFullPageScreen name="eco-start" class="tw-py-2 tw-relative landing-h-center">
+  <AppFullPageScreen
+    name="eco-start"
+    class="tw-py-2 tw-relative landing-h-center"
+  >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-2-1">
       Экосистема
     </h2>
-    <h2 v-else class="landing-h2 landing-h2--space">ЭКОСИСТЕМА</h2>
+    <div v-else class="landing-h2--space">
+      <h2 class="landing-h2 tw-mb-9">ЭКОСИСТЕМА</h2>
+      <p class="tw-max-w-sm">
+        Alga Ecosystem стремится стать одним из сильнейших сообществ в мире для
+        создания безопасных, экологичных и рентабельных проектов в будущем
+      </p>
+    </div>
 
-    <div class="eco-start__icons tw-mx-auto landing-c-up">
-      <article
-        class="eco-start__icon"
-        v-for="icon in icons"
-        :key="icon.name"
-        :style="{ top: icon.y, left: icon.x }"
-        @click="setVal(icon.value)"
-      >
-        <div class="eco-start__img">
-          <InlineSvg :src="icon.icon" class="tw-mx-auto" />
-        </div>
-        <h3 class="tw-text-xs">{{ icon.name }}</h3>
-      </article>
+    <div class="landing-c-up tw-flex tw-justify-between">
+      <div></div>
+      <div class="eco-start__icons">
+        <article
+          class="eco-start__icon"
+          v-for="icon in icons"
+          :key="icon.name"
+          :style="{ top: icon.y, left: icon.x }"
+          @click="setVal(icon.value)"
+          @mouseenter="activeItem = icon.value"
+          @mouseleave="activeItem = null"
+        >
+          <div class="eco-start__img">
+            <InlineSvg :src="icon.icon" class="tw-mx-auto" />
+          </div>
+          <h3 class="tw-text-xs">{{ icon.name }}</h3>
+        </article>
+      </div>
+
+      <div v-if="$q.screen.xl" class="landing-eco-right">
+        <button
+          class="landing-icon-cover"
+          :class="{ 'landing-icon-cover--active': activeItem === icon.value }"
+          v-for="icon in icons"
+          :key="icon.name"
+          @mouseleave="activeItem = null"
+          @mouseenter="activeItem = icon.value"
+          @click="setVal(icon.value)"
+        >
+          <LandingLogo
+            class="tw-mx-auto"
+            width="28px"
+            height="30px"
+            v-bind="
+              activeItem === icon.value
+                ? { fill: icon.logoColor }
+                : { fillHex: '#0A1E3E' }
+            "
+          />
+        </button>
+      </div>
     </div>
   </AppFullPageScreen>
 </template>
 
 <script>
-import { markRaw, inject } from 'vue';
+import { markRaw } from 'vue';
+import LandingLogo from './LandingLogo.vue';
 
 export default {
   setup() {
@@ -33,6 +71,7 @@ export default {
         x: '104px',
         y: '0px',
         value: 'INVEST',
+        logoColor: 'yellow',
         icon: require('assets/icons/eco-invest.svg'),
       },
       {
@@ -40,6 +79,7 @@ export default {
         x: '148px',
         y: '145px',
         value: 'MARKET',
+        logoColor: 'purple',
         icon: require('assets/icons/eco-market.svg'),
       },
       {
@@ -48,6 +88,7 @@ export default {
         y: '267px',
         value: 'HEALTH',
         icon: require('assets/icons/eco-health.svg'),
+        logoColor: 'red',
       },
       {
         name: 'Alga Education',
@@ -55,6 +96,7 @@ export default {
         y: '428px',
         value: 'EDUCATION',
         icon: require('assets/icons/eco-edu.svg'),
+        logoColor: 'dark-green',
       },
 
       {
@@ -63,6 +105,7 @@ export default {
         y: '24px',
         value: 'DEVELOPMENT',
         icon: require('assets/icons/eco-dev.svg'),
+        logoColor: 'orange',
       },
       {
         name: 'Alga Banking',
@@ -70,6 +113,7 @@ export default {
         y: '63px',
         value: 'BANKING',
         icon: require('assets/icons/eco-bank.svg'),
+        logoColor: 'blue',
       },
       {
         name: 'Alga NFT',
@@ -77,6 +121,7 @@ export default {
         y: '183px',
         value: 'NFT',
         icon: require('assets/icons/eco-nft.svg'),
+        logoColor: 'dark-purple',
       },
       {
         name: 'Alga Starlink',
@@ -84,6 +129,7 @@ export default {
         y: '318px',
         value: 'STARLINK',
         icon: require('assets/icons/eco-starlink.svg'),
+        logoColor: 'biruze',
       },
       {
         name: 'Alga Consulting',
@@ -91,17 +137,24 @@ export default {
         y: '408px',
         value: 'CONSULTING',
         icon: require('assets/icons/eco-case.svg'),
+        logoColor: 'dark-blue',
       },
       {
         name: 'Alga Ecology',
         x: '443px',
         y: '443px',
         value: 'ECOLOGY',
+        logoColor: 'green',
         icon: require('assets/icons/eco-eco.svg'),
       },
     ]);
 
     return { icons };
+  },
+  data() {
+    return {
+      activeItem: null,
+    };
   },
   methods: {
     setVal(value) {
@@ -109,92 +162,10 @@ export default {
       this.$router.push({ query: { section: 'ecosystem' } });
     },
   },
+  components: {
+    LandingLogo,
+  },
 };
-
-function getItems() {
-  return [
-    {
-      name: 'BANKING',
-      text: 'Создание, покупка, продажа, хранение, безопасная защита и финансовое управление цифровыми активами (виртуальными товарами и валютами), а также все направления бизнеса, которые обслуживают экосистему Alga',
-      fill: 'linear-gradient(149.13deg, #156AEB 0.09%, #0D3B81 55.25%, #156AEB 100%)',
-      logoColor: 'blue',
-      theme: 'blue',
-      screenBg: 'blue',
-    },
-    {
-      name: 'CONSULTING',
-      text: 'Объёмный модуль экспертных данных, создающий разумные производственные процессы для бизнеса, объединяющий технологию искусственного интеллекта, данные и аналитику. Alga Consulting — это возможность модернизировать рабочие процессы, технологии и компанию в целом для достижения впечатляющих бизнес-результатов',
-      fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #1D4786 55.25%, #0A1E3E 100%)',
-      logoColor: 'dark-blue',
-      theme: 'darkBlue',
-      screenBg: 'dark-blue',
-    },
-    {
-      name: 'DEVELOPMENT',
-      text: 'Цифровая инвестиционная платформа, основанная на традиционных инструментах инвестирования в недвижимость. Держатели активов ALGA могут проводить аудит проектов, инвестировать в строительство объектов недвижимости, контролировать риски, беспрепятственно торговать правами собственности на объекты',
-      fill: 'linear-gradient(150.99deg, #0A1E3E 0.09%, #EE5322 52.68%, #0A1E3E 95.36%)',
-      logoColor: 'orange',
-      theme: 'orange',
-      screenBg: 'orange',
-    },
-    {
-      name: 'ECOLOGY',
-      text: 'Использование возможностей Alga Ecosystem для более устойчивого и бережного управления природными ресурсами планеты',
-      fill: 'linear-gradient(149.13deg, #A0E09C 18.3%, #0CB65F 55.25%, #A0E09C 100%)',
-      logoColor: 'green',
-      theme: 'lightGreen',
-      screenBg: 'light-green',
-    },
-    {
-      name: 'HEALTH',
-      text: 'Онлайн-консультации с ведущими специалистами мира и разработка противовирусных препаратов',
-      fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #9E1E26 55.25%, #0A1E3E 100%)',
-      logoColor: 'red',
-      theme: 'red',
-      screenBg: 'red',
-    },
-    {
-      name: 'INVEST',
-      text: 'Стартовая инвестиционная площадка для подготовки и реализации новых, инновационных и экологических проектов по всему миру',
-      fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #F79226 55.25%, #0A1E3E 100%)',
-      logoColor: 'yellow',
-      theme: 'yellow',
-      screenBg: 'yellow',
-    },
-    {
-      name: 'MARKET',
-      text: 'Торговая площадка для покупки, продажи и управления сетевыми и физическими активами участниками сообщества',
-      fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #9D1F60 55.25%, #0A1E3E 100%)',
-      logoColor: 'purple',
-      theme: 'purple',
-      screenBg: 'purple',
-    },
-    {
-      name: 'STARLINK',
-      text: 'Проект по формированию собственной системы обеспечения независимого доступа к высокоскоростному Интернету и мобильной связи',
-      fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #0E5B74 55.25%, #0A1E3E 100%)',
-      logoColor: 'biruze',
-      theme: 'biruze',
-      screenBg: 'biruze',
-    },
-    {
-      name: 'EDUCATION',
-      text: 'Децентрализованная экосистема онлайн-обучения',
-      fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #04562C 55.25%, #0A1E3E 100%)',
-      logoColor: 'dark-green',
-      theme: 'darkGreen',
-      screenBg: 'green',
-    },
-    {
-      name: 'NFT',
-      text: 'Платформа для создателей произведений искусств, нацеленная на создание новой креативной экономики. Alga NFT — это маркетплейс современного искусства нового поколения',
-      fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #3C26C9 55.25%, #0A1E3E 100%)',
-      logoColor: 'dark-purple',
-      theme: 'indigo',
-      screenBg: 'indigo',
-    },
-  ];
-}
 </script>
 
 <style scoped lang="scss">

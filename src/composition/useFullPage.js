@@ -1,6 +1,7 @@
 import { ref, onMounted, computed, provide, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import useStopPageScroll from "./useStopPageScroll";
+import swipe from "src/helpers/swipe";
 
 export default function (page) {
   useStopPageScroll();
@@ -91,24 +92,30 @@ export default function (page) {
     };
   };
 
+  const next = () => {
+    const nextIndex = Math.min(currentIndex.value + 1, sections.value.size - 1);
+    current.value = sectionList.value[nextIndex];
+  };
+
+  const prev = () => {
+    const prevIndex = Math.max(0, currentIndex.value - 1);
+    current.value = sectionList.value[prevIndex];
+  };
+
   const toggle = function (e) {
     if (e.deltaY > 0) {
-      const prevIndex = Math.max(0, currentIndex.value - 1);
-      current.value = sectionList.value[prevIndex];
+      prev();
     } else {
-      const nextIndex = Math.min(
-        currentIndex.value + 1,
-        sections.value.size - 1
-      );
-      current.value = sectionList.value[nextIndex];
+      next();
     }
   };
 
   onMounted(() => {
-    document.documentElement.style.height = '100%';
-    document.body.style.height = '100%';
+    document.documentElement.style.height = "100%";
+    document.body.style.height = "100%";
     const smartToggle = throttle(processedDecorator(toggle));
     page.value.addEventListener("wheel", smartToggle);
+    swipe(page.value, next, prev);
   });
 
   const styles = computed(() => {

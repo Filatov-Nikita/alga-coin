@@ -1,5 +1,8 @@
 <template>
-  <AppFullPageScreen name="features" class="landing-page-y landing-h-center tw-relative">
+  <AppFullPageScreen
+    name="features"
+    class="landing-page-y landing-h-center tw-relative"
+  >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-7-1">
       Особенности проекта
     </h2>
@@ -18,12 +21,13 @@
           v-for="block in slide"
           :key="block.text"
         >
-          <InlineSvg
-            width="66px"
-            height="70px"
-            class="tw-mx-auto tw-mb-3"
-            :src="block.icon"
-          />
+          <div class="feat__img tw-mx-auto tw-mb-3">
+            <InlineSvg
+              width="66px"
+              height="70px"
+              :src="block.icon"
+            />
+          </div>
           <p class="tw-text-xxs-1">{{ block.text }}</p>
         </div>
       </AppCarouselSlide>
@@ -39,12 +43,9 @@
           :key="index"
         >
           <div class="tw-mb-9" :key="slide.text">
-            <InlineSvg
-              width="140px"
-              height="148px"
-              class="tw-mb-3"
-              :src="slide.icon"
-            />
+            <div class="feat__img tw-mb-3">
+              <InlineSvg width="140px" height="148px" :src="slide.icon" />
+            </div>
             <p class="tw-text-sm">{{ slide.text }}</p>
           </div>
         </AppCarouselSlide>
@@ -128,10 +129,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
+//$
+
 .feat {
   &__slider-desc {
     max-width: 570px;
     width: 100%;
+  }
+
+  &__img {
+    width: 66px;
+    height: 70px;
+    @include screen-xl {
+      width: 148px;
+      height: 148px;
+    }
   }
 }
 </style>

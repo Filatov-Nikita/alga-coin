@@ -2,7 +2,7 @@
   <svg
     v-bind="{ width, height }"
     viewBox="0 0 84 88"
-    :fill="`url(#${fill})`"
+    :fill="fillHex ? fillHex : `url(#${fill})`"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -184,6 +184,10 @@ export default {
     },
     fill: {
       default: 'blue',
+      type: String,
+    },
+    fillHex: {
+      default: undefined,
       type: String,
     },
   },
