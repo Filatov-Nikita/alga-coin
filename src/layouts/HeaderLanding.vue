@@ -51,7 +51,16 @@
 
         <q-space />
 
-        <div class="app-col-5 tw-flex tw-items-center">
+        <AppButton
+          v-if="isAuth"
+          :iconStg="{ width: '24px', height: '24px', fill: themes[theme] }"
+          :icon="require('assets/profile.svg')"
+          label="Личный кабинет"
+          :to="{ name: 'wallet' }"
+          design="flat"
+          textClass="tw-text-xs"
+        />
+        <div class="app-col-5 tw-flex tw-items-center" v-else>
           <AppButton
             :iconStg="{ width: '24px', height: '24px', fill: themes[theme] }"
             :icon="require('assets/profile.svg')"
@@ -81,6 +90,7 @@
 <script>
 import HeaderBaseDropdown from './HeaderBaseDropdown.vue';
 import { ref, inject } from 'vue';
+import { mapGetters } from 'vuex';
 
 export default {
   setup() {
@@ -104,6 +114,9 @@ export default {
       theme,
       coloringLogo,
     };
+  },
+  computed: {
+    ...mapGetters('auth', ['isAuth']),
   },
   components: {
     HeaderBaseDropdown,

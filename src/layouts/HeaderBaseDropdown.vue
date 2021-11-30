@@ -1,7 +1,7 @@
 <template>
   <div class="header-dropdown">
     <div class="header-dropdown__main">
-      <template v-if="false">
+      <template v-if="isAuth">
         <div class="tw-flex tw-items-center tw-py-4">
           <UserAvatar class="tw-mr-3" />
           <div class="user-menu__name">{{ username }}</div>
@@ -32,7 +32,7 @@
           textClass="tw-text-xxs"
         />
       </div>
-      <HeaderBaseFooter/>
+      <HeaderBaseFooter />
     </div>
   </div>
 </template>
@@ -45,10 +45,11 @@ import HeaderBaseFooter from 'src/layouts/HeaderBaseFooter';
 export default {
   computed: {
     ...mapGetters('profile', { username: 'name' }),
+    ...mapGetters('auth', ['isAuth']),
   },
   components: {
     UserAvatar,
-    HeaderBaseFooter
+    HeaderBaseFooter,
   },
 };
 </script>
