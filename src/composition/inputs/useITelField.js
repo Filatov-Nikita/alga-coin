@@ -7,7 +7,7 @@ import usePrefixDropdown from "src/composition/inputs/usePrefixDropdown";
 export default function (name, rules, opts) {
   const { field, validationListeners } = useInput(name, rules, opts);
 
-  const unmaskedFiled = useField(`${name}Um`, "", {
+  const unmaskedFiled = useField(`${name}Full`, "", {
     validateOnValueUpdate: false,
   });
 

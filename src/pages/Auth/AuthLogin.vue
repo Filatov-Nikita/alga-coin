@@ -6,12 +6,7 @@
         в экосистеме Alga
       </h1>
       <p class="app-auth__subtitle">с помощью мобильного телефона и пароля</p>
-      <Form
-        @submit="login"
-        class="app-auth__form"
-        :initialValues="{ cellphone: '9174448517', password: '987412365' }"
-        v-slot="{ isSubmitting }"
-      >
+      <Form @submit="login" class="app-auth__form" v-slot="{ isSubmitting }">
         <AppInput
           name="cellphone"
           rules="required|cellphone"
@@ -47,24 +42,27 @@
 </template>
 
 <script>
-import { useStore } from 'vuex';
+import useAuth from 'src/composition/useAuth';
 import { useRouter } from 'vue-router';
-import loadCritical from 'src/store/utilities/load-critical';
+import { useAlert } from 'src/plugins/app-alert';
 
 export default {
   setup() {
-    const store = useStore();
     const router = useRouter();
+    const appAlert = useAlert();
+    const { login: loginApi } = useAuth();
 
-    const login = async ({ cellphoneUm: cellphone, password }) => {
+    const login = async ({ cellphoneFull: cellphone, password }) => {
       try {
-        await store.dispatch('auth/login', { cellphone, password });
-        await loadCritical(store);
+        await loginApi({ cellphone, password });
         router.push({ name: 'wallet' });
       } catch (e) {
         if (!e.response) throw e;
-        if (e.response.status === 400) {
-          console.log('неверный логин или пароль');
+        if (e.response.status === 422) {
+          appAlert({
+            type: 'negative',
+            message: 'неверный логин или пароль',
+          });
         } else {
           throw e;
         }

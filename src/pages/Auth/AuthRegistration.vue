@@ -7,9 +7,9 @@
           с помощью эл. почты и мобильного телефона
         </p>
         <Form
-          @submit="login"
-          :initialValues="initialValues"
+          @submit="createUser"
           class="app-auth__form"
+          v-slot="{ isSubmitting }"
         >
           <AppInput
             name="name"
@@ -42,7 +42,12 @@
             <AppLink to="#" target="_blank"> Условиями обслуживания </AppLink>
             AlgaCoin
           </AppCheckbox>
-          <AppButton label="Зарегистрироваться" fullWidth type="submit" />
+          <AppButton
+            label="Зарегистрироваться"
+            fullWidth
+            type="submit"
+            :disabled="isSubmitting"
+          />
         </Form>
         <div class="app-auth__links tw-mt-6">
           Уже зарегистрированы?
@@ -50,53 +55,125 @@
         </div>
       </AppStep>
       <AppStep name="verifing">
-        <FormVerify :cellphone="displayCellphone"/>
+        <FormVerify :cellphone="curCellphone" @entered="handleCode" />
+      </AppStep>
+      <AppStep name="password">
+        <h1 class="app-auth__h1">Установите пароль</h1>
+        <p class="app-auth__subtitle">
+          Пароль должен быть на английском языке и содержать не менее 6-и
+          символов
+        </p>
+        <Form
+          v-slot="{ isSubmitting }"
+          class="app-auth__form"
+          @submit="setPassword"
+        >
+          <AppInput
+            type="password"
+            name="password"
+            label="Пароль"
+            placeholder="Пароль"
+            rules="required|password"
+          />
+          <AppInput
+            type="password"
+            name="pass2"
+            label="Повторите пароль"
+            placeholder="Пароль"
+            rules="required|confirmed:@password"
+          />
+          <div v-if="invalidCode">
+            <AppInput
+              name="verification_code"
+              label="Код из смс"
+              placeholder="Введите правильный код"
+              rules="required"
+            />
+            <div class="tw-text-invalid tw-text-xxs">
+              Вы ввели неверно код на предыдущем шаге. Введите код в это поле и
+              повторите попытку.
+            </div>
+          </div>
+          <AuthCodeVerification v-if="invalidCode" :cellphone="curCellphone" />
+          <AppButton
+            label="Установить и войти"
+            fullWidth
+            type="submit"
+            :disabled="isSubmitting"
+          />
+        </Form>
+        <div class="app-auth__links tw-mt-6">
+          Уже зарегистрированы?
+          <AppLink :to="{ name: 'auth.login' }"> Войти </AppLink>
+        </div>
       </AppStep>
     </div>
   </q-page>
 </template>
 
 <script>
-import { ref } from 'vue';
 import useStep from 'src/composition/useStep';
 import FormVerify from 'src/components/FormVerify.vue';
-
-function setCellphone(prefix = '', cellphone = '') {
-  return prefix + cellphone;
-}
+import useAuth from 'src/composition/useAuth';
+import { useStore } from 'vuex';
+import AuthCodeVerification from 'src/components/AuthCodeVerification.vue';
 
 export default {
   setup() {
+    const store = useStore();
     const { changeStep, step } = useStep('registr');
-    const displayCellphone = ref('');
-    const code = ref('');
+    const { setPassword, invalidCode, curCode, curCellphone, getCode } =
+      useAuth();
 
-    const login = (values) => {
-      setCellphone(values.telPrefix, values.cellphone);
-      changeStep('verifing');
+    const registr = async (
+      { cellphoneFull: cellphone, name, email },
+      { setErrors }
+    ) => {
+      try {
+        const data = await store.dispatch('auth/registr', {
+          cellphone,
+          name,
+          email,
+        });
+
+        curCellphone.value = data.cellphone;
+      } catch (e) {
+        if (!e.response) throw e;
+        if (e.response.status === 422) {
+          const { errors } = await e.response.json();
+          setErrors(errors);
+        } else throw e;
+      }
     };
 
-    const verify = (values) => {
-      console.log(values.code);
+    const createUser = async (...args) => {
+      try {
+        await registr(...args);
+        changeStep('verifing');
+        await getCode({ cellphone: args[0].cellphoneFull });
+      } catch (e) {
+        throw e;
+      }
+    };
+
+    const handleCode = (value) => {
+      curCode.value = value;
+      changeStep('password');
     };
 
     return {
       step,
+      invalidCode,
+      curCellphone,
+      handleCode,
       changeStep,
-      displayCellphone,
-      login,
-      verify,
-      initialValues: {
-        name: 'Никита',
-        email: '1@1.ru',
-        cellphone: '9174448517',
-        conditions: true,
-      },
-      code,
+      createUser,
+      setPassword,
     };
   },
   components: {
     FormVerify,
+    AuthCodeVerification,
   },
 };
 </script>

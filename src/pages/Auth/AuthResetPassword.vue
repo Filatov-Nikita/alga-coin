@@ -6,7 +6,7 @@
         <p class="app-auth__subtitle">
           Воcстановите доступ в систему с помощью мобильного телефона и СМС-кода
         </p>
-        <Form class="app-auth__form">
+        <Form class="app-auth__form" @submit="submit" v-slot="{ isSubmitting }">
           <AppInput
             name="cellphone"
             rules="required|cellphone"
@@ -14,7 +14,12 @@
             label="Телефон"
             placeholder="(999) 999-99-99"
           />
-          <AppButton type="submit" fullWidth label="Выслать код" />
+          <AppButton
+            type="submit"
+            fullWidth
+            label="Выслать код"
+            :disabled="isSubmitting"
+          />
         </Form>
         <div class="app-auth__links tw-mt-6">
           <AppLink class="app-auth__link" :to="{ name: 'auth.login' }">
@@ -25,8 +30,10 @@
           </AppLink>
         </div>
       </AppStep>
-      <AppStep name="verifing"> <FormVerify :cellphone="'123'" /> </AppStep>
-      <AppStep name="set-password">
+      <AppStep name="verifing">
+        <FormVerify :cellphone="curCellphone" @entered="handleCode" />
+      </AppStep>
+      <AppStep name="password">
         <h1 class="app-auth__h1 xl:tw--mx-12">
           Пароль сброшен. Установите новый пароль
         </h1>
@@ -34,22 +41,32 @@
           Пароль должен быть на английском языке и содержать не менее 6-и
           символов
         </p>
-        <Form class="app-auth__form">
+        <Form
+          class="app-auth__form"
+          @submit="setPassword"
+          v-slot="{ isSubmitting }"
+        >
           <AppInput
-            name="password1"
+            name="password"
             rules="required"
             type="password"
-            label="Пароль"
+            label="Новый пароль"
             placeholder="Пароль"
           />
           <AppInput
             name="password2"
-            rules="required"
+            rules="required|confirmed:@password"
             type="password"
             label="Повторите пароль"
             placeholder="Повторите пароль"
           />
-          <AppButton type="submit" fullWidth label="Установить и войти" />
+          <AuthCodeVerification v-if="invalidCode" :cellphone="curCellphone" />
+          <AppButton
+            type="submit"
+            fullWidth
+            label="Установить и войти"
+            :disabled="isSubmitting"
+          />
         </Form>
         <div class="app-auth__links tw-mt-6">
           Уже зарегистрированы?
@@ -62,19 +79,40 @@
 
 <script>
 import useStep from 'src/composition/useStep';
+import useAuth from 'src/composition/useAuth';
 import FormVerify from 'src/components/FormVerify.vue';
+import AuthCodeVerification from 'src/components/AuthCodeVerification.vue';
 
 export default {
   setup() {
     const { changeStep, step } = useStep('input');
+    const { curCode, curCellphone, setPassword, getCode, invalidCode } =
+      useAuth();
+
+    const submit = async ({ cellphoneFull: cellphone }) => {
+      await getCode({ cellphone });
+      curCellphone.value = cellphone;
+      changeStep('verifing');
+    };
+
+    const handleCode = (value) => {
+      curCode.value = value;
+      changeStep('password');
+    };
 
     return {
-      changeStep,
       step,
+      submit,
+      curCellphone,
+      invalidCode,
+      changeStep,
+      handleCode,
+      setPassword,
     };
   },
   components: {
     FormVerify,
+    AuthCodeVerification,
   },
 };
 </script>

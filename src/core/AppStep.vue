@@ -1,9 +1,9 @@
 <template>
-  <slot v-if="name === step.name" />
+  <slot v-if="name === step" />
 </template>
 
 <script>
-import useStepCore from 'src/composition/useStepCore';
+import { inject } from 'vue';
 
 export default {
   props: {
@@ -12,9 +12,12 @@ export default {
       type: String,
     },
   },
-  setup(props) {
-    const { step } = useStepCore(props.name, 'AppStep');
-    return { step };
+  setup() {
+    const curStep = inject('step');
+
+    return {
+      step: curStep,
+    };
   },
 };
 </script>

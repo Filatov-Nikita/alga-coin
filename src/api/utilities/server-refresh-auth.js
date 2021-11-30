@@ -6,6 +6,7 @@ export default class ServiceApi {
     this.domain = domain;
     this.opts = opts;
     this.tokenName = opts.tokenName;
+    this.refreshFetcher = undefined;
     this.handleRejectionToken = undefined;
     this.mainKy = this.createMain();
     this.swot = this.createSWOT();
@@ -31,11 +32,39 @@ export default class ServiceApi {
         ],
         afterResponse: [
           async (request, options, response) => {
-            if (response.status === 401) return this.handleRejectionToken();
+            try {
+              if (response.status !== 401) return;
+
+              const refreshToken = Tokens.getRefreshToken();
+
+              if (refreshToken === null) {
+                throw "refresh token is null";
+              }
+
+              const newTokens = await this.refreshFetcher(
+                this.mainKy,
+                refreshToken
+              );
+
+              Tokens.setTokensData(
+                newTokens.access_token,
+                newTokens.refresh_token
+              );
+
+              this.setTokenToReq(request);
+
+              return ky(request);
+            } catch (e) {
+              return this.handleRejectionToken();
+            }
           },
         ],
       },
     });
+  }
+
+  registrRefreshFetcher(fetcher) {
+    this.refreshFetcher = fetcher;
   }
 
   setTokenToReq(request, accessToken) {

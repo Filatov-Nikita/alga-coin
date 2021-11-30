@@ -1,38 +1,38 @@
 import { markAuth } from "./utilities/auth";
 
 const routes = [
-  {
-    path: "/",
-    component: () => import("pages/Landing.vue"),
-    name: "home",
-  },
-  {
-    path: "/",
-    component: () => import("layouts/LayoutLandingDetailed.vue"),
-    children: [
-      {
-        path: "/articles/:id",
-        component: () => import("pages/ArticlesShow.vue"),
-        name: "articles.show",
-      },
-      {
-        path: "/projects/:id",
-        component: () => import("pages/ProjectsShow.vue"),
-        name: "projects.show",
-      },
-    ],
-  },
-  {
-    path: "/",
-    component: () => import("layouts/LayoutGuest2.vue"),
-    children: [
-      {
-        path: "/offer-project",
-        component: () => import("pages/OfferInvestProject.vue"),
-        name: "offer-project",
-      },
-    ],
-  },
+  // {
+  //   path: "/",
+  //   component: () => import("pages/Landing.vue"),
+  //   name: "home",
+  // },
+  // {
+  //   path: "/",
+  //   component: () => import("layouts/LayoutLandingDetailed.vue"),
+  //   children: [
+  //     {
+  //       path: "/articles/:id",
+  //       component: () => import("pages/ArticlesShow.vue"),
+  //       name: "articles.show",
+  //     },
+  //     {
+  //       path: "/projects/:id",
+  //       component: () => import("pages/ProjectsShow.vue"),
+  //       name: "projects.show",
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: "/",
+  //   component: () => import("layouts/LayoutGuest2.vue"),
+  //   children: [
+  //     {
+  //       path: "/offer-project",
+  //       component: () => import("pages/OfferInvestProject.vue"),
+  //       name: "offer-project",
+  //     },
+  //   ],
+  // },
 
   // {
   //   path: "",

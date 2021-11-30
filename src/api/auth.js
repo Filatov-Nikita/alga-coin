@@ -1,29 +1,45 @@
-import api from "./utilities/service";
-import { CLIEND_ID, CLIENT_SECRET } from "src/env";
+import { MainApi } from "./utilities/service";
 
 export function login({ cellphone, password }) {
-  return api.mainKy
-    .post('b2c/tokens', {
+  return MainApi.mainKy
+    .post("b2c/auth/tokens", {
       json: {
-        username: cellphone,
-        password: password,
-        client_id: CLIEND_ID,
-        client_secret: CLIENT_SECRET,
-        grant_type: "password",
+        cellphone,
+        password,
+        name: "1",
       },
     })
     .json();
 }
 
-export function updateTokens(refreshToken) {
-  return api.mainKy
-    .post("b2c/auth/token", {
-      json: {
-        client_id: CLIEND_ID,
-        client_secret: CLIENT_SECRET,
-        grant_type: "refresh_token",
-        refresh_token: refreshToken,
-      },
+export function registr({ cellphone, email, name }) {
+  return MainApi.mainKy
+    .post("b2c/auth/register", {
+      json: { cellphone, email, name },
     })
     .json();
+}
+
+export function setPassword({ cellphone, password, verification_code }) {
+  return MainApi.mainKy.post("b2c/auth/password", {
+    headers: {
+      Accept: "application/json",
+    },
+    json: {
+      cellphone,
+      password,
+      verification_code,
+    },
+  });
+}
+
+export function getVerifingCode({ cellphone }) {
+  return MainApi.mainKy.post("b2c/auth/resend-verification", {
+    headers: {
+      Accept: "application/json",
+    },
+    json: {
+      cellphone,
+    },
+  });
 }

@@ -12,3 +12,7 @@ export default {
     app.config.globalProperties.$alert = AppAlert;
   },
 };
+
+export function useAlert() {
+  return AppAlert;
+}

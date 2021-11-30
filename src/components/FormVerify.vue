@@ -5,31 +5,36 @@
     который был отправлен на {{ cellphone }}. <br />
     Код действителен в течение 30 минут.
   </p>
-  <Form @submit="1" class="app-auth__form tw-mb-6">
+  <Form class="app-auth__form tw-mb-6" v-slot="{ validate }">
     <AppCodeInput
       class="app-auth__code"
-      ref="code"
       label="Код из СМС"
-      @update:code="1"
+      @update:code="submit($event, { validate })"
     />
   </Form>
-  <AppTimer :seconds="60" v-slot="{ s, restart }" class="tw-text-center">
-    <button @click="restart" v-if="s <= 0" class="app-link">
-      Не получили код?
-    </button>
-    <span class="tw-text-xxs" v-else>
-      Повторная проверка через ({{ s }}s)
-    </span>
-  </AppTimer>
+  <AuthCodeRepeat :cellphone="cellphone" />
 </template>
 
 <script>
+import AuthCodeRepeat from './AuthCodeRepeat.vue';
+
 export default {
   props: {
     cellphone: {
       required: true,
-      type: String
-    }
-  }
+      type: String,
+    },
+  },
+  emits: ['entered'],
+  methods: {
+    async submit(value, { validate }) {
+      const { valid } = await validate();
+      if (!valid) return;
+      this.$emit('entered', value);
+    },
+  },
+  components: {
+    AuthCodeRepeat,
+  },
 };
 </script>

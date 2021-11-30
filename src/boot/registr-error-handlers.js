@@ -37,6 +37,11 @@ export default ({ app, router }) => {
           message: "Неудалось найти запрашиваемый ресурс",
           type: "negative",
         });
+      } else if (err.response.status === 429) {
+        return AppAlert({
+          message: "Вы сделали слишком много попыток. Надо немного подождать.",
+          type: "negative",
+        });
       }
 
       return AppAlert({
