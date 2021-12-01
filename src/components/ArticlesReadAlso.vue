@@ -3,13 +3,17 @@
     <h2 class="tw-text-sm xl:tw-text-md2 tw-mb-6">Читайте так же</h2>
 
     <AppCarousel v-if="$q.screen.lt.xl" height="auto">
-      <AppCarouselSlide v-for="i in 3" :name="`${i}`" :key="i">
+      <AppCarouselSlide
+        v-for="item in items"
+        :key="item.id"
+        :name="`${item.id}`"
+      >
         <article class="tw-rounded-base tw-bg-dark-blue tw-p-5">
           <h3 class="tw-text-xs tw-text-white tw-block tw-mb-3-1">
-            Миллиардер Стернлихт поспорил с главой JPMorgan о бесполезности
-            биткоина
+            {{ item.title }}
           </h3>
           <AppButton
+            :to="{ name: 'articles.show', params: { id: item.id } }"
             design="flat"
             :icon="require('assets/images/landing/landing-arrow.svg')"
             :iconStg="{
@@ -23,15 +27,15 @@
 
     <div v-else class="app-row app-gutter-col-x">
       <article
-        v-for="i in 3"
-        :key="i"
+        v-for="item in items"
+        :key="item.id"
         class="app-col-6 tw-rounded-base tw-bg-dark-blue tw-p-5"
       >
         <h3 class="tw-text-xs tw-text-white tw-block tw-mb-3-1">
-          Миллиардер Стернлихт поспорил с главой JPMorgan о бесполезности
-          биткоина
+          {{ item.title }}
         </h3>
         <AppButton
+          :to="{ name: 'articles.show', params: { id: item.id } }"
           design="flat"
           :icon="require('assets/images/landing/landing-arrow.svg')"
           :iconStg="{
@@ -45,7 +49,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    items: {
+      required: true,
+      type: Array,
+    },
+  },
+};
 </script>
 
 <style>

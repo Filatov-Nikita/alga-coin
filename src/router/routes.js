@@ -14,11 +14,13 @@ const routes = [
         path: "/articles/:id",
         component: () => import("pages/ArticlesShow.vue"),
         name: "articles.show",
+        props: true,
       },
       {
         path: "/projects/:id",
         component: () => import("pages/ProjectsShow.vue"),
         name: "projects.show",
+        props: true,
       },
     ],
   },

@@ -2,18 +2,22 @@ import EventBus from "src/helpers/EventBus";
 
 const evtDialog = new EventBus();
 
-export default {
-  install(app) {
-    const dialog = (app.config.globalProperties.$aDialog = {});
-
-    dialog.bus = evtDialog;
-
-    dialog.open = (name) => {
-      evtDialog.trigger("open", name);
-    };
-
-    dialog.close = (name) => {
-      evtDialog.trigger("close", name);
-    };
+const dialog = {
+  bus: evtDialog,
+  open(name) {
+    evtDialog.trigger("open", name);
+  },
+  close(name) {
+    evtDialog.trigger("close", name);
   },
 };
+
+export default {
+  install(app) {
+    app.config.globalProperties.$aDialog = dialog;
+  },
+};
+
+export function useDialog() {
+  return dialog;
+}

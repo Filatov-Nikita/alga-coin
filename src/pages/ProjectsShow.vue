@@ -111,6 +111,16 @@
 import ProjectsList from 'src/components/ProjectsList';
 
 export default {
+  setup(props) {
+    const store = useStore();
+    const fetchArticle = (id) => {
+      store.dispatch('landing/')
+    };
+
+    watchEffect(() => {
+      fetchArticle(props.id);
+    });
+  },
   components: {
     ProjectsList,
   },

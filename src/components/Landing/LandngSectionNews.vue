@@ -13,20 +13,21 @@
       <div class="app-col-4"></div>
       <div class="app-col-14">
         <div class="app-row app-gutter-col-x">
-          <div v-for="i in 3" class="app-col-6">
-            <q-img
-              class="article__pic"
-              src="https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=978&q=80"
-            />
-            <div class="article__bottom">
+          <div
+            v-for="newsItem in news"
+            :key="newsItem.id"
+            class="app-col-6 tw-flex tw-flex-col"
+          >
+            <q-img class="article__pic" :src="newsItem.announceImage.url" />
+            <div class="article__bottom tw-flex-grow tw-flex tw-flex-col">
               <div class="tw-mb-3-1">
-                Миллиардер Стернлихт поспорил с главой JPMorgan о бесполезности
-                биткоина
+                {{ newsItem.title }}
               </div>
               <AppButton
+                class="tw-mt-auto tw-self-start"
                 :to="{
                   name: 'articles.show',
-                  params: { id: 1 },
+                  params: { id: newsItem.id },
                 }"
                 design="flat"
                 :icon="require('assets/images/landing/landing-arrow.svg')"
@@ -38,35 +39,18 @@
     </div>
 
     <AppCarousel v-else>
-      <AppCarouselSlide name="1">
-        <q-img
-          class="article__pic"
-          src="https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=978&q=80"
-        />
+      <AppCarouselSlide
+        v-for="newsItem in news"
+        :key="newsItem.id"
+        :name="`${newsItem.id}`"
+      >
+        <q-img class="article__pic" :src="newsItem.announceImage.url" />
         <div class="article__bottom">
           <div class="tw-mb-3-1">
-            Миллиардер Стернлихт поспорил с главой JPMorgan о бесполезности
-            биткоина
+            {{ newsItem.title }}
           </div>
           <AppButton
-            :to="{ name: 'articles.show', params: { id: 1 } }"
-            design="flat"
-            :icon="require('assets/images/landing/landing-arrow.svg')"
-          />
-        </div>
-      </AppCarouselSlide>
-      <AppCarouselSlide name="2">
-        <q-img
-          class="article__pic"
-          src="https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=978&q=80"
-        />
-        <div class="article__bottom">
-          <div class="tw-mb-3-1">
-            Миллиардер Стернлихт поспорил с главой JPMorgan о бесполезности
-            биткоина 1
-          </div>
-          <AppButton
-            :to="{ name: 'articles.show', params: { id: 1 } }"
+            :to="{ name: 'articles.show', params: { id: newsItem.id } }"
             design="flat"
             :icon="require('assets/images/landing/landing-arrow.svg')"
           />
@@ -77,7 +61,13 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters('landing', ['news']),
+  },
+};
 </script>
 
 <style scoped lang="scss">

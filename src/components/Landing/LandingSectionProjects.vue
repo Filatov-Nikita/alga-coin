@@ -30,7 +30,11 @@
 
       <div class="app-col-14">
         <div class="app-row app-gutter-col-x">
-          <div class="tw-bg-dark tw-rounded-base app-col-6">
+          <div
+            class="tw-bg-dark tw-rounded-base app-col-6"
+            v-for="project in projects"
+            :key="project.id"
+          >
             <div class="project__cover">
               <img
                 width="172"
@@ -40,30 +44,10 @@
                 alt=""
               />
               <p class="tw-text-xs tw-text-center xl:tw-text-left tw-mb-3-1">
-                Проект AT-island
+                {{ project.name }}
               </p>
               <AppButton
-                :to="{ name: 'projects.show', params: { id: 1 } }"
-                design="flat"
-                :icon="require('assets/images/landing/landing-arrow.svg')"
-              />
-            </div>
-          </div>
-
-          <div class="tw-bg-dark tw-rounded-base app-col-6">
-            <div class="project__cover">
-              <img
-                width="172"
-                height="181"
-                class="project__pic"
-                src="images/landing-project-2.png"
-                alt=""
-              />
-              <p class="tw-text-xs tw-mb-3-1 tw-text-center xl:tw-text-left">
-                Alga NFT
-              </p>
-              <AppButton
-                :to="{ name: 'projects.show', params: { id: 1 } }"
+                :to="{ name: 'projects.show', params: { id: project.id } }"
                 design="flat"
                 :icon="require('assets/images/landing/landing-arrow.svg')"
               />
@@ -182,7 +166,13 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters('landing', ['projects']),
+  },
+};
 </script>
 
 <style scoped lang="scss">

@@ -55,7 +55,11 @@ export default {
 
       if (curSection === itemSection && routeName === itemName) return true;
       if (itemChildren?.includes(routeName)) return true;
-      if (itemChildren?.some((child) => child?.section === curSection))
+      if (
+        itemChildren?.some(
+          (child) => curSection && child?.section === curSection
+        )
+      )
         return true;
 
       return false;

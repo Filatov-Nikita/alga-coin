@@ -1,16 +1,26 @@
 <template>
   <div class="last-articles tw-space-y-4-1">
-    <div class="last-articles__article" v-for="i in 3">
-      <router-link to="#" class="tw-text-xs tw-mb-2 tw-text-white tw-block">
-        Миллиардер Стернлихт поспорил с главой JPMorgan о бесполезности биткоина
+    <div class="last-articles__article" v-for="item in items" :key="item.id">
+      <router-link
+        :to="{ name: 'articles.show', params: { id: item.id } }"
+        class="tw-text-xs tw-mb-2 tw-text-white tw-block"
+      >
+        {{ item.title }}
       </router-link>
-      <p class="tw-text-primary tw-text-xxs">15.11.2021, 13:39</p>
+      <p class="tw-text-primary tw-text-xxs">{{ item.created_at }}</p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    items: {
+      required: true,
+      type: Array,
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">

@@ -8,7 +8,8 @@
       </h1>
       <Form
         class="tw-space-y-4-1 xl:tw-w-1/2 xl:tw-mx-auto"
-        @submit="$aDialog.open('success')"
+        @submit="createOffer"
+        v-slot="{ isSubmitting }"
       >
         <AppInput rules="required" name="name" placeholder="Имя" label="Имя" />
         <AppInput
@@ -49,7 +50,12 @@
           >
           AlgaCoin</AppCheckbox
         >
-        <AppButton type="submit" fullWidth label="Оставить заявку" />
+        <AppButton
+          :disabled="isSubmitting"
+          type="submit"
+          fullWidth
+          label="Оставить заявку"
+        />
       </Form>
       <AppModal
         name="success"
@@ -77,7 +83,41 @@
 </template>
 
 <script>
-export default {};
+import { useStore } from 'vuex';
+import { useDialog } from 'src/plugins/app-dialog';
+
+export default {
+  setup() {
+    const store = useStore();
+    const appDialog = useDialog();
+
+    const createOffer = async (values, { setErrors, resetForm }) => {
+      values.file = values.doc[0];
+      values.cellphone = values.cellphoneFull;
+
+      const formData = new FormData();
+      for (let key in values) {
+        formData.append(key, values[key]);
+      }
+
+      try {
+        await store.dispatch('landing/createOffer', formData);
+        resetForm();
+        appDialog.open('success');
+      } catch (e) {
+        if (!e.response) throw e;
+        if (e.response.status === 422) {
+          const { errors } = await e.response.json();
+          setErrors(errors);
+        } else throw e;
+      }
+    };
+
+    return {
+      createOffer,
+    };
+  },
+};
 </script>
 
 <style>

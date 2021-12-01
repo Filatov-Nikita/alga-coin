@@ -9,7 +9,7 @@
       </template>
     </HeaderLanding>
     <q-page-container>
-      <q-page>
+      <q-page v-if="!isLoading">
         <div class="tw-container">
           <AppFullPage ref="fullPage" @changeIndex="changeBg">
             <LandingSectionAdvantages />
@@ -70,14 +70,31 @@ import LandingMenu from 'src/components/Landing/LandingMenu.vue';
 import useTheme from 'src/composition/useTheme';
 import { ref, provide, reactive, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
+import useLoading from 'src/composition/useLoading';
 import { Screen } from 'quasar';
 
 export default {
   setup() {
+    const store = useStore();
     const { theme } = useTheme();
     const bg = ref('blue');
     const menuActive = ref(0);
     const fullPage = ref(null);
+    const loading = useLoading();
+
+    (async () => {
+      loading.startLoading();
+      try {
+        await Promise.all([
+          store.dispatch('landing/newsList'),
+          store.dispatch('landing/projectsList'),
+        ]);
+      } catch (e) {
+        throw e;
+      } finally {
+        loading.stopLoading();
+      }
+    })();
 
     const screenBgColors = reactive({
       0: 'blue',
@@ -129,7 +146,6 @@ export default {
       fullPage.value.toByIndex(index);
     };
 
-    const store = useStore();
     onUnmounted(() => {
       store.commit('landing/setEco', 'BANKING');
     });
@@ -140,6 +156,7 @@ export default {
       fullPage,
       changeBg,
       toSection,
+      isLoading: loading.isLoading,
     };
   },
   components: {
