@@ -7,7 +7,9 @@
       >
         {{ item.title }}
       </router-link>
-      <p class="tw-text-primary tw-text-xxs">{{ item.created_at }}</p>
+      <p class="tw-text-primary tw-text-xxs">
+        {{ $prettyDate(item.created_at) }}
+      </p>
     </div>
   </div>
 </template>

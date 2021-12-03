@@ -7,7 +7,7 @@
         xl:tw-justify-start
       "
     >
-      <p class="tw-text-xs">{{ content.created_at }}</p>
+      <p class="tw-text-xs">{{ $prettyDate(content.created_at) }}</p>
       <AppButton design="flat" @click="share">
         <div class="tw-flex tw-items-center tw-text-xs">
           <InlineSvg

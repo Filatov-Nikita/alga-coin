@@ -34,7 +34,7 @@
             xl:tw-justify-start
           "
         >
-          <p class="tw-text-xs">{{ project.created_at }}</p>
+          <p class="tw-text-xs">{{ $prettyDate(project.created_at) }}</p>
           <AppButton
             design="flat"
             @click="$alert({ message: 'Ваш голос принят' })"
