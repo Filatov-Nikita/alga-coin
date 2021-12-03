@@ -40,7 +40,7 @@
                 width="172"
                 height="181"
                 class="project__pic"
-                src="images/landing-project-1.png"
+                :src="project.announceImage.url"
                 alt=""
               />
               <p class="tw-text-xs tw-text-center xl:tw-text-left tw-mb-3-1">
@@ -78,67 +78,47 @@
     </div>
 
     <AppCarousel v-else>
-      <AppCarouselSlide name="1">
-        <div class="tw-text-center tw-mb-4-1">
-          <p class="project__text">
-            Alga — это стартовая инвестиционная площадка для разработки,
-            подготовки к запуску и реализации новых технологических и
-            экологических проектов по всему миру
-          </p>
-          <br />
-          <p class="project__text">
-            Экосистема ALGA бесконечна, как мировой океан, и каждый её участник
-            может предложить миру свой уникальный проект
-          </p>
-          <br />
-          <p class="project__text">
-            Каждый проект проходит процедуру отбора, после чего получает полную
-            поддержку экосистемы до этапа запуска и дальнейшее сопровождение
-          </p>
-        </div>
+      <AppCarouselSlide
+        v-for="project in projects"
+        :key="project.id"
+        :name="`${project.id}`"
+      >
+        <router-link
+          class="tw-block tw-w-full tw-text-white"
+          :to="{ name: 'projects.show', params: { id: project.id } }"
+        >
+          <div class="tw-text-center tw-mb-4-1">
+            <p class="project__text">
+              Alga — это стартовая инвестиционная площадка для разработки,
+              подготовки к запуску и реализации новых технологических и
+              экологических проектов по всему миру
+            </p>
+            <br />
+            <p class="project__text">
+              Экосистема ALGA бесконечна, как мировой океан, и каждый её
+              участник может предложить миру свой уникальный проект
+            </p>
+            <br />
+            <p class="project__text">
+              Каждый проект проходит процедуру отбора, после чего получает
+              полную поддержку экосистемы до этапа запуска и дальнейшее
+              сопровождение
+            </p>
+          </div>
 
-        <div class="project__cover tw-text-center">
-          <img
-            width="130"
-            height="135"
-            class="project__pic"
-            src="images/landing-project-1.png"
-            alt=""
-          />
-          <p class="tw-text-xs">Проект AT-island</p>
-        </div>
+          <div class="project__cover tw-text-center">
+            <img
+              width="130"
+              height="135"
+              class="project__pic"
+              :src="project.announceImage.url"
+              alt=""
+            />
+            <p class="tw-text-xs">{{ project.name }}</p>
+          </div>
+        </router-link>
       </AppCarouselSlide>
-      <AppCarouselSlide name="2">
-        <div class="tw-text-center tw-mb-4-1">
-          <p class="project__text">
-            Alga — это стартовая инвестиционная площадка для разработки,
-            подготовки к запуску и реализации новых технологических и
-            экологических проектов по всему миру
-          </p>
-          <br />
-          <p class="project__text">
-            Экосистема ALGA бесконечна, как мировой океан, и каждый её участник
-            может предложить миру свой уникальный проект
-          </p>
-          <br />
-          <p class="project__text">
-            Каждый проект проходит процедуру отбора, после чего получает полную
-            поддержку экосистемы до этапа запуска и дальнейшее сопровождение
-          </p>
-        </div>
-
-        <div class="project__cover tw-text-center">
-          <img
-            width="130"
-            height="135"
-            class="project__pic"
-            src="images/landing-project-2.png"
-            alt=""
-          />
-          <p class="tw-text-xs">Alga NFT</p>
-        </div>
-      </AppCarouselSlide>
-      <AppCarouselSlide name="3">
+      <AppCarouselSlide name="add">
         <div class="project__add">
           <div class="tw-text-center">
             <div class="tw-text-xs tw-mb-3-1">
