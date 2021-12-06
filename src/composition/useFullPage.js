@@ -127,21 +127,24 @@ export default function (page) {
   };
 
   const optimized = throttle(() => (windowH.value = containerH()), 50);
+  const onKeyup = ({ keyCode }) => {
+    return keyCode === 38 ? prev() : keyCode === 40 ? next() : null;
+  };
 
   onMounted(() => {
     document.documentElement.style.height = "100%";
     document.body.style.height = "100%";
 
     const smartToggle = throttleScroll(processedDecorator(toggle));
+    document.addEventListener("keyup", onKeyup);
     page.value.addEventListener("wheel", smartToggle);
-
-    swipe(page.value, next, prev);
-
     window.addEventListener("resize", optimized);
+    swipe(page.value, next, prev);
   });
 
   onUnmounted(() => {
     window.removeEventListener("resize", optimized);
+    document.removeEventListener("keyup", onKeyup);
   });
 
   const styles = computed(() => {
