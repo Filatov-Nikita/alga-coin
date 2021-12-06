@@ -140,6 +140,11 @@ export default {
       }
     };
 
+    provide('unregistrSlide', (name) => {
+      if (slides.value.has(name)) slides.value.delete(name);
+      slide.value = slideList.value[0] || '';
+    });
+
     return {
       changeSlide,
       slideList,

@@ -163,7 +163,7 @@ export default defineComponent({
                 )
               : null,
           ])
-        : h('div', { class: 'app-input' }, [
+        : h('div', { class: ['app-input', attrs.class] }, [
             createLabel({ id: compId, label: props.label }),
             isTel ? opts.prefix.createSelect() : null,
             createFieldWrapper(

@@ -11,7 +11,11 @@
     <q-page-container>
       <q-page v-if="!isLoading">
         <div class="tw-container">
-          <AppFullPage ref="fullPage" @changeIndex="changeBg">
+          <AppFullPage
+            ref="fullPage"
+            @changeIndex="changeBg"
+            :key="$q.screen.xl ? 'xl' : '0'"
+          >
             <LandingSectionAdvantages />
             <LandingSectionFeatures />
             <LandingSectionDesctopEcosystem v-if="$q.screen.xl" />

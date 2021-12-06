@@ -1,41 +1,47 @@
 <template>
   <div class="app-convert">
-    <AppInput
-      name="alg"
-      label="Сумма в AlgaСoin"
-      placeholder="Сумма в рублях"
-      currency
-      @change="convert"
-    >
-      <template #append> ALG </template>
-    </AppInput>
+    <div class="tw-flex-1 tw-w-2/5">
+      <AppInput
+        name="alg"
+        label="Сумма в AlgaСoin"
+        placeholder="ALG"
+        currency
+        rules="required"
+        @change="convert"
+      >
+        <template #append> ALG </template>
+      </AppInput>
+    </div>
     <div class="sign">≈</div>
-    <AppInput
-      ref="inp2"
-      name="rub"
-      label="Сумма в рублях"
-      placeholder="Сумма в рублях"
-      currency
-      standalone
-    >
-      <template #append>
-        <span v-if="!isLoading">RUB</span>
-        <q-spinner v-else size="20px" />
-      </template>
-    </AppInput>
+    <div class="tw-flex-1 tw-w-2/5">
+      <AppInput
+        ref="inp2"
+        name="rub"
+        label="Сумма в рублях"
+        placeholder="RUB"
+        currency
+        standalone
+        readonly
+      >
+        <template #append>
+          <span v-if="!isLoading">RUB</span>
+          <q-spinner v-else size="20px" />
+        </template>
+      </AppInput>
+    </div>
   </div>
 </template>
 
 <script>
-import { ref, getCurrentInstance } from 'vue';
+import { ref } from 'vue';
 import useLoading from 'src/composition/useLoading';
+import { useAlert } from 'src/plugins/app-alert';
 
 export default {
   setup() {
     const { isLoading, startLoading, stopLoading } = useLoading();
     const inp2 = ref(null);
-    const appAlert =
-      getCurrentInstance().appContext.config.globalProperties.$alert;
+    const appAlert = useAlert();
 
     const convert = async ({ target: { value } }) => {
       startLoading();
@@ -76,7 +82,7 @@ export default {
 }
 
 .sign {
-  top: 10px;
-  @apply tw-text-sm tw-text-secondary tw-relative tw-self-center;
+  top: 38px;
+  @apply tw-text-sm tw-text-secondary tw-relative;
 }
 </style>

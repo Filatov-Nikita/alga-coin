@@ -11,7 +11,7 @@
   </div>
   <section v-else class="projects--xs">
     <h2 class="tw-text-sm tw-mb-6">Другие проекты</h2>
-    <AppCarousel height="auto" :key="projects[0]?.id || 0">
+    <AppCarousel height="auto">
       <AppCarouselSlide
         v-for="item in projects"
         :key="item.id"

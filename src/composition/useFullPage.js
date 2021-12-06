@@ -5,6 +5,7 @@ import {
   provide,
   watchEffect,
   onUnmounted,
+  nextTick,
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import useStopPageScroll from "./useStopPageScroll";
@@ -42,6 +43,13 @@ export default function (page) {
 
   watchEffect(() => {
     current.value = route.query.section || sectionList.value[0];
+  });
+
+  watchEffect(() => {
+    nextTick(() => {
+      if (!sections.value.has(current.value))
+        current.value = sectionList.value[0];
+    });
   });
 
   const mapIndex = computed(() => {
@@ -112,9 +120,9 @@ export default function (page) {
 
   const toggle = function (e) {
     if (e.deltaY > 0) {
-      prev();
-    } else {
       next();
+    } else {
+      prev();
     }
   };
 

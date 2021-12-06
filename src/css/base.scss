@@ -49,13 +49,14 @@
 
   a, .app-link {
     @apply tw-text-secondary tw-text-xxs xl:tw-text-xs;
+    @include screen-xl {
+      &:hover {
+        @apply tw-text-blue-hover;
+      }
 
-    &:hover {
-      @apply tw-text-blue-hover;
-    }
-
-    &:active {
-      @apply tw-text-dark-blue;
+      &:active {
+        @apply tw-text-dark-blue;
+      }
     }
   }
 

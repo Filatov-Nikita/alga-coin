@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { inject, watch } from 'vue';
+import { inject, watch, onUnmounted } from 'vue';
 
 export default {
   props: {
@@ -19,6 +19,8 @@ export default {
   emits: ['enter'],
   setup(props, { emit }) {
     const registrSlide = inject('registrSlide');
+    const remove = inject('unregistrSlide');
+
     registrSlide(props.name);
 
     const slide = inject('slide');
@@ -27,6 +29,10 @@ export default {
       if (val === props.name) {
         emit('enter');
       }
+    });
+
+    onUnmounted(() => {
+      remove(props.name);
     });
 
     return {
