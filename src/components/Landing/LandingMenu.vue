@@ -108,14 +108,14 @@ function getItems() {
   &__item {
     border-radius: 50px;
     padding: 5px 13px;
-    @apply tw-uppercase tw-text-xxs-2;
+    @apply tw-uppercase tw-text-xxs-1;
 
     &:first-child:not(.list__item--active) {
       margin-left: -13px;
     }
 
     &--active {
-      @apply tw-normal-case tw-text-white tw-text-xxs-1;
+      @apply tw-normal-case tw-text-white tw-text-xxs;
       background: var(--theme-primary);
     }
   }

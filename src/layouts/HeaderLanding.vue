@@ -9,7 +9,8 @@
         <div class="tw-flex tw-items-center">
           <router-link class="app-logo-2 tw-mr-3" :to="{ name: 'home' }">
             <InlineSvg
-              :src="require('assets/images/app-logo-2.svg')"
+              class="app-logo-i"
+              :src="require('assets/images/app-logo-3.svg')"
               alt="логотип"
             />
           </router-link>
@@ -39,7 +40,8 @@
       <div class="flex tw-items-center tw-mb-6">
         <router-link class="app-logo-2 tw-mr-9" :to="{ name: 'home' }">
           <InlineSvg
-            :src="require('assets/images/app-logo-2.svg')"
+            class="app-logo-i"
+            :src="require('assets/images/app-logo-3.svg')"
             alt="логотип"
             :transformSource="coloringLogo"
           />

@@ -5,8 +5,8 @@
         <div class="tw-pt-safe">
           <div class="app-row app-gutter-col-x tw-items-center">
             <div class="xl:app-col-5">
-              <a href="#" class="header__logo">
-                <img src="~assets/images/app-logo.svg" alt="логотип" />
+              <a href="#" class="app-logo-2">
+                <img class="app-logo-i" src="~assets/images/app-logo-3.svg" alt="логотип" />
               </a>
             </div>
 
@@ -105,15 +105,6 @@ export default {
     opacity: 0.8;
     z-index: 9;
     @apply tw-fixed tw-top-0 tw-left-0 tw-w-full tw-h-full;
-  }
-
-  &__logo {
-    width: 100px;
-    @apply tw-block;
-
-    @include screen-xl {
-      width: 198px;
-    }
   }
 }
 </style>

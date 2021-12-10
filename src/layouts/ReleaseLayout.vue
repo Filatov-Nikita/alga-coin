@@ -4,7 +4,13 @@
       <div class="app-container">
         <div class="row q-gutter-lg release__parts">
           <div class="row tw-items-center q-gutter-lg tw-justify-center">
-            <img src="~assets/images/app-logo.svg" alt="logo" />
+            <div class="app-logo-2">
+              <img
+                class="app-logo-i"
+                src="~assets/images/app-logo-3.svg"
+                alt="logo"
+              />
+            </div>
             <div>Законные безусловные глобальные активы</div>
           </div>
           <div class="row tw-items-center q-gutter-lg tw-justify-center">

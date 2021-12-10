@@ -36,20 +36,13 @@
               v-slot="{ isSubmitting }"
             >
               <AppInput
-                rules="required"
                 name="address"
                 fullWidth
                 placeholder="Адрес кошелька"
-                label="Адрес кошелька"
+                label="Адрес кошелька получателя"
+                rules="required|walletAddress"
               />
-              <AppInput
-                rules="required"
-                name="sum"
-                fullWidth
-                placeholder="Сумма"
-                label="Сумма"
-              />
-
+              <AppConvertInput />
               <AppButton
                 :disabled="isSubmitting"
                 type="submit"
@@ -61,110 +54,100 @@
         </AppModalWallet>
 
         <AppModalWallet v-slot="{ close }" name="wallet.input">
-          <AppBtnBack class="page-wallet__back-btn" @click="close" />
+          <AppBtnBack class="page-wallet__back-btn" @click="back(close)" />
           <div class="page-wallet__content">
-            <AppStep name="choose-type">
+            <div v-if="last.name === 'way'">
               <div class="page-wallet__title tw-mb-9">
                 Выберите удобный способ пополнения
               </div>
 
               <div class="page-wallet__actions page-wallet__wrap">
                 <AppButton
-                  @click="changeStep('by-card')"
+                  @click="pushToPath({ name: 'card' })"
                   textClass="page-wallet__action"
                   label="Карта VISA / Master Card"
                   fullWidth
                 />
                 <AppButton
-                  @click="changeStep('by-crypto')"
+                  @click="pushToPath({ name: 'crypto' })"
                   textClass="page-wallet__action"
                   label="Криптовалюта USDT / BUSD"
                   fullWidth
                 />
               </div>
-            </AppStep>
+            </div>
 
-            <AppStepGroup>
-              <AppStep name="by-card">
-                <WalletBalance v-bind="walletData" hideIcon />
-                <Form class="page-wallet__form">
-                  <AppInput
-                    rules="required"
-                    name="sum"
-                    fullWidth
-                    placeholder="Сумма"
-                    label="Сумма"
-                  />
-                  <AppButton @click="1" label="Пополнить" fullWidth />
-                </Form>
-                <div class="wallet-page__caption tw-mt-6">
+            <div v-else-if="last.name === 'card'">
+              <WalletBalance v-bind="walletData" hideIcon />
+              <Form class="page-wallet__form">
+                <AppConvertInput />
+                <AppButton @click="1" label="Пополнить" fullWidth />
+                <div class="page-wallet__caption tw-text-center tw-mt-6">
                   После нажатия «Пополнить» вы будете перенаправлены на страницу
                   оплаты
                 </div>
-              </AppStep>
-            </AppStepGroup>
+              </Form>
+            </div>
 
-            <AppStepGroup>
-              <AppStep name="by-crypto">
-                <WalletBalance v-bind="walletData" hideIcon />
-                <Form class="page-wallet__form">
-                  <AppInput
-                    rules="required"
-                    name="sum"
+            <div v-else-if="last.name === 'crypto'">
+              <WalletBalance v-bind="walletData" hideIcon />
+              <Form class="page-wallet__form">
+                <AppConvertInput />
+                <div class="page-wallet__actions">
+                  <AppButton
+                    @click="pushToPath({ name: 'usdt' })"
+                    label="Пополнить в USDT"
+                    :icon="require('assets/usdt.svg')"
                     fullWidth
-                    placeholder="Сумма"
-                    label="Сумма"
                   />
-                  <div class="page-wallet__actions">
-                    <AppButton
-                      @click="changeStep('by-crypto.usdt')"
-                      label="Пополнить в USDT"
-                      :icon="require('assets/usdt.svg')"
-                      fullWidth
-                    />
-                    <AppButton
-                      @click="changeStep('by-crypto.busd')"
-                      label="Пополнить в BUSD"
-                      :icon="require('assets/busd.svg')"
-                      fullWidth
-                    />
-                  </div>
-                </Form>
-              </AppStep>
+                  <AppButton
+                    @click="pushToPath({ name: 'busd' })"
+                    label="Пополнить в BUSD"
+                    :icon="require('assets/busd.svg')"
+                    fullWidth
+                  />
+                </div>
+              </Form>
+            </div>
 
-              <AppStep name="by-crypto.busd">
-                <div class="wallet__title">Вам необходимо перевести</div>
-                <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
-                  Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
-                </AppTimer>
-                <AppButton
-                  @click="changeStep('by-crypto.finish')"
-                  label="Я отправил"
-                  fullWidth
-                />
-              </AppStep>
+            <div v-else-if="last.name === 'usdt'">
+              <MyWalletAddress
+                address="0xAbBDd166fD5DfFe50D294aEEe539CBB2547DE7DF"
+              />
+              <div class="wallet__title">Вам необходимо перевести</div>
+              <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
+                Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
+              </AppTimer>
+              <AppButton
+                @click="pushToPath({ name: 'finish' })"
+                label="Я отправил"
+                fullWidth
+              />
+            </div>
 
-              <AppStep name="by-crypto.usdt">
-                <div class="wallet__title">Вам необходимо перевести</div>
-                <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
-                  Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
-                </AppTimer>
-                <AppButton
-                  @click="changeStep('by-crypto.finish')"
-                  label="Я отправил"
-                  fullWidth
-                />
-              </AppStep>
-            </AppStepGroup>
+            <div v-else-if="last.name === 'busd'">
+              <MyWalletAddress
+                address="0xAbBDd166fD5DfFe50D294aEEe539CBB2547DE7DF"
+              />
+              <div class="wallet__title">Вам необходимо перевести</div>
+              <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
+                Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
+              </AppTimer>
+              <AppButton
+                @click="pushToPath({ name: 'finish' })"
+                label="Я отправил"
+                fullWidth
+              />
+            </div>
 
-            <AppStep name="by-crypto.finish">
+            <div v-else-if="last.name === 'finish'">
               <div class="wallet__title">Информация о пополнении принята</div>
               <div class="wallet__caption">
                 Зачисление денежных средств обычно происходит в течение 15
                 минут, в редких случаях достигает 4 часов. В случае проблем,
                 просим направить запрос на mail@mail.ru
               </div>
-            </AppStep>
+            </div>
           </div>
         </AppModalWallet>
 
@@ -181,18 +164,26 @@ import WalletBalance from 'src/components/Wallet/WalletBalance.vue';
 import WalletOutputForm from 'src/components/Wallet/WalletOutputForm.vue';
 import HistoryTable from 'src/components/HistoryTable.vue';
 import useOutput from 'src/composition/wallet/useOutput';
-import useStep from 'src/composition/useStep';
+import MyWalletAddress from 'src/components/MyWalletAddress';
+import { ref, computed } from 'vue';
 import { mapGetters } from 'vuex';
 
 export default {
   setup() {
     const { send } = useOutput();
-    const { step, changeStep } = useStep('choose-type');
+    const path = ref([{ name: 'way' }]);
+    const last = computed(() => path.value[path.value.length - 1]);
+    const pushToPath = ({ name }) => path.value.push({ name });
+    const back = (close) => {
+      if (path.value.length <= 1) return close();
+      path.value.pop();
+    };
 
     return {
       send,
-      step,
-      changeStep,
+      last,
+      pushToPath,
+      back,
     };
   },
   computed: {
@@ -202,6 +193,7 @@ export default {
     WalletBalance,
     WalletOutputForm,
     HistoryTable,
+    MyWalletAddress,
   },
 };
 </script>
