@@ -9,7 +9,7 @@
       </template>
     </HeaderLanding>
     <q-page-container>
-      <q-page v-if="!isLoading">
+      <q-page v-if="!Loading.isActive">
         <div class="tw-container">
           <AppFullPage
             ref="fullPage"
@@ -74,22 +74,21 @@ import FooterLanding from 'src/layouts/FooterLanding.vue';
 import HeaderLanding from 'src/layouts/HeaderLanding.vue';
 import LandingMenu from 'src/components/Landing/LandingMenu.vue';
 import useTheme from 'src/composition/useTheme';
-import useLoading from 'src/composition/useLoading';
 import { useStore } from 'vuex';
-import { Screen } from 'quasar';
+import { Screen, useQuasar } from 'quasar';
 import { ref, provide, reactive, onUnmounted } from 'vue';
 
 export default {
   setup() {
+    const $q = useQuasar();
     const store = useStore();
     const { theme } = useTheme();
     const bg = ref('blue');
     const menuActive = ref(0);
     const fullPage = ref(null);
-    const loading = useLoading();
 
     (async () => {
-      loading.startLoading();
+      $q.loading.show();
       try {
         await Promise.all([
           store.dispatch('landing/newsList'),
@@ -98,7 +97,7 @@ export default {
       } catch (e) {
         throw e;
       } finally {
-        loading.stopLoading();
+        $q.loading.hide();
       }
     })();
 
@@ -162,7 +161,7 @@ export default {
       fullPage,
       changeBg,
       toSection,
-      isLoading: loading.isLoading,
+      Loading: $q.loading,
     };
   },
   components: {
