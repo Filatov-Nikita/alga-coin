@@ -65,6 +65,6 @@ export default {
 
 <style scoped lang="scss">
 .full-page-section {
-  overflow: hidden;
+  // overflow: hidden;
 }
 </style>

@@ -18,6 +18,7 @@
           >
             <LandingSectionAdvantages />
             <LandingSectionFeatures />
+            <LandingSectionOwners />
             <LandingSectionDesctopEcosystem v-if="$q.screen.xl" />
             <LandingSectionEcosystem />
             <LandingSectionProjects />
@@ -63,6 +64,7 @@
 <script>
 import LandingSectionAdvantages from 'src/components/Landing/LandingSectionAdvantages.vue';
 import LandingSectionFeatures from 'src/components/Landing/LandingSectionFeatures.vue';
+import LandingSectionOwners from 'src/components/Landing/LandingSectionOwners.vue';
 import LandingSectionEcosystem from 'src/components/Landing/LandingSectionEcosystem.vue';
 import LandingSectionDesctopEcosystem from 'src/components/Landing/LandingSectionDesctopEcosystem.vue';
 import LandingSectionProjects from 'src/components/Landing/LandingSectionProjects.vue';
@@ -72,10 +74,10 @@ import FooterLanding from 'src/layouts/FooterLanding.vue';
 import HeaderLanding from 'src/layouts/HeaderLanding.vue';
 import LandingMenu from 'src/components/Landing/LandingMenu.vue';
 import useTheme from 'src/composition/useTheme';
-import { ref, provide, reactive, onUnmounted } from 'vue';
-import { useStore } from 'vuex';
 import useLoading from 'src/composition/useLoading';
+import { useStore } from 'vuex';
 import { Screen } from 'quasar';
+import { ref, provide, reactive, onUnmounted } from 'vue';
 
 export default {
   setup() {
@@ -103,19 +105,21 @@ export default {
     const screenBgColors = reactive({
       0: 'blue',
       1: 'dark-blue',
-      2: 'dark-blue',
-      3: 'blue',
+      2: 'blue',
+      3: 'dark-blue',
       4: 'blue',
-      5: 'dark-blue',
+      5: 'blue',
+      6: 'dark-blue',
     });
 
     const screenTheme = reactive({
       0: 'default',
       1: 'default',
       2: 'default',
-      3: 'blue',
-      4: 'default',
+      3: 'default',
+      4: 'blue',
       5: 'default',
+      6: 'default',
     });
 
     provide('updateBg', (name) => {
@@ -127,7 +131,7 @@ export default {
 
     provide('updateTheme', (name) => {
       const isMobile = Screen.lt.xl;
-      if (isMobile) return;
+      if (isMobile && ![0, 2, 3].includes(menuActive.value)) return;
 
       theme.value = name;
       screenTheme[menuActive.value] = name;
@@ -137,9 +141,7 @@ export default {
       const isMobile = Screen.lt.xl;
 
       let newBg = screenBgColors[index];
-      if (isMobile) {
-        index === 0 ? (newBg = 'blue') : (newBg = '');
-      }
+      if (isMobile && ![0, 2, 3].includes(index)) newBg = '';
 
       bg.value = newBg;
       theme.value = screenTheme[index];
@@ -166,6 +168,7 @@ export default {
   components: {
     LandingSectionAdvantages,
     LandingSectionFeatures,
+    LandingSectionOwners,
     LandngSectionNews,
     HeaderLanding,
     LandingMenu,
@@ -183,7 +186,8 @@ export default {
   z-index: -1;
   width: 110%;
   height: 110%;
-  left: 0;
+  left: 50%;
   top: -30px;
+  transform: translateX(-50%);
 }
 </style>

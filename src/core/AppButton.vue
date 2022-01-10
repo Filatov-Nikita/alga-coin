@@ -26,6 +26,10 @@ export default defineComponent({
       },
       type: Object,
     },
+    size: {
+      default: undefined,
+      type: String,
+    },
     design: {
       default: 'standart',
       type: String,
@@ -84,6 +88,11 @@ export default defineComponent({
     classes() {
       return `
         ${this.textClass || 'tw-text-base'}
+        ${
+          this.size && this.design === 'round'
+            ? `app-button--round-${this.size}`
+            : ''
+        }
       `;
     },
   },
@@ -125,6 +134,11 @@ export default defineComponent({
     & > * {
       @apply tw-inline-block;
     }
+  }
+
+  &--round-lg {
+    width: 48px;
+    height: 48px;
   }
 
   &--flat {

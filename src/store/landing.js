@@ -12,6 +12,7 @@ export default {
       { label: "Alga Market", to: "#" },
     ],
     curEco: "BANKING",
+    curOwner: "0",
   },
   getters: {
     footer(state) {
@@ -33,6 +34,9 @@ export default {
   mutations: {
     setEco(state, payload) {
       state.curEco = payload;
+    },
+    setOwner(state, payload) {
+      state.curOwner = payload;
     },
     setNews(state, payload) {
       if (!Array.isArray(payload)) return;

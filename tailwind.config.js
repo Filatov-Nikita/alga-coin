@@ -17,7 +17,8 @@ module.exports = {
       },
       letterSpacing: {
         widest: '0.5em',
-        smallest: '0.1em'
+        smallest: '0.1em',
+        mid: '0.2em'
       }
     },
     colors: {

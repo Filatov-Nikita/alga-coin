@@ -34,7 +34,7 @@ export default {
 .app-full-page {
   transition: transform, 0.5s;
   touch-action: none;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 </style>

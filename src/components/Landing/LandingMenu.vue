@@ -78,6 +78,10 @@ function getItems() {
       to: { name: 'home', query: { section: 'features' } },
     },
     {
+      label: 'Резиденты',
+      to: { name: 'home', query: { section: 'owners' } },
+    },
+    {
       label: 'Экосистема',
       to: { name: 'home', query: { section: 'ecosystem' } },
       children: [{ section: 'eco-start' }],
