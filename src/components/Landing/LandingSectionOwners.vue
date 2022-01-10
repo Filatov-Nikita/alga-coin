@@ -65,6 +65,7 @@
               />
               <AppButton
                 class="
+                  tw-z-20
                   tw-absolute
                   tw-left-1/2
                   tw-top-1/2
@@ -124,7 +125,7 @@
               width="400px"
             />
             <AppButton
-              class="tw-absolute tw-top-48 tw-left-44"
+              class="tw-absolute tw-top-48 tw-left-44 tw-z-20"
               size="lg"
               :icon="require('assets/icons/plus.svg')"
               :iconStg="{ width: '20px', height: '20px' }"
