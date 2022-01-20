@@ -14,10 +14,10 @@
               alt="логотип"
             />
           </router-link>
-          <div class="tw-text-xxs-1">
-            Законные безусловные <br />
-            глобальные активы
-          </div>
+          <div
+            class="tw-text-xxs-1"
+            v-html="$t('landing.header.promoText')"
+          ></div>
 
           <q-space />
 
@@ -46,10 +46,10 @@
             :transformSource="coloringLogo"
           />
         </router-link>
-        <div class="tw-text-xxs-1">
-          Законные безусловные <br />
-          глобальные активы
-        </div>
+        <div
+          class="tw-text-xxs-1"
+          v-html="$t('landing.header.promoText')"
+        ></div>
 
         <q-space />
 
@@ -57,7 +57,7 @@
           v-if="isAuth"
           :iconStg="{ width: '24px', height: '24px', fill: themes[theme] }"
           :icon="require('assets/profile.svg')"
-          label="Личный кабинет"
+          :label="$t('landing.header.lk')"
           :to="{ name: 'wallet' }"
           design="flat"
           textClass="tw-text-xs"
@@ -67,7 +67,7 @@
             :iconStg="{ width: '24px', height: '24px', fill: themes[theme] }"
             :icon="require('assets/profile.svg')"
             fullWidth
-            label="Авторизоваться"
+            :label="$t('landing.header.auth')"
             :to="{ name: 'auth.login' }"
             design="flat"
             class="tw-mr-6"
@@ -75,7 +75,7 @@
           />
           <AppButton
             fullWidth
-            label="Зарегистрироваться"
+            :label="$t('landing.header.registr')"
             :to="{ name: 'auth.registr' }"
             class="tw-mb-2-1"
             textClass="tw-text-xxs"

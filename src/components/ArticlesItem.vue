@@ -15,7 +15,7 @@
             :src="require('assets/icons/share.svg')"
             width="16px"
           />
-          <div>Поделиться</div>
+          <div>{{ $t('share') }}</div>
         </div>
       </AppButton>
     </div>
@@ -41,6 +41,16 @@
 
 <script>
 export default {
+  i18n: {
+    messages: {
+      ru: {
+        share: 'Поделиться',
+      },
+      en: {
+        share: 'Share',
+      },
+    },
+  },
   props: {
     main: {
       default: false,

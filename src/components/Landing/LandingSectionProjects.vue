@@ -5,28 +5,17 @@
     :class="{ 'landing-h-center': $q.screen.lt.xl }"
   >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-mb-4 tw-text-center">
-      Направления
+      {{ $t('mHeader') }}
     </h2>
-    <h2 v-else class="landing-h2 landing-h2--space tw-uppercase">ПРОЕКТЫ</h2>
+    <h2 v-else class="landing-h2 landing-h2--space tw-uppercase">
+      {{ $t('header') }}
+    </h2>
 
     <div v-if="$q.screen.xl" class="app-row app-gutter-col-x">
-      <div class="tw-text-xs tw-mt-12 app-col-4">
-        <p>
-          Alga — это стартовая инвестиционная площадка для разработки,
-          подготовки к запуску и реализации новых технологических и
-          экологических проектов по всему миру
-        </p>
-        <br />
-        <p>
-          Экосистема Alga бесконечна, как мировой океан, и каждый её участник
-          может предложить миру свой уникальный проект
-        </p>
-        <br />
-        <p>
-          Каждый проект проходит процедуру отбора, после чего получает полную
-          поддержку экосистемы до этапа запуска и дальнейшего сопровождения
-        </p>
-      </div>
+      <div
+        class="tw-text-xs tw-mt-12 app-col-4"
+        v-html="$t('description')"
+      ></div>
 
       <div class="app-col-14">
         <div class="app-row app-gutter-col-x">
@@ -67,11 +56,10 @@
                 :src="require('assets/icons/plus.svg')"
               />
             </button>
-            <div class="tw-text-xs tw-text-center xl:tw-text-left">
-              Подать заявку <br />
-              на рассмотрение <br />
-              инвестиционного проекта
-            </div>
+            <div
+              class="tw-text-xs tw-text-center xl:tw-text-left"
+              v-html="$t('callback')"
+            ></div>
           </div>
         </div>
       </div>
@@ -87,24 +75,12 @@
           class="tw-block tw-w-full tw-text-white"
           :to="{ name: 'projects.show', params: { id: project.id } }"
         >
-          <div class="tw-text-center tw-mb-4-1">
-            <p class="project__text">
-              Alga — это стартовая инвестиционная площадка для разработки,
-              подготовки к запуску и реализации новых технологических и
-              экологических проектов по всему миру
-            </p>
-            <br />
-            <p class="project__text">
-              Экосистема ALGA бесконечна, как мировой океан, и каждый её
-              участник может предложить миру свой уникальный проект
-            </p>
-            <br />
-            <p class="project__text">
-              Каждый проект проходит процедуру отбора, после чего получает
-              полную поддержку экосистемы до этапа запуска и дальнейшее
-              сопровождение
-            </p>
-          </div>
+          <div
+            class="tw-text-center tw-mb-4-1"
+            v-html="
+              $t('description', { className: 'tw-text-xxs-1 tw-leading-tight' })
+            "
+          ></div>
 
           <div class="project__cover tw-text-center">
             <img
@@ -121,11 +97,7 @@
       <AppCarouselSlide name="add">
         <div class="project__add">
           <div class="tw-text-center">
-            <div class="tw-text-xs tw-mb-3-1">
-              Подать заявку <br />
-              на рассмотрение <br />
-              инвестиционного проекта
-            </div>
+            <div class="tw-text-xs tw-mb-3-1" v-html="$t('callback')"></div>
             <button
               @click="$router.push({ name: 'offer-project' })"
               class="project__btn"
@@ -148,7 +120,43 @@
 <script>
 import { mapGetters } from 'vuex';
 
+function createHtml(txts, className) {
+  const tag = className ? `<p class="${className}">` : '<p>';
+  return txts.map((txt) => `${tag}${txt}</p>`).join('<br/>');
+}
+
 export default {
+  i18n: {
+    messages: {
+      ru: {
+        header: 'ПРОЕКТЫ',
+        mHeader: 'Направления',
+        callback:
+          'Подать заявку <br /> на рассмотрение <br /> инвестиционного проекта',
+        description: ({ named }) => {
+          const txts = [
+            'Alga — это стартовая инвестиционная площадка для разработки, подготовки к запуску и реализации новых технологических иэкологических проектов по всему миру',
+            'Экосистема Alga бесконечна, как мировой океан, и каждый её участник может предложить миру свой уникальный проект',
+            'Каждый проект проходит процедуру отбора, после чего получает полную поддержку экосистемы до этапа запуска и дальнейшего сопровождения',
+          ];
+          return createHtml(txts, named('className'));
+        },
+      },
+      en: {
+        header: 'PROJECTS',
+        mHeader: 'Projects',
+        callback: 'Apply for consideration investment project',
+        description: ({ named }) => {
+          const txts = [
+            'Alga is a startup investment platform for the development, preparation for launch and implementation of new technological and environmental projects around the world',
+            "The Alga ecosystem is as endless as the world's oceans, and each of its participants can offer the world their own unique project",
+            'Each project goes through a selection process, after which it receives full support from the ecosystem until the launch and further support',
+          ];
+          return createHtml(txts, named('className'));
+        },
+      },
+    },
+  },
   computed: {
     ...mapGetters('landing', ['projects']),
   },
@@ -162,10 +170,6 @@ export default {
   &__cover {
     min-height: 222px;
     @apply tw-bg-dark tw-rounded-base tw-p-6 xl:tw-pt-12 xl:tw-p-7-1;
-  }
-
-  &__text {
-    @apply tw-text-xxs-1 tw-leading-tight;
   }
 
   &__pic {

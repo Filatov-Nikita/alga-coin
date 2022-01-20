@@ -1,14 +1,17 @@
 <template>
-  <AppFullPageScreen name="ecosystem" class="tw-py-2 tw-relative landing-h-center">
+  <AppFullPageScreen
+    name="ecosystem"
+    class="tw-py-2 tw-relative landing-h-center"
+  >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-2-1">
-      Экосистема
+      {{ $t('mHeader') }}
     </h2>
     <h2
       v-else
       class="landing-h2 landing-h2--space"
       :style="{ color: themes[theme] }"
     >
-      ЭКОСИСТЕМА
+      {{ $t('header') }}
     </h2>
 
     <div class="tw-flex tw-justify-center landing-c-up">
@@ -82,17 +85,70 @@
 </template>
 
 <script>
-import { markRaw, inject } from 'vue';
+import { inject } from 'vue';
 import LandingLogo from './LandingLogo.vue';
 
 export default {
+  i18n: {
+    messages: {
+      ru: {
+        mHeader: 'Экосистема',
+        header: 'ЭКОСИСТЕМА',
+        banking:
+          'Создание, покупка, продажа, хранение, безопасная защита и финансовое управление цифровыми активами (виртуальными товарами и валютами), а также все направления бизнеса, которые обслуживают экосистему Alga',
+        consulting:
+          'Объёмный модуль экспертных данных, создающий разумные производственные процессы для бизнеса, объединяющий технологию искусственного интеллекта, данные и аналитику. Alga Consulting — это возможность модернизировать рабочие процессы, технологии и компанию в целом для достижения впечатляющих бизнес-результатов',
+        development:
+          'Цифровая инвестиционная платформа, основанная на традиционных инструментах инвестирования в недвижимость. Держатели активов ALGA могут проводить аудит проектов, инвестировать в строительство объектов недвижимости, контролировать риски, беспрепятственно торговать правами собственности на объекты',
+        ecology:
+          'Использование возможностей Alga Ecosystem для более устойчивого и бережного управления природными ресурсами планеты',
+        health:
+          'Онлайн-консультации с ведущими специалистами мира и разработка противовирусных препаратов',
+        invest:
+          'Стартовая инвестиционная площадка для подготовки и реализации новых, инновационных и экологических проектов по всему миру',
+        market:
+          'Торговая площадка для покупки, продажи и управления сетевыми и физическими активами участниками сообщества',
+        starlink:
+          'Проект по формированию собственной системы обеспечения независимого доступа к высокоскоростному Интернету и мобильной связи',
+        edu: 'Децентрализованная экосистема онлайн-обучения',
+        nft: 'Платформа для создателей произведений искусств, нацеленная на создание новой креативной экономики. Alga NFT — это маркетплейс современного искусства нового поколения',
+      },
+      en: {
+        mHeader: 'Ecosystem',
+        header: 'ECOSYSTEM',
+        banking:
+          'Creation, purchase, sale, storage, secure protection and financial management of digital assets (virtual goods and currencies), as well as all lines of business that serve the Alga ecosystem',
+        consulting:
+          'A rich expert data module that creates intelligent business workflows that integrates artificial intelligence technology, data and analytics. Alga Consulting is an opportunity to modernize work processes, technologies and the company as a whole to achieve impressive business results.',
+        development:
+          'A digital investment platform based on traditional real estate investment tools. ALGA asset holders can audit projects, invest in the construction of real estate, control risks, freely trade property rights to objects',
+        ecology:
+          "Leveraging the power of the Alga Ecosystem for a more sustainable and sustainable management of the planet's natural resources",
+        health:
+          "Online consultations with the world's leading experts and the development of antiviral drugs",
+        invest:
+          'Launching investment platform for the preparation and implementation of new, innovative and environmental projects around the world',
+        market:
+          'Marketplace for buying, selling and managing online and physical assets by community members',
+        starlink:
+          'A project to form our own system for providing independent access to high-speed Internet and mobile communications',
+        edu: 'Decentralized online learning ecosystem',
+        nft: 'A platform for creators of works of art, aimed at creating a new creative economy. Alga NFT is a new generation contemporary art marketplace',
+      },
+    },
+  },
+  computed: {
+    items() {
+      const t = this.$t;
+      return getItems(t);
+    },
+  },
   setup() {
     const theme = inject('theme');
     const themes = inject('themes');
     const switchTheme = inject('switchTheme');
     const updateBg = inject('updateBg');
     const updateTheme = inject('updateTheme');
-    const items = markRaw(getItems());
 
     const changeTheme = (themeName, bgName) => {
       setTimeout(() => {
@@ -103,7 +159,6 @@ export default {
     };
 
     return {
-      items,
       theme,
       themes,
       changeTheme,
@@ -114,11 +169,11 @@ export default {
   },
 };
 
-function getItems() {
+function getItems(t) {
   return [
     {
       name: 'BANKING',
-      text: 'Создание, покупка, продажа, хранение, безопасная защита и финансовое управление цифровыми активами (виртуальными товарами и валютами), а также все направления бизнеса, которые обслуживают экосистему Alga',
+      text: t('banking'),
       fill: 'linear-gradient(149.13deg, #156AEB 0.09%, #0D3B81 55.25%, #156AEB 100%)',
       logoColor: 'blue',
       theme: 'blue',
@@ -127,7 +182,7 @@ function getItems() {
     },
     {
       name: 'CONSULTING',
-      text: 'Объёмный модуль экспертных данных, создающий разумные производственные процессы для бизнеса, объединяющий технологию искусственного интеллекта, данные и аналитику. Alga Consulting — это возможность модернизировать рабочие процессы, технологии и компанию в целом для достижения впечатляющих бизнес-результатов',
+      text: t('consulting'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #1D4786 55.25%, #0A1E3E 100%)',
       logoColor: 'dark-blue',
       theme: 'darkBlue',
@@ -136,7 +191,7 @@ function getItems() {
     },
     {
       name: 'DEVELOPMENT',
-      text: 'Цифровая инвестиционная платформа, основанная на традиционных инструментах инвестирования в недвижимость. Держатели активов ALGA могут проводить аудит проектов, инвестировать в строительство объектов недвижимости, контролировать риски, беспрепятственно торговать правами собственности на объекты',
+      text: t('development'),
       fill: 'linear-gradient(150.99deg, #0A1E3E 0.09%, #EE5322 52.68%, #0A1E3E 95.36%)',
       logoColor: 'orange',
       theme: 'orange',
@@ -145,7 +200,7 @@ function getItems() {
     },
     {
       name: 'ECOLOGY',
-      text: 'Использование возможностей Alga Ecosystem для более устойчивого и бережного управления природными ресурсами планеты',
+      text: t('ecology'),
       fill: 'linear-gradient(149.13deg, #A0E09C 18.3%, #0CB65F 55.25%, #A0E09C 100%)',
       logoColor: 'green',
       theme: 'lightGreen',
@@ -154,7 +209,7 @@ function getItems() {
     },
     {
       name: 'HEALTH',
-      text: 'Онлайн-консультации с ведущими специалистами мира и разработка противовирусных препаратов',
+      text: t('health'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #9E1E26 55.25%, #0A1E3E 100%)',
       logoColor: 'red',
       theme: 'red',
@@ -163,7 +218,7 @@ function getItems() {
     },
     {
       name: 'INVEST',
-      text: 'Стартовая инвестиционная площадка для подготовки и реализации новых, инновационных и экологических проектов по всему миру',
+      text: t('invest'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #F79226 55.25%, #0A1E3E 100%)',
       logoColor: 'yellow',
       theme: 'yellow',
@@ -172,7 +227,7 @@ function getItems() {
     },
     {
       name: 'MARKET',
-      text: 'Торговая площадка для покупки, продажи и управления сетевыми и физическими активами участниками сообщества',
+      text: t('market'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #9D1F60 55.25%, #0A1E3E 100%)',
       logoColor: 'purple',
       theme: 'purple',
@@ -181,7 +236,7 @@ function getItems() {
     },
     {
       name: 'STARLINK',
-      text: 'Проект по формированию собственной системы обеспечения независимого доступа к высокоскоростному Интернету и мобильной связи',
+      text: t('starlink'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #0E5B74 55.25%, #0A1E3E 100%)',
       logoColor: 'biruze',
       theme: 'biruze',
@@ -190,7 +245,7 @@ function getItems() {
     },
     {
       name: 'EDUCATION',
-      text: 'Децентрализованная экосистема онлайн-обучения',
+      text: t('edu'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #04562C 55.25%, #0A1E3E 100%)',
       logoColor: 'dark-green',
       theme: 'darkGreen',
@@ -199,7 +254,7 @@ function getItems() {
     },
     {
       name: 'NFT',
-      text: 'Платформа для создателей произведений искусств, нацеленная на создание новой креативной экономики. Alga NFT — это маркетплейс современного искусства нового поколения',
+      text: t('nft'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #3C26C9 55.25%, #0A1E3E 100%)',
       logoColor: 'dark-purple',
       theme: 'indigo',

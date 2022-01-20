@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2 class="tw-text-sm xl:tw-text-md2 tw-mb-6">Читайте так же</h2>
+    <h2 class="tw-text-sm xl:tw-text-md2 tw-mb-6">{{ $t('readAlso') }}</h2>
 
     <AppCarousel v-if="$q.screen.lt.xl" height="auto">
       <AppCarouselSlide
@@ -50,6 +50,16 @@
 
 <script>
 export default {
+  i18n: {
+    messages: {
+      ru: {
+        readAlso: 'Читайте так же',
+      },
+      en: {
+        readAlso: 'Read also',
+      },
+    },
+  },
   props: {
     items: {
       required: true,

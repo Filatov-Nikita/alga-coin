@@ -1,5 +1,8 @@
 <template>
-  <AppFullPageScreen name="advantages" class="landing-page-y landing-h-center xl:tw-pt-8">
+  <AppFullPageScreen
+    name="advantages"
+    class="landing-page-y landing-h-center xl:tw-pt-8"
+  >
     <div class="advantages advantages__bg landing-c-up">
       <div class="xl:tw-flex">
         <div class="advantages__coin tw-mb-3">
@@ -7,22 +10,34 @@
         </div>
 
         <div class="advantages__info">
-          <div class="tw-text-secondary tw-text-xxs-1 xl:tw-text-xs tw-mb-2-1 xl:tw-mb-9">
-            О ТОКЕНЕ
+          <div
+            class="
+              tw-text-secondary tw-text-xxs-1
+              xl:tw-text-xs
+              tw-mb-2-1
+              xl:tw-mb-9
+            "
+          >
+            {{ $t('landing.about.header') }}
           </div>
 
-          <div class="tw-text-xxs-1 xl:tw-text-sm tw-font-normal tw-mb-3 xl:tw-mb-6">
-            AlgaCoin — это токен, управляемый сообществом со множеством будущих
-            проектов и партнёрств, направленный на повышение уровня жизни
-            участников сообщества путём создания экологичных бизнес-проектов
+          <div
+            class="
+              tw-text-xxs-1
+              xl:tw-text-sm
+              tw-font-normal tw-mb-3
+              xl:tw-mb-6
+            "
+          >
+            {{ $t('landing.about.body') }}
           </div>
 
           <div class="tw-text-secondary">
             <div class="tw-text-md2 xl:tw-text-md1">999 255 265</div>
-            <div class="tw-text-xxs">монет</div>
+            <div class="tw-text-xxs">{{ $t('landing.about.bottom') }}</div>
             <template v-if="$q.screen.lt.xl">
               <div class="tw-text-md2">55 265</div>
-              <div class="tw-text-xxs">кошельков</div>
+              <div class="tw-text-xxs">{{ $t('landing.about.wallets') }}</div>
             </template>
           </div>
         </div>

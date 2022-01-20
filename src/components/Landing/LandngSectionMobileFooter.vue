@@ -4,7 +4,7 @@
     <div class="tw-space-y-1">
       <AppLink
         class="tw-block tw-py-4 tw-text-white tw-text-xs"
-        v-for="link in footer"
+        v-for="link in footer($t)"
         :key="link.label"
         :to="link.to"
       >

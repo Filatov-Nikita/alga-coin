@@ -3,15 +3,9 @@
     name="eco-start"
     class="tw-py-2 tw-relative landing-h-center"
   >
-    <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-2-1">
-      Экосистема
-    </h2>
-    <div v-else class="landing-h2--space">
-      <h2 class="landing-h2 tw-mb-9">ЭКОСИСТЕМА</h2>
-      <p class="tw-max-w-sm">
-        Alga Ecosystem стремится стать одним из сильнейших сообществ в мире для
-        создания безопасных, экологичных и рентабельных проектов в будущем
-      </p>
+    <div class="landing-h2--space">
+      <h2 class="landing-h2 tw-mb-9">{{ $t('header') }}</h2>
+      <p class="tw-max-w-sm">{{ $t('description') }}</p>
     </div>
 
     <div class="landing-c-up tw-flex tw-justify-between">
@@ -64,6 +58,20 @@ import { markRaw } from 'vue';
 import LandingLogo from './LandingLogo.vue';
 
 export default {
+  i18n: {
+    messages: {
+      en: {
+        header: 'ECOSYSTEM',
+        description:
+          'Alga Ecosystem aims to become one of the strongest communities in the world for creating safe, environmentally friendly and cost-effective projects in the future',
+      },
+      ru: {
+        header: 'ЭКОСИСТЕМА',
+        description:
+          'Alga Ecosystem стремится стать одним из сильнейших сообществ в мире для создания безопасных, экологичных и рентабельных проектов в будущем',
+      },
+    },
+  },
   setup() {
     const icons = markRaw([
       {

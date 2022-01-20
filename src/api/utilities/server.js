@@ -3,6 +3,7 @@ import * as Tokens from "./tokens";
 
 export default class ServiceApi {
   constructor(domain, opts) {
+    this.lang = "ru";
     this.domain = domain;
     this.opts = opts;
     this.tokenName = opts.tokenName;
@@ -15,6 +16,13 @@ export default class ServiceApi {
     return ky.create({
       prefixUrl: `${this.domain}/${this.opts.apiPath}`,
       timeout: this.opts.timeout,
+      hooks: {
+        beforeRequest: [
+          (request) => {
+            if (this.lang) request.headers.set("Accept-Language", this.lang);
+          },
+        ],
+      },
     });
   }
 
@@ -44,5 +52,9 @@ export default class ServiceApi {
 
   registrHandleRejectionToken(handler) {
     this.handleRejectionToken = handler;
+  }
+
+  setLang(langName) {
+    this.lang = langName;
   }
 }

@@ -5,9 +5,11 @@
     :class="{ 'landing-h-center': $q.screen.lt.xl }"
   >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-mb-7-1 tw-text-center">
-      Новости
+      {{ $t('header') }}
     </h2>
-    <h2 v-else class="landing-h2 landing-h2--space tw-uppercase">Новости</h2>
+    <h2 v-else class="landing-h2 landing-h2--space tw-uppercase">
+      {{ $t('header') }}
+    </h2>
 
     <div v-if="$q.screen.xl" class="app-row app-gutter-col-x">
       <div class="app-col-4"></div>
@@ -64,6 +66,12 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  i18n: {
+    messages: {
+      en: { header: 'News' },
+      ru: { header: 'Новости' },
+    },
+  },
   computed: {
     ...mapGetters('landing', ['news']),
   },

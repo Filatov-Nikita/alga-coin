@@ -2,7 +2,11 @@
   <div class="tw-pt-6">
     <div class="tw-flex tw-justify-between tw-mb-3">
       <div class="app-logo-2">
-        <img class="app-logo-i" src="~assets/images/app-logo-3.svg" alt="логотип" />
+        <img
+          class="app-logo-i"
+          src="~assets/images/app-logo-3.svg"
+          alt="логотип"
+        />
       </div>
       <div class="tw-flex tw-space-x-3">
         <a href="#">
@@ -32,7 +36,7 @@
     <div class="tw-flex tw-justify-between tw-text-xxs">
       <div>AlgaCoin © {{ $fullYear }}</div>
       <div>
-        <a href="#">Условия обслуживания</a>
+        <a href="#">{{ $t('landing.footer.serviceInfo') }}</a>
       </div>
     </div>
   </div>

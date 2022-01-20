@@ -1,14 +1,14 @@
 import * as landingAPI from "src/api/landing";
-
+import {} from "vue-i18n";
 export default {
   namespaced: true,
   state: {
     projects: null,
     news: null,
-    footer: [
+    footer: (t) => [
       { label: "White paper", to: "#" },
       { label: "Alga Ecosystem", to: "#" },
-      { label: "Почему Alga", to: "#" },
+      { label: t("landing.footer.whyAlga"), to: "#" },
       { label: "Alga Market", to: "#" },
     ],
     curEco: "BANKING",

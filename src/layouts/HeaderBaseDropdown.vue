@@ -9,24 +9,26 @@
 
         <router-link class="user-menu__item" :to="{ name: 'profile' }">
           <InlineSvg :src="require('assets/profile.svg')" />
-          <div class="user-menu__item-name">Личный кабинет</div>
+          <div class="user-menu__item-name">{{ $t('landing.header.lk') }}</div>
         </router-link>
         <a class="user-menu__item" href="#" @click="$app.logout">
           <InlineSvg :src="require('assets/logout.svg')" />
-          <div class="user-menu__item-name">Выйти</div>
+          <div class="user-menu__item-name">
+            {{ $t('landing.header.logout') }}
+          </div>
         </a>
       </template>
       <div v-else class="tw-pb-6">
         <AppButton
           fullWidth
-          label="Зарегистрироваться"
+          :label="$t('landing.header.registr')"
           :to="{ name: 'auth.registr' }"
           class="tw-mb-2-1"
         />
         <AppButton
           :icon="require('assets/profile.svg')"
           fullWidth
-          label="Авторизоваться"
+          :label="$t('landing.header.auth')"
           :to="{ name: 'auth.login' }"
           design="flat"
           textClass="tw-text-xxs"

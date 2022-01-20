@@ -20,6 +20,7 @@
 
 <script>
 import { markRaw, inject } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default {
   props: {
@@ -32,7 +33,8 @@ export default {
   setup(props, { emit }) {
     const theme = inject('theme');
     const themes = inject('themes');
-    const list = markRaw(getItems());
+    const { t } = useI18n();
+    const list = markRaw(getItems(t));
 
     const to = (index) => {
       emit('to', index);
@@ -67,32 +69,32 @@ export default {
   },
 };
 
-function getItems() {
+function getItems(t) {
   return [
     {
-      label: 'О токене',
+      label: t('landing.menu.about'),
       to: { name: 'home', query: { section: 'advantages' } },
     },
     {
-      label: 'Фишки проекта',
+      label:  t('landing.menu.features'),
       to: { name: 'home', query: { section: 'features' } },
     },
     {
-      label: 'Резиденты',
+      label: t('landing.menu.owners'),
       to: { name: 'home', query: { section: 'owners' } },
     },
     {
-      label: 'Экосистема',
+      label: t('landing.menu.ecosystem'),
       to: { name: 'home', query: { section: 'ecosystem' } },
       children: [{ section: 'eco-start' }],
     },
     {
-      label: 'Проекты',
+      label: t('landing.menu.projects'),
       to: { name: 'home', query: { section: 'projects' } },
       children: ['projects.show'],
     },
     {
-      label: 'Новости',
+      label: t('landing.menu.news'),
       to: { name: 'home', query: { section: 'news' } },
       children: ['articles.show'],
     },

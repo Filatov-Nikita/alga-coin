@@ -4,8 +4,10 @@
       <div class="footer-landing__content">
         <div>Alga© {{ $fullYear }}</div>
 
-        <AppLink class="tw-text-xxs tw-text-white" :to="$app.links.serviceInfo"
-          >Условия обслуживания</AppLink
+        <AppLink
+          class="tw-text-xxs tw-text-white"
+          :to="$app.links.serviceInfo"
+          >{{ $t('landing.footer.serviceInfo') }}</AppLink
         >
 
         <q-space />
@@ -15,7 +17,7 @@
             <div class="footer-landing__list">
               <AppLink
                 class="tw-text-xxs tw-text-white"
-                v-for="link in footer"
+                v-for="link in footer($t)"
                 :key="link.label"
                 :to="link.to"
               >

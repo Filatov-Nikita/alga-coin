@@ -1,17 +1,21 @@
 <template>
   <q-page class="tw-pt-6 tw-pb-16">
     <div class="tw-container">
-      <h1 class="tw-text-sm xl:tw-text-md1 tw-text-center">
-        Оставьте заявку <br />
-        на рассмотрение <br />
-        инвестиционного проекта
-      </h1>
+      <h1
+        class="tw-text-sm xl:tw-text-md1 tw-text-center"
+        v-html="$t('header')"
+      ></h1>
       <Form
         class="tw-space-y-4-1 xl:tw-w-1/2 xl:tw-mx-auto"
         @submit="createOffer"
         v-slot="{ isSubmitting }"
       >
-        <AppInput rules="required" name="name" placeholder="Имя" label="Имя" />
+        <AppInput
+          rules="required"
+          name="name"
+          :placeholder="$t('form.name.placeholder')"
+          :label="$t('form.name.label')"
+        />
         <AppInput
           rules="required"
           name="email"
@@ -22,21 +26,21 @@
           rules="required"
           type="tel"
           name="cellphone"
-          placeholder="Телефон"
-          label="Номер телефона"
+          :placeholder="$t('form.cellphone.placeholder')"
+          :label="$t('form.cellphone.label')"
         />
         <AppInput
           rules="required"
           name="description"
-          placeholder="Коротко опишите идею проекта ..."
-          label="Описание"
+          :placeholder="$t('form.description.placeholder')"
+          :label="$t('form.description.label')"
           type="textarea"
         />
 
         <AppInput
           rules="required"
           name="doc"
-          label="Прикрепите файл (pdf, doc, jpeg, zip, rar)"
+          :label="$t('form.doc.label')"
           type="file"
         />
 
@@ -44,9 +48,10 @@
           rules="required"
           name="service"
           class="tw-text-xxs-2 tw-w-2/3"
-          >Я ознакомился(ась) и соглашаюсь с
+        >
+          {{ $t('form.agree') }}
           <AppLink :to="$app.links.serviceInfo">
-            Условиями обслуживания</AppLink
+            {{ $t('landing.footer.serviceInfo') }}</AppLink
           >
           AlgaCoin</AppCheckbox
         >
@@ -54,7 +59,7 @@
           :disabled="isSubmitting"
           type="submit"
           fullWidth
-          label="Оставить заявку"
+          :label="$t('form.btn')"
         />
       </Form>
       <AppModal
@@ -67,15 +72,13 @@
           src="~assets/images/logo.svg"
           alt="logo"
         />
-        <p class="tw-text-xs tw-text-center">
-          Спасибо, ваш проект принят на рассмотрение!
-        </p>
+        <p class="tw-text-xs tw-text-center"></p>
         <AppButton
           class="tw-absolute tw-right-3 tw-top-3"
           design="flat"
           @click="close"
         >
-          <span class="tw-text-xxs-2">Закрыть</span>
+          <span class="tw-text-xxs-2">{{ $t('buttons.close') }}</span>
         </AppButton>
       </AppModal>
     </div>
@@ -87,6 +90,58 @@ import { useStore } from 'vuex';
 import { useDialog } from 'src/plugins/app-dialog';
 
 export default {
+  i18n: {
+    messages: {
+      ru: {
+        header:
+          'Оставьте заявку <br /> на рассмотрение <br /> инвестиционного проекта',
+        form: {
+          name: {
+            label: 'Имя',
+            placeholder: 'Имя',
+          },
+          cellphone: {
+            label: 'Номер телефона',
+            placeholder: 'Телефон',
+          },
+          description: {
+            label: 'Описание',
+            placeholder: 'Коротко опишите идею проекта...',
+          },
+          doc: {
+            label: 'Прикрепите файл (pdf, doc, jpeg, zip, rar)',
+          },
+          agree: 'Я ознакомился(ась) и соглашаюсь с',
+          btn: 'Оставить заявку',
+        },
+        suucessMsg: 'Спасибо, ваш проект принят на рассмотрение!',
+      },
+      en: {
+        header:
+          'Leave a request <br /> for consideration <br /> investment project',
+        suucessMsg: 'Thank you, your project has been accepted!',
+        form: {
+          name: {
+            label: 'Name',
+            placeholder: 'Name',
+          },
+          cellphone: {
+            label: 'Phone number',
+            placeholder: 'phone',
+          },
+          description: {
+            label: 'Description',
+            placeholder: 'Briefly describe your project idea...',
+          },
+          doc: {
+            label: 'Attach file (pdf, doc, jpeg, zip, rar)',
+          },
+          agree: 'I have read and agree to',
+          btn: 'Submit your offer',
+        },
+      },
+    },
+  },
   setup() {
     const store = useStore();
     const appDialog = useDialog();

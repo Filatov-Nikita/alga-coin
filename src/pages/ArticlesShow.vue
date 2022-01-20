@@ -4,7 +4,7 @@
       <div class="xl:app-col-4">
         <section v-if="$q.screen.xl">
           <h2 class="tw-text-secondary tw-text-xs tw-uppercase tw-mb-6">
-            Новости
+            {{ $t('header') }}
           </h2>
           <ArticlesLast :items="recomendedList" v-if="recomendedList" />
         </section>
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div v-else>
-      <h1 class="app-h1">404 Запрашиваемый ресурс не найден</h1>
+      <h1 class="app-h1">{{ $t('404') }}</h1>
     </div>
   </q-page>
 </template>
@@ -46,6 +46,18 @@ import { watchEffect, ref, computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
+  i18n: {
+    messages: {
+      ru: {
+        header: 'Новости',
+        404: '404 Запрашиваемый ресурс не найден',
+      },
+      en: {
+        header: 'News',
+        404: '404 Not found resource',
+      },
+    },
+  },
   props: {
     id: {
       required: true,
