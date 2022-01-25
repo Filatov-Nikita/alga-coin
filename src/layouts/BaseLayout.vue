@@ -12,7 +12,7 @@
         <div class="tw-container">
           <div class="header-desktop">
             <span> Alga© {{ $fullYear }} </span>
-            <AppLink to="#" target="_blank">Условия обслуживания</AppLink>
+            <AppLink to="#" target="_blank">{{$t('landing.footer.serviceInfo')}}</AppLink>
           </div>
         </div>
       </div>

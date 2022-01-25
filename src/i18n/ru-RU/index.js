@@ -2,6 +2,13 @@ export default {
   buttons: {
     close: "Закрыть",
   },
+  lk: {
+    menu: {
+      wallet: "Кошелек",
+      history: "История операций",
+      output: "Вывод",
+    },
+  },
   landing: {
     header: {
       auth: "Авторизоваться",

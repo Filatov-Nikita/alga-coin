@@ -2,7 +2,7 @@
   <div class="nav-menu">
     <div class="nav-menu__links app-row">
       <router-link
-        v-for="item in items"
+        v-for="item in items($t)"
         :key="item.to"
         :to="item.to"
         custom
@@ -23,17 +23,17 @@
 <script>
 export default {
   setup() {
-    const items = [
+    const items = (t) => [
       {
-        label: 'Кошелек',
+        label: t('lk.menu.wallet'),
         to: { name: 'wallet' },
       },
       {
-        label: 'История операций',
+        label: t('lk.menu.history'),
         to: { name: 'history' },
       },
       {
-        label: 'Вывод',
+        label: t('lk.menu.output'),
         to: { name: 'output' },
       },
     ];

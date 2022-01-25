@@ -2,15 +2,15 @@
   <div class="lang-toolbar">
     <div
       class="lang-toolbar__item"
-      :class="{ 'lang-toolbar__item--active': currentLang === 'en' }"
-      @click="updateLang('en')"
+      :class="{ 'lang-toolbar__item--active': currentLang === 'en-US' }"
+      @click="updateLang('en-US')"
     >
       En
     </div>
     <div
       class="lang-toolbar__item"
-      :class="{ 'lang-toolbar__item--active': currentLang === 'ru' }"
-      @click="updateLang('ru')"
+      :class="{ 'lang-toolbar__item--active': currentLang === 'ru-RU' }"
+      @click="updateLang('ru-RU')"
     >
       Ru
     </div>

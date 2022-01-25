@@ -51,10 +51,10 @@
         >
           {{ $t('form.agree') }}
           <AppLink :to="$app.links.serviceInfo">
-            {{ $t('landing.footer.serviceInfo') }}</AppLink
-          >
-          AlgaCoin</AppCheckbox
-        >
+            {{ $t('landing.footer.serviceInfo') }}
+          </AppLink>
+          AlgaCoin
+        </AppCheckbox>
         <AppButton
           :disabled="isSubmitting"
           type="submit"
@@ -92,7 +92,7 @@ import { useDialog } from 'src/plugins/app-dialog';
 export default {
   i18n: {
     messages: {
-      ru: {
+      'ru-RU': {
         header:
           'Оставьте заявку <br /> на рассмотрение <br /> инвестиционного проекта',
         form: {
@@ -116,7 +116,7 @@ export default {
         },
         suucessMsg: 'Спасибо, ваш проект принят на рассмотрение!',
       },
-      en: {
+      'en-US': {
         header:
           'Leave a request <br /> for consideration <br /> investment project',
         suucessMsg: 'Thank you, your project has been accepted!',

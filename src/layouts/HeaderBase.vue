@@ -6,7 +6,11 @@
           <div class="app-row app-gutter-col-x tw-items-center">
             <div class="xl:app-col-5">
               <a href="#" class="app-logo-2">
-                <img class="app-logo-i" src="~assets/images/app-logo-3.svg" alt="логотип" />
+                <img
+                  class="app-logo-i"
+                  src="~assets/images/app-logo-3.svg"
+                  alt="логотип"
+                />
               </a>
             </div>
 
@@ -17,7 +21,10 @@
             <div class="tw-flex-grow"></div>
 
             <div class="app-row tw-items-center tw-space-x-4">
-              <LangToolbar currentLang="ru" />
+              <LangToolbar
+                :currentLang="$i18n.locale"
+                @update:lang="onChangeLang"
+              />
               <!-- Кнопка открыть мобильное меню -->
               <button v-if="$q.screen.lt.xl" @click="showMenu = !showMenu">
                 <UserAvatar width="30px" height="30px" />
@@ -58,6 +65,9 @@ export default {
   methods: {
     close() {
       this.showMenu = false;
+    },
+    onChangeLang(lang) {
+      window.app.setLocale(lang, true);
     },
   },
   computed: {

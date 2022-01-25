@@ -1,6 +1,13 @@
 export default {
   buttons: {
-    close: 'Close'
+    close: "Close",
+  },
+  lk: {
+    menu: {
+      wallet: "Wallet",
+      history: "History",
+      output: "Output",
+    },
   },
   landing: {
     header: {
@@ -8,7 +15,7 @@ export default {
       registr: "Sign up",
       promoText: "Legal unconditional <br/> global assets",
       lk: "Profile",
-      logout: 'Logout'
+      logout: "Logout",
     },
     footer: {
       serviceInfo: "Terms of Service",
