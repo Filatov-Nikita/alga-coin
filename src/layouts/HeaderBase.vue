@@ -5,7 +5,7 @@
         <div class="tw-pt-safe">
           <div class="app-row app-gutter-col-x tw-items-center">
             <div class="xl:app-col-5">
-              <a href="#" class="app-logo-2">
+              <a href="#" class="app-logo-2 tw-block">
                 <img
                   class="app-logo-i"
                   src="~assets/images/app-logo-3.svg"
