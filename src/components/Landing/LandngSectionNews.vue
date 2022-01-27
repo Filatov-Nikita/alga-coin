@@ -5,10 +5,10 @@
     :class="{ 'landing-h-center': $q.screen.lt.xl }"
   >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-mb-7-1 tw-text-center">
-      {{ $t('header') }}
+      {{ t('header') }}
     </h2>
     <h2 v-else class="landing-h2 landing-h2--space tw-uppercase">
-      {{ $t('header') }}
+      {{ t('header') }}
     </h2>
 
     <div v-if="$q.screen.xl" class="app-row app-gutter-col-x">
@@ -20,7 +20,11 @@
             :key="newsItem.id"
             class="app-col-6 tw-flex tw-flex-col"
           >
-            <q-img class="article__pic" :src="newsItem.announceImage.url" />
+            <q-img
+              v-if="newsItem.announceImage"
+              class="article__pic"
+              :src="newsItem.announceImage.url"
+            />
             <div class="article__bottom tw-flex-grow tw-flex tw-flex-col">
               <div class="tw-mb-3-1">
                 {{ newsItem.title }}
@@ -46,7 +50,11 @@
         :key="newsItem.id"
         :name="`${newsItem.id}`"
       >
-        <q-img class="article__pic" :src="newsItem.announceImage.url" />
+        <q-img
+          v-if="newsItem.announceImage"
+          class="article__pic"
+          :src="newsItem.announceImage.url"
+        />
         <div class="article__bottom">
           <div class="tw-mb-3-1">
             {{ newsItem.title }}
@@ -63,14 +71,20 @@
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n';
 import { mapGetters } from 'vuex';
 
+const i18n = {
+  messages: {
+    'en-US': { header: 'News' },
+    'ru-RU': { header: 'Новости' },
+  },
+};
+
 export default {
-  i18n: {
-    messages: {
-      en: { header: 'News' },
-      ru: { header: 'Новости' },
-    },
+  setup() {
+    const { t } = useI18n(i18n);
+    return { t };
   },
   computed: {
     ...mapGetters('landing', ['news']),

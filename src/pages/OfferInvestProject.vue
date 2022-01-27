@@ -3,7 +3,7 @@
     <div class="tw-container">
       <h1
         class="tw-text-sm xl:tw-text-md1 tw-text-center"
-        v-html="$t('header')"
+        v-html="t('header')"
       ></h1>
       <Form
         class="tw-space-y-4-1 xl:tw-w-1/2 xl:tw-mx-auto"
@@ -13,8 +13,8 @@
         <AppInput
           rules="required"
           name="name"
-          :placeholder="$t('form.name.placeholder')"
-          :label="$t('form.name.label')"
+          :placeholder="t('form.name.placeholder')"
+          :label="t('form.name.label')"
         />
         <AppInput
           rules="required"
@@ -26,21 +26,21 @@
           rules="required"
           type="tel"
           name="cellphone"
-          :placeholder="$t('form.cellphone.placeholder')"
-          :label="$t('form.cellphone.label')"
+          :placeholder="t('form.cellphone.placeholder')"
+          :label="t('form.cellphone.label')"
         />
         <AppInput
           rules="required"
           name="description"
-          :placeholder="$t('form.description.placeholder')"
-          :label="$t('form.description.label')"
+          :placeholder="t('form.description.placeholder')"
+          :label="t('form.description.label')"
           type="textarea"
         />
 
         <AppInput
           rules="required"
           name="doc"
-          :label="$t('form.doc.label')"
+          :label="t('form.doc.label')"
           type="file"
         />
 
@@ -49,7 +49,7 @@
           name="service"
           class="tw-text-xxs-2 tw-w-2/3"
         >
-          {{ $t('form.agree') }}
+          {{ t('form.agree') }}
           <AppLink :to="$app.links.serviceInfo">
             {{ $t('landing.footer.serviceInfo') }}
           </AppLink>
@@ -59,7 +59,7 @@
           :disabled="isSubmitting"
           type="submit"
           fullWidth
-          :label="$t('form.btn')"
+          :label="t('form.btn')"
         />
       </Form>
       <AppModal
@@ -88,63 +88,66 @@
 <script>
 import { useStore } from 'vuex';
 import { useDialog } from 'src/plugins/app-dialog';
+import { useI18n } from 'vue-i18n';
 
-export default {
-  i18n: {
-    messages: {
-      'ru-RU': {
-        header:
-          'Оставьте заявку <br /> на рассмотрение <br /> инвестиционного проекта',
-        form: {
-          name: {
-            label: 'Имя',
-            placeholder: 'Имя',
-          },
-          cellphone: {
-            label: 'Номер телефона',
-            placeholder: 'Телефон',
-          },
-          description: {
-            label: 'Описание',
-            placeholder: 'Коротко опишите идею проекта...',
-          },
-          doc: {
-            label: 'Прикрепите файл (pdf, doc, jpeg, zip, rar)',
-          },
-          agree: 'Я ознакомился(ась) и соглашаюсь с',
-          btn: 'Оставить заявку',
+const i18n = {
+  messages: {
+    'ru-RU': {
+      header:
+        'Оставьте заявку <br /> на рассмотрение <br /> инвестиционного проекта',
+      form: {
+        name: {
+          label: 'Имя',
+          placeholder: 'Имя',
         },
-        suucessMsg: 'Спасибо, ваш проект принят на рассмотрение!',
+        cellphone: {
+          label: 'Номер телефона',
+          placeholder: 'Телефон',
+        },
+        description: {
+          label: 'Описание',
+          placeholder: 'Коротко опишите идею проекта...',
+        },
+        doc: {
+          label: 'Прикрепите файл (pdf, doc, jpeg, zip, rar)',
+        },
+        agree: 'Я ознакомился(ась) и соглашаюсь с',
+        btn: 'Оставить заявку',
       },
-      'en-US': {
-        header:
-          'Leave a request <br /> for consideration <br /> investment project',
-        suucessMsg: 'Thank you, your project has been accepted!',
-        form: {
-          name: {
-            label: 'Name',
-            placeholder: 'Name',
-          },
-          cellphone: {
-            label: 'Phone number',
-            placeholder: 'phone',
-          },
-          description: {
-            label: 'Description',
-            placeholder: 'Briefly describe your project idea...',
-          },
-          doc: {
-            label: 'Attach file (pdf, doc, jpeg, zip, rar)',
-          },
-          agree: 'I have read and agree to',
-          btn: 'Submit your offer',
+      suucessMsg: 'Спасибо, ваш проект принят на рассмотрение!',
+    },
+    'en-US': {
+      header:
+        'Leave a request <br /> for consideration <br /> investment project',
+      suucessMsg: 'Thank you, your project has been accepted!',
+      form: {
+        name: {
+          label: 'Name',
+          placeholder: 'Name',
         },
+        cellphone: {
+          label: 'Phone number',
+          placeholder: 'phone',
+        },
+        description: {
+          label: 'Description',
+          placeholder: 'Briefly describe your project idea...',
+        },
+        doc: {
+          label: 'Attach file (pdf, doc, jpeg, zip, rar)',
+        },
+        agree: 'I have read and agree to',
+        btn: 'Submit your offer',
       },
     },
   },
+};
+
+export default {
   setup() {
     const store = useStore();
     const appDialog = useDialog();
+    const { t } = useI18n(i18n);
 
     const createOffer = async (values, { setErrors, resetForm }) => {
       values.file = values.doc[0];
@@ -169,11 +172,9 @@ export default {
     };
 
     return {
+      t,
       createOffer,
     };
   },
 };
 </script>
-
-<style>
-</style>

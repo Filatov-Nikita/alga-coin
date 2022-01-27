@@ -9,14 +9,14 @@
       "
     >
       <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-7-1">
-        {{ $t('mHeader') }}
+        {{ t('mHeader') }}
       </h2>
       <h2
         v-else
         class="landing-h2 landing-h2--space"
         :style="{ color: themes[theme] }"
       >
-        {{ $t('header') }}
+        {{ t('header') }}
       </h2>
 
       <!-- мобильная версия -->
@@ -80,12 +80,12 @@
                 :to="{ name: 'offer-project' }"
               />
             </div>
-            <h3 class="tw-text-xs tw-mb-2">{{ $t('join.text1') }}</h3>
+            <h3 class="tw-text-xs tw-mb-2">{{ t('join.text1') }}</h3>
             <p
               :style="{ color: themes[theme] }"
               class="tw-text-xxs-1 tw-tracking-mid"
             >
-              {{ $t('join.text2') }}
+              {{ t('join.text2') }}
             </p>
           </article>
           <InlineSvg
@@ -168,9 +168,9 @@
               @enter="changeTheme('blue', 'dark-blue')"
             >
               <article class="tw-absolute tw-w-full tw-max-w-lg">
-                <h3 class="tw-text-lg tw-mb-1" v-html="$t('join.text1')"></h3>
+                <h3 class="tw-text-lg tw-mb-1" v-html="t('join.text1')"></h3>
                 <p :style="{ color: themes[theme] }" class="tw-tracking-mid">
-                  {{ $t('join.text2') }}
+                  {{ t('join.text2') }}
                 </p>
               </article>
               <InlineSvg
@@ -190,10 +190,11 @@
 </template>
 
 <script>
-import { inject } from 'vue';
+import { inject, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const messages = {
-  ru: {
+  'ru-RU': {
     mHeader: 'Резиденты Alga',
     header: 'РЕЗИДЕНТЫ',
     slider: {
@@ -213,7 +214,7 @@ const messages = {
       text2: 'ЗАРЕГИСТРИРОВАТЬСЯ В СИСТЕМЕ',
     },
   },
-  en: {
+  'en-US': {
     mHeader: 'Alga Residents',
     header: 'RESIDENTS',
     slider: {
@@ -236,38 +237,34 @@ const messages = {
 };
 
 export default {
-  i18n: {
-    messages,
-  },
-  computed: {
-    items() {
-      const t = this.$t;
-      return [
-        {
-          firstName: t('slider.slide1.firstName'),
-          secondName: t('slider.slide1.secondName'),
-          position: t('slider.slide1.position'),
-          theme: 'blue',
-          screenBg: 'blue',
-          avatar: 'images/owner-1.png',
-        },
-        {
-          firstName: t('slider.slide2.firstName'),
-          secondName: t('slider.slide2.secondName'),
-          position: t('slider.slide2.position'),
-          theme: 'darkGreen',
-          screenBg: 'green',
-          avatar: 'images/owner-2.png',
-        },
-      ];
-    },
-  },
   setup() {
     const theme = inject('theme');
     const themes = inject('themes');
     const switchTheme = inject('switchTheme');
     const updateBg = inject('updateBg');
     const updateTheme = inject('updateTheme');
+    const { t } = useI18n({
+      messages,
+    });
+
+    const items = computed(() => [
+      {
+        firstName: t('slider.slide1.firstName'),
+        secondName: t('slider.slide1.secondName'),
+        position: t('slider.slide1.position'),
+        theme: 'blue',
+        screenBg: 'blue',
+        avatar: 'images/owner-1.png',
+      },
+      {
+        firstName: t('slider.slide2.firstName'),
+        secondName: t('slider.slide2.secondName'),
+        position: t('slider.slide2.position'),
+        theme: 'darkGreen',
+        screenBg: 'green',
+        avatar: 'images/owner-2.png',
+      },
+    ]);
 
     const changeTheme = (themeName, bgName) => {
       setTimeout(() => {
@@ -280,10 +277,12 @@ export default {
     return {
       theme,
       themes,
+      items,
       switchTheme,
       updateBg,
       updateTheme,
       changeTheme,
+      t,
     };
   },
 };

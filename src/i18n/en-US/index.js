@@ -1,6 +1,13 @@
 export default {
   buttons: {
     close: "Close",
+    logIn: "Log in",
+    registr: "Sign up",
+    resetPass: "Forgot your password?",
+  },
+  inputs: {
+    cellphone: "Phone",
+    password: "Password",
   },
   lk: {
     menu: {

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { markRaw, inject } from 'vue';
+import { inject, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 export default {
@@ -30,19 +30,19 @@ export default {
     },
   },
   emits: ['to'],
-  setup(props, { emit }) {
+  setup(_props, { emit }) {
     const theme = inject('theme');
     const themes = inject('themes');
     const { t } = useI18n();
-    const list = markRaw(getItems(t));
+    const list = computed(() => getItems(t));
 
     const to = (index) => {
       emit('to', index);
     };
 
     return {
-      list,
       to,
+      list,
       theme,
       themes,
     };
@@ -76,7 +76,7 @@ function getItems(t) {
       to: { name: 'home', query: { section: 'advantages' } },
     },
     {
-      label:  t('landing.menu.features'),
+      label: t('landing.menu.features'),
       to: { name: 'home', query: { section: 'features' } },
     },
     {

@@ -18,10 +18,12 @@ export default ({ app }) => {
   }
 
   const i18n = createI18n({
-    silentFallbackWarn: true,
     locale: curLocale,
-    fallbackLocale: "ru-RU",
+    legacy: false,
+    globalInjection: true,
+    warnHtmlMessage: false,
     messages,
+    fallbackLocale: "ru-RU",
   });
 
   app.use(i18n);
@@ -39,7 +41,7 @@ export default ({ app }) => {
   window.app.setLocale = setLocale;
 
   function setLocale(lang, reload = false) {
-    i18n.global.locale = lang;
+    i18n.locale = lang;
     window.localStorage.setItem("locale", lang);
 
     const serverLocale = lang.slice(0, 2);

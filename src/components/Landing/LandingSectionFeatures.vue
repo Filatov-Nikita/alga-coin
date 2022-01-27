@@ -4,9 +4,9 @@
     class="landing-page-y landing-h-center tw-relative"
   >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-7-1">
-      {{ $t('mHeader') }}
+      {{ t('mHeader') }}
     </h2>
-    <h2 v-else class="landing-h2 landing-h2--space" v-html="$t('header')"></h2>
+    <h2 v-else class="landing-h2 landing-h2--space" v-html="t('header')"></h2>
     <AppCarousel v-if="$q.screen.lt.xl">
       <AppCarouselSlide
         v-for="(slide, index) in slides"
@@ -63,89 +63,95 @@
 </template>
 
 <script>
-export default {
-  i18n: {
-    messages: {
-      en: {
-        header: 'PROJECT <br /> FEATURES',
-        mHeader: 'Project Features',
-        slider: {
-          slide1:
-            'Alga Ecosystem is a decentralized autonomous organization (DAO) that creates products to enter new markets within the traditional and digital economy',
-          slide2:
-            'Alga is an ecosystem created for the full circulation of digital assets and provides greater liquidity in the digital market',
-          slide3:
-            'Alga is a world of great opportunities, where participants are constantly moving towards receiving a basic unconditional income, regardless of social status, age and place of work',
-          slide4: 'Alga - ample opportunities for investing in digital assets',
-          slide5:
-            'Alga is a community where everyone can submit a proposal and vote on initiatives for mutual success',
-          slide6:
-            'Alga is a new launching NFT platform for creative startups for beginners and experienced artists',
-        },
-      },
-      ru: {
-        header: 'ФИШКИ <br /> ПРОЕКТА',
-        mHeader: 'Особенности проекта',
-        slider: {
-          slide1:
-            'Alga Ecosystem — децентрализованная автономная организация (DAO), создающая продукты для выхода на новые рынки в рамках традиционной и цифровой экономики',
-          slide2:
-            'Alga — это экосистема, созданная для полного обращения цифровых активов и обеспечивающая большую ликвидность на цифровом рынке',
-          slide3:
-            'Alga — это мир больших возможностей, где участники безостановочно двигаются к получению базового безусловного дохода вне зависимости от социального статуса, возраста и места работы',
-          slide4:
-            'Alga — широкие возможности для инвестирования в цифровые активы',
-          slide5:
-            'Alga — это сообщество, где каждый может подать предложение и голосовать за инициативы для достижения взаимного успеха',
-          slide6:
-            'Alga — это новая стартовая NFT-площадка творческих стартапов для начинающих и опытных представителей искусства',
-        },
-      },
+import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
+
+const messages = {
+  'en-US': {
+    header: 'PROJECT <br /> FEATURES',
+    mHeader: 'Project Features',
+    slider: {
+      slide1:
+        'Alga Ecosystem is a decentralized autonomous organization (DAO) that creates products to enter new markets within the traditional and digital economy',
+      slide2:
+        'Alga is an ecosystem created for the full circulation of digital assets and provides greater liquidity in the digital market',
+      slide3:
+        'Alga is a world of great opportunities, where participants are constantly moving towards receiving a basic unconditional income, regardless of social status, age and place of work',
+      slide4: 'Alga - ample opportunities for investing in digital assets',
+      slide5:
+        'Alga is a community where everyone can submit a proposal and vote on initiatives for mutual success',
+      slide6:
+        'Alga is a new launching NFT platform for creative startups for beginners and experienced artists',
     },
   },
-  data() {
-    const getSlides = (t) => [
-      [
-        {
-          icon: require('assets/images/landing/landing-feat-1.svg'),
-          text: t('slider.slide1'),
-          icon2: require('assets/icons/feat-world.svg'),
-        },
-        {
-          icon: require('assets/images/landing/landing-feat-2.svg'),
-          text: t('slider.slide2'),
-          icon2: require('assets/icons/feat-eco.svg'),
-        },
-      ],
-      [
-        {
-          icon: require('assets/images/landing/landing-feat-3.svg'),
-          text: t('slider.slide3'),
-          icon2: require('assets/icons/feat-opp.svg'),
-        },
-        {
-          icon: require('assets/images/landing/landing-feat-4.svg'),
-          text: t('slider.slide4'),
-          icon2: require('assets/icons/feat-crypto.svg'),
-        },
-      ],
-      [
-        {
-          icon2: require('assets/icons/feat-community.svg'),
-          icon: require('assets/images/landing/landing-feat-5.svg'),
-          text: t('slider.slide5'),
-        },
-        {
-          icon2: require('assets/icons/feat-nft.svg'),
-          icon: require('assets/images/landing/landing-feat-6.svg'),
-          text: t('slider.slide6'),
-        },
-      ],
-    ];
+  'ru-RU': {
+    header: 'ФИШКИ <br /> ПРОЕКТА',
+    mHeader: 'Особенности проекта',
+    slider: {
+      slide1:
+        'Alga Ecosystem — децентрализованная автономная организация (DAO), создающая продукты для выхода на новые рынки в рамках традиционной и цифровой экономики',
+      slide2:
+        'Alga — это экосистема, созданная для полного обращения цифровых активов и обеспечивающая большую ликвидность на цифровом рынке',
+      slide3:
+        'Alga — это мир больших возможностей, где участники безостановочно двигаются к получению базового безусловного дохода вне зависимости от социального статуса, возраста и места работы',
+      slide4: 'Alga — широкие возможности для инвестирования в цифровые активы',
+      slide5:
+        'Alga — это сообщество, где каждый может подать предложение и голосовать за инициативы для достижения взаимного успеха',
+      slide6:
+        'Alga — это новая стартовая NFT-площадка творческих стартапов для начинающих и опытных представителей искусства',
+    },
+  },
+};
 
+const getSlides = (t) => [
+  [
+    {
+      icon: require('assets/images/landing/landing-feat-1.svg'),
+      text: t('slider.slide1'),
+      icon2: require('assets/icons/feat-world.svg'),
+    },
+    {
+      icon: require('assets/images/landing/landing-feat-2.svg'),
+      text: t('slider.slide2'),
+      icon2: require('assets/icons/feat-eco.svg'),
+    },
+  ],
+  [
+    {
+      icon: require('assets/images/landing/landing-feat-3.svg'),
+      text: t('slider.slide3'),
+      icon2: require('assets/icons/feat-opp.svg'),
+    },
+    {
+      icon: require('assets/images/landing/landing-feat-4.svg'),
+      text: t('slider.slide4'),
+      icon2: require('assets/icons/feat-crypto.svg'),
+    },
+  ],
+  [
+    {
+      icon2: require('assets/icons/feat-community.svg'),
+      icon: require('assets/images/landing/landing-feat-5.svg'),
+      text: t('slider.slide5'),
+    },
+    {
+      icon2: require('assets/icons/feat-nft.svg'),
+      icon: require('assets/images/landing/landing-feat-6.svg'),
+      text: t('slider.slide6'),
+    },
+  ],
+];
+
+export default {
+  setup() {
+    const { t } = useI18n({ messages });
+    const slides = computed(() => getSlides(t));
+
+    return { t, slides };
+  },
+  data() {
     return {
       curSlide: '0',
-      slides: getSlides(this.$t),
     };
   },
   computed: {

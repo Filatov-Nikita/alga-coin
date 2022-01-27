@@ -1,5 +1,8 @@
 <template>
-  <q-layout :view="$q.screen.lt.xl ? 'hhh lpR fff' : 'hhh lpR fFf'" class="tw-bg-dark-blue-cover">
+  <q-layout
+    :view="$q.screen.lt.xl ? 'hhh lpR fff' : 'hhh lpR fFf'"
+    class="tw-bg-dark-blue-cover"
+  >
     <HeaderLanding />
 
     <q-page-container>
@@ -33,22 +36,31 @@ import HeaderBaseFooter from 'src/layouts/HeaderBaseFooter.vue';
 import HeaderLanding from 'src/layouts/HeaderLanding.vue';
 import FooterLanding from 'src/layouts/FooterLanding.vue';
 import useTheme from 'src/composition/useTheme';
-import { mapGetters } from 'vuex';
+import { useStore } from 'vuex';
+import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
 
 export default {
   setup() {
     useTheme();
-  },
-  computed: {
-    ...mapGetters('landing', ['footer']),
-    footerHalfs() {
-      const half = Math.ceil(this.footer.length / 2);
+    const store = useStore();
+    const { t } = useI18n();
+
+    const footerHalfs = computed(() => {
+      const footer = store.getters['landing/footer'](t);
+      const half = Math.ceil(footer.length / 2);
       const list = [
-        this.footer.slice(0, half),
-        this.footer.slice((this.footer.length - half) * -1),
+        footer.slice(0, half),
+        footer.slice((footer.length - half) * -1),
       ];
+
       return list;
-    },
+    });
+
+    return {
+      t,
+      footerHalfs,
+    };
   },
   components: {
     HeaderBaseFooter,

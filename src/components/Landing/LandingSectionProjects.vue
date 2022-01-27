@@ -5,16 +5,16 @@
     :class="{ 'landing-h-center': $q.screen.lt.xl }"
   >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-mb-4 tw-text-center">
-      {{ $t('mHeader') }}
+      {{ t('mHeader') }}
     </h2>
     <h2 v-else class="landing-h2 landing-h2--space tw-uppercase">
-      {{ $t('header') }}
+      {{ t('header') }}
     </h2>
 
     <div v-if="$q.screen.xl" class="app-row app-gutter-col-x">
       <div
         class="tw-text-xs tw-mt-12 app-col-4"
-        v-html="$t('description')"
+        v-html="t('description')"
       ></div>
 
       <div class="app-col-14">
@@ -26,6 +26,7 @@
           >
             <div class="project__cover">
               <img
+                v-if="project.announceImage"
                 width="172"
                 height="181"
                 class="project__pic"
@@ -58,7 +59,7 @@
             </button>
             <div
               class="tw-text-xs tw-text-center xl:tw-text-left"
-              v-html="$t('callback')"
+              v-html="t('callback')"
             ></div>
           </div>
         </div>
@@ -78,12 +79,13 @@
           <div
             class="tw-text-center tw-mb-4-1"
             v-html="
-              $t('description', { className: 'tw-text-xxs-1 tw-leading-tight' })
+              t('description', { className: 'tw-text-xxs-1 tw-leading-tight' })
             "
           ></div>
 
           <div class="project__cover tw-text-center">
             <img
+              v-if="project.announceImage"
               width="130"
               height="135"
               class="project__pic"
@@ -97,7 +99,7 @@
       <AppCarouselSlide name="add">
         <div class="project__add">
           <div class="tw-text-center">
-            <div class="tw-text-xs tw-mb-3-1" v-html="$t('callback')"></div>
+            <div class="tw-text-xs tw-mb-3-1" v-html="t('callback')"></div>
             <button
               @click="$router.push({ name: 'offer-project' })"
               class="project__btn"
@@ -118,6 +120,7 @@
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n';
 import { mapGetters } from 'vuex';
 
 function createHtml(txts, className) {
@@ -125,37 +128,42 @@ function createHtml(txts, className) {
   return txts.map((txt) => `${tag}${txt}</p>`).join('<br/>');
 }
 
-export default {
-  i18n: {
-    messages: {
-      ru: {
-        header: 'ПРОЕКТЫ',
-        mHeader: 'Направления',
-        callback:
-          'Подать заявку <br /> на рассмотрение <br /> инвестиционного проекта',
-        description: ({ named }) => {
-          const txts = [
-            'Alga — это стартовая инвестиционная площадка для разработки, подготовки к запуску и реализации новых технологических иэкологических проектов по всему миру',
-            'Экосистема Alga бесконечна, как мировой океан, и каждый её участник может предложить миру свой уникальный проект',
-            'Каждый проект проходит процедуру отбора, после чего получает полную поддержку экосистемы до этапа запуска и дальнейшего сопровождения',
-          ];
-          return createHtml(txts, named('className'));
-        },
-      },
-      en: {
-        header: 'PROJECTS',
-        mHeader: 'Projects',
-        callback: 'Apply for consideration investment project',
-        description: ({ named }) => {
-          const txts = [
-            'Alga is a startup investment platform for the development, preparation for launch and implementation of new technological and environmental projects around the world',
-            "The Alga ecosystem is as endless as the world's oceans, and each of its participants can offer the world their own unique project",
-            'Each project goes through a selection process, after which it receives full support from the ecosystem until the launch and further support',
-          ];
-          return createHtml(txts, named('className'));
-        },
+const i18n = {
+  messages: {
+    'ru-RU': {
+      header: 'ПРОЕКТЫ',
+      mHeader: 'Направления',
+      callback:
+        'Подать заявку <br /> на рассмотрение <br /> инвестиционного проекта',
+      description: ({ named }) => {
+        const txts = [
+          'Alga — это стартовая инвестиционная площадка для разработки, подготовки к запуску и реализации новых технологических иэкологических проектов по всему миру',
+          'Экосистема Alga бесконечна, как мировой океан, и каждый её участник может предложить миру свой уникальный проект',
+          'Каждый проект проходит процедуру отбора, после чего получает полную поддержку экосистемы до этапа запуска и дальнейшего сопровождения',
+        ];
+        return createHtml(txts, named('className'));
       },
     },
+    'en-US': {
+      header: 'PROJECTS',
+      mHeader: 'Projects',
+      callback: 'Apply for consideration investment project',
+      description: ({ named }) => {
+        const txts = [
+          'Alga is a startup investment platform for the development, preparation for launch and implementation of new technological and environmental projects around the world',
+          "The Alga ecosystem is as endless as the world's oceans, and each of its participants can offer the world their own unique project",
+          'Each project goes through a selection process, after which it receives full support from the ecosystem until the launch and further support',
+        ];
+        return createHtml(txts, named('className'));
+      },
+    },
+  },
+};
+
+export default {
+  setup() {
+    const { t } = useI18n(i18n);
+    return { t };
   },
   computed: {
     ...mapGetters('landing', ['projects']),

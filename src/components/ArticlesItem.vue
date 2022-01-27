@@ -15,7 +15,7 @@
             :src="require('assets/icons/share.svg')"
             width="16px"
           />
-          <div>{{ $t('share') }}</div>
+          <div>{{ t('share') }}</div>
         </div>
       </AppButton>
     </div>
@@ -40,17 +40,20 @@
 </template>
 
 <script>
-export default {
-  i18n: {
-    messages: {
-      ru: {
-        share: 'Поделиться',
-      },
-      en: {
-        share: 'Share',
-      },
+import { useI18n } from 'vue-i18n';
+
+const i18n = {
+  messages: {
+    'ru-RU': {
+      share: 'Поделиться',
+    },
+    'en-US': {
+      share: 'Share',
     },
   },
+};
+
+export default {
   props: {
     main: {
       default: false,
@@ -60,6 +63,10 @@ export default {
       required: true,
       type: Object,
     },
+  },
+  setup() {
+    const { t } = useI18n(i18n);
+    return { t };
   },
   methods: {
     share() {

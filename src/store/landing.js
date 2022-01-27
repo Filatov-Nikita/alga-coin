@@ -1,5 +1,5 @@
 import * as landingAPI from "src/api/landing";
-import {} from "vue-i18n";
+
 export default {
   namespaced: true,
   state: {

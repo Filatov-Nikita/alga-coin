@@ -4,8 +4,8 @@
     class="tw-py-2 tw-relative landing-h-center"
   >
     <div class="landing-h2--space">
-      <h2 class="landing-h2 tw-mb-9">{{ $t('header') }}</h2>
-      <p class="tw-max-w-sm">{{ $t('description') }}</p>
+      <h2 class="landing-h2 tw-mb-9">{{ t('header') }}</h2>
+      <p class="tw-max-w-sm">{{ t('description') }}</p>
     </div>
 
     <div class="landing-c-up tw-flex tw-justify-between">
@@ -56,23 +56,27 @@
 <script>
 import { markRaw } from 'vue';
 import LandingLogo from './LandingLogo.vue';
+import { useI18n } from 'vue-i18n';
 
-export default {
-  i18n: {
-    messages: {
-      en: {
-        header: 'ECOSYSTEM',
-        description:
-          'Alga Ecosystem aims to become one of the strongest communities in the world for creating safe, environmentally friendly and cost-effective projects in the future',
-      },
-      ru: {
-        header: 'ЭКОСИСТЕМА',
-        description:
-          'Alga Ecosystem стремится стать одним из сильнейших сообществ в мире для создания безопасных, экологичных и рентабельных проектов в будущем',
-      },
+const i18n = {
+  messages: {
+    'en-US': {
+      header: 'ECOSYSTEM',
+      description:
+        'Alga Ecosystem aims to become one of the strongest communities in the world for creating safe, environmentally friendly and cost-effective projects in the future',
+    },
+    'ru-RU': {
+      header: 'ЭКОСИСТЕМА',
+      description:
+        'Alga Ecosystem стремится стать одним из сильнейших сообществ в мире для создания безопасных, экологичных и рентабельных проектов в будущем',
     },
   },
+};
+
+export default {
   setup() {
+    const { t } = useI18n(i18n);
+
     const icons = markRaw([
       {
         name: 'Alga Invest',
@@ -157,7 +161,7 @@ export default {
       },
     ]);
 
-    return { icons };
+    return { icons, t };
   },
   data() {
     return {

@@ -9,7 +9,7 @@
           v-if="$q.screen.xl"
           class="tw-text-secondary tw-text-xs tw-uppercase tw-mb-2"
         >
-          {{ $t('header') }}
+          {{ t('header') }}
         </h2>
         <ProjectsList :projects="otherProjects" />
       </section>
@@ -45,7 +45,7 @@
                 :src="require('assets/icons/heart.svg')"
                 width="16px"
               />
-              <div>{{ $t('vote') }}</div>
+              <div>{{ t('vote') }}</div>
             </div>
           </AppButton>
         </div>
@@ -79,22 +79,22 @@
         <div>
           <div class="app-row app-gutter-col-x app-gutter-y-md tw-mb-6">
             <article class="app-col-18 xl:app-col-6">
-              <h2 class="tw-text-xxs tw-mb-2">{{ $t('author') }}</h2>
+              <h2 class="tw-text-xxs tw-mb-2">{{ t('author') }}</h2>
               <p class="tw-text-xs">{{ project.author }}</p>
             </article>
             <div class="app-col-18 xl:app-col-6">
-              <h2 class="tw-text-xxs tw-mb-2">{{ $t('partners') }}</h2>
+              <h2 class="tw-text-xxs tw-mb-2">{{ t('partners') }}</h2>
               <p class="tw-text-xs">{{ project.partners }}</p>
             </div>
             <div class="app-col-18 xl:app-col-6">
-              <h2 class="tw-text-xxs tw-mb-2">{{ $t('foundationYear') }}</h2>
+              <h2 class="tw-text-xxs tw-mb-2">{{ t('foundationYear') }}</h2>
               <p class="tw-text-xs">{{ project.foundation_year }}</p>
             </div>
           </div>
 
           <div class="app-row app-gutter-col-x">
             <div class="app-col-18 xl:app-col-15">
-              <h2 class="tw-text-xxs tw-mb-2">{{ $t('about') }}</h2>
+              <h2 class="tw-text-xxs tw-mb-2">{{ t('about') }}</h2>
               <p class="tw-text-xs">
                 {{ project.description }}
               </p>
@@ -111,28 +111,30 @@ import ProjectsList from 'src/components/ProjectsList';
 import useLoading from 'src/composition/useLoading';
 import { useStore } from 'vuex';
 import { ref, watchEffect, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-export default {
-  i18n: {
-    messages: {
-      en: {
-        header: 'PROJECTS',
-        vote: 'Vote',
-        author: 'Project author',
-        partners: 'Project partners',
-        about: 'About the project',
-        foundationYear: 'Foundation year',
-      },
-      ru: {
-        header: 'ПРОЕКТЫ',
-        vote: 'Проголосовать',
-        author: 'Автор проекта',
-        partners: 'Партнёры проекта',
-        about: 'О проекте',
-        foundationYear: 'Год основания',
-      },
+const i18n = {
+  messages: {
+    'en-US': {
+      header: 'PROJECTS',
+      vote: 'Vote',
+      author: 'Project author',
+      partners: 'Project partners',
+      about: 'About the project',
+      foundationYear: 'Foundation year',
+    },
+    'ru-RU': {
+      header: 'ПРОЕКТЫ',
+      vote: 'Проголосовать',
+      author: 'Автор проекта',
+      partners: 'Партнёры проекта',
+      about: 'О проекте',
+      foundationYear: 'Год основания',
     },
   },
+};
+
+export default {
   props: {
     id: {
       required: true,
@@ -144,6 +146,7 @@ export default {
     const is404 = ref(false);
     const project = ref(null);
     const loading = useLoading();
+    const { t } = useI18n(i18n);
 
     const projects = computed(() => store.getters['landing/projects']);
     const otherProjects = computed(
@@ -182,6 +185,7 @@ export default {
       isLoading: loading.isLoading,
       project,
       otherProjects,
+      t
     };
   },
   components: {

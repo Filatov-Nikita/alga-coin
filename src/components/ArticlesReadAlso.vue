@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2 class="tw-text-sm xl:tw-text-md2 tw-mb-6">{{ $t('readAlso') }}</h2>
+    <h2 class="tw-text-sm xl:tw-text-md2 tw-mb-6">{{ t('readAlso') }}</h2>
 
     <AppCarousel v-if="$q.screen.lt.xl" height="auto">
       <AppCarouselSlide
@@ -49,22 +49,29 @@
 </template>
 
 <script>
-export default {
-  i18n: {
-    messages: {
-      ru: {
-        readAlso: 'Читайте так же',
-      },
-      en: {
-        readAlso: 'Read also',
-      },
+import { useI18n } from 'vue-i18n';
+
+const i18n = {
+  messages: {
+    'ru-RU': {
+      readAlso: 'Читайте так же',
+    },
+    'en-US': {
+      readAlso: 'Read also',
     },
   },
+};
+
+export default {
   props: {
     items: {
       required: true,
       type: Array,
     },
+  },
+  setup() {
+    const { t } = useI18n(i18n);
+    return { t };
   },
 };
 </script>

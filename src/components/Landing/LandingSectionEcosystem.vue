@@ -4,14 +4,14 @@
     class="tw-py-2 tw-relative landing-h-center"
   >
     <h2 v-if="$q.screen.lt.xl" class="app-h1 tw-text-center tw-mb-2-1">
-      {{ $t('mHeader') }}
+      {{ t('mHeader') }}
     </h2>
     <h2
       v-else
       class="landing-h2 landing-h2--space"
       :style="{ color: themes[theme] }"
     >
-      {{ $t('header') }}
+      {{ t('header') }}
     </h2>
 
     <div class="tw-flex tw-justify-center landing-c-up">
@@ -87,68 +87,68 @@
 <script>
 import { inject } from 'vue';
 import LandingLogo from './LandingLogo.vue';
+import { useI18n } from 'vue-i18n';
+
+const i18n = {
+  messages: {
+    'ru-RU': {
+      mHeader: 'Экосистема',
+      header: 'ЭКОСИСТЕМА',
+      banking:
+        'Создание, покупка, продажа, хранение, безопасная защита и финансовое управление цифровыми активами (виртуальными товарами и валютами), а также все направления бизнеса, которые обслуживают экосистему Alga',
+      consulting:
+        'Объёмный модуль экспертных данных, создающий разумные производственные процессы для бизнеса, объединяющий технологию искусственного интеллекта, данные и аналитику. Alga Consulting — это возможность модернизировать рабочие процессы, технологии и компанию в целом для достижения впечатляющих бизнес-результатов',
+      development:
+        'Цифровая инвестиционная платформа, основанная на традиционных инструментах инвестирования в недвижимость. Держатели активов ALGA могут проводить аудит проектов, инвестировать в строительство объектов недвижимости, контролировать риски, беспрепятственно торговать правами собственности на объекты',
+      ecology:
+        'Использование возможностей Alga Ecosystem для более устойчивого и бережного управления природными ресурсами планеты',
+      health:
+        'Онлайн-консультации с ведущими специалистами мира и разработка противовирусных препаратов',
+      invest:
+        'Стартовая инвестиционная площадка для подготовки и реализации новых, инновационных и экологических проектов по всему миру',
+      market:
+        'Торговая площадка для покупки, продажи и управления сетевыми и физическими активами участниками сообщества',
+      starlink:
+        'Проект по формированию собственной системы обеспечения независимого доступа к высокоскоростному Интернету и мобильной связи',
+      edu: 'Децентрализованная экосистема онлайн-обучения',
+      nft: 'Платформа для создателей произведений искусств, нацеленная на создание новой креативной экономики. Alga NFT — это маркетплейс современного искусства нового поколения',
+    },
+    'en-US': {
+      mHeader: 'Ecosystem',
+      header: 'ECOSYSTEM',
+      banking:
+        'Creation, purchase, sale, storage, secure protection and financial management of digital assets (virtual goods and currencies), as well as all lines of business that serve the Alga ecosystem',
+      consulting:
+        'A rich expert data module that creates intelligent business workflows that integrates artificial intelligence technology, data and analytics. Alga Consulting is an opportunity to modernize work processes, technologies and the company as a whole to achieve impressive business results.',
+      development:
+        'A digital investment platform based on traditional real estate investment tools. ALGA asset holders can audit projects, invest in the construction of real estate, control risks, freely trade property rights to objects',
+      ecology:
+        "Leveraging the power of the Alga Ecosystem for a more sustainable and sustainable management of the planet's natural resources",
+      health:
+        "Online consultations with the world's leading experts and the development of antiviral drugs",
+      invest:
+        'Launching investment platform for the preparation and implementation of new, innovative and environmental projects around the world',
+      market:
+        'Marketplace for buying, selling and managing online and physical assets by community members',
+      starlink:
+        'A project to form our own system for providing independent access to high-speed Internet and mobile communications',
+      edu: 'Decentralized online learning ecosystem',
+      nft: 'A platform for creators of works of art, aimed at creating a new creative economy. Alga NFT is a new generation contemporary art marketplace',
+    },
+  },
+};
+
+import { computed } from 'vue';
 
 export default {
-  i18n: {
-    messages: {
-      ru: {
-        mHeader: 'Экосистема',
-        header: 'ЭКОСИСТЕМА',
-        banking:
-          'Создание, покупка, продажа, хранение, безопасная защита и финансовое управление цифровыми активами (виртуальными товарами и валютами), а также все направления бизнеса, которые обслуживают экосистему Alga',
-        consulting:
-          'Объёмный модуль экспертных данных, создающий разумные производственные процессы для бизнеса, объединяющий технологию искусственного интеллекта, данные и аналитику. Alga Consulting — это возможность модернизировать рабочие процессы, технологии и компанию в целом для достижения впечатляющих бизнес-результатов',
-        development:
-          'Цифровая инвестиционная платформа, основанная на традиционных инструментах инвестирования в недвижимость. Держатели активов ALGA могут проводить аудит проектов, инвестировать в строительство объектов недвижимости, контролировать риски, беспрепятственно торговать правами собственности на объекты',
-        ecology:
-          'Использование возможностей Alga Ecosystem для более устойчивого и бережного управления природными ресурсами планеты',
-        health:
-          'Онлайн-консультации с ведущими специалистами мира и разработка противовирусных препаратов',
-        invest:
-          'Стартовая инвестиционная площадка для подготовки и реализации новых, инновационных и экологических проектов по всему миру',
-        market:
-          'Торговая площадка для покупки, продажи и управления сетевыми и физическими активами участниками сообщества',
-        starlink:
-          'Проект по формированию собственной системы обеспечения независимого доступа к высокоскоростному Интернету и мобильной связи',
-        edu: 'Децентрализованная экосистема онлайн-обучения',
-        nft: 'Платформа для создателей произведений искусств, нацеленная на создание новой креативной экономики. Alga NFT — это маркетплейс современного искусства нового поколения',
-      },
-      en: {
-        mHeader: 'Ecosystem',
-        header: 'ECOSYSTEM',
-        banking:
-          'Creation, purchase, sale, storage, secure protection and financial management of digital assets (virtual goods and currencies), as well as all lines of business that serve the Alga ecosystem',
-        consulting:
-          'A rich expert data module that creates intelligent business workflows that integrates artificial intelligence technology, data and analytics. Alga Consulting is an opportunity to modernize work processes, technologies and the company as a whole to achieve impressive business results.',
-        development:
-          'A digital investment platform based on traditional real estate investment tools. ALGA asset holders can audit projects, invest in the construction of real estate, control risks, freely trade property rights to objects',
-        ecology:
-          "Leveraging the power of the Alga Ecosystem for a more sustainable and sustainable management of the planet's natural resources",
-        health:
-          "Online consultations with the world's leading experts and the development of antiviral drugs",
-        invest:
-          'Launching investment platform for the preparation and implementation of new, innovative and environmental projects around the world',
-        market:
-          'Marketplace for buying, selling and managing online and physical assets by community members',
-        starlink:
-          'A project to form our own system for providing independent access to high-speed Internet and mobile communications',
-        edu: 'Decentralized online learning ecosystem',
-        nft: 'A platform for creators of works of art, aimed at creating a new creative economy. Alga NFT is a new generation contemporary art marketplace',
-      },
-    },
-  },
-  computed: {
-    items() {
-      const t = this.$t;
-      return getItems(t);
-    },
-  },
   setup() {
     const theme = inject('theme');
     const themes = inject('themes');
     const switchTheme = inject('switchTheme');
     const updateBg = inject('updateBg');
     const updateTheme = inject('updateTheme');
+    const { t } = useI18n(i18n);
+    const items = computed(() => getItems(t));
 
     const changeTheme = (themeName, bgName) => {
       setTimeout(() => {
@@ -161,7 +161,9 @@ export default {
     return {
       theme,
       themes,
+      items,
       changeTheme,
+      t,
     };
   },
   components: {
