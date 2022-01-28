@@ -10,11 +10,11 @@
     <div class="user-menu__dropdown" v-if="showMenu">
       <router-link class="user-menu__item" :to="{ name: 'profile' }">
         <InlineSvg :src="require('assets/profile.svg')" />
-        <div class="user-menu__item-name">Личный кабинет</div>
+        <div class="user-menu__item-name">{{$t('landing.header.lk')}}</div>
       </router-link>
       <a class="user-menu__item" href="#" @click.prevent="$app.logout">
         <InlineSvg :src="require('assets/logout.svg')" />
-        <div class="user-menu__item-name">Выйти</div>
+        <div class="user-menu__item-name">{{$t('actions.logout')}}</div>
       </a>
     </div>
   </div>

@@ -17,7 +17,7 @@
         />
       </div>
       <div
-        class="tw-text-md2 xl:tw-text-md1"
+        class="tw-text-md2"
         :class="[frozen ? 'tw-text-secondary tw-opacity-40' : '']"
       >
         {{ alg }} ALG

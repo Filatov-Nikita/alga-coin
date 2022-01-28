@@ -1,7 +1,7 @@
 <template>
   <q-page class="app-page-y">
     <div class="tw-container">
-      <h1 class="app-h1 app-h1--space">Баланс кошелька</h1>
+      <h1 class="app-h1 app-h1--space">{{ t('header') }}</h1>
 
       <div class="app-row app-gutter-col-x wrap">
         <div class="wallet">
@@ -11,21 +11,25 @@
             <div class="wallet__action">
               <AppButton
                 fullWidth
+                :label="$t('actions.buy')"
                 @click="$aDialog.open('wallet.input')"
-                label="Купить"
               />
             </div>
             <div class="wallet__action">
               <AppButton
                 fullWidth
+                :label="$t('actions.send')"
                 @click="$aDialog.open('wallet.output')"
-                label="Отправить"
               />
             </div>
           </div>
         </div>
 
-        <AppModalWallet name="wallet.output" v-slot="{ close }">
+        <AppModalWallet
+          ref="sendDialog"
+          name="wallet.output"
+          v-slot="{ close }"
+        >
           <AppBtnBack class="page-wallet__back-btn" @click="close" />
           <div class="page-wallet__content">
             <WalletBalance v-bind="walletData" hideIcon />
@@ -40,14 +44,14 @@
                 fullWidth
                 placeholder="Адрес кошелька"
                 label="Адрес кошелька получателя"
-                rules="required|walletAddress"
+                rules="required"
               />
               <AppConvertInput />
               <AppButton
-                :disabled="isSubmitting"
-                type="submit"
-                label="Отправить"
                 fullWidth
+                type="submit"
+                :disabled="isSubmitting"
+                :label="$t('actions.send')"
               />
             </Form>
           </div>
@@ -58,20 +62,20 @@
           <div class="page-wallet__content">
             <div v-if="last.name === 'way'">
               <div class="page-wallet__title tw-mb-9">
-                Выберите удобный способ пополнения
+                {{ t('buy.buyMethod') }}
               </div>
 
               <div class="page-wallet__actions page-wallet__wrap">
                 <AppButton
                   @click="pushToPath({ name: 'card' })"
                   textClass="page-wallet__action"
-                  label="Карта VISA / Master Card"
+                  :label="t('buy.byCard')"
                   fullWidth
                 />
                 <AppButton
                   @click="pushToPath({ name: 'crypto' })"
                   textClass="page-wallet__action"
-                  label="Криптовалюта USDT / BUSD"
+                  :label="t('buy.byCrypto')"
                   fullWidth
                 />
               </div>
@@ -81,10 +85,9 @@
               <WalletBalance v-bind="walletData" hideIcon />
               <Form class="page-wallet__form">
                 <AppConvertInput />
-                <AppButton @click="1" label="Пополнить" fullWidth />
+                <AppButton @click="1" :label="$t('actions.buy')" fullWidth />
                 <div class="page-wallet__caption tw-text-center tw-mt-6">
-                  После нажатия «Пополнить» вы будете перенаправлены на страницу
-                  оплаты
+                  {{ t('buy.agree') }}
                 </div>
               </Form>
             </div>
@@ -92,17 +95,17 @@
             <div v-else-if="last.name === 'crypto'">
               <WalletBalance v-bind="walletData" hideIcon />
               <Form class="page-wallet__form">
-                <AppConvertInput />
+                <AppConvertInput to="USD" />
                 <div class="page-wallet__actions">
                   <AppButton
                     @click="pushToPath({ name: 'usdt' })"
-                    label="Пополнить в USDT"
+                    :label="t('buy.usdt')"
                     :icon="require('assets/usdt.svg')"
                     fullWidth
                   />
                   <AppButton
                     @click="pushToPath({ name: 'busd' })"
-                    label="Пополнить в BUSD"
+                    :label="t('buy.busd')"
                     :icon="require('assets/busd.svg')"
                     fullWidth
                   />
@@ -114,13 +117,13 @@
               <MyWalletAddress
                 address="0xAbBDd166fD5DfFe50D294aEEe539CBB2547DE7DF"
               />
-              <div class="wallet__title">Вам необходимо перевести</div>
+              <div class="wallet__title">{{ t('buy.haveToSend') }}</div>
               <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
                 Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
               </AppTimer>
               <AppButton
                 @click="pushToPath({ name: 'finish' })"
-                label="Я отправил"
+                :label="t('buy.ISent')"
                 fullWidth
               />
             </div>
@@ -129,30 +132,31 @@
               <MyWalletAddress
                 address="0xAbBDd166fD5DfFe50D294aEEe539CBB2547DE7DF"
               />
-              <div class="wallet__title">Вам необходимо перевести</div>
+              <div class="wallet__title">{{ t('buy.haveToSend') }}</div>
               <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
                 Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
               </AppTimer>
               <AppButton
                 @click="pushToPath({ name: 'finish' })"
-                label="Я отправил"
+                :label="t('buy.ISent')"
                 fullWidth
               />
             </div>
 
             <div v-else-if="last.name === 'finish'">
-              <div class="wallet__title">Информация о пополнении принята</div>
-              <div class="wallet__caption">
-                Зачисление денежных средств обычно происходит в течение 15
-                минут, в редких случаях достигает 4 часов. В случае проблем,
-                просим направить запрос на mail@mail.ru
-              </div>
+              <div class="wallet__title">{{ t('buy.finish.title') }}</div>
+              <div class="wallet__caption">{{ t('buy.finish.info') }}</div>
             </div>
           </div>
         </AppModalWallet>
-
-        <div class="history">
-          <HistoryTable />
+        <div class="history scroll" id="history-block">
+          <AppPagination
+            scroll-target="#history-block"
+            :disable="historyLoaded"
+            @load="loadHistory"
+          >
+            <HistoryTable v-if="history" :transactions="history" />
+          </AppPagination>
         </div>
       </div>
     </div>
@@ -163,27 +167,114 @@
 import WalletBalance from 'src/components/Wallet/WalletBalance.vue';
 import WalletOutputForm from 'src/components/Wallet/WalletOutputForm.vue';
 import HistoryTable from 'src/components/HistoryTable.vue';
-import useOutput from 'src/composition/wallet/useOutput';
 import MyWalletAddress from 'src/components/MyWalletAddress';
 import { ref, computed } from 'vue';
-import { mapGetters } from 'vuex';
+import { useAlert } from 'src/plugins/app-alert';
+import usePagination from 'src/composition/usePagination';
+import { mapGetters, useStore } from 'vuex';
+import { useI18n } from 'vue-i18n';
+
+const messages = {
+  'ru-RU': {
+    header: 'Баланс кошелька',
+    buy: {
+      buyMethod: 'Выберите удобный способ пополнения',
+      byCard: 'Карта VISA / Master Card',
+      byCrypto: 'Криптовалюта USDT / BUSD',
+      busd: 'Пополнить в BUSD',
+      usdt: 'Пополнить в USDT',
+      ISent: 'Я отправил',
+      haveToSend: 'Вам необходимо перевести',
+      finish: {
+        title: 'Информация о пополнении принята',
+        info: 'Зачисление денежных средств обычно происходит в течение 15 минут, в редких случаях достигает 4 часов. В случае проблем, просим направить запрос на mail@mail.ru',
+      },
+      agree:
+        'После нажатия «Пополнить» вы будете перенаправлены на страницу оплаты',
+    },
+    send: {
+      success: 'Перевод успешно совершен ({total})',
+    },
+  },
+  'en-US': {
+    header: 'Wallet balance',
+    buy: {
+      buyMethod: 'Choose a convenient way to replenish',
+      byCard: 'Card VISA / Master Card',
+      byCrypto: 'Cryptocurrency USDT / BUSD',
+      busd: 'Buy in BUSD',
+      usdt: 'Buy in USDT',
+      ISent: 'I sent',
+      haveToSend: 'You need to send',
+      finish: {
+        title: 'Replenishment information accepted',
+        info: 'Funds are usually credited within 15 minutes, in rare cases up to 4 hours. In case of problems, please send a request to mail@mail.ru',
+      },
+      agree:
+        'After clicking "Deposit" you will be redirected to the payment page',
+    },
+    send: {
+      success: 'Transaction is completed ({total})',
+    },
+  },
+};
 
 export default {
   setup() {
-    const { send } = useOutput();
+    const { t } = useI18n({ messages });
+    const appAlert = useAlert();
+    const store = useStore();
     const path = ref([{ name: 'way' }]);
+    const sendDialog = ref(null);
+
     const last = computed(() => path.value[path.value.length - 1]);
+
     const pushToPath = ({ name }) => path.value.push({ name });
+
     const back = (close) => {
       if (path.value.length <= 1) return close();
       path.value.pop();
     };
 
+    const historyPagination = usePagination((filter) =>
+      store.dispatch('transactions/showHistory', filter)
+    );
+
+    const send = async (values, { setErrors }) => {
+      try {
+        const result = await store.dispatch('transactions/to', values);
+        appAlert({
+          type: 'positive',
+          message: t('send.success', { total: result.amount.label }),
+        });
+
+        sendDialog.value?.close();
+        store.dispatch('wallet/show');
+        historyPagination.data.value.unshift(result);
+      } catch (e) {
+        if (!e.response) throw e;
+        if (e.response.status === 422) {
+          const { errors } = await e.response.json();
+          if (errors.address)
+            appAlert({ type: 'negative', message: errors.address.join(', ') });
+
+          setErrors(errors);
+        } else {
+          throw e;
+        }
+      }
+    };
+
     return {
-      send,
       last,
+      sendDialog,
+      t,
+      send,
       pushToPath,
       back,
+      history: historyPagination.data,
+      historyLoaded: historyPagination.complete,
+      loadHistory: historyPagination.fetcher,
     };
   },
   computed: {
@@ -207,7 +298,7 @@ export default {
   @include col-xl(10);
   @include screen-xl {
     max-height: 468px;
-    @apply tw-overflow-x-hidden;
+    @apply tw-overflow-auto;
   }
 }
 
