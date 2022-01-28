@@ -1,4 +1,20 @@
 export default {
+  term: "Я ознакомился(ась) и соглашаюсь с {link} AlgaCoin",
+  passRequired:
+    "Пароль должен быть на английском языке и содержать не менее 6-и символов",
+  errors: {
+    code: "Вы ввели неверно код на предыдущем шаге. Введите код в это поле и повторите попытку.",
+  },
+  actions: {
+    buy: "Купить",
+    send: "Отправить",
+    back: "Назад",
+    logout: "Выйти",
+    getCode: "Выслать код",
+    toLK: "Вход в личный кабинет",
+    hasAccount: "Уже зарегистрированы? {login}",
+    setPass: "Установить и войти",
+  },
   buttons: {
     close: "Закрыть",
     logIn: "Войти",
@@ -8,6 +24,14 @@ export default {
   inputs: {
     cellphone: "Телефон",
     password: "Пароль",
+    newPass: "Новый пароль",
+    repeatPass: "Повторите пароль",
+    wrongCode: "Enter a correct code",
+    code: 'Код из смс',
+    name: {
+      label: "ФИО",
+      placeholder: "Иванов Иван Иванович",
+    },
   },
   lk: {
     menu: {
@@ -25,7 +49,7 @@ export default {
       logout: "Выйти",
     },
     footer: {
-      serviceInfo: "Условия обслуживания",
+      serviceInfo: "Условия обслуживания | Условиями обслуживания",
       whyAlga: "Почему Alga",
     },
     menu: {

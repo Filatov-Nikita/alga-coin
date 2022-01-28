@@ -2,31 +2,29 @@
   <q-page class="tw-container tw-grid">
     <div class="app-auth">
       <AppStep name="input">
-        <h1 class="app-auth__h1 xl:tw--mx-12">Восстановление доступа</h1>
-        <p class="app-auth__subtitle">
-          Воcстановите доступ в систему с помощью мобильного телефона и СМС-кода
-        </p>
+        <h1 class="app-auth__h1 xl:tw--mx-12">{{ t('header') }}</h1>
+        <p class="app-auth__subtitle">{{ t('subtitle') }}</p>
         <Form class="app-auth__form" @submit="submit" v-slot="{ isSubmitting }">
           <AppInput
             name="cellphone"
             rules="required|cellphone"
             type="tel"
-            label="Телефон"
+            :label="$t('inputs.cellphone')"
             placeholder="(999) 999-99-99"
           />
           <AppButton
             type="submit"
             fullWidth
-            label="Выслать код"
+            :label="$t('actions.getCode')"
             :disabled="isSubmitting"
           />
         </Form>
         <div class="app-auth__links tw-mt-6">
           <AppLink class="app-auth__link" :to="{ name: 'auth.login' }">
-            Вход в личный кабинет
+            {{ $t('actions.toLK') }}
           </AppLink>
           <AppLink class="app-auth__link" :to="{ name: 'auth.registr' }">
-            Зарегистрироваться
+            {{ $t('buttons.registr') }}
           </AppLink>
         </div>
       </AppStep>
@@ -34,13 +32,8 @@
         <FormVerify :cellphone="curCellphone" @entered="handleCode" />
       </AppStep>
       <AppStep name="password">
-        <h1 class="app-auth__h1 xl:tw--mx-12">
-          Пароль сброшен. Установите новый пароль
-        </h1>
-        <p class="app-auth__subtitle">
-          Пароль должен быть на английском языке и содержать не менее 6-и
-          символов
-        </p>
+        <h1 class="app-auth__h1 xl:tw--mx-12">{{ t('passHeader') }}</h1>
+        <p class="app-auth__subtitle">{{ $t('passRequired') }}</p>
         <Form
           class="app-auth__form"
           @submit="setPassword"
@@ -50,28 +43,36 @@
             name="password"
             rules="required"
             type="password"
-            label="Новый пароль"
-            placeholder="Пароль"
+            :label="$t('inputs.newPass')"
+            :placeholder="$t('inputs.password')"
           />
           <AppInput
             name="password2"
             rules="required|confirmed:@password"
             type="password"
-            label="Повторите пароль"
-            placeholder="Повторите пароль"
+            :label="$t('inputs.repeatPass')"
+            :placeholder="$t('inputs.repeatPass')"
           />
           <AuthCodeVerification v-if="invalidCode" :cellphone="curCellphone" />
           <AppButton
             type="submit"
             fullWidth
-            label="Установить и войти"
+            :label="$t('actions.setPass')"
             :disabled="isSubmitting"
           />
         </Form>
-        <div class="app-auth__links tw-mt-6">
-          Уже зарегистрированы?
-          <AppLink :to="{ name: 'auth.login' }"> Войти </AppLink>
-        </div>
+        <i18n-t
+          tag="div"
+          class="app-auth__links tw-mt-6"
+          keypath="actions.hasAccount"
+          scope="global"
+        >
+          <template #login>
+            <AppLink :to="{ name: 'auth.login' }">
+              {{ $t('buttons.logIn') }}
+            </AppLink>
+          </template>
+        </i18n-t>
       </AppStep>
     </div>
   </q-page>
@@ -82,9 +83,25 @@ import useStep from 'src/composition/useStep';
 import useAuth from 'src/composition/useAuth';
 import FormVerify from 'src/components/FormVerify.vue';
 import AuthCodeVerification from 'src/components/AuthCodeVerification.vue';
+import { useI18n } from 'vue-i18n';
+
+const messages = {
+  'ru-RU': {
+    header: 'Восстановление доступа',
+    subtitle:
+      'Воcстановите доступ в систему с помощью мобильного телефона и СМС-кода',
+    passHeader: 'Пароль сброшен. Установите новый пароль',
+  },
+  'en-US': {
+    header: 'Access recovery',
+    subtitle: 'Restore access to the system using a mobile phone and SMS code',
+    passHeader: 'The password has been reset. Set a new password',
+  },
+};
 
 export default {
   setup() {
+    const { t } = useI18n({ messages });
     const { changeStep, step } = useStep('input');
     const { curCode, curCellphone, setPassword, getCode, invalidCode } =
       useAuth();
@@ -102,9 +119,10 @@ export default {
 
     return {
       step,
-      submit,
       curCellphone,
       invalidCode,
+      t,
+      submit,
       changeStep,
       handleCode,
       setPassword,

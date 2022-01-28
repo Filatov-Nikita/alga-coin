@@ -2,10 +2,8 @@
   <q-page class="tw-grid tw-container">
     <div class="app-auth">
       <AppStep name="registr">
-        <h1 class="app-auth__h1">Зарегистрируйтесь в экосистеме Alga</h1>
-        <p class="app-auth__subtitle">
-          с помощью эл. почты и мобильного телефона
-        </p>
+        <h1 class="app-auth__h1">{{ t('header') }}</h1>
+        <p class="app-auth__subtitle">{{ t('subtitle') }}</p>
         <Form
           @submit="createUser"
           class="app-auth__form"
@@ -13,8 +11,8 @@
         >
           <AppInput
             name="name"
-            label="ФИО"
-            placeholder="Иванов Иван Иванович"
+            :label="$t('inputs.name.label')"
+            :placeholder="$t('inputs.name.placeholder')"
             rules="required"
           />
           <AppInput
@@ -28,41 +26,50 @@
             rules="required"
             type="tel"
             name="cellphone"
-            label="Телефон"
+            :label="$t('inputs.cellphone')"
+            placeholder="(999) 999 99 99"
           />
 
           <AppCheckbox
             rules="required"
-            name="Условия обслуживания"
+            :name="$t('landing.footer.serviceInfo')"
             class="tw-text-left tw-mt-6"
             labelClass="tw-text-xxs"
           >
-            Я ознакомился(ась) и соглашаюсь <br />
-            с
-            <AppLink to="#" target="_blank"> Условиями обслуживания </AppLink>
-            AlgaCoin
+            <i18n-t scope="global" keypath="term">
+              <template #link>
+                <AppLink :to="$app.links.serviceInfo">
+                  {{ $t('landing.footer.serviceInfo', 0) }}
+                </AppLink>
+              </template>
+            </i18n-t>
           </AppCheckbox>
           <AppButton
-            label="Зарегистрироваться"
+            :label="$t('buttons.registr')"
             fullWidth
             type="submit"
             :disabled="isSubmitting"
           />
         </Form>
-        <div class="app-auth__links tw-mt-6">
-          Уже зарегистрированы?
-          <AppLink :to="{ name: 'auth.login' }"> Войти </AppLink>
-        </div>
+        <i18n-t
+          class="app-auth__links tw-mt-6"
+          tag="div"
+          keypath="actions.hasAccount"
+          scope="global"
+        >
+          <template #login>
+            <AppLink :to="{ name: 'auth.login' }">
+              {{ $t('buttons.logIn') }}
+            </AppLink>
+          </template>
+        </i18n-t>
       </AppStep>
       <AppStep name="verifing">
         <FormVerify :cellphone="curCellphone" @entered="handleCode" />
       </AppStep>
       <AppStep name="password">
-        <h1 class="app-auth__h1">Установите пароль</h1>
-        <p class="app-auth__subtitle">
-          Пароль должен быть на английском языке и содержать не менее 6-и
-          символов
-        </p>
+        <h1 class="app-auth__h1">{{ t('passHeader') }}</h1>
+        <p class="app-auth__subtitle">{{ $t('passRequired') }}</p>
         <Form
           v-slot="{ isSubmitting }"
           class="app-auth__form"
@@ -71,40 +78,41 @@
           <AppInput
             type="password"
             name="password"
-            label="Пароль"
-            placeholder="Пароль"
+            :label="$t('inputs.password')"
+            :placeholder="$t('inputs.password')"
             rules="required|password"
           />
           <AppInput
             type="password"
             name="pass2"
-            label="Повторите пароль"
-            placeholder="Пароль"
+            :label="$t('inputs.repeatPass')"
+            :placeholder="$t('inputs.password')"
             rules="required|confirmed:@password"
           />
           <div v-if="invalidCode">
             <AppInput
               name="verification_code"
-              label="Код из смс"
-              placeholder="Введите правильный код"
+              :label="$t('inputs.code')"
+              :placeholder="$t('inputs.wrongCode')"
               rules="required"
             />
             <div class="tw-text-invalid tw-text-xxs">
-              Вы ввели неверно код на предыдущем шаге. Введите код в это поле и
-              повторите попытку.
+              {{ $t('errors.code') }}
             </div>
           </div>
           <AuthCodeVerification v-if="invalidCode" :cellphone="curCellphone" />
           <AppButton
-            label="Установить и войти"
+            :label="$t('actions.setPass')"
             fullWidth
             type="submit"
             :disabled="isSubmitting"
           />
         </Form>
         <div class="app-auth__links tw-mt-6">
-          Уже зарегистрированы?
-          <AppLink :to="{ name: 'auth.login' }"> Войти </AppLink>
+          {{ $t('actions.hasAccount') }}
+          <AppLink :to="{ name: 'auth.login' }">
+            {{ $t('buttons.logIn') }}
+          </AppLink>
         </div>
       </AppStep>
     </div>
@@ -117,10 +125,25 @@ import FormVerify from 'src/components/FormVerify.vue';
 import useAuth from 'src/composition/useAuth';
 import { useStore } from 'vuex';
 import AuthCodeVerification from 'src/components/AuthCodeVerification.vue';
+import { useI18n } from 'vue-i18n';
+
+const messages = {
+  'ru-RU': {
+    header: 'Зарегистрируйтесь в экосистеме Alga',
+    subtitle: 'с помощью эл. почты и мобильного телефона',
+    passHeader: 'Установите пароль',
+  },
+  'en-US': {
+    header: 'Sign up in Alga ecosystem',
+    subtitle: 'with e-mail and cellphone',
+    passHeader: 'Set password',
+  },
+};
 
 export default {
   setup() {
     const store = useStore();
+    const { t } = useI18n({ messages });
     const { changeStep, step } = useStep('registr');
     const { setPassword, invalidCode, curCode, curCellphone, getCode } =
       useAuth();
@@ -162,6 +185,7 @@ export default {
     };
 
     return {
+      t,
       step,
       invalidCode,
       curCellphone,

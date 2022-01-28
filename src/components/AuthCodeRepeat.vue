@@ -6,16 +6,15 @@
       v-if="s <= 0"
       class="app-link"
     >
-      Не получили код?
+      {{ t('getCode') }}
     </button>
-    <span class="tw-text-xxs" v-else>
-      Повторная проверка через ({{ s }}s)
-    </span>
+    <span class="tw-text-xxs" v-else> {{ t('repeat', { s }) }} </span>
   </AppTimer>
 </template>
 
 <script>
 import useAuth from 'src/composition/useAuth';
+import { useI18n } from 'vue-i18n';
 
 export default {
   props: {
@@ -25,6 +24,18 @@ export default {
     },
   },
   setup(props) {
+    const { t } = useI18n({
+      messages: {
+        'ru-RU': {
+          repeat: 'Повторная проверка через ({s}s)',
+          getCode: 'Не получили код?',
+        },
+        'en-US': {
+          repeat: 'Resend code ({s}s)',
+          getCode: "Didn't receive a code?",
+        },
+      },
+    });
     const { getCode } = useAuth();
 
     const repeat = async (restart) => {
@@ -33,6 +44,7 @@ export default {
     };
 
     return {
+      t,
       repeat,
     };
   },

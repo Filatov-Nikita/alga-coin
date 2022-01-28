@@ -49,11 +49,13 @@
           name="service"
           class="tw-text-xxs-2 tw-w-2/3"
         >
-          {{ t('form.agree') }}
-          <AppLink :to="$app.links.serviceInfo">
-            {{ $t('landing.footer.serviceInfo') }}
-          </AppLink>
-          AlgaCoin
+          <i18n-t scope="global" keypath="term">
+            <template #link>
+              <AppLink :to="$app.links.serviceInfo">
+                {{ $t('landing.footer.serviceInfo', 0) }}
+              </AppLink>
+            </template>
+          </i18n-t>
         </AppCheckbox>
         <AppButton
           :disabled="isSubmitting"
@@ -111,7 +113,6 @@ const i18n = {
         doc: {
           label: 'Прикрепите файл (pdf, doc, jpeg, zip, rar)',
         },
-        agree: 'Я ознакомился(ась) и соглашаюсь с',
         btn: 'Оставить заявку',
       },
       suucessMsg: 'Спасибо, ваш проект принят на рассмотрение!',
@@ -136,7 +137,6 @@ const i18n = {
         doc: {
           label: 'Attach file (pdf, doc, jpeg, zip, rar)',
         },
-        agree: 'I have read and agree to',
         btn: 'Submit your offer',
       },
     },

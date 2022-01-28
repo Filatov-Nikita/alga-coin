@@ -2,14 +2,11 @@
   <div>
     <AppInput
       name="verification_code"
-      label="Код из смс"
-      placeholder="Введите правильный код"
+      :label="$t('inputs.code')"
+      :placeholder="$t('inputs.wrongCode')"
       rules="required"
     />
-    <div class="tw-text-invalid tw-text-xxs">
-      Вы ввели неверно код на предыдущем шаге. Введите код в это поле и
-      повторите попытку.
-    </div>
+    <div class="tw-text-invalid tw-text-xxs">{{ $t('errors.code') }}</div>
     <AuthCodeRepeat :cellphone="cellphone" />
   </div>
 </template>

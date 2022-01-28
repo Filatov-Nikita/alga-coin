@@ -1,4 +1,19 @@
 export default {
+  term: "I have read and agree to the {link} of AlgaCoin",
+  passRequired: "Password must be in English and contain at least 6 characters",
+  errors: {
+    code: "You entered the wrong code in the previous step. Enter the code in this field and try again.",
+  },
+  actions: {
+    buy: "Buy",
+    send: "Send",
+    back: "Back",
+    logout: "Logout",
+    getCode: "Get Code",
+    toLK: "Login to your profile",
+    hasAccount: "Already have account? {login}",
+    setPass: "Set and Login",
+  },
   buttons: {
     close: "Close",
     logIn: "Log in",
@@ -8,6 +23,14 @@ export default {
   inputs: {
     cellphone: "Phone",
     password: "Password",
+    newPass: "New password",
+    repeatPass: "Repeat password",
+    wrongCode: "Введите правильный код",
+    code: "SMS code",
+    name: {
+      label: "Fullname",
+      placeholder: "Ivanov Ivan Ivanovich",
+    },
   },
   lk: {
     menu: {
