@@ -2,88 +2,59 @@
   <table class="h-table">
     <thead>
       <tr>
-        <th class="h-table__th">Тип операции</th>
-        <th class="h-table__th">Дата</th>
-        <th class="h-table__th">Сумма, ALG</th>
+        <th class="h-table__th">{{ t('type') }}</th>
+        <th class="h-table__th">{{ t('date') }}</th>
+        <th class="h-table__th">{{ t('sum') }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="h-table__row">
+      <tr class="h-table__row" v-for="tr in transactions" :key="tr.uuid">
         <td class="h-table__td h-table__td--type">
-          <InlineSvg :src="TYPES.output.icon" />
-          <span>{{ TYPES.output.text }}</span>
+          <InlineSvg :src="TYPES[tr.type].icon" />
+          <span>{{ TYPES[tr.type].text }}</span>
         </td>
-        <td class="h-table__td">25.10.2021 12:45</td>
-        <td class="h-table__td">320 958</td>
-      </tr>
-      <tr class="h-table__row">
-        <td class="h-table__td h-table__td--type">
-          <InlineSvg :src="TYPES.buying.icon" />
-          <span>{{ TYPES.buying.text }}</span>
-        </td>
-        <td class="h-table__td">25.10.2021 12:45</td>
-        <td class="h-table__td">320 958</td>
-      </tr>
-      <tr class="h-table__row">
-        <td class="h-table__td h-table__td--type">
-          <InlineSvg :src="TYPES.present.icon" />
-          <span>{{ TYPES.present.text }}</span>
-        </td>
-        <td class="h-table__td">25.10.2021 12:45</td>
-        <td class="h-table__td">320 958</td>
-      </tr>
-      <tr class="h-table__row">
-        <td class="h-table__td h-table__td--type">
-          <InlineSvg :src="TYPES.present.icon" />
-          <span>{{ TYPES.present.text }}</span>
-        </td>
-        <td class="h-table__td">25.10.2021 12:45</td>
-        <td class="h-table__td">320 958</td>
-      </tr>
-      <tr class="h-table__row">
-        <td class="h-table__td h-table__td--type">
-          <InlineSvg :src="TYPES.present.icon" />
-          <span>{{ TYPES.present.text }}</span>
-        </td>
-        <td class="h-table__td">25.10.2021 12:45</td>
-        <td class="h-table__td">320 958</td>
-      </tr>
-      <tr class="h-table__row">
-        <td class="h-table__td h-table__td--type">
-          <InlineSvg :src="TYPES.present.icon" />
-          <span>{{ TYPES.present.text }}</span>
-        </td>
-        <td class="h-table__td">25.10.2021 12:45</td>
-        <td class="h-table__td">320 958</td>
-      </tr>
-      <tr class="h-table__row">
-        <td class="h-table__td h-table__td--type">
-          <InlineSvg :src="TYPES.present.icon" />
-          <span>{{ TYPES.present.text }}</span>
-        </td>
-        <td class="h-table__td">25.10.2021 12:45</td>
-        <td class="h-table__td">320 958</td>
-      </tr>
-      <tr class="h-table__row">
-        <td class="h-table__td h-table__td--type">
-          <InlineSvg :src="TYPES.present.icon" />
-          <span>{{ TYPES.present.text }}</span>
-        </td>
-        <td class="h-table__td">25.10.2021 12:45</td>
-        <td class="h-table__td">320 958</td>
+        <td class="h-table__td">{{ $localDate(tr.executed_at) }}</td>
+        <td class="h-table__td">{{ tr.amount.value }}</td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-import { markRaw } from 'vue';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const messages = {
+  'ru-RU': {
+    type: 'Тип операции',
+    date: 'Дата',
+    sum: 'Сумма, ALG',
+    types: {
+      outgoing: 'Отправлено с кошелька',
+    },
+  },
+  'en-US': {
+    type: 'Operation type',
+    date: 'Date',
+    sum: 'Sum, ALG',
+    types: {
+      outgoing: 'Sent from wallet',
+    },
+  },
+};
 
 export default {
+  props: {
+    transactions: {
+      required: true,
+      type: Array,
+    },
+  },
   setup() {
-    const TYPES = markRaw({
-      output: {
-        text: 'Отправлено с кошелька',
+    const { t } = useI18n({ messages });
+    const TYPES = computed(() => ({
+      outgoing: {
+        text: t('types.outgoing'),
         icon: require('assets/icons/table-output.svg'),
       },
       buying: {
@@ -94,9 +65,10 @@ export default {
         text: 'Вознаграждение от системы',
         icon: require('assets/icons/table-present.svg'),
       },
-    });
+    }));
 
     return {
+      t,
       TYPES,
     };
   },

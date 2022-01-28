@@ -23,6 +23,7 @@ export default ({ app }) => {
   app.component("AppFullPageScreen", require("src/core/AppFullPageSection.vue").default);
   app.component("AppBtnBack", require("src/core/AppBtnBack.vue").default);
   app.component("AppModal", require("src/core/AppModal.vue").default);
+  app.component("AppPagination", require("src/core/AppPagination.vue").default);
   app.component(
     "AppModalWallet",
     require("src/core/AppModalWallet.vue").default

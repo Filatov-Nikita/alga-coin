@@ -18,12 +18,14 @@ export default {
   },
   actions: {
     async show({ commit }) {
-      const walletData = await walletAPI.show();
+      const { data: walletData } = await walletAPI.showWallet();
+
       commit("setWallet", {
-        walletNumber: walletData.wallet_number,
-        alg: walletData.alg,
-        rub: walletData.rub
+        walletNumber: walletData.address,
+        alg: walletData.balance.value,
+        rub: walletData.balance_in_currency[0].amount.value,
       });
+
       return walletData;
     },
   },

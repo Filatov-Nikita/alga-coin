@@ -16,7 +16,9 @@ export default store(function (/* { ssrContext } */) {
       profile: require("./profile.js").default,
       wallet: require("./wallet.js").default,
       auth: require("./auth.js").default,
-      landing: require('./landing').default
+      landing: require("./landing").default,
+      info: require("./info").default,
+      transactions: require("./transactions").default,
     },
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

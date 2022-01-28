@@ -4,6 +4,7 @@ import AppScroll from "src/plugins/app-scroll";
 import AppCopy from "src/plugins/app-copy";
 import ClickOutside from "src/directives/click-outside";
 import AppLocaleApi from "src/plugins/app-locale-api";
+import DatePrettier from "src/plugins/date-prettier";
 
 export default ({ app }) => {
   app.use(AppAlert);
@@ -12,4 +13,5 @@ export default ({ app }) => {
   app.use(ClickOutside);
   app.use(AppCopy);
   app.use(AppLocaleApi);
+  app.use(DatePrettier);
 };
