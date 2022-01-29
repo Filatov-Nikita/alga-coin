@@ -25,7 +25,7 @@ export default {
     password: "Password",
     newPass: "New password",
     repeatPass: "Repeat password",
-    wrongCode: "Введите правильный код",
+    wrongCode: "Enter a correct code",
     code: "SMS code",
     name: {
       label: "Fullname",
@@ -65,5 +65,13 @@ export default {
       bottom: "coins",
       wallets: "wallets",
     },
+  },
+  globalErrors: {
+    timeout: "The request timed out. Repeat the request again.",
+    401: "You must be logged in to perform an action.",
+    403: 'You do not have access to perform the action.',
+    404: 'The requested resource could not be found',
+    429: 'You have made too many attempts. We have to wait a bit.',
+    500: 'Something went wrong on the server, maybe everything will be fixed soon. If the problem persists, write to us about it.'
   },
 };

@@ -17,28 +17,20 @@ function decimal(value) {
 function cellphone(value) {
   // паттерн для чисел со знаком, дробная часть опциональна
   const pattern = /^\(\d{3}\)\s\d{3}\-\d{2}\-\d{2}$/;
-
-  if (!pattern.test(value)) {
-    return "Номер телефона введен некорректно";
-  }
-
-  return true;
+  return pattern.test(value);
 }
 
 function confirmed(value, [secondValue]) {
-  if (value !== secondValue) return "Пароли не совпадают";
-  return true;
+  return value === secondValue;
 }
 
 function password(value) {
-  if (typeof value === "string" && value.length > 6) return true;
-  return "Пароль должен быть больше 6 знаков";
+  return typeof value === "string" && value.length > 6;
 }
 
 function walletAddress(value) {
   if (!value) return true;
-  if (value.length !== 42 || !value.startsWith("0x"))
-    return "Проверьте правильность ввода адреса кошелька";
+  if (value.length !== 42 || !value.startsWith("0x")) return false;
   return true;
 }
 

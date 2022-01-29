@@ -17,36 +17,35 @@ export default ({ app, router }) => {
   function errorHandler(err) {
     if (err instanceof TimeoutError) {
       return AppAlert({
-        message: "Время ожидания запроса истекло. Повторите запрос еще раз.",
+        message: (t) => t("globalErrors.timeout"),
         type: "negative",
       });
     } else if (err instanceof HTTPError) {
       if (err.response.status === 401) {
         AppAlert({
-          message: "Для совершения действия необходимо авторизоваться.",
+          message: (t) => t("globalErrors.401"),
           type: "negative",
         });
         return router.replace({ name: "auth.login" });
       } else if (err.response.status === 403) {
         return AppAlert({
-          message: "Недостаточно прав для совершения действия.",
+          message: (t) => t("globalErrors.403"),
           type: "negative",
         });
       } else if (err.response.status === 404) {
         return AppAlert({
-          message: "Неудалось найти запрашиваемый ресурс",
+          message: (t) => t("globalErrors.404"),
           type: "negative",
         });
       } else if (err.response.status === 429) {
         return AppAlert({
-          message: "Вы сделали слишком много попыток. Надо немного подождать.",
+          message: (t) => t("globalErrors.429"),
           type: "negative",
         });
       }
 
       return AppAlert({
-        message:
-          "На сервере пошло что-то не так, возможно скоро все исправят. Если проблема не исчезнет, напишите об этом нам.",
+        message: (t) => t("globalErrors.500"),
         type: "negative",
       });
     }

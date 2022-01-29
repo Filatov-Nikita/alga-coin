@@ -29,8 +29,27 @@ export default ({ app }) => {
   app.use(i18n);
 
   // создает сообщения для правил на русском
+  Object.assign(ru.messages, {
+    password: "Пароль должен быть больше 6 знаков",
+    confirmed: "Пароли не совпадают",
+    walletAddress: "Проверьте правильность ввода адреса кошелька",
+    cellphone: "Номер телефона введен некорректно",
+  });
+
+  Object.assign(en.messages, {
+    password: "Password must be more 6 characters",
+    confirmed: "Password mismatch",
+    walletAddress: "Check if the wallet address is entered correctly",
+    cellphone: "Phone number entered incorrectly",
+  });
+
+  console.log(ru);
+
   configure({
-    generateMessage: localize({ ru, en }),
+    generateMessage: localize({
+      ru,
+      en,
+    }),
   });
 
   setLocale(curLocale);

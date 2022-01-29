@@ -1,11 +1,12 @@
 <script>
 import { h, resolveComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default {
   props: {
     message: {
       default: undefined,
-      type: String,
+      type: [String, Function],
     },
     icon: {
       default: undefined,
@@ -15,6 +16,13 @@ export default {
       default: 'positive',
       type: String,
     },
+  },
+  setup() {
+    const { t } = useI18n();
+
+    return {
+      t,
+    };
   },
   render() {
     const InlineSvg = resolveComponent('InlineSvg');
@@ -33,9 +41,12 @@ export default {
         : this.icon,
     });
 
+    const message =
+      typeof this.message === 'function' ? this.message(this.t) : this.message;
+
     const alert = h('div', { class: `app-alert app-alert--${this.type}` }, [
       icon,
-      this.message,
+      message,
     ]);
 
     return alert;

@@ -49,10 +49,12 @@ const i18n = {
     'ru-RU': {
       header: 'Авторизуйтесь <br /> в экосистеме Alga',
       subtitle: 'с помощью мобильного телефона и пароля',
+      wrongLogin: 'неверный логин или пароль'
     },
     'en-US': {
       header: 'Log in <br /> to Alga ecosystem',
       subtitle: 'with mobile phone and password',
+      wrongLogin: 'wrong login or password'
     },
   },
 };
@@ -73,7 +75,7 @@ export default {
         if (e.response.status === 422) {
           appAlert({
             type: 'negative',
-            message: 'неверный логин или пароль',
+            message: t('wrongLogin'),
           });
         } else {
           throw e;

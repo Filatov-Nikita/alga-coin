@@ -21,6 +21,7 @@ module.exports = configure(function (ctx) {
     // https://v2.quasar.dev/quasar-cli/boot-files
     boot: [
       "init",
+      "i18n",
       "registr-components",
       "registr-plugins",
       "registr-validators",
@@ -28,7 +29,6 @@ module.exports = configure(function (ctx) {
       "load-critical-data",
       "registr-router-hooks",
       "registr-error-handlers",
-      "i18n",
     ],
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
