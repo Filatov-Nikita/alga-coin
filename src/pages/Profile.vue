@@ -47,22 +47,22 @@
               <AppInput
                 type="password"
                 name="oldPass"
-                label="Старый пароль"
-                placeholder="Пароль"
+                :label="$t('inputs.oldPass')"
+                :placeholder="$t('inputs.password')"
                 rules="required|password"
               />
               <AppInput
                 type="password"
                 name="newPass"
-                label="Новый пароль"
-                placeholder="Пароль"
+                :label="$t('inputs.newPass')"
+                :placeholder="$t('inputs.password')"
                 rules="required|confirmed:@oldPass"
               />
               <AppButton
                 type="submit"
                 :disabled="isSubmittig"
                 fullWidth
-                label="Изменить пароль"
+                :label="t('savePass')"
               />
             </Form>
           </AppStep>
@@ -82,11 +82,13 @@ const messages = {
     header: 'Личный кабинет',
     save: 'Сохранить изменения',
     tabData: 'Данные',
+    savePass: 'Изменить пароль',
   },
   'en-US': {
     header: 'Profile',
     save: 'Save changes',
     tabData: 'Data',
+    savePass: 'Change password',
   },
 };
 

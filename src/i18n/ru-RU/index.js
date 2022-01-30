@@ -29,6 +29,7 @@ export default {
     cellphone: "Телефон",
     password: "Пароль",
     newPass: "Новый пароль",
+    oldPass: "Старый пароль",
     repeatPass: "Повторите пароль",
     wrongCode: "Введите правильный код",
     code: "Код из смс",
