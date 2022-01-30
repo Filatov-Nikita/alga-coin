@@ -3,5 +3,9 @@ import loadCritical from "src/store/utilities/load-critical";
 
 export default async ({ store }) => {
   if (!getAccessToken()) return;
-  await loadCritical(store);
+  try {
+    await loadCritical(store);
+  } catch (e) {
+    console.log("critical error");
+  }
 };

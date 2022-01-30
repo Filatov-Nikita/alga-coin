@@ -1,5 +1,5 @@
 <template>
-  <table class="h-table">
+  <table class="h-table" v-if="transactions.length > 0">
     <thead>
       <tr>
         <th class="h-table__th">{{ t('type') }}</th>
@@ -18,6 +18,11 @@
       </tr>
     </tbody>
   </table>
+  <div v-else>
+    <p class="tw-text-secondary tw-text-sm tw-py-2">
+      {{ t('noOperations') }}
+    </p>
+  </div>
 </template>
 
 <script>
@@ -32,6 +37,7 @@ const messages = {
     types: {
       outgoing: 'Отправлено с кошелька',
     },
+    noOperations: 'У вас нет транзакций',
   },
   'en-US': {
     type: 'Operation type',
@@ -40,6 +46,7 @@ const messages = {
     types: {
       outgoing: 'Sent from wallet',
     },
+    noOperations: 'You have no operation',
   },
 };
 

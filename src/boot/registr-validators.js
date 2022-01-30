@@ -30,8 +30,7 @@ function password(value) {
 
 function walletAddress(value) {
   if (!value) return true;
-  if (value.length !== 42 || !value.startsWith("0x")) return false;
-  return true;
+  return value.length === 40;
 }
 
 // глобальные правила

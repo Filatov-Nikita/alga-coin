@@ -32,14 +32,14 @@ export default ({ app }) => {
   Object.assign(ru.messages, {
     password: "Пароль должен быть больше 6 знаков",
     confirmed: "Пароли не совпадают",
-    walletAddress: "Проверьте правильность ввода адреса кошелька",
+    walletAddress: "Адреса кошелька должен быть 40 символов",
     cellphone: "Номер телефона введен некорректно",
   });
 
   Object.assign(en.messages, {
     password: "Password must be more 6 characters",
     confirmed: "Password mismatch",
-    walletAddress: "Check if the wallet address is entered correctly",
+    walletAddress: "Wallet address must be 40 chars",
     cellphone: "Phone number entered incorrectly",
   });
 

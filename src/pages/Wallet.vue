@@ -44,7 +44,7 @@
                 fullWidth
                 :placeholder="$t('inputs.wallet')"
                 :label="$t('inputs.walletReciever')"
-                rules="required"
+                rules="required|walletAddress"
               />
               <AppConvertInput />
               <AppButton
