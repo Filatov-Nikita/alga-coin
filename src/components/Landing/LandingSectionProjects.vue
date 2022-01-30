@@ -21,7 +21,7 @@
         <div class="app-row app-gutter-col-x">
           <div
             class="tw-bg-dark tw-rounded-base app-col-6"
-            v-for="project in projects"
+            v-for="project in projectsDisplay"
             :key="project.id"
           >
             <div class="project__cover">
@@ -167,6 +167,9 @@ export default {
   },
   computed: {
     ...mapGetters('landing', ['projects']),
+    projectsDisplay() {
+      return this.projects.slice(0, 2);
+    },
   },
 };
 </script>

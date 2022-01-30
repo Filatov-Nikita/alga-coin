@@ -16,7 +16,7 @@
       <div class="app-col-14">
         <div class="app-row app-gutter-col-x">
           <div
-            v-for="newsItem in news"
+            v-for="newsItem in newsDisplay"
             :key="newsItem.id"
             class="app-col-6 tw-flex tw-flex-col"
           >
@@ -88,6 +88,9 @@ export default {
   },
   computed: {
     ...mapGetters('landing', ['news']),
+    newsDisplay() {
+      return this.news.slice(0, 3);
+    },
   },
 };
 </script>
