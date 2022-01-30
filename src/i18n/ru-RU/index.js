@@ -32,7 +32,8 @@ export default {
     repeatPass: "Повторите пароль",
     wrongCode: "Введите правильный код",
     code: "Код из смс",
-    wallet: "Номер кошелька",
+    wallet: "Адрес кошелька",
+    walletReciever: "Адрес кошелька получателя",
     name: {
       label: "ФИО",
       placeholder: "Иванов Иван Иванович",

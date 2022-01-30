@@ -42,8 +42,8 @@
               <AppInput
                 name="address"
                 fullWidth
-                placeholder="Адрес кошелька"
-                label="Адрес кошелька получателя"
+                :placeholder="$t('inputs.wallet')"
+                :label="$t('inputs.walletReciever')"
                 rules="required"
               />
               <AppConvertInput />

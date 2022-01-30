@@ -31,7 +31,8 @@ export default {
     repeatPass: "Repeat password",
     wrongCode: "Enter a correct code",
     code: "SMS code",
-    wallet: "Wallet number",
+    wallet: "Wallet address",
+    walletReciever: "Recipient's wallet address",
     name: {
       label: "Fullname",
       placeholder: "Ivanov Ivan Ivanovich",
