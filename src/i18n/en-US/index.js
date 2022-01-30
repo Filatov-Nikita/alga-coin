@@ -3,6 +3,10 @@ export default {
   passRequired: "Password must be in English and contain at least 6 characters",
   errors: {
     code: "You entered the wrong code in the previous step. Enter the code in this field and try again.",
+    convert: "Failed to convert currency. Enter the value again.",
+  },
+  alerts: {
+    copy: "{msg} copied to the clipboard",
   },
   actions: {
     buy: "Buy",
@@ -27,6 +31,7 @@ export default {
     repeatPass: "Repeat password",
     wrongCode: "Enter a correct code",
     code: "SMS code",
+    wallet: "Wallet number",
     name: {
       label: "Fullname",
       placeholder: "Ivanov Ivan Ivanovich",
@@ -69,9 +74,9 @@ export default {
   globalErrors: {
     timeout: "The request timed out. Repeat the request again.",
     401: "You must be logged in to perform an action.",
-    403: 'You do not have access to perform the action.',
-    404: 'The requested resource could not be found',
-    429: 'You have made too many attempts. We have to wait a bit.',
-    500: 'Something went wrong on the server, maybe everything will be fixed soon. If the problem persists, write to us about it.'
+    403: "You do not have access to perform the action.",
+    404: "The requested resource could not be found",
+    429: "You have made too many attempts. We have to wait a bit.",
+    500: "Something went wrong on the server, maybe everything will be fixed soon. If the problem persists, write to us about it.",
   },
 };

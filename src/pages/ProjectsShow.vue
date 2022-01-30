@@ -37,7 +37,7 @@
           <p class="tw-text-xs">{{ $prettyDate(project.created_at) }}</p>
           <AppButton
             design="flat"
-            @click="$alert({ message: 'Ваш голос принят' })"
+            @click="$alert({ message: t('voteAccepted') })"
           >
             <div class="tw-flex tw-items-center tw-text-xs">
               <InlineSvg
@@ -122,6 +122,7 @@ const i18n = {
       partners: 'Project partners',
       about: 'About the project',
       foundationYear: 'Foundation year',
+      voteAccepted: 'Your vote accepted',
     },
     'ru-RU': {
       header: 'ПРОЕКТЫ',
@@ -130,6 +131,7 @@ const i18n = {
       partners: 'Партнёры проекта',
       about: 'О проекте',
       foundationYear: 'Год основания',
+      voteAccepted: 'Ваш голос принят',
     },
   },
 };
@@ -185,7 +187,7 @@ export default {
       isLoading: loading.isLoading,
       project,
       otherProjects,
-      t
+      t,
     };
   },
   components: {

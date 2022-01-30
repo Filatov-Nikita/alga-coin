@@ -43,8 +43,6 @@ export default ({ app }) => {
     cellphone: "Phone number entered incorrectly",
   });
 
-  console.log(ru);
-
   configure({
     generateMessage: localize({
       ru,

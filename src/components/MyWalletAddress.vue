@@ -1,11 +1,11 @@
 <template>
   <div class="my-address">
-    <div class="my-address__label">Адрес вашего кошелька для перевода</div>
+    <div class="my-address__label">{{ t('label') }}</div>
     <div class="my-address__field">
       <div class="my-address__number">{{ address }}</div>
       <CopyClip
         :value="address"
-        message="Номер кошелька скопирован в буфер обмена"
+        :message="$t('alerts.copy', { msg: $t('inputs.wallet') })"
       />
     </div>
   </div>
@@ -13,6 +13,7 @@
 
 <script>
 import CopyClip from 'src/components/CopyClip.vue';
+import { useI18n } from 'vue-i18n';
 
 export default {
   props: {
@@ -20,6 +21,22 @@ export default {
       required: true,
       type: String,
     },
+  },
+  setup() {
+    const { t } = useI18n({
+      messages: {
+        'ru-RU': {
+          label: 'Адрес вашего кошелька для перевода',
+        },
+        'en-US': {
+          label: 'Wallet address for transaction',
+        },
+      },
+    });
+
+    return {
+      t,
+    };
   },
   components: {
     CopyClip,

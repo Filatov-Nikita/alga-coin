@@ -74,7 +74,7 @@
           src="~assets/images/logo.svg"
           alt="logo"
         />
-        <p class="tw-text-xs tw-text-center"></p>
+        <p class="tw-text-xs tw-text-center">{{ t('suucessMsg') }}</p>
         <AppButton
           class="tw-absolute tw-right-3 tw-top-3"
           design="flat"

@@ -46,9 +46,11 @@ const i18n = {
   messages: {
     'ru-RU': {
       share: 'Поделиться',
+      link: 'Ссылка',
     },
     'en-US': {
       share: 'Share',
+      link: 'Link',
     },
   },
 };
@@ -77,7 +79,7 @@ export default {
       this.$copy(window.location.origin + route.href);
       this.$alert({
         type: 'neutral',
-        message: 'Ссылка скопирована в буфер обмена',
+        message: this.$t('alerts.copy', { msg: this.t('link') }, 0),
       });
     },
   },

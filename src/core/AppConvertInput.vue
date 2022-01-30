@@ -121,8 +121,7 @@ export default {
         val2.value = calc.out.amount.value;
       } catch (e) {
         appAlert({
-          message:
-            'Не удалось конвертировать валюту. Попрбуйте ввести значение еще раз.',
+          message: (t) => t('errors.convert'),
           type: 'negative',
         });
         throw e;

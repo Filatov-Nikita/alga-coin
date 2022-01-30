@@ -3,7 +3,7 @@
     <div class="app-wallet-display__text">{{ displayWallet }}</div>
     <CopyClip
       :value="walletNumber"
-      message="Номер кошелька скопирован в буфер обмена"
+      :message="$t('alerts.copy', { msg: $t('inputs.wallet') })"
     />
   </div>
 </template>
@@ -27,8 +27,8 @@ export default {
     },
   },
   components: {
-    CopyClip
-  }
+    CopyClip,
+  },
 };
 </script>
 
