@@ -45,13 +45,15 @@
         "
       >
         <InlineSvg class="tw-mr-2" :src="require('assets/icons/info.svg')" />
-        <span> Заморожено до 13.01.2022 </span>
+        <span> {{ t('frozenTill', { date: frozenTill }) }} </span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n';
+
 export default {
   props: {
     walletNumber: {
@@ -82,6 +84,21 @@ export default {
       default: false,
       type: Boolean,
     },
+  },
+  setup() {
+    const { t } = useI18n({
+      messages: {
+        'ru-RU': {
+          frozenTill: 'Заморожено до {date}',
+        },
+        'en-US': {
+          frozenTill: 'Frozen till {date}',
+        },
+      },
+    });
+    return {
+      t,
+    };
   },
 };
 </script>

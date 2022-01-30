@@ -49,6 +49,7 @@ export default {
 }
 
 .tab {
+  min-width: 150px;
   @apply tw-px-5 tw-py-3 tw-text-center tw-w-1/2 tw-relative tw-text-xxs;
 
   @include screen-xl {

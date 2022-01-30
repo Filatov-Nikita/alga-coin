@@ -1,7 +1,7 @@
 <template>
   <q-page class="app-page-y">
     <div class="tw-container">
-      <h1 class="app-h1 app-h1--space">Личный кабинет</h1>
+      <h1 class="app-h1 app-h1--space">{{ t('header') }}</h1>
       <div class="app-row app-gutter-col-x">
         <div class="app-col-18 xl:app-col-5">
           <AppTabs
@@ -9,16 +9,16 @@
             @switch="changeStep"
             :value="step"
             :steps="[
-              { name: 'profile-data', label: 'Данные' },
-              { name: 'password', label: 'Пароль' },
+              { name: 'profile-data', label: t('tabData') },
+              { name: 'password', label: $t('inputs.password') },
             ]"
           />
           <AppStep name="profile-data">
             <Form class="app-space-y-md" v-slot="{ isSubmittig }">
               <AppInput
                 name="name"
-                label="Имя"
-                placeholder="Имя"
+                :label="$t('inputs.name.label')"
+                :placeholder="$t('inputs.name.placeholder')"
                 rules="required"
               />
               <AppInput
@@ -30,15 +30,15 @@
               <AppInput
                 type="tel"
                 name="cellphone"
-                label="Телефон"
-                placeholder="Номер телефона"
+                :label="$t('inputs.cellphone')"
+                placeholder="(999) 999 99 99"
                 rules="required"
               />
               <AppButton
                 type="submit"
                 :disabled="isSubmittig"
                 fullWidth
-                label="Сохранить изменения"
+                :label="t('save')"
               />
             </Form>
           </AppStep>
@@ -75,11 +75,30 @@
 <script>
 import AppTabs from 'src/components/AppTabs.vue';
 import useStep from 'src/composition/useStep';
+import { useI18n } from 'vue-i18n';
+
+const messages = {
+  'ru-RU': {
+    header: 'Личный кабинет',
+    save: 'Сохранить изменения',
+    tabData: 'Данные',
+  },
+  'en-US': {
+    header: 'Profile',
+    save: 'Save changes',
+    tabData: 'Data',
+  },
+};
 
 export default {
   setup() {
     const { step, changeStep } = useStep('profile-data');
+    const { t } = useI18n({
+      messages,
+    });
+
     return {
+      t,
       step,
       changeStep,
     };
