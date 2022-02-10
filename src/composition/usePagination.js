@@ -6,6 +6,11 @@ export default function (fetcher) {
   const meta = ref(null);
   const data = ref(null);
 
+  function reset() {
+    data.value = null;
+    meta.value = null;
+  }
+
   const nextPage = computed(() => {
     if (!meta.value) return null;
     const { last_page, current_page } = meta.value;
@@ -17,8 +22,8 @@ export default function (fetcher) {
     return nextPage.value <= meta.value.current_page;
   });
 
-  const setData = (d, reload) => {
-    if (!data.value || reload) {
+  const setData = (d) => {
+    if (!data.value) {
       data.value = d;
     } else {
       data.value = [...data.value, ...d];
@@ -34,16 +39,15 @@ export default function (fetcher) {
     try {
       loading.startLoading();
 
-      const isReload = stg?.reload === true;
+      const params = (stg?.params && typeof stg?.params === "object") || {};
+      const filter = { ...params, ...getFilter() };
 
-      const filter = getFilter();
       const { meta: m, data: d } = await fetcher(filter, ...args);
 
       meta.value = m;
-      setData(d, isReload);
+      setData(d);
 
       if (done) done();
-
     } catch (e) {
       throw e;
     } finally {
@@ -58,5 +62,6 @@ export default function (fetcher) {
     complete,
     isLoading: loading.isLoading,
     fetcher: wrapped,
+    reset,
   };
 }

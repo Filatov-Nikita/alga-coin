@@ -80,7 +80,7 @@
                 :to="{ name: 'offer-project' }"
               />
             </div>
-            <h3 class="tw-text-xs tw-mb-2">{{ t('join.text1') }}</h3>
+            <h3 class="tw-text-xs tw-mb-2" v-html="t('join.text1')"></h3>
             <p
               :style="{ color: themes[theme] }"
               class="tw-text-xxs-1 tw-tracking-mid"

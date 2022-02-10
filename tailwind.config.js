@@ -16,10 +16,10 @@ module.exports = {
         "7-1": "1.875rem",
       },
       letterSpacing: {
-        widest: '0.5em',
-        smallest: '0.1em',
-        mid: '0.2em'
-      }
+        widest: "0.5em",
+        smallest: "0.1em",
+        mid: "0.2em",
+      },
     },
     colors: {
       primary: "#005BAA",
@@ -29,6 +29,7 @@ module.exports = {
       valid: "#4AD66D",
       dark: "#0A1E3E",
       white: "#FFFFFF",
+      "deep-dark": "#001538",
       "dark-blue": "#003870",
       "blue-hover": "#0083F5",
       "dark-blue-cover": "#001233",

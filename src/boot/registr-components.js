@@ -24,6 +24,8 @@ export default ({ app }) => {
   app.component("AppBtnBack", require("src/core/AppBtnBack.vue").default);
   app.component("AppModal", require("src/core/AppModal.vue").default);
   app.component("AppPagination", require("src/core/AppPagination.vue").default);
+  app.component("AppEmptyList", require("src/core/AppEmptyList.vue").default);
+  app.component("AppInnerLoading", require("src/core/AppInnerLoading.vue").default);
   app.component(
     "AppModalWallet",
     require("src/core/AppModalWallet.vue").default

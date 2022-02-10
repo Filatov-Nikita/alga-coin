@@ -1,5 +1,5 @@
 <template>
-  <AppTimer :seconds="5" v-slot="{ s, restart }" class="tw-text-center">
+  <AppTimer :seconds="60" v-slot="{ s, restart }" class="tw-text-center">
     <button
       type="button"
       @click="repeat(restart)"

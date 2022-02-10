@@ -14,59 +14,76 @@
     <div v-if="$q.screen.xl" class="app-row app-gutter-col-x">
       <div class="app-col-4"></div>
       <div class="app-col-14">
-        <div class="app-row app-gutter-col-x">
-          <div
-            v-for="newsItem in newsDisplay"
-            :key="newsItem.id"
-            class="app-col-6 tw-flex tw-flex-col"
-          >
-            <q-img
-              v-if="newsItem.announceImage"
-              class="article__pic"
-              :src="newsItem.announceImage.url"
-            />
-            <div class="article__bottom tw-flex-grow tw-flex tw-flex-col">
-              <div class="tw-mb-3-1">
-                {{ newsItem.title }}
-              </div>
-              <AppButton
-                class="tw-mt-auto tw-self-start"
-                :to="{
-                  name: 'articles.show',
-                  params: { id: newsItem.id },
-                }"
-                design="flat"
-                :icon="require('assets/images/landing/landing-arrow.svg')"
+        <template v-if="newsDisplay.length > 0">
+          <div class="app-row app-gutter-col-x">
+            <div
+              v-for="newsItem in newsDisplay"
+              :key="newsItem.id"
+              class="app-col-6 tw-flex tw-flex-col"
+            >
+              <q-img
+                v-if="newsItem.announceImage"
+                class="article__pic"
+                :src="newsItem.announceImage.url"
               />
+              <div class="article__bottom tw-flex-grow tw-flex tw-flex-col">
+                <div class="tw-mb-3-1">
+                  {{ newsItem.title }}
+                </div>
+                <AppButton
+                  class="tw-mt-auto tw-self-start"
+                  :to="{
+                    name: 'articles.show',
+                    params: { id: newsItem.id },
+                  }"
+                  design="flat"
+                  :icon="require('assets/images/landing/landing-arrow.svg')"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </template>
+        <AppEmptyList
+          v-else
+          msg="Нет новостей"
+          class="
+            tw-absolute
+            tw-left-1/2
+            tw-top-1/3
+            tw-transform
+            tw--translate-x-1/2
+            tw--translate-y-1/2
+          "
+        />
       </div>
     </div>
 
-    <AppCarousel v-else>
-      <AppCarouselSlide
-        v-for="newsItem in news"
-        :key="newsItem.id"
-        :name="`${newsItem.id}`"
-      >
-        <q-img
-          v-if="newsItem.announceImage"
-          class="article__pic"
-          :src="newsItem.announceImage.url"
-        />
-        <div class="article__bottom">
-          <div class="tw-mb-3-1">
-            {{ newsItem.title }}
-          </div>
-          <AppButton
-            :to="{ name: 'articles.show', params: { id: newsItem.id } }"
-            design="flat"
-            :icon="require('assets/images/landing/landing-arrow.svg')"
+    <template v-else>
+      <AppCarousel v-if="news.length > 0">
+        <AppCarouselSlide
+          v-for="newsItem in news"
+          :key="newsItem.id"
+          :name="`${newsItem.id}`"
+        >
+          <q-img
+            v-if="newsItem.announceImage"
+            class="article__pic"
+            :src="newsItem.announceImage.url"
           />
-        </div>
-      </AppCarouselSlide>
-    </AppCarousel>
+          <div class="article__bottom">
+            <div class="tw-mb-3-1">
+              {{ newsItem.title }}
+            </div>
+            <AppButton
+              :to="{ name: 'articles.show', params: { id: newsItem.id } }"
+              design="flat"
+              :icon="require('assets/images/landing/landing-arrow.svg')"
+            />
+          </div>
+        </AppCarouselSlide>
+      </AppCarousel>
+      <AppEmptyList v-else class="tw-text-center" msg="Нет новостей" />
+    </template>
   </AppFullPageScreen>
 </template>
 

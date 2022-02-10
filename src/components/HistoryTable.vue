@@ -18,11 +18,7 @@
       </tr>
     </tbody>
   </table>
-  <div v-else>
-    <p class="tw-text-secondary tw-text-sm tw-py-2">
-      {{ t('noOperations') }}
-    </p>
-  </div>
+  <AppEmptyList v-else :msg="t('noOperations')" />
 </template>
 
 <script>
