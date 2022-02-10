@@ -44,6 +44,7 @@ export default {
       wallet: "Wallet",
       history: "History",
       output: "Output",
+      polls: 'Polls'
     },
   },
   landing: {

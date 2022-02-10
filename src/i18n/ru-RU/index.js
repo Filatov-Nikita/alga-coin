@@ -45,6 +45,7 @@ export default {
       wallet: "Кошелек",
       history: "История операций",
       output: "Вывод",
+      polls: 'Опросы'
     },
   },
   landing: {
