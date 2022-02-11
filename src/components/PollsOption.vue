@@ -25,7 +25,7 @@
       "
     >
       <div class="tw-text-xxs xl:tw-text-xs">{{ option.body }}</div>
-      <div v-if="showResults" class="tw-flex tw-items-center tw-w-28">
+      <div v-if="showResults" class="tw-flex tw-items-center tw-w-20 tw-flex-shrink-0">
         <div class="tw-ml-auto"></div>
         <InlineSvg
           v-if="selected"
