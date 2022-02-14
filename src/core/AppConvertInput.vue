@@ -1,7 +1,8 @@
 <template>
   <div class="app-convert">
-    <div class="tw-flex-1 tw-w-2/5">
+    <div class="tw-flex-1 xl:tw-w-2/5">
       <AppInput
+        inputClass="app-convert__r-offset"
         :key="label1"
         currency
         ref="inp1"
@@ -11,12 +12,17 @@
         :placeholder="fromLocal"
         v-model="val1"
       >
-        <template #append> {{ fromLocal }} </template>
+        <template #append>
+          <span> {{ fromLocal }}</span>
+        </template>
       </AppInput>
     </div>
-    <div class="sign" @click="swap">≈</div>
-    <div class="tw-flex-1 tw-w-2/5">
+    <div class="sign" @click="swap">
+      <span>≈</span>
+    </div>
+    <div class="tw-flex-1 xl:tw-w-2/5">
       <AppInput
+        inputClass="app-convert__r-offset"
         currency
         standalone
         readonly
@@ -25,12 +31,16 @@
         :label="label2"
         :placeholder="toLocal"
         v-model="val2"
+        @click="showSum"
       >
         <template #append>
           <span v-if="!isLoading">{{ toLocal }}</span>
           <q-spinner v-else size="20px" />
         </template>
       </AppInput>
+    </div>
+    <div v-if="showedSum && val2" class="resultSum" @click="showSum">
+      {{ val2 }} {{ toLocal }}
     </div>
   </div>
 </template>
@@ -42,6 +52,7 @@ import { useAlert } from 'src/plugins/app-alert';
 import { useStore } from 'vuex';
 import { throttle } from 'src/helpers/perfomance';
 import { useI18n } from 'vue-i18n';
+import { useQuasar } from 'quasar';
 
 function validator(val) {
   return ['ALG', 'RUB', 'USD'].includes(val);
@@ -80,6 +91,7 @@ export default {
     },
   },
   setup(props) {
+    const q = useQuasar();
     const { isLoading, startLoading, stopLoading } = useLoading();
     const to = ref(props.to);
     const from = ref(props.from);
@@ -87,6 +99,7 @@ export default {
     const inp2 = ref(null);
     const val1 = ref('');
     const val2 = ref('');
+    const showedSum = ref(false);
     const appAlert = useAlert();
     const store = useStore();
     const { t } = useI18n(i18n);
@@ -134,6 +147,11 @@ export default {
 
     watch(val1, quickConvert);
 
+    const showSum = () => {
+      if (!q.screen.lt.xl || !val2.value) return;
+      showedSum.value = !showedSum.value;
+    };
+
     return {
       toLocal: to,
       fromLocal: from,
@@ -146,22 +164,53 @@ export default {
       isLoading,
       swap,
       convert,
+      showSum,
+      showedSum,
       t,
     };
   },
 };
 </script>
-
+<style>
+.app-convert__r-offset {
+  padding-right: 55px !important;
+}
+</style>
 <style scoped lang="scss">
 //$
 
 .app-convert {
-  @apply tw-flex;
-  @include space-x(10px);
+  @apply xl:tw-flex tw-relative;
+  @include gutter-x(10px);
+}
+
+.resultSum {
+  bottom: 0;
+  right: 0;
+  transform: translateY(calc(100% + 5px));
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+  @apply tw-absolute tw-bg-white tw-rounded-base tw-px-3 tw-py-2 tw-text-dark tw-text-xxs;
+}
+
+.resultSum::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: white;
+  position: absolute;
+  right: 35px;
+  top: -2px;
+  transform: rotate(45deg);
 }
 
 .sign {
-  top: 38px;
+  @include screen-xl {
+    height: 50px;
+    line-height: 50px;
+    top: 28px;
+  }
+  width: 12px;
   @apply tw-text-sm tw-text-secondary tw-relative tw-cursor-pointer;
 }
 </style>

@@ -54,6 +54,10 @@ export default defineComponent({
       default: undefined,
       type: Boolean,
     },
+    inputClass: {
+      default: '',
+      type: String,
+    },
     ...{ rules: Field.props.rules, standalone: Field.props.standalone },
   },
   emits: ['update:modelValue'],
@@ -119,6 +123,7 @@ export default defineComponent({
             'app-input__field--textarea': isTextarea,
             'app-input__field--file': isFile,
           },
+          props.inputClass
         ],
         placeholder: props.placeholder,
         type:
