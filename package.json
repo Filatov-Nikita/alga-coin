@@ -6,12 +6,20 @@
   "author": "nikita <nikita45454@gmail.com>",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "jest",
+    "test:unit": "jest --updateSnapshot",
+    "test:unit:ci": "jest --ci",
+    "test:unit:coverage": "jest --coverage",
+    "test:unit:watch": "jest --watch",
+    "test:unit:watchAll": "jest --watchAll",
+    "serve:test:coverage": "quasar serve test/jest/coverage/lcov-report/ --port 8788",
+    "concurrently:dev:jest": "concurrently \"quasar dev\" \"jest --watch\""
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "@vee-validate/i18n": "^4.5.2",
     "@vee-validate/rules": "^4.5.1",
+    "@vue/vue3-jest": "^27.0.0-alpha.4",
     "core-js": "^3.6.5",
     "ky": "^0.28.6",
     "quasar": "^2.0.0",
@@ -25,7 +33,10 @@
   },
   "devDependencies": {
     "@quasar/app": "^3.0.0",
+    "@testing-library/vue": "^6.4.2",
     "autoprefixer": "^10.3.5",
+    "eslint-plugin-jest": "^25.2.2",
+    "jest": "^27.5.1",
     "postcss": "^8.3.7",
     "tailwindcss": "^2.2.15"
   },
