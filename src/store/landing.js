@@ -9,7 +9,7 @@ export default {
       { label: "White paper", to: "/file.pdf" },
       { label: "Alga Ecosystem", to: "#" },
       { label: t("landing.footer.whyAlga"), to: "#" },
-      { label: "Alga Market", to: "#111", popup: true, modalMessage: "Alga Market в разработке"},
+      { label: "Alga Market", to: "#", popup: true, modalMessage: "Alga Market в разработке"},
     ],
     curEco: "BANKING",
     curOwner: "0",

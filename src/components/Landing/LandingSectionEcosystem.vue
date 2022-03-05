@@ -14,7 +14,8 @@
       {{ t('header') }}
     </h2>
 
-    <div class="tw-flex tw-justify-center landing-c-up">
+    <div class="tw-flex tw-justify-between landing-c-up">
+      <div></div>
       <AppCarousel
         height="370px"
         class="eco-slider"

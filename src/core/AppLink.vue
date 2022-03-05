@@ -1,5 +1,20 @@
 <template>
-  <span v-if="popup" @click="()=>modal=true">
+  
+  <!-- <template v-else>
+    <a :href="to" v-if="isExternalLink">
+      <slot>{{ label }}</slot>
+    </a>
+    <router-link v-else v-bind="$props">
+      <slot>{{ label }}{{link}}</slot>  
+    </router-link>
+  </template> -->
+  
+  <a :href="to" v-if="isExternalLink">
+      <slot>{{ label }}</slot>
+    </a>
+    <router-link v-else v-bind="$props">
+      
+      <span v-if="popup" @click="()=>modal=true">
     <slot>{{label}}</slot>
     <AppModal
       v-model="modal"
@@ -11,16 +26,8 @@
       <div class="tw-text-center tw-p-4">Alga Market в разработке</div>
     </AppModal>
   </span>
-  <template v-else>
-    <a :href="to" v-if="isExternalLink">
-      <slot>{{ label }}</slot>
-    </a>
-    <router-link v-else v-bind="$props">
-      <slot>{{ label }}{{link}}</slot>
-      
-      
+  <slot v-else>{{ label }}{{link}}</slot>  
     </router-link>
-  </template>
 </template>
 
 <script>

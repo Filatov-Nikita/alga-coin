@@ -183,13 +183,10 @@ export default {
 .landing-bg-image {
   position: fixed;
   z-index: -1;
-  width: 110%;
+  width: 913px;
   height: 110%;
   left: 50%;
   top: -30px;
   transform: translateX(-50%);
-  @media (max-width: 1600px) {
-    width: 66%;
-  }
 }
 </style>
