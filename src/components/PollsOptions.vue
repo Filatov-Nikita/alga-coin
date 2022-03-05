@@ -44,15 +44,16 @@ export default {
     },
     maxVoteId() {
       let maxId = null;
-      let max = 0;
-
-      this.calculatedOpts.forEach((opt) => {
-        if (opt.perc > max) {
-          max = opt.perc;
-          maxId = opt.uuid;
-        }
-      });
-
+      // let max = 0;
+      
+      this.options.forEach(opt => {if(opt.uuid === this.votedId)maxId=opt.uuid})
+      // this.calculatedOpts.forEach((opt) => {
+      //   console.log(opt + ":")
+      //   if (opt.perc > max) {
+      //     max = opt.perc;
+      //     maxId = opt.uuid;
+      //   }
+      // });
       return maxId;
     },
   },

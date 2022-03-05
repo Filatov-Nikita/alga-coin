@@ -1,7 +1,7 @@
 <template>
   <q-page class="app-page-y">
     <div class="tw-container">
-      <h1 class="app-h1 app-h1--space">{{ t('header') }}</h1>
+      <h1 class="app-h1 app-h1--space">{{ t("header") }}</h1>
 
       <div class="app-row app-gutter-col-x wrap">
         <div class="wallet">
@@ -62,7 +62,7 @@
           <div class="page-wallet__content">
             <div v-if="last.name === 'way'">
               <div class="page-wallet__title tw-mb-9">
-                {{ t('buy.buyMethod') }}
+                {{ t("buy.buyMethod") }}
               </div>
 
               <div class="page-wallet__actions page-wallet__wrap">
@@ -85,9 +85,9 @@
               <WalletBalance v-bind="walletData" hideIcon />
               <Form class="page-wallet__form">
                 <AppConvertInput />
-                <AppButton @click="1" :label="$t('actions.buy')" fullWidth />
+                <AppButton @click="redir" :label="$t('actions.buy')" fullWidth />
                 <div class="page-wallet__caption tw-text-center tw-mt-6">
-                  {{ t('buy.agree') }}
+                  {{ t("buy.agree") }}
                 </div>
               </Form>
             </div>
@@ -95,7 +95,7 @@
             <div v-else-if="last.name === 'crypto'">
               <WalletBalance v-bind="walletData" hideIcon />
               <Form class="page-wallet__form">
-                <AppConvertInput to="USD" />
+                <AppConvertInput to="USD" @algValue="alg" />
                 <div class="page-wallet__actions">
                   <AppButton
                     @click="pushToPath({ name: 'usdt' })"
@@ -115,11 +115,15 @@
 
             <div v-else-if="last.name === 'usdt'">
               <MyWalletAddress
-                address="0xAbBDd166fD5DfFe50D294aEEe539CBB2547DE7DF"
+                              v-bind="{
+                address,
+                count,
+                coin
+              }"
               />
-              <div class="wallet__title">{{ t('buy.haveToSend') }}</div>
+              <div class="wallet__title">{{ t("buy.haveToSend") }}</div>
               <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
-                Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
+                Осталось ({{ displayVal(m) + ":" + displayVal(s) }} )
               </AppTimer>
               <AppButton
                 @click="pushToPath({ name: 'finish' })"
@@ -130,11 +134,16 @@
 
             <div v-else-if="last.name === 'busd'">
               <MyWalletAddress
-                address="0xAbBDd166fD5DfFe50D294aEEe539CBB2547DE7DF"
+              v-bind="{
+                address,
+                count,
+                coin
+              }"
+                
               />
-              <div class="wallet__title">{{ t('buy.haveToSend') }}</div>
+              <div class="wallet__title">{{ t("buy.haveToSend") }}</div>
               <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
-                Осталось ({{ displayVal(m) + ':' + displayVal(s) }} )
+                Осталось ({{ displayVal(m) + ":" + displayVal(s) }} )
               </AppTimer>
               <AppButton
                 @click="pushToPath({ name: 'finish' })"
@@ -144,8 +153,8 @@
             </div>
 
             <div v-else-if="last.name === 'finish'">
-              <div class="wallet__title">{{ t('buy.finish.title') }}</div>
-              <div class="wallet__caption">{{ t('buy.finish.info') }}</div>
+              <div class="wallet__title">{{ t("buy.finish.title") }}</div>
+              <div class="wallet__caption">{{ t("buy.finish.info") }}</div>
             </div>
           </div>
         </AppModalWallet>
@@ -164,57 +173,57 @@
 </template>
 
 <script>
-import WalletBalance from 'src/components/Wallet/WalletBalance.vue';
-import WalletOutputForm from 'src/components/Wallet/WalletOutputForm.vue';
-import HistoryTable from 'src/components/HistoryTable.vue';
-import MyWalletAddress from 'src/components/MyWalletAddress';
-import { ref, computed } from 'vue';
-import { useAlert } from 'src/plugins/app-alert';
-import usePagination from 'src/composition/usePagination';
-import { mapGetters, useStore } from 'vuex';
-import { useI18n } from 'vue-i18n';
+import WalletBalance from "src/components/Wallet/WalletBalance.vue";
+import WalletOutputForm from "src/components/Wallet/WalletOutputForm.vue";
+import HistoryTable from "src/components/HistoryTable.vue";
+import MyWalletAddress from "src/components/MyWalletAddress";
+import { ref, computed } from "vue";
+import { useAlert } from "src/plugins/app-alert";
+import usePagination from "src/composition/usePagination";
+import { mapGetters, useStore } from "vuex";
+import { useI18n } from "vue-i18n";
 
 const messages = {
-  'ru-RU': {
-    header: 'Баланс кошелька',
+  "ru-RU": {
+    header: "Баланс кошелька",
     buy: {
-      buyMethod: 'Выберите удобный способ пополнения',
-      byCard: 'Карта VISA / Master Card',
-      byCrypto: 'Криптовалюта USDT / BUSD',
-      busd: 'Пополнить в BUSD',
-      usdt: 'Пополнить в USDT',
-      ISent: 'Я отправил',
-      haveToSend: 'Вам необходимо перевести',
+      buyMethod: "Выберите удобный способ пополнения",
+      byCard: "Карта VISA / Master Card",
+      byCrypto: "Криптовалюта USDT / BUSD",
+      busd: "Пополнить в BUSD (BSC)",
+      usdt: "Пополнить в USDT (ERC 20)",
+      ISent: "Я отправил",
+      haveToSend: "Вам необходимо перевести",
       finish: {
-        title: 'Информация о пополнении принята',
-        info: 'Зачисление денежных средств обычно происходит в течение 15 минут, в редких случаях достигает 4 часов. В случае проблем, просим направить запрос на mail@mail.ru',
+        title: "Информация о пополнении принята",
+        info: "Зачисление денежных средств обычно происходит в течение 15 минут, в редких случаях достигает 4 часов. В случае проблем, просим направить запрос на mail@mail.ru",
       },
       agree:
-        'После нажатия «Пополнить» вы будете перенаправлены на страницу оплаты',
+        "После нажатия «Пополнить» вы будете перенаправлены на страницу оплаты",
     },
     send: {
-      success: 'Перевод успешно совершен ({total})',
+      success: "Перевод успешно совершен ({total})",
     },
   },
-  'en-US': {
-    header: 'Wallet balance',
+  "en-US": {
+    header: "Wallet balance",
     buy: {
-      buyMethod: 'Choose a convenient way to replenish',
-      byCard: 'Card VISA / Master Card',
-      byCrypto: 'Cryptocurrency USDT / BUSD',
-      busd: 'Buy in BUSD',
-      usdt: 'Buy in USDT',
-      ISent: 'I sent',
-      haveToSend: 'You need to send',
+      buyMethod: "Choose a convenient way to replenish",
+      byCard: "Card VISA / Master Card",
+      byCrypto: "Cryptocurrency USDT / BUSD",
+      busd: "Buy in BUSD (BSC)",
+      usdt: "Buy in USDT (ERC 20)",
+      ISent: "I sent",
+      haveToSend: "You need to send",
       finish: {
-        title: 'Replenishment information accepted',
-        info: 'Funds are usually credited within 15 minutes, in rare cases up to 4 hours. In case of problems, please send a request to mail@mail.ru',
+        title: "Replenishment information accepted",
+        info: "Funds are usually credited within 15 minutes, in rare cases up to 4 hours. In case of problems, please send a request to mail@mail.ru",
       },
       agree:
         'After clicking "Deposit" you will be redirected to the payment page',
     },
     send: {
-      success: 'Transaction is completed ({total})',
+      success: "Transaction is completed ({total})",
     },
   },
 };
@@ -224,12 +233,41 @@ export default {
     const { t } = useI18n({ messages });
     const appAlert = useAlert();
     const store = useStore();
-    const path = ref([{ name: 'way' }]);
+    const path = ref([{ name: "way" }]);
     const sendDialog = ref(null);
-
+    const algaValue = ref(0);
+    const address = ref(null);
+    const coin = ref(null);
+    const count = ref(null);
+    const redir = ()=>{
+      // alert('hi')
+      // location.replace("https://mpspay.io/");
+      // location.href = 'https://mpspay.io/'
+      window.open("https://mpspay.io/");
+    }
     const last = computed(() => path.value[path.value.length - 1]);
 
-    const pushToPath = ({ name }) => path.value.push({ name });
+    const pushToPath = async ({ name }) => {
+      
+      try {
+        if (name == "busd" || name == "usdt") {
+          
+          await store.dispatch(
+            "wallet/create",
+            JSON.stringify({
+              alga_amount: algaValue.value,
+              coin: name.toUpperCase(),
+            })
+          )
+          .then((resolve)=>{ coin.value= resolve.data.coin; address.value = resolve.data.address; count.value = resolve.data.amount });
+          
+        }
+          path.value.push({ name });
+        
+      } catch (e) {
+        if (!e.response) throw e;
+      }
+    };
 
     const back = (close) => {
       if (path.value.length <= 1) return close();
@@ -237,26 +275,26 @@ export default {
     };
 
     const historyPagination = usePagination((filter) =>
-      store.dispatch('transactions/showHistory', filter)
+      store.dispatch("transactions/showHistory", filter)
     );
 
     const send = async (values, { setErrors }) => {
       try {
-        const result = await store.dispatch('transactions/to', values);
+        const result = await store.dispatch("transactions/to", values);
         appAlert({
-          type: 'positive',
-          message: t('send.success', { total: result.amount.label }),
+          type: "positive",
+          message: t("send.success", { total: result.amount.label }),
         });
 
         sendDialog.value?.close();
-        store.dispatch('wallet/show');
+        store.dispatch("wallet/show");
         historyPagination.data.value.unshift(result);
       } catch (e) {
         if (!e.response) throw e;
         if (e.response.status === 422) {
           const { errors } = await e.response.json();
           if (errors.address)
-            appAlert({ type: 'negative', message: errors.address.join(', ') });
+            appAlert({ type: "negative", message: errors.address.join(", ") });
 
           setErrors(errors);
         } else {
@@ -264,8 +302,15 @@ export default {
         }
       }
     };
+    const alg = (val) => (algaValue.value = val);
 
     return {
+      address,
+      coin,
+      count,
+      redir,
+      algaValue,
+      alg,
       last,
       sendDialog,
       t,
@@ -278,7 +323,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('wallet', ['walletData']),
+    ...mapGetters("wallet", ["walletData"]),
   },
   components: {
     WalletBalance,

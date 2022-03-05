@@ -29,6 +29,6 @@ export default ({ app, router, store }) => {
     facebook: "#",
     instagram: "#",
     telegram: "#",
-    serviceInfo: "#",
+    serviceInfo: "/file.pdf",
   };
 };

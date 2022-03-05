@@ -46,35 +46,35 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue';
-import useLoading from 'src/composition/useLoading';
-import { useAlert } from 'src/plugins/app-alert';
-import { useStore } from 'vuex';
-import { throttle } from 'src/helpers/perfomance';
-import { useI18n } from 'vue-i18n';
-import { useQuasar } from 'quasar';
+import { ref, computed, watch } from "vue";
+import useLoading from "src/composition/useLoading";
+import { useAlert } from "src/plugins/app-alert";
+import { useStore } from "vuex";
+import { throttle } from "src/helpers/perfomance";
+import { useI18n } from "vue-i18n";
+import { useQuasar } from "quasar";
 
 function validator(val) {
-  return ['ALG', 'RUB', 'USD'].includes(val);
+  return ["ALG", "RUB", "USD"].includes(val);
 }
 
 const labelByCurrency = (t) => ({
-  RUB: t('rubSum'),
-  USD: t('usdSum'),
-  ALG: t('algSum'),
+  RUB: t("rubSum"),
+  USD: t("usdSum"),
+  ALG: t("algSum"),
 });
 
 const i18n = {
   messages: {
-    'en-US': {
-      rubSum: 'Amount in rubles',
-      usdSum: 'Amount in dollars',
-      algSum: 'Amount in AlgaСoin',
+    "en-US": {
+      rubSum: "Amount in rubles",
+      usdSum: "Amount in dollars",
+      algSum: "Amount in AlgaСoin",
     },
-    'ru-RU': {
-      rubSum: 'Сумма в рублях',
-      usdSum: 'Сумма в долларах',
-      algSum: 'Сумма в AlgaСoin',
+    "ru-RU": {
+      rubSum: "Сумма в рублях",
+      usdSum: "Сумма в долларах",
+      algSum: "Сумма в AlgaСoin",
     },
   },
 };
@@ -82,32 +82,32 @@ const i18n = {
 export default {
   props: {
     from: {
-      default: 'ALG',
+      default: "ALG",
       validator,
     },
     to: {
-      default: 'RUB',
+      default: "RUB",
       validator,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const q = useQuasar();
     const { isLoading, startLoading, stopLoading } = useLoading();
     const to = ref(props.to);
     const from = ref(props.from);
     const inp1 = ref(null);
     const inp2 = ref(null);
-    const val1 = ref('');
-    const val2 = ref('');
+    const val1 = ref("");
+    const val2 = ref("");
     const showedSum = ref(false);
     const appAlert = useAlert();
     const store = useStore();
     const { t } = useI18n(i18n);
 
     const currencyCode = computed(() =>
-      from.value === 'ALG' ? to.value : from.value
+      from.value === "ALG" ? to.value : from.value
     );
-    const isSource = computed(() => from.value !== 'ALG');
+    const isSource = computed(() => from.value !== "ALG");
     const label1 = computed(() => labelByCurrency(t)[from.value]);
     const label2 = computed(() => labelByCurrency(t)[to.value]);
 
@@ -115,8 +115,8 @@ export default {
       const temp = to.value;
       to.value = from.value;
       from.value = temp;
-      val1.value = '';
-      val2.value = '';
+      val1.value = "";
+      val2.value = "";
     };
 
     const convert = async (value) => {
@@ -125,8 +125,8 @@ export default {
       try {
         startLoading();
 
-        const calc = await store.dispatch('info/conversion', {
-          amount: value.replace(/\s/g, ''),
+        const calc = await store.dispatch("info/conversion", {
+          amount: value.replace(/\s/g, ""),
           is_source: isSource.value ? 1 : 0,
           currency_code: currencyCode.value,
         });
@@ -134,8 +134,8 @@ export default {
         val2.value = calc.out.amount.value;
       } catch (e) {
         appAlert({
-          message: (t) => t('errors.convert'),
-          type: 'negative',
+          message: (t) => t("errors.convert"),
+          type: "negative",
         });
         throw e;
       } finally {
@@ -152,6 +152,12 @@ export default {
       showedSum.value = !showedSum.value;
     };
 
+    const findAlg = computed(() => {
+      return from.value == "ALG" ? val1.value : val2.value;
+    });
+    watch(findAlg, (val) => {
+      emit("algValue", val);
+    });
     return {
       toLocal: to,
       fromLocal: from,
@@ -167,6 +173,7 @@ export default {
       showSum,
       showedSum,
       t,
+      findAlg,
     };
   },
 };
@@ -193,7 +200,7 @@ export default {
 }
 
 .resultSum::after {
-  content: '';
+  content: "";
   display: block;
   width: 10px;
   height: 10px;

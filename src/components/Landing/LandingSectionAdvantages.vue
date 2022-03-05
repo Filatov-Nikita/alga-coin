@@ -33,7 +33,7 @@
           </div>
 
           <div class="tw-text-secondary">
-            <div class="tw-text-md2 xl:tw-text-md1">999 255 265</div>
+            <div class="tw-text-md2 xl:tw-text-md1">100 000 000</div>
             <div class="tw-text-xxs">{{ $t('landing.about.bottom') }}</div>
             <template v-if="$q.screen.lt.xl">
               <div class="tw-text-md2">55 265</div>

@@ -25,9 +25,10 @@
               :key="poll.id"
               :item="poll"
               :finished="step === 'finished'"
+              
             >
               <template v-slot="{ close, showing }">
-                <PollsCard v-if="showing" v-bind="{ close, id: poll.id }" />
+                <PollsCard v-if="showing" v-bind="{ close, id: poll.id }" @updateItem="updateData"/>
               </template>
             </PollsItem>
           </div>
@@ -84,6 +85,7 @@ export default {
       data,
       complete,
       reset: resetData,
+      updateData
     } = usePagination(getPolls);
 
     const switchTab = (tabName) => {
@@ -102,6 +104,8 @@ export default {
       getPolls: fetcher,
       changeStep,
       switchTab,
+
+      updateData
     };
   },
   components: {

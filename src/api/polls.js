@@ -7,6 +7,7 @@ export function list(filter) {
 }
 
 export function show(id) {
+  
   return MainApi.swot(`b2c/polls/${id}`).json();
 }
 

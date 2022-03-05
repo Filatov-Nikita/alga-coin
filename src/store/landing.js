@@ -6,10 +6,10 @@ export default {
     projects: null,
     news: null,
     footer: (t) => [
-      { label: "White paper", to: "#" },
+      { label: "White paper", to: "/file.pdf" },
       { label: "Alga Ecosystem", to: "#" },
       { label: t("landing.footer.whyAlga"), to: "#" },
-      { label: "Alga Market", to: "#" },
+      { label: "Alga Market", to: "#111", popup: true, modalMessage: "Alga Market в разработке"},
     ],
     curEco: "BANKING",
     curOwner: "0",

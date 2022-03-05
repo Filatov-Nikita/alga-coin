@@ -7,6 +7,7 @@
         <AppLink
           class="tw-text-xxs tw-text-white"
           :to="$app.links.serviceInfo"
+          
           >{{ $t('landing.footer.serviceInfo') }}</AppLink
         >
 
@@ -20,6 +21,8 @@
                 v-for="link in footer($t)"
                 :key="link.label"
                 :to="link.to"
+                :popup="link.popup"
+                :modalMessage="link.modalMessage"
               >
                 {{ link.label }}
               </AppLink>
@@ -60,6 +63,7 @@ export default {
       soc,
     };
   },
+      
   computed: {
     ...mapGetters('landing', ['footer']),
   },

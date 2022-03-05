@@ -74,7 +74,7 @@ export default {
       type: Function,
     },
   },
-  setup(props) {
+  setup(props, {emit}) {
     const { t } = useI18n({
       messages: {
         'ru-RU': {
@@ -112,7 +112,7 @@ export default {
           id: props.id,
           option: optId,
         });
-
+        emit('updateItem', props.id)
         await getPoll();
       } catch (e) {
         throw e;

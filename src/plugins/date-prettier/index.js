@@ -16,7 +16,8 @@ function displayVal(val) {
 
 function localDate(dateStr) {
   const date = new Date(dateStr);
-  const month = displayVal(date.getMonth());
+  const month = displayVal(date.getMonth()+1);
+  
   const day = displayVal(date.getDate());
   const hour = displayVal(date.getHours());
   const minutes = displayVal(date.getMinutes());

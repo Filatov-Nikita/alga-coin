@@ -11,6 +11,14 @@ export default function (fetcher) {
     meta.value = null;
   }
 
+  const updateData = (val)=>{
+    data.value.map(item=>{
+      if(item.id === val)item.is_voted = true
+      return item
+    })
+
+  }
+
   const nextPage = computed(() => {
     if (!meta.value) return null;
     const { last_page, current_page } = meta.value;
@@ -41,8 +49,8 @@ export default function (fetcher) {
 
       const params = (stg?.params && typeof stg?.params === "object") || {};
       const filter = { ...params, ...getFilter() };
-
       const { meta: m, data: d } = await fetcher(filter, ...args);
+      console.log(data)
 
       meta.value = m;
       setData(d);
@@ -63,5 +71,7 @@ export default function (fetcher) {
     isLoading: loading.isLoading,
     fetcher: wrapped,
     reset,
+
+    updateData
   };
 }

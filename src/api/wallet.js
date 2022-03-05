@@ -7,3 +7,9 @@ export function showWallet() {
 export function show() {
   return testApi.swot("wallet.json").json();
 }
+
+export function create(json) {
+  return MainApi.swot.post("b2c/wallet/refills/crypto", { body:json, headers: {
+		'Content-Type': 'application/json'
+	 } }).json();
+}

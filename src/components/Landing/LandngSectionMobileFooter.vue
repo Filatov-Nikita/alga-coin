@@ -10,6 +10,8 @@
         v-for="link in footer($t)"
         :key="link.label"
         :to="link.to"
+        :popup="link.popup"
+        :modalMessage="link.modalMessage"
       >
         {{ link.label }}
       </AppLink>

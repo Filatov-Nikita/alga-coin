@@ -8,21 +8,34 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="h-table__row" v-for="tr in transactions" :key="tr.uuid">
-        <td class="h-table__td h-table__td--type">
-          <InlineSvg :src="TYPES[tr.type].icon" />
-          <span>{{ TYPES[tr.type].text }}</span>
-        </td>
-        <td class="h-table__td">{{ $localDate(tr.executed_at) }}</td>
-        <td class="h-table__td">{{ tr.amount.value }}</td>
-      </tr>
+      <template v-for="tr in transactions" :key="tr.uuid">
+          <tr class="h-table__row" v-if="tr.uuid === id">
+            <td class="h-table__td h-table__td--type" >
+            <span>Адрес:</span>
+            <span  ref="address"   >{{tr.src_address}}</span>
+            </td>
+          </tr>
+        <tr class="h-table__row" >
+          
+          <td class="h-table__td h-table__td--type">
+            
+            
+              <InlineSvg   :src="tr.type == 'incoming' ? TYPES['outgoing'].icon : TYPES[tr.type].icon" />
+            
+            <span class="history-text" @click="openAddress(tr.uuid, tr.src_address)">{{ tr.type == 'incoming' ? TYPES['outgoing'].text : TYPES[tr.type].text }}</span>
+          </td>
+          <td class="h-table__td">{{ $localDate(tr.executed_at) }}</td>
+          <td class="h-table__td">{{ tr.amount.value }}</td>
+        </tr>
+      </template>
+      
     </tbody>
   </table>
   <AppEmptyList v-else :msg="t('noOperations')" />
 </template>
 
 <script>
-import { computed } from 'vue';
+import { ref, computed, onUpdated } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const messages = {
@@ -32,6 +45,11 @@ const messages = {
     sum: 'Сумма, ALG',
     types: {
       outgoing: 'Отправлено с кошелька',
+      incoming: 'Пришло с кошелька',
+      refill: 'Пополнение кошелька',
+      withdrawal: 'Снятие средств',
+      present: 'Вознаграждение от системы',
+      buying: 'Покупка AlgaCoin'
     },
     noOperations: 'У вас нет транзакций',
   },
@@ -41,6 +59,11 @@ const messages = {
     sum: 'Sum, ALG',
     types: {
       outgoing: 'Sent from wallet',
+      incoming: 'Sent to wallet',
+      refill: 'Refill',
+      withdrawal: 'Withdrawal',
+      present: 'Remuneration from the system',
+      buying: 'Buying  AlgaCoin'
     },
     noOperations: 'You have no operation',
   },
@@ -54,6 +77,8 @@ export default {
     },
   },
   setup() {
+    const id = ref(null)
+    const address = ref(null)
     const { t } = useI18n({ messages });
     const TYPES = computed(() => ({
       outgoing: {
@@ -61,20 +86,66 @@ export default {
         icon: require('assets/icons/table-output.svg'),
       },
       buying: {
-        text: 'Покупка AlgaCoin',
+        text: t('types.buying'),
         icon: require('assets/icons/table-buying.svg'),
       },
       present: {
-        text: 'Вознаграждение от системы',
+        text: t('types.present'),
         icon: require('assets/icons/table-present.svg'),
       },
+      incoming: {
+        text: t('types.incoming'),
+        icon: require('assets/icons/table-output.svg'),
+      },
+      refill: {
+        text: t('types.refill'),
+        icon: require('assets/icons/table-present.svg'),
+      },
+      withdrawal: {
+        text: t('types.withdrawal'),
+        icon: require('assets/icons/table-output.svg'),
+      }
+      
     }));
+    
+    const openAddress = (uuid, src_address)=>{
+      if(src_address !== '0000000000000000000000000000000000000000')id.value = uuid
+      else {
+        id.value = null
+      }
 
+    }
+
+    // onUpdated(()=>{
+      
+      
+    //         // document.addEventListener('click', function () {
+    //           // //  vm.toggleDropdown();
+    //         // });
+    // })
+    // openAddress()
+    document.addEventListener('click', (e)=>{
+      if(e.target.className !== 'history-text' && e.target !== address.value)id.value=null
+      // console.log(icon.value)
+    })
+              // document.onclick = function(e){
+              //   console.log(e.target.className)
+              //   if(e.target.className !== 'uuid'){
+              //     id.value = null
+              //   }
+              //     // if ( e.target.className != id.value ) {
+              //     //     document.getElementById(id.value).style.display = 'none';
+              //     // };
+              // };
     return {
       t,
       TYPES,
+      openAddress,
+      id,
+      address
     };
   },
+  
 };
 </script>
 

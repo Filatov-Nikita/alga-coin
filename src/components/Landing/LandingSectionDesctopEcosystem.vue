@@ -188,6 +188,10 @@ export default {
     width: 535px;
     height: 491px;
     @apply tw-relative;
+    @media (max-width: 1600px) {
+      width: 528px;
+      height: 450px;
+    }
   }
 
   &__img {

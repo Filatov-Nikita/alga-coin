@@ -188,5 +188,8 @@ export default {
   left: 50%;
   top: -30px;
   transform: translateX(-50%);
+  @media (max-width: 1600px) {
+    width: 66%;
+  }
 }
 </style>
