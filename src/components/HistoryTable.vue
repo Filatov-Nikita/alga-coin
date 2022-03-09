@@ -10,19 +10,19 @@
     <tbody>
       <template v-for="tr in transactions" :key="tr.uuid">
           <tr class="h-table__row" v-if="tr.uuid === id">
-            <td class="h-table__td h-table__td--type" >
+            <div  class="h-table__td h-table__td--type" style="display: inline-table">
             <span>Адрес:</span>
             <span  ref="address"   >{{tr.src_address}}</span>
-            </td>
+            </div>
           </tr>
         <tr class="h-table__row" >
           
-          <td class="h-table__td h-table__td--type">
+          <td  class="h-table__td h-table__td--type">
             
             
               <InlineSvg   :src="tr.type == 'incoming' ? TYPES['outgoing'].icon : TYPES[tr.type].icon" />
             
-            <span class="history-text" @click="openAddress(tr.uuid, tr.src_address)">{{ tr.type == 'incoming' ? TYPES['outgoing'].text : TYPES[tr.type].text }}</span>
+            <span class="history-text" style="cursor: pointer"  @click="openAddress(tr.uuid, tr.src_address)">{{ tr.type == 'incoming' ? TYPES['outgoing'].text : TYPES[tr.type].text }}</span>
           </td>
           <td class="h-table__td">{{ $localDate(tr.executed_at) }}</td>
           <td class="h-table__td">{{ tr.amount.value }}</td>

@@ -250,8 +250,8 @@ export default {
     const pushToPath = async ({ name }) => {
       
       try {
+        
         if (name == "busd" || name == "usdt") {
-          
           await store.dispatch(
             "wallet/create",
             JSON.stringify({
