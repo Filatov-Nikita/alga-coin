@@ -73,7 +73,7 @@
           <InlineSvg
             :src="item.icon"
             :fill="
-              $store.state.landing.curEco === item.name ? colorList[item.name] : '#003870'
+              $store.state.landing.curEco === item.name ? colorList[item.name] : '#0A1E3E'
             "
             class="tw-mx-auto"
             :class="{
@@ -119,23 +119,23 @@ const i18n = {
       mHeader: 'Ecosystem',
       header: 'ECOSYSTEM',
       banking:
-        'Creation, purchase, sale, storage, secure protection and financial management of digital assets (virtual goods and currencies), as well as all lines of business that serve the Alga ecosystem',
+        'Create, buy/sell, store, secure security and financial management of digital assets (virtual goods and currencies), as well as all business areas that serve the ecosystem of the metaverse ALGA.',
       consulting:
-        'A rich expert data module that creates intelligent business workflows that integrates artificial intelligence technology, data and analytics. Alga Consulting is an opportunity to modernize work processes, technologies and the company as a whole to achieve impressive business results.',
+        'Is a voluminous module of expert data that will create reasonable production processes for business, combining artificial intelligence technology, data and analytics. This module can help you modernize your workflows, technologies, and the company as a whole to deliver impressive business results.',
       development:
-        'A digital investment platform based on traditional real estate investment tools. ALGA asset holders can audit projects, invest in the construction of real estate, control risks, freely trade property rights to objects',
+        'Is a digital investment platform based on traditional real estate investment tools. ALGA asset holders can audit projects, invest in the construction of real estate, control risks, and freely trade property rights to objects.',
       ecology:
-        "Leveraging the power of the Alga Ecosystem for a more sustainable and sustainable management of the planet's natural resources",
+        "Leveraging the capabilities of ALGA ecosystem to manage the planet's natural resources more sustainably and lean.",
       health:
-        "Online consultations with the world's leading experts and the development of antiviral drugs",
+        "Is the development of IT projects in the field of medicine",
       invest:
-        'Launching investment platform for the preparation and implementation of new, innovative and environmental projects around the world',
+        'Is a launching investment platform for the preparation and implementation of new, innovative and environmental projects around the world.',
       market:
-        'Marketplace for buying, selling and managing online and physical assets by community members',
+        'Is a trading platform for buying, selling and managing network and physical assets of community members',
       starlink:
-        'A project to form our own system for providing independent access to high-speed Internet and mobile communications',
-      edu: 'Decentralized online learning ecosystem',
-      nft: 'A platform for creators of works of art, aimed at creating a new creative economy. Alga NFT is a new generation contemporary art marketplace',
+        'Is a project to create its own system for providing independent access to high-speed Internet and mobile communications.',
+      edu: 'Is a decentralized online learning ecosystem',
+      nft: 'Is a platform for creators of works of art aimed at creating a new creative economy. NFT marketplace is a new generation of contemporary art.',
     },
   },
 };

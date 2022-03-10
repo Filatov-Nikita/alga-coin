@@ -24,7 +24,7 @@
             v-for="project in projectsDisplay"
             :key="project.id"
           >
-            <div class="project__cover">
+            <div class="project__cover tw-flex tw-flex-col tw-justify-between">
               <img
                 v-if="project.announceImage"
                 width="172"
@@ -33,14 +33,18 @@
                 :src="project.announceImage.url"
                 alt=""
               />
-              <p class="tw-text-xs tw-text-center xl:tw-text-left tw-mb-3-1">
-                {{ project.name }}
-              </p>
-              <AppButton
-                :to="{ name: 'projects.show', params: { id: project.id } }"
-                design="flat"
-                :icon="require('assets/images/landing/landing-arrow.svg')"
-              />
+              <div>
+                <p class="tw-text-xs tw-text-center xl:tw-text-left tw-mb-3-1">
+                  {{ project.name }}
+                </p>
+                <AppButton
+                  :to="{ name: 'projects.show', params: { id: project.id } }"
+                  design="flat"
+                  :icon="require('assets/images/landing/landing-arrow.svg')"
+                />
+
+              </div>
+
             </div>
           </div>
 
@@ -180,6 +184,7 @@ export default {
 .project {
   &__cover {
     min-height: 222px;
+    height: 100%;
     @apply tw-bg-dark tw-rounded-base tw-p-6 xl:tw-pt-12 xl:tw-p-7-1;
   }
 

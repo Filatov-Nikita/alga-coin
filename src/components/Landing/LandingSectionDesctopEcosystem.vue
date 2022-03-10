@@ -27,7 +27,7 @@
         </article>
       </div>
 
-      <div v-if="$q.screen.xl" class="landing-eco-right">
+            <div v-if="$q.screen.xl" class="landing-eco-right">
         <button
           class="landing-icon-cover"
           :class="{ 'landing-icon-cover--active': activeItem === icon.value }"
@@ -37,7 +37,17 @@
           @mouseenter="activeItem = icon.value"
           @click="setVal(icon.value)"
         >
-          <LandingLogo
+                  <InlineSvg
+            :src="icon.icon"
+            :fill="
+              activeItem === icon.value ? icon.logoColor : '#0A1E3E'
+            "
+            class="tw-mx-auto"
+            :class="{
+              'tw-opacity-40': activeItem !== icon.value,
+            }"
+          />
+          <!-- <LandingLogo
             class="tw-mx-auto"
             width="28px"
             height="30px"
@@ -46,9 +56,10 @@
                 ? { fill: icon.logoColor }
                 : { fillHex: '#0A1E3E' }
             "
-          />
+          /> -->
         </button>
       </div>
+      
     </div>
   </AppFullPageScreen>
 </template>
@@ -83,7 +94,7 @@ export default {
         x: '104px',
         y: '0px',
         value: 'INVEST',
-        logoColor: 'yellow',
+        logoColor: '#F8C61E',
         icon: require('assets/icons/eco-invest.svg'),
       },
       {
@@ -91,7 +102,7 @@ export default {
         x: '148px',
         y: '145px',
         value: 'MARKET',
-        logoColor: 'purple',
+        logoColor: '#C92579',
         icon: require('assets/icons/eco-market.svg'),
       },
       {
@@ -100,7 +111,7 @@ export default {
         y: '267px',
         value: 'HEALTH',
         icon: require('assets/icons/eco-health.svg'),
-        logoColor: 'red',
+        logoColor: '#EA2B37',
       },
       {
         name: 'Alga Education',
@@ -108,7 +119,7 @@ export default {
         y: '428px',
         value: 'EDUCATION',
         icon: require('assets/icons/eco-edu.svg'),
-        logoColor: 'dark-green',
+        logoColor: '#2DA149',
       },
 
       {
@@ -117,7 +128,7 @@ export default {
         y: '24px',
         value: 'DEVELOPMENT',
         icon: require('assets/icons/eco-dev.svg'),
-        logoColor: 'orange',
+        logoColor: '#FF8F3E',
       },
       {
         name: 'Alga Banking',
@@ -125,7 +136,7 @@ export default {
         y: '63px',
         value: 'BANKING',
         icon: require('assets/icons/eco-bank.svg'),
-        logoColor: 'blue',
+        logoColor: '#5B9FEF',
       },
       {
         name: 'Alga NFT',
@@ -133,7 +144,7 @@ export default {
         y: '183px',
         value: 'NFT',
         icon: require('assets/icons/eco-nft.svg'),
-        logoColor: 'dark-purple',
+        logoColor: '#555AC3',
       },
       {
         name: 'Alga Starlink',
@@ -141,7 +152,7 @@ export default {
         y: '318px',
         value: 'STARLINK',
         icon: require('assets/icons/eco-starlink.svg'),
-        logoColor: 'biruze',
+        logoColor: '#2C7B95',
       },
       {
         name: 'Alga Consulting',
@@ -149,14 +160,14 @@ export default {
         y: '408px',
         value: 'CONSULTING',
         icon: require('assets/icons/eco-case.svg'),
-        logoColor: 'dark-blue',
+        logoColor: '#497AC3',
       },
       {
         name: 'Alga Ecology',
         x: '443px',
         y: '443px',
         value: 'ECOLOGY',
-        logoColor: 'green',
+        logoColor: '#13B862',
         icon: require('assets/icons/eco-eco.svg'),
       },
     ]);
