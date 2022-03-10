@@ -69,10 +69,11 @@
           :key="item.name"
           @click="$store.commit('landing/setEco', item.name)"
         >
+        
           <InlineSvg
             :src="item.icon"
             :fill="
-              $store.state.landing.curEco === item.name ? '#497AC3' : '#003870'
+              $store.state.landing.curEco === item.name ? colorList[item.name] : '#003870'
             "
             class="tw-mx-auto"
             :class="{
@@ -89,7 +90,7 @@
 import { inject } from 'vue';
 import LandingLogo from './LandingLogo.vue';
 import { useI18n } from 'vue-i18n';
-
+import {colorIconList} from "src/helper/colorIconList"
 const i18n = {
   messages: {
     'ru-RU': {
@@ -165,6 +166,7 @@ export default {
       items,
       changeTheme,
       t,
+      colorList: colorIconList
     };
   },
   components: {
@@ -274,7 +276,6 @@ function getItems(t) {
 .eco-slider {
   @include screen-xl {
     max-width: 620px;
-    margin-right: 86px;
     width: 100%;
   }
 }

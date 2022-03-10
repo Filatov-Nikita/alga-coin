@@ -185,7 +185,7 @@ export default {
 
 .eco-start {
   &__icons {
-    width: 535px;
+    width: 378px;
     height: 491px;
     @apply tw-relative;
   }

@@ -1,4 +1,16 @@
 <template>
+            <AppModal
+      v-model="modal"
+      contentClass="tw-w-full xl:tw-w-1/2 tw-mx-auto tw-flex tw-flex-col"
+    > 
+      <!-- design="max-height" -->
+          <AppBtnBack class="tw-absolute tw-top-2 tw-left-2 tw-z-10" @click="()=>modal=false" />
+      <!-- <div class="tw-p-4" @click="()=>modal=false">Закрыть</div> -->
+      <div class="xl:tw-py-16 xl:tw-px-24 tw-py-12 tw-px-4 tw-text-xxs xl:tw-text-xs tw-flex tw-flex-wrap">
+        {{typeText}}:&nbsp; <span>{{id}}</span>
+        
+      </div>
+    </AppModal>
   <table class="h-table" v-if="transactions.length > 0">
     <thead>
       <tr>
@@ -9,20 +21,19 @@
     </thead>
     <tbody>
       <template v-for="tr in transactions" :key="tr.uuid">
-          <tr class="h-table__row" v-if="tr.uuid === id">
+          <!-- <tr class="h-table__row" v-if="tr.uuid === id">
             <div  class="h-table__td h-table__td--type" style="display: inline-table">
             <span>Адрес:</span>
             <span  ref="address"   >{{tr.src_address}}</span>
             </div>
-          </tr>
+          </tr> -->
         <tr class="h-table__row" >
           
           <td  class="h-table__td h-table__td--type">
             
+              <InlineSvg @click="openAddress(tr.uuid,tr.src_address, TYPES[tr.type].text)" style="cursor: pointer" :src="tr.type == 'incoming' ? TYPES['outgoing'].icon : TYPES[tr.type].icon" />
             
-              <InlineSvg   :src="tr.type == 'incoming' ? TYPES['outgoing'].icon : TYPES[tr.type].icon" />
-            
-            <span class="history-text" style="cursor: pointer"  @click="openAddress(tr.uuid, tr.src_address)">{{ tr.type == 'incoming' ? TYPES['outgoing'].text : TYPES[tr.type].text }}</span>
+            <span class="history-text"   >{{ tr.type == 'incoming' ? TYPES['outgoing'].text : TYPES[tr.type].text }}</span>
           </td>
           <td class="h-table__td">{{ $localDate(tr.executed_at) }}</td>
           <td class="h-table__td">{{ tr.amount.value }}</td>
@@ -77,7 +88,9 @@ export default {
     },
   },
   setup() {
+    const modal = ref(false)
     const id = ref(null)
+    const typeText = ref(null)
     const address = ref(null)
     const { t } = useI18n({ messages });
     const TYPES = computed(() => ({
@@ -108,41 +121,23 @@ export default {
       
     }));
     
-    const openAddress = (uuid, src_address)=>{
-      if(src_address !== '0000000000000000000000000000000000000000')id.value = uuid
-      else {
-        id.value = null
+    const openAddress = (uuid, src_address, type)=>{
+      if(src_address !== '0000000000000000000000000000000000000000'){
+        id.value = uuid
+        typeText.value = type
+        console.log(id.value)
+        modal.value = true
       }
-
     }
-
-    // onUpdated(()=>{
-      
-      
-    //         // document.addEventListener('click', function () {
-    //           // //  vm.toggleDropdown();
-    //         // });
-    // })
-    // openAddress()
-    document.addEventListener('click', (e)=>{
-      if(e.target.className !== 'history-text' && e.target !== address.value)id.value=null
-      // console.log(icon.value)
-    })
-              // document.onclick = function(e){
-              //   console.log(e.target.className)
-              //   if(e.target.className !== 'uuid'){
-              //     id.value = null
-              //   }
-              //     // if ( e.target.className != id.value ) {
-              //     //     document.getElementById(id.value).style.display = 'none';
-              //     // };
-              // };
+              
     return {
       t,
       TYPES,
       openAddress,
       id,
-      address
+      typeText,
+      address,
+      modal
     };
   },
   
