@@ -13,3 +13,9 @@ export function create(json) {
 		'Content-Type': 'application/json'
 	 } }).json();
 }
+
+export function createFiat(json) {
+  return MainApi.swot.post("b2c/wallet/refills/fiat", { body:json, headers: {
+		'Content-Type': 'application/json'
+	 } }).json();
+}

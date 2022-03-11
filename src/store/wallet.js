@@ -21,6 +21,10 @@ export default {
       const res = await walletAPI.create(obj);
       return res
     },
+    async createFiat({ commit }, obj) {
+      const res = await walletAPI.createFiat(obj);
+      return res
+    },
     async show({ commit }) {
       const { data: walletData } = await walletAPI.showWallet();
 

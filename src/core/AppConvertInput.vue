@@ -81,6 +81,7 @@ const i18n = {
 
 export default {
   props: {
+
     from: {
       default: "ALG",
       validator,
@@ -155,8 +156,23 @@ export default {
     const findAlg = computed(() => {
       return from.value == "ALG" ? val1.value : val2.value;
     });
+    const findValuta = computed(() => {
+      return from.value !== "ALG" ? val1.value : val2.value;
+    });
     watch(findAlg, (val) => {
-      emit("algValue", val);
+      if(val.indexOf('.') !== -1){
+        emit("algValue", val.replace(/\s/g, ""));
+      }else {
+        emit("algValue", `${val}.000`.replace(/\s/g, ""));
+      }
+    });
+
+    watch(findValuta, (val) => {
+      if(val.indexOf('.') !== -1){
+        emit("valutaValue", val.replace(/\s/g, ""));
+      }else {
+        emit("valutaValue", `${val}.000`.replace(/\s/g, ""));
+      }
     });
     return {
       toLocal: to,
@@ -174,6 +190,7 @@ export default {
       showedSum,
       t,
       findAlg,
+      findValuta
     };
   },
 };

@@ -84,7 +84,7 @@
             <div v-else-if="last.name === 'card'">
               <WalletBalance v-bind="walletData" hideIcon />
               <Form class="page-wallet__form">
-                <AppConvertInput />
+                <AppConvertInput @algValue="alg" @valutaValue="valuta" />
                 <AppButton @click="redir" :label="$t('actions.buy')" fullWidth />
                 <div class="page-wallet__caption tw-text-center tw-mt-6">
                   {{ t("buy.agree") }}
@@ -183,6 +183,7 @@ import usePagination from "src/composition/usePagination";
 import { mapGetters, useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 
+
 const messages = {
   "ru-RU": {
     header: "Баланс кошелька",
@@ -236,21 +237,36 @@ export default {
     const path = ref([{ name: "way" }]);
     const sendDialog = ref(null);
     const algaValue = ref(0);
+    const valutaValue = ref(0);
     const address = ref(null);
     const coin = ref(null);
     const count = ref(null);
-    const redir = ()=>{
-      // alert('hi')
-      // location.replace("https://mpspay.io/");
-      // location.href = 'https://mpspay.io/'
-      window.open("https://mpspay.io/");
+    const redir = async()=>{
+      // window.open("https://mpspay.io/");
+      if(valutaValue.value<1000)return appAlert({
+        type: "neutral",
+        message: "Минимальная сумма 1000 рублей"
+      })
+      try{
+        return await store.dispatch(
+          "wallet/createFiat",
+          JSON.stringify({
+            alga_amount: algaValue.value 
+          })
+        )
+        .then((resolve)=>{ window.open(resolve.data.redirect_url)});
+
+      } catch(e){throw e}
+
+      
+      
     }
     const last = computed(() => path.value[path.value.length - 1]);
 
     const pushToPath = async ({ name }) => {
       
+      console.log(name)
       try {
-        
         if (name == "busd" || name == "usdt") {
           await store.dispatch(
             "wallet/create",
@@ -261,6 +277,17 @@ export default {
           )
           .then((resolve)=>{ coin.value= resolve.data.coin; address.value = resolve.data.address; count.value = resolve.data.amount });
           
+        }
+
+        if(name == "card"){
+          //           await store.dispatch(
+          //   "wallet/createFiat",
+          //   JSON.stringify({
+          //     alga_amount: algaValue.value,
+          //     coin: name.toUpperCase(),
+          //   })
+          // )
+          // .then((resolve)=>{ console.log(resolve)});
         }
           path.value.push({ name });
         
@@ -303,6 +330,7 @@ export default {
       }
     };
     const alg = (val) => (algaValue.value = val);
+    const valuta = (val) => (valutaValue.value = val);
 
     return {
       address,
@@ -311,6 +339,8 @@ export default {
       redir,
       algaValue,
       alg,
+      valutaValue,
+      valuta,
       last,
       sendDialog,
       t,
