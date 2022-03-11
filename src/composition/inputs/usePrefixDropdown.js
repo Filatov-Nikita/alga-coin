@@ -6,7 +6,7 @@ const OPTION_VALUES = ["+7", "+1", "+3", "+7", "+1", "+3", "+7", "+1", "+3"];
 const DEFAULT_PREFIX = '+7';
 
 function createSelect(ctx) {
-  const { selectShow, fieldPrefix, errorMessage } = ctx;
+  const { selectShow, fieldPrefix, errorMessage, disabled } = ctx;
   const InlineSvg = resolveComponent("InlineSvg");
 
   const dropDown = selectShow.value ? createDropdown(ctx) : null;
@@ -30,10 +30,11 @@ function createSelect(ctx) {
     "div",
     {
       role: "select",
-      class: ["app-select", { "app-input__field--invalid": !!errorMessage.value }],
+      class: ["app-select", { "app-input__field--invalid": !!errorMessage.value, "app-inut__disabled": disabled }],
       onClick: (e) => {
+        console.log(disabled)
         if (e.target.closest(".app-dropdown")) return;
-        selectShow.value = !selectShow.value;
+        if(!disabled)selectShow.value = !selectShow.value;
       },
     },
     [selectBtnChlildren, dropDown ? dropDown : null]
@@ -68,7 +69,7 @@ function createDropdown(ctx) {
   return h("div", { class: "app-dropdown" }, options);
 }
 
-export default function ({ errorMessage }) {
+export default function ({ errorMessage }, disabled) {
   const selectShow = ref(false);
   const fieldPrefix = useField("telPrefix", "", {
     standalone: true,
@@ -77,6 +78,6 @@ export default function ({ errorMessage }) {
 
   return {
     fieldPrefix,
-    createSelect: () => createSelect({ selectShow, fieldPrefix, errorMessage }),
+    createSelect: () => createSelect({ selectShow, fieldPrefix, errorMessage, disabled }),
   };
 }

@@ -58,11 +58,15 @@ export default defineComponent({
       default: '',
       type: String,
     },
+    rootAttrs: {
+      type: Object,
+      default: {disabled: false}
+    },
     ...{ rules: Field.props.rules, standalone: Field.props.standalone },
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs, expose }) {
-    const { label, name, type, rules, creditCard, currency } = props;
+    const { label, name, type, rules, creditCard, currency, rootAttrs } = props;
     const inputRef = ref(null);
     const { hasAppend, hasPrepend } = useAppend(slots.prepend, slots.append);
     const compId = getCurrentInstance().uid;
@@ -70,7 +74,7 @@ export default defineComponent({
     let field;
     let opts = null;
 
-    const fieldStg = { label, standalone: props.standalone };
+    const fieldStg = { label, standalone: props.standalone, ...rootAttrs };
     if (type === 'tel') {
       ({ field, ...opts } = _useTelField(name, rules, fieldStg));
     } else if (type === 'password') {
@@ -111,6 +115,7 @@ export default defineComponent({
 
       const inpAttrs = {
         ...attrs,
+        ...rootAttrs,
         id: compId,
         ref: inputRef,
         class: [

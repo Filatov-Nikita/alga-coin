@@ -199,6 +199,7 @@ const messages = {
         title: "Информация о пополнении принята",
         info: "Зачисление денежных средств обычно происходит в течение 15 минут, в редких случаях достигает 4 часов. В случае проблем, просим направить запрос на mail@mail.ru",
       },
+      minSum: "Минимальная сумма 1000 рублей",
       agree:
         "После нажатия «Пополнить» вы будете перенаправлены на страницу оплаты",
     },
@@ -220,6 +221,7 @@ const messages = {
         title: "Replenishment information accepted",
         info: "Funds are usually credited within 15 minutes, in rare cases up to 4 hours. In case of problems, please send a request to mail@mail.ru",
       },
+      minSum: "Minimum amount 1000 rub",
       agree:
         'After clicking "Deposit" you will be redirected to the payment page',
     },
@@ -245,7 +247,7 @@ export default {
       // window.open("https://mpspay.io/");
       if(valutaValue.value<1000)return appAlert({
         type: "neutral",
-        message: "Минимальная сумма 1000 рублей"
+        message: t("buy.minSum")
       })
       try{
         return await store.dispatch(
