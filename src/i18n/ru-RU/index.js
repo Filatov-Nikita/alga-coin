@@ -28,8 +28,8 @@ export default {
   inputs: {
     cellphone: "Телефон",
     password: "Пароль",
-    newPass: "Новый пароль",
-    oldPass: "Старый пароль",
+    newPass: "Повторите пароль",
+    oldPass: "Новый пароль",
     repeatPass: "Повторите пароль",
     wrongCode: "Введите правильный код",
     code: "Код из смс",

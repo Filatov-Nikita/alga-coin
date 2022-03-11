@@ -14,18 +14,21 @@
             ]"
           />
           <AppStep name="profile-data">
-            <Form class="app-space-y-md" v-slot="{ isSubmittig }">
+            <Form class="app-space-y-md" v-slot="{ isSubmittig }" @click.prevent="submit">
               <AppInput
                 name="name"
                 :label="$t('inputs.name.label')"
                 :placeholder="$t('inputs.name.placeholder')"
                 rules="required"
+                v-model="name"
               />
               <AppInput
                 name="email"
                 label="E-mail"
                 placeholder="E-mail"
                 rules="required|email"
+                disabled
+                v-model="email"
               />
               <AppInput
                 type="tel"
@@ -33,6 +36,8 @@
                 :label="$t('inputs.cellphone')"
                 placeholder="(999) 999 99 99"
                 rules="required"
+                disabled
+                v-model="phone"
               />
               <AppButton
                 type="submit"
@@ -43,13 +48,14 @@
             </Form>
           </AppStep>
           <AppStep name="password">
-            <Form class="app-space-y-md" v-slot="{ isSubmittig }">
+            <Form class="app-space-y-md" v-slot="{ isSubmittig }" @submit="submitPassword">
               <AppInput
                 type="password"
                 name="oldPass"
                 :label="$t('inputs.oldPass')"
                 :placeholder="$t('inputs.password')"
                 rules="required|password"
+                v-model="password"
               />
               <AppInput
                 type="password"
@@ -57,6 +63,8 @@
                 :label="$t('inputs.newPass')"
                 :placeholder="$t('inputs.password')"
                 rules="required|confirmed:@oldPass"
+                
+                v-model="copyPassword"
               />
               <AppButton
                 type="submit"
@@ -76,6 +84,8 @@
 import AppTabs from 'src/components/AppTabs.vue';
 import useStep from 'src/composition/useStep';
 import { useI18n } from 'vue-i18n';
+import {ref, computed} from "vue";
+import { useStore } from 'vuex'
 
 const messages = {
   'ru-RU': {
@@ -94,6 +104,30 @@ const messages = {
 
 export default {
   setup() {
+    const store = useStore();
+    
+    const name = computed({
+      get() {
+        return store.getters['profile/fio']
+      },
+      set(value) {
+        store.commit("profile/setFio", value);
+      }
+    })
+    const phone = computed(()=>store.getters['profile/phone'])
+    const email = computed(()=>store.getters['profile/email'])
+    const submit = (()=>{
+      try{
+        store.dispatch('profile/editName', name.value)
+      }catch(e){throw e}
+      
+    })
+
+    const password = ref("")
+    const copyPassword = ref("")
+    const submitPassword = ()=>{
+      store.dispatch('profile/editPassword', password.value)
+    }
     const { step, changeStep } = useStep('profile-data');
     const { t } = useI18n({
       messages,
@@ -103,6 +137,13 @@ export default {
       t,
       step,
       changeStep,
+      name,
+      phone,
+      email,
+      submit,
+      password,
+      copyPassword,
+      submitPassword
     };
   },
   components: { AppTabs },
