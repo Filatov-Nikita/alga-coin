@@ -14,7 +14,7 @@ export default defineComponent({
   name: 'AppCodeInput',
   props: {
     length: {
-      default: 6,
+      default: 4,
       type: [Number, String],
     },
     label: {
@@ -229,6 +229,7 @@ export default defineComponent({
 
 .app-code-input {
   @apply tw-flex tw-flex-wrap;
+  justify-content: center;
 
   &__field {
     width: 40px;

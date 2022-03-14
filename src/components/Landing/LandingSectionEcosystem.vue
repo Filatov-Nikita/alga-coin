@@ -46,7 +46,7 @@
                 v-if="$q.screen.xl"
                 class="tw-font-medium tw-text-xs tw-tracking-widest tw-mt-2"
               >
-                {{ item.name }}
+                {{ item.subtitle }}
               </h3>
             </div>
           </div>
@@ -97,7 +97,7 @@ const i18n = {
       mHeader: 'Экосистема',
       header: 'ЭКОСИСТЕМА',
       banking:
-        'Создание, покупка, продажа, хранение, безопасная защита и финансовое управление цифровыми активами (виртуальными товарами и валютами), а также все направления бизнеса, которые обслуживают экосистему Alga',
+        'Благотворительный фонд, формируемый из комиссионных отчислений за покупку, обмен и продажу токенов ALGA.',
       consulting:
         'Объёмный модуль экспертных данных, создающий разумные производственные процессы для бизнеса, объединяющий технологию искусственного интеллекта, данные и аналитику. Alga Consulting — это возможность модернизировать рабочие процессы, технологии и компанию в целом для достижения впечатляющих бизнес-результатов',
       development:
@@ -107,7 +107,7 @@ const i18n = {
       health:
         'Онлайн-консультации с ведущими специалистами мира и разработка противовирусных препаратов',
       invest:
-        'Стартовая инвестиционная площадка для подготовки и реализации новых, инновационных и экологических проектов по всему миру',
+        'стартовая инвестиционная площадка для подготовки и реализации новых, инновационных и экологических проектов по всему миру. Cоздание, покупка/продажа, хранение, безопасная защита и финансовое управление цифровыми активами (виртуальные товары и валюты), которые обслуживают экосистему ALGA.',
       market:
         'Торговая площадка для покупки, продажи и управления сетевыми и физическими активами участниками сообщества',
       starlink:
@@ -119,7 +119,7 @@ const i18n = {
       mHeader: 'Ecosystem',
       header: 'ECOSYSTEM',
       banking:
-        'Create, buy/sell, store, secure security and financial management of digital assets (virtual goods and currencies), as well as all business areas that serve the ecosystem of the metaverse ALGA.',
+        'A charitable foundation formed from commission payments for the purchase, exchange and sale of ALGA tokens.',
       consulting:
         'Is a voluminous module of expert data that will create reasonable production processes for business, combining artificial intelligence technology, data and analytics. This module can help you modernize your workflows, technologies, and the company as a whole to deliver impressive business results.',
       development:
@@ -129,7 +129,7 @@ const i18n = {
       health:
         "Is the development of IT projects in the field of medicine",
       invest:
-        'Is a launching investment platform for the preparation and implementation of new, innovative and environmental projects around the world.',
+        'Is a launching investment platform for the preparation and implementation of new, innovative and environmental projects around the world.Create, buy/sell, store, secure security and financial management of digital assets (virtual goods and currencies), as well as all business areas that serve the ecosystem of the metaverse ALGA.',
       market:
         'Is a trading platform for buying, selling and managing network and physical assets of community members',
       starlink:
@@ -178,6 +178,7 @@ function getItems(t) {
   return [
     {
       name: 'BANKING',
+      subtitle: 'HELP',
       text: t('banking'),
       fill: 'linear-gradient(149.13deg, #156AEB 0.09%, #0D3B81 55.25%, #156AEB 100%)',
       logoColor: 'blue',
@@ -187,6 +188,7 @@ function getItems(t) {
     },
     {
       name: 'CONSULTING',
+      subtitle: 'CONSULTING',
       text: t('consulting'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #1D4786 55.25%, #0A1E3E 100%)',
       logoColor: 'dark-blue',
@@ -196,6 +198,7 @@ function getItems(t) {
     },
     {
       name: 'DEVELOPMENT',
+      subtitle: 'DEVELOPMENT',
       text: t('development'),
       fill: 'linear-gradient(150.99deg, #0A1E3E 0.09%, #EE5322 52.68%, #0A1E3E 95.36%)',
       logoColor: 'orange',
@@ -205,6 +208,7 @@ function getItems(t) {
     },
     {
       name: 'ECOLOGY',
+      subtitle: 'ECOLOGY',
       text: t('ecology'),
       fill: 'linear-gradient(149.13deg, #A0E09C 18.3%, #0CB65F 55.25%, #A0E09C 100%)',
       logoColor: 'green',
@@ -214,6 +218,7 @@ function getItems(t) {
     },
     {
       name: 'HEALTH',
+      subtitle: 'HEALTH',
       text: t('health'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #9E1E26 55.25%, #0A1E3E 100%)',
       logoColor: 'red',
@@ -223,6 +228,7 @@ function getItems(t) {
     },
     {
       name: 'INVEST',
+      subtitle: 'INVEST',
       text: t('invest'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #F79226 55.25%, #0A1E3E 100%)',
       logoColor: 'yellow',
@@ -232,6 +238,7 @@ function getItems(t) {
     },
     {
       name: 'MARKET',
+      subtitle: 'MARKET',
       text: t('market'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #9D1F60 55.25%, #0A1E3E 100%)',
       logoColor: 'purple',
@@ -241,6 +248,7 @@ function getItems(t) {
     },
     {
       name: 'STARLINK',
+      subtitle: 'STARLINK',
       text: t('starlink'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #0E5B74 55.25%, #0A1E3E 100%)',
       logoColor: 'biruze',
@@ -250,6 +258,7 @@ function getItems(t) {
     },
     {
       name: 'EDUCATION',
+      subtitle: 'EDUCATION',
       text: t('edu'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #04562C 55.25%, #0A1E3E 100%)',
       logoColor: 'dark-green',
@@ -259,6 +268,7 @@ function getItems(t) {
     },
     {
       name: 'NFT',
+      subtitle: 'NFT',
       text: t('nft'),
       fill: 'linear-gradient(149.13deg, #0A1E3E 0.09%, #3C26C9 55.25%, #0A1E3E 100%)',
       logoColor: 'dark-purple',

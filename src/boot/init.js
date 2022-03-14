@@ -26,7 +26,7 @@ export default ({ app, router, store }) => {
 
   global.$app.links = {
     twitter: "#",
-    facebook: "#",
+    facebook: "https://www.facebook.com/groups/1068352950606267/",
     instagram: "#",
     telegram: "#",
     serviceInfo: "/file.pdf",

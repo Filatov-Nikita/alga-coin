@@ -6,7 +6,7 @@
 
         <AppLink
           class="tw-text-xxs tw-text-white"
-          :to="$app.links.serviceInfo"
+          :to="$t('landing.footer.serviceInfoFile')"
           
           >{{ $t('landing.footer.serviceInfo') }}</AppLink
         >
