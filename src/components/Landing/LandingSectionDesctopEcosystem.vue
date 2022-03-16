@@ -131,7 +131,7 @@ export default {
         logoColor: '#FF8F3E',
       },
       {
-        name: 'Alga Banking',
+        name: 'Alga Help',
         x: '487px',
         y: '63px',
         value: 'BANKING',

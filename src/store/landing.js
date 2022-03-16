@@ -9,7 +9,7 @@ export default {
       { label: "White paper",to: t("landing.footer.whitePaper") },
       { label: "Roadmap", to: t("landing.footer.roadmapFile") },
       { label: t("landing.footer.whyAlga"), to: t("landing.footer.whyAlgaFile") },
-      { label: "Alga Market", to: "#", popup: true, modalMessage: "Alga Market в разработке"},
+      { label: "Alga Market", to: "#", popup: true, modalMessage: t("landing.footer.algaMarket")},
     ],
     curEco: "BANKING",
     curOwner: "0",

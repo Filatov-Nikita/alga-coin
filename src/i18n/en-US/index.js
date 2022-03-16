@@ -64,6 +64,7 @@ export default {
       whyAlgaFile: "/disclaimerEng.pdf",
       roadmapFile : "/roadmapEng.pdf",
       whitePaper: "/whitePaperEng.pdf",
+      algaMarket: "Alga Market in development"
       
     },
     menu: {

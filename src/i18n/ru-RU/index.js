@@ -64,6 +64,7 @@ export default {
       whyAlgaFile: "/disclaimerRu.pdf",
       roadmapFile : "/roadmapRu.pdf",
       whitePaper: "/whitePaperRu.pdf",
+      algaMarket: "Alga Market в разработке",
     },
     menu: {
       about: "О токене",

@@ -22,8 +22,8 @@
       design="max-height"
     > 
       
-      <div class="tw-p-4" @click="()=>modal=false">Закрыть</div>
-      <div class="tw-text-center tw-p-4">Alga Market в разработке</div>
+      <div class="tw-p-4" @click="()=>modal=false">{{$t('actions.back')}}</div>
+      <div class="tw-text-center tw-p-4">{{modalMessage}}</div>
     </AppModal>
   </span>
   <slot v-else>{{ label }}{{link}}</slot>  

@@ -5,7 +5,7 @@
 
       <div class="p-output app-row app-gutter-col-x">
         <div class="app-rect p-output__balance app-col-18 xl:app-col-8">
-          <WalletBalance v-bind="walletData" frozen frozenTill="13.01.2022" />
+          <WalletBalance v-bind="walletData" frozen frozenTill="01.07.2022" />
           <AppButton
             fullWidth
             :label="t('request')"
@@ -17,28 +17,29 @@
           </div>
         </div>
       </div>
-      <AppModalWallet name="output">
+      <AppModalWallet name="output" v-slot="{ close }">
+        <AppBtnBack class="page-wallet__back-btn" @click="close" />
         <AppStep name="output-form">
           <div class="page-wallet__content">
             <div class="page-wallet__title tw-mb-4">
-              Заявка на вывод средств
+              {{t('popupTitle')}}
             </div>
-            <div class="tw-text-center tw-mb-1">Баланс кошелька</div>
+            <div class="tw-text-center tw-mb-1">{{t('balance')}}</div>
             <WalletBalance v-bind="walletData" hideIcon hideWalletNumber />
             <Form
               v-slot="{ isSubmitting }"
               class="page-wallet__wrap app-space-y-sm"
             >
-              <AppInput name="sum" label="Сумма" placeholder="Сумма" />
+              <AppInput name="sum" :label="t('summLabel')" :placeholder="t('summLabel')" />
               <AppInput
                 name="rec"
-                label="Реквизиты платежа"
-                placeholder="Реквизиты платежа"
+                :label="t('detailsLabel')"
+                :placeholder="t('detailsLabel')"
               />
               <AppButton
                 :disabled="isSubmitting"
                 type="submit"
-                label="Оставить заявку"
+                :label="t('sendRequest')"
                 fullWidth
               />
             </Form>
@@ -60,11 +61,21 @@ const messages = {
   'ru-RU': {
     header: 'Вывод',
     request: 'Заявка на вывод',
+    balance: 'Баланс кошелька',
+    popupTitle: 'Заявка на вывод средств',
+    summLabel: 'Сумма',
+    detailsLabel: 'Реквизиты платежа',
+    sendRequest: 'Оставить заявку',
     info: 'При заявке на вывод средств с кошелька, который имеет статус «Заморожен», система произведёт вычет комиссии в размере 25% от суммы вывода',
   },
   'en-US': {
     header: 'Output',
     request: 'Request to output',
+    balance: 'Wallet balance',
+    popupTitle: 'Request for withdrawal of funds',
+    summLabel: 'Amount',
+    detailsLabel: 'Payment details',
+    sendRequest: 'Leave a request',
     info: 'When applying for a withdrawal of funds from a wallet that has the status “Frozen”, the system will deduct a commission of 25% from withdrawal amounts',
   },
 };

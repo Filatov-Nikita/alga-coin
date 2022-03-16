@@ -245,10 +245,10 @@ export default {
     const count = ref(null);
     const redir = async()=>{
       // window.open("https://mpspay.io/");
-      if(valutaValue.value<1000)return appAlert({
-        type: "neutral",
-        message: t("buy.minSum")
-      })
+      // if(valutaValue.value<1000)return appAlert({
+      //   type: "neutral",
+      //   message: t("buy.minSum")
+      // })
       try{
         return await store.dispatch(
           "wallet/createFiat",
@@ -256,9 +256,20 @@ export default {
             alga_amount: algaValue.value 
           })
         )
-        .then((resolve)=>{ window.open(resolve.data.redirect_url)});
+        .then((resolve)=>{ window.open(resolve.data.redirect_url)})
+        
 
-      } catch(e){throw e}
+      } catch(e){
+        if (e.response.status === 422) {
+        const {message} = await e.response.json()
+        return appAlert({
+          message,
+          type: "negative",
+        });
+      }else {
+        throw e
+      }
+      }
 
       
       
