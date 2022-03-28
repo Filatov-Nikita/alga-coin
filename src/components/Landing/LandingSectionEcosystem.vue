@@ -27,6 +27,7 @@
           :key="item.name"
           :name="item.name"
           :style="{ background: $q.screen.lt.xl ? item.fill : '' }"
+          :class="{'top-card':  $q.screen.lt.xl }"
           class="tw-py-7 tw-px-5 tw-rounded-base"
           @enter="changeTheme(item.theme, item.screenBg)"
         >
@@ -284,9 +285,10 @@ function getItems(t) {
 //$
 
 .eco-slider {
+  width: 100%;
   @include screen-xl {
     max-width: 620px;
-    width: 100%;
   }
 }
+
 </style>

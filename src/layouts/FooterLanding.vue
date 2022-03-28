@@ -75,14 +75,14 @@ function getSoc() {
       icon: require('assets/twitter-icon.svg'),
       name: 'twitter',
     },
-    {
-      icon: require('assets/fb-icon.svg'),
-      name: 'facebook',
-    },
-    {
-      icon: require('assets/inst-icon.svg'),
-      name: 'instagram',
-    },
+    // {
+    //   icon: require('assets/fb-icon.svg'),
+    //   name: 'facebook',
+    // },
+    // {
+    //   icon: require('assets/inst-icon.svg'),
+    //   name: 'instagram',
+    // },
     {
       icon: require('assets/te-icon.svg'),
       name: 'telegram',

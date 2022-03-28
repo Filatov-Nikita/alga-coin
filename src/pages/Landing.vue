@@ -18,7 +18,7 @@
           >
             <LandingSectionAdvantages />
             <LandingSectionFeatures />
-            <LandingSectionOwners />
+            <!-- <LandingSectionOwners /> -->
             <LandingSectionDesctopEcosystem v-if="$q.screen.xl" />
             <LandingSectionEcosystem />
             <LandingSectionProjects />

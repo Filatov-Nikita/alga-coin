@@ -79,10 +79,10 @@ function getItems(t) {
       label: t('landing.menu.features'),
       to: { name: 'home', query: { section: 'features' } },
     },
-    {
-      label: t('landing.menu.owners'),
-      to: { name: 'home', query: { section: 'owners' } },
-    },
+    // {
+    //   label: t('landing.menu.owners'),
+    //   to: { name: 'home', query: { section: 'owners' } },
+    // },
     {
       label: t('landing.menu.ecosystem'),
       to: { name: 'home', query: { section: 'ecosystem' } },

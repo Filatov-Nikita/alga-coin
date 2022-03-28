@@ -28,7 +28,7 @@ export default ({ app, router, store }) => {
     twitter: "#",
     facebook: "https://www.facebook.com/groups/1068352950606267/",
     instagram: "#",
-    telegram: "#",
+    telegram: "https://t.me/Algacoin",
     serviceInfo: "/file.pdf",
   };
 };

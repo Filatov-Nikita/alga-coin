@@ -9,7 +9,7 @@
         />
       </div>
       <div class="tw-flex tw-space-x-3">
-        <a href="#">
+        <!-- <a href="#">
           <InlineSvg
             width="24px"
             height="24px"
@@ -22,8 +22,8 @@
             height="24px"
             :src="require('assets/inst-icon.svg')"
           />
-        </a>
-        <a href="#">
+        </a> -->
+        <a href="https://t.me/Algacoin">
           <InlineSvg
             width="24px"
             height="24px"
