@@ -1,5 +1,7 @@
-
 @layer utilities {
+  .text-lette-s {
+    letter-spacing: 0.2em;
+  }
   .overlay {
     background: linear-gradient(52.21deg, #000b29 12.29%, #00173b 82.07%);
     opacity: 0.8;

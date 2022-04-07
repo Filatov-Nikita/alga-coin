@@ -83,9 +83,13 @@
 
             <div v-else-if="last.name === 'card'">
               <WalletBalance v-bind="walletData" hideIcon />
-              <Form class="page-wallet__form">
+              <Form class="page-wallet__form" @click.prevent="redir">
                 <AppConvertInput @algValue="alg" @valutaValue="valuta" />
-                <AppButton @click="redir" :label="$t('actions.buy')" fullWidth />
+                <AppButton
+                  @click="redir"
+                  :label="$t('actions.buy')"
+                  fullWidth
+                />
                 <div class="page-wallet__caption tw-text-center tw-mt-6">
                   {{ t("buy.agree") }}
                 </div>
@@ -115,11 +119,11 @@
 
             <div v-else-if="last.name === 'usdt'">
               <MyWalletAddress
-                              v-bind="{
-                address,
-                count,
-                coin
-              }"
+                v-bind="{
+                  address,
+                  count,
+                  coin,
+                }"
               />
               <div class="wallet__title">{{ t("buy.haveToSend") }}</div>
               <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
@@ -134,12 +138,11 @@
 
             <div v-else-if="last.name === 'busd'">
               <MyWalletAddress
-              v-bind="{
-                address,
-                count,
-                coin
-              }"
-                
+                v-bind="{
+                  address,
+                  count,
+                  coin,
+                }"
               />
               <div class="wallet__title">{{ t("buy.haveToSend") }}</div>
               <AppTimer :minutes="30" v-slot="{ displayVal, m, s }">
@@ -182,7 +185,6 @@ import { useAlert } from "src/plugins/app-alert";
 import usePagination from "src/composition/usePagination";
 import { mapGetters, useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-
 
 const messages = {
   "ru-RU": {
@@ -243,56 +245,57 @@ export default {
     const address = ref(null);
     const coin = ref(null);
     const count = ref(null);
-    const redir = async()=>{
+    const redir = async () => {
       // window.open("https://mpspay.io/");
       // if(valutaValue.value<1000)return appAlert({
       //   type: "neutral",
       //   message: t("buy.minSum")
       // })
-      try{
-        return await store.dispatch(
-          "wallet/createFiat",
-          JSON.stringify({
-            alga_amount: algaValue.value 
-          })
-        )
-        .then((resolve)=>{ window.open(resolve.data.redirect_url)})
-        
-
-      } catch(e){
+      try {
+        return await store
+          .dispatch(
+            "wallet/createFiat",
+            JSON.stringify({
+              alga_amount: algaValue.value,
+            })
+          )
+          .then((resolve) => {
+            window.open(resolve.data.redirect_url);
+          });
+      } catch (e) {
         if (e.response.status === 422) {
-        const {message} = await e.response.json()
-        return appAlert({
-          message,
-          type: "negative",
-        });
-      }else {
-        throw e
+          const { message } = await e.response.json();
+          return appAlert({
+            message,
+            type: "negative",
+          });
+        } else {
+          throw e;
+        }
       }
-      }
-
-      
-      
-    }
+    };
     const last = computed(() => path.value[path.value.length - 1]);
 
     const pushToPath = async ({ name }) => {
-      
-      console.log(name)
+      console.log(name);
       try {
         if (name == "busd" || name == "usdt") {
-          await store.dispatch(
-            "wallet/create",
-            JSON.stringify({
-              alga_amount: algaValue.value,
-              coin: name.toUpperCase(),
-            })
-          )
-          .then((resolve)=>{ coin.value= resolve.data.coin; address.value = resolve.data.address; count.value = resolve.data.amount });
-          
+          await store
+            .dispatch(
+              "wallet/create",
+              JSON.stringify({
+                alga_amount: algaValue.value,
+                coin: name.toUpperCase(),
+              })
+            )
+            .then((resolve) => {
+              coin.value = resolve.data.coin;
+              address.value = resolve.data.address;
+              count.value = resolve.data.amount;
+            });
         }
 
-        if(name == "card"){
+        if (name == "card") {
           //           await store.dispatch(
           //   "wallet/createFiat",
           //   JSON.stringify({
@@ -302,8 +305,7 @@ export default {
           // )
           // .then((resolve)=>{ console.log(resolve)});
         }
-          path.value.push({ name });
-        
+        path.value.push({ name });
       } catch (e) {
         if (!e.response) throw e;
       }
