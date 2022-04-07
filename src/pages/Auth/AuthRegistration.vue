@@ -89,17 +89,6 @@
             :placeholder="$t('inputs.password')"
             rules="required|confirmed:@password"
           />
-          <div v-if="invalidCode">
-            <AppInput
-              name="verification_code"
-              :label="$t('inputs.code')"
-              :placeholder="$t('inputs.wrongCode')"
-              rules="required"
-            />
-            <div class="tw-text-invalid tw-text-xxs">
-              {{ $t('errors.code') }}
-            </div>
-          </div>
           <AuthCodeVerification v-if="invalidCode" :cellphone="curCellphone" />
           <AppButton
             :label="$t('actions.setPass')"
@@ -165,6 +154,7 @@ export default {
         if (e.response.status === 422) {
           const { errors } = await e.response.json();
           setErrors(errors);
+          throw { 422: true };
         } else throw e;
       }
     };
@@ -175,6 +165,7 @@ export default {
         changeStep('verifing');
         await getCode({ cellphone: args[0].cellphoneFull });
       } catch (e) {
+        if(422 in e) return;
         throw e;
       }
     };

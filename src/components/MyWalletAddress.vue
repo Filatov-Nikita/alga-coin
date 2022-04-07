@@ -1,5 +1,7 @@
 <template>
   <div class="my-address">
+    <div class="my-address__label">Вам необходимо перевести</div>
+    <span>{{Number(count).toFixed(1)}} {{coin}}</span>
     <div class="my-address__label">{{ t('label') }}</div>
     <div class="my-address__field">
       <div class="my-address__number">{{ address }}</div>
@@ -21,12 +23,20 @@ export default {
       required: true,
       type: String,
     },
+    count: {
+      required: true,
+      type: String,
+    },
+    coin: {
+      required: true,
+      type: String,
+    }
   },
   setup() {
     const { t } = useI18n({
       messages: {
         'ru-RU': {
-          label: 'Адрес вашего кошелька для перевода',
+          label: 'Адрес кошелька для перевода',
         },
         'en-US': {
           label: 'Wallet address for transaction',

@@ -8,6 +8,7 @@
           style="max-height: 550px"
           id="history-block"
         >
+        
           <AppPagination
             scroll-target="#history-block"
             :disable="complete"

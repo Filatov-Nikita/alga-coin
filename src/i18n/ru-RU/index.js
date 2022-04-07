@@ -14,7 +14,7 @@ export default {
     send: "Отправить",
     back: "Назад",
     logout: "Выйти",
-    getCode: "Выслать код",
+    getCode: "Получить звонок",
     toLK: "Вход в личный кабинет",
     hasAccount: "Уже зарегистрированы? {login}",
     setPass: "Установить и войти",
@@ -28,10 +28,12 @@ export default {
   inputs: {
     cellphone: "Телефон",
     password: "Пароль",
-    newPass: "Новый пароль",
+    newPass: "Повторите пароль",
+    oldPass: "Новый пароль",
     repeatPass: "Повторите пароль",
     wrongCode: "Введите правильный код",
-    code: "Код из смс",
+    // code: "Код из смс",
+    code: '',
     wallet: "Адрес кошелька",
     walletReciever: "Адрес кошелька получателя",
     name: {
@@ -44,6 +46,7 @@ export default {
       wallet: "Кошелек",
       history: "История операций",
       output: "Вывод",
+      polls: 'Опросы'
     },
   },
   landing: {
@@ -55,8 +58,13 @@ export default {
       logout: "Выйти",
     },
     footer: {
-      serviceInfo: "Условия обслуживания | Условиями обслуживания",
+      serviceInfo: "Пользовательское соглашение",
+      serviceInfoFile: "/serviceInfoRu.pdf",
       whyAlga: "Почему Alga",
+      whyAlgaFile: "/disclaimerRu.pdf",
+      roadmapFile : "/roadmapRu.pdf",
+      whitePaper: "/whitePaperRu.pdf",
+      algaMarket: "Alga Market в разработке",
     },
     menu: {
       about: "О токене",

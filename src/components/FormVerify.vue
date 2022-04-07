@@ -29,12 +29,13 @@ export default {
         'ru-RU': {
           header: 'Верификация по номеру телефона',
           subtitle:
-            'Введите 6-значный код подтверждения, <br /> который был отправлен на {cellphone}. <br /> Код действителен в течение 30 минут.',
+            // 'Введите 6-значный код подтверждения, <br /> который был отправлен на {cellphone}. <br /> Код действителен в течение 30 минут.',
+            'Введите последние 4 цифры номера телефона, с которого поступил входящий звонок. Этот код действует 30 минут.'
         },
         'en-US': {
           header: 'Verification by phone number',
           subtitle:
-            'Enter a 6-digit verification code, <br/> which was sent to {cellphone}. <br/> The code is valid for 30 minutes.',
+            'Enter the last 4 digits of the phone number from which the incoming call was received. This code is valid for 30 minutes.',
         },
       },
     });

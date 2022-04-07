@@ -1,11 +1,7 @@
 <template>
   <section>
     <div
-      class="
-        app-row app-gutter-x-xl
-        tw-items-center tw-mb-6 tw-justify-between
-        xl:tw-justify-start
-      "
+      class="app-row app-gutter-x-xl tw-items-center tw-mb-6 tw-justify-between xl:tw-justify-start"
     >
       <p class="tw-text-xs">{{ $prettyDate(content.created_at) }}</p>
       <AppButton design="flat" @click="share">
@@ -15,7 +11,7 @@
             :src="require('assets/icons/share.svg')"
             width="16px"
           />
-          <div>{{ t('share') }}</div>
+          <div>{{ t("share") }}</div>
         </div>
       </AppButton>
     </div>
@@ -33,24 +29,25 @@
       />
     </div>
 
-    <p class="tw-text-xxs xl:tw-text-xs tw-leading-loose xl:app-col-14">
-      {{ content.body }}
-    </p>
+    <p
+      class="tw-text-xxs xl:tw-text-xs tw-leading-loose xl:app-col-14"
+      v-html="content.body"
+    ></p>
   </section>
 </template>
 
 <script>
-import { useI18n } from 'vue-i18n';
+import { useI18n } from "vue-i18n";
 
 const i18n = {
   messages: {
-    'ru-RU': {
-      share: 'Поделиться',
-      link: 'Ссылка',
+    "ru-RU": {
+      share: "Поделиться",
+      link: "Ссылка",
     },
-    'en-US': {
-      share: 'Share',
-      link: 'Link',
+    "en-US": {
+      share: "Share",
+      link: "Link",
     },
   },
 };
@@ -73,18 +70,17 @@ export default {
   methods: {
     share() {
       const route = this.$router.resolve({
-        name: 'articles.show',
+        name: "articles.show",
         params: { id: 2 },
       });
       this.$copy(window.location.origin + route.href);
       this.$alert({
-        type: 'neutral',
-        message: this.$t('alerts.copy', { msg: this.t('link') }, 0),
+        type: "neutral",
+        message: this.$t("alerts.copy", { msg: this.t("link") }, 0),
       });
     },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

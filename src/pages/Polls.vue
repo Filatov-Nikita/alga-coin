@@ -1,64 +1,40 @@
 <template>
-  <q-page class="app-page-y">
+  <q-page id="page" class="app-page-y">
     <div class="tw-container">
-      <h1 class="tw-text-md1 app-h1--space">Опросы</h1>
+      <h1 class="app-h1 app-h1--space">{{ $t('lk.menu.polls') }}</h1>
       <AppTabs
         class="tw-mb-7-1"
-        @switch="changeStep"
+        @switch="switchTab"
         :value="step"
         :steps="[
-          { name: 'processing', label: 'Актуальные' },
-          { name: 'finished', label: 'Завершённые' },
+          { name: 'processing', label: t('tabs.processing') },
+          { name: 'finished', label: t('tabs.finished') },
         ]"
       />
-      <PollsList
-        :items="[
-          {
-            id: 1,
-            till: '25.02.2022',
-            title: 'Покупаем ножи для Игры в Крокодила',
-            text: 'Миллиардер Стернлихт поспорил с главой JPMorgan о бесполезности биткоина',
-            description:
-              'За последние сутки первая криптовалюта подорожала на 3%, а ее капитализация увеличилась до $1,1 трлн Утром 15 октября цена биткоина на криптобирже Bitfinex впервые с середины апреля превысила $60 тыс. За прошедшие сутки главная криптовалюта подорожала на 3%. На 9:30 мск биткоин торгуется на уровне $59,5 тыс. Капитализация криптовалюты увеличилась до $1,1 трлн, по данным CoinGecko. Доля биткоина на крипторынке составляет 44,2%. Последняя волна роста биткоина стартовала 29 сентября, с локального ценового минимума в $40,7 тыс. За более чем две недели криптовалюта подорожала на 47%. Ее цена приближается к историческому максимуму в $64,8 тыс., установленному в середине апреля. Ранее аналитическая компания B2C2 сообщила, что рост стоимости биткоина в начале октября вызван повышенным спросом на криптовалюту со стороны институциональных инвесторов. Аналитики утверждают, что в последние недели рынок «активно смещен в сторону покупателей». — Банк России изучит объем инвестиций россиян в криптовалюту — В Fidelity спрогнозировали подорожание биткоина до $100 тыс. к 2023 году — Glassnode: отток биткоинов с криптобирж замедлилсяa',
-            variants: [
-              { label: 'Покупаем', total: '10%' },
-              { label: 'Нет', total: '70%' },
-              { label: 'Да', total: '10%' },
-              { label: 'Что-то среднее', total: '16%' },
-            ],
-          },
-          {
-            id: 2,
-            till: '25.02.2022',
-            title: 'Покупаем ножи для Игры в Крокодила',
-            text: 'Миллиардер Стернлихт поспорил с главой JPMorgan о бесполезности биткоина',
-            description:
-              'За последние сутки первая криптовалюта подорожала на 3%, а ее капитализация увеличилась до $1,1 трлн Утром 15 октября цена биткоина на криптобирже Bitfinex впервые с середины апреля превысила $60 тыс. За прошедшие сутки главная криптовалюта подорожала на 3%. На 9:30 мск биткоин торгуется на уровне $59,5 тыс. Капитализация криптовалюты увеличилась до $1,1 трлн, по данным CoinGecko. Доля биткоина на крипторынке составляет 44,2%. Последняя волна роста биткоина стартовала 29 сентября, с локального ценового минимума в $40,7 тыс. За более чем две недели криптовалюта подорожала на 47%. Ее цена приближается к историческому максимуму в $64,8 тыс., установленному в середине апреля. Ранее аналитическая компания B2C2 сообщила, что рост стоимости биткоина в начале октября вызван повышенным спросом на криптовалюту со стороны институциональных инвесторов. Аналитики утверждают, что в последние недели рынок «активно смещен в сторону покупателей». — Банк России изучит объем инвестиций россиян в криптовалюту — В Fidelity спрогнозировали подорожание биткоина до $100 тыс. к 2023 году — Glassnode: отток биткоинов с криптобирж замедлилсяa',
-            variants: [
-              { label: 'Покупаем', total: '10%' },
-              { label: 'Нет', total: '70%' },
-              { label: 'Да', total: '10%' },
-              { label: 'Что-то среднее', total: '16%' },
-            ],
-          },
-        ]"
+
+      <AppPagination
+        :key="step"
+        scroll-target="body"
+        :disable="complete"
+        @load="getPolls"
       >
-        <template v-slot:item="{ item }">
-          <PollsItem v-bind="{ item }">
-            <template v-slot:variants="{ variants }">
-              <VariantsList
-                class="tw-mb-12"
-                v-bind="{ variants }"
-                :initialValue="{
-                  selected: { label: 'Покупаем' },
-                  winner: { label: 'Да' },
-                }"
-              />
-              <!-- @selected="update" -->
-            </template>
-          </PollsItem>
+        <template v-if="polls">
+          <div class="app-row app-gutter-col" v-if="polls.length > 0">
+            <PollsItem
+              v-for="poll in polls"
+              :key="poll.id"
+              :item="poll"
+              :finished="step === 'finished'"
+              
+            >
+              <template v-slot="{ close, showing }">
+                <PollsCard v-if="showing" v-bind="{ close, id: poll.id }" @updateItem="updateData"/>
+              </template>
+            </PollsItem>
+          </div>
+          <AppEmptyList v-else msg="Нет ни одного опроса" />
         </template>
-      </PollsList>
+      </AppPagination>
     </div>
   </q-page>
 </template>
@@ -66,27 +42,78 @@
 <script>
 import PollsList from 'src/components/PollsList.vue';
 import PollsItem from 'src/components/PollsItem.vue';
+import PollsCard from 'src/components/PollsCard.vue';
 import AppTabs from 'src/components/AppTabs.vue';
 import VariantsList from 'src/components/VariantsList.vue';
 import useStep from 'src/composition/useStep';
-import { computed } from 'vue';
+import usePagination from 'src/composition/usePagination';
+import { useStore } from 'vuex';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default {
   setup() {
+    const { t } = useI18n({
+      messages: {
+        'en-US': {
+          tabs: {
+            processing: 'Actual',
+            finished: 'Finished',
+          },
+        },
+        'ru-RU': {
+          tabs: {
+            processing: 'Актуальные',
+            finished: 'Завершённые',
+          },
+        },
+      },
+    });
+    const items = ref(null);
     const { step, changeStep } = useStep('processing');
-    const list = computed(() => {});
+    const store = useStore();
+
+    const getPolls = async (filter = {}) => {
+      filter.finished = false;
+      if (step.value === 'finished') filter.finished = true;
+      return store.dispatch('polls/list', filter);
+    };
+
+    const {
+      isLoading,
+      fetcher,
+      data,
+      complete,
+      reset: resetData,
+      updateData
+    } = usePagination(getPolls);
+
+    const switchTab = (tabName) => {
+      if (tabName === step.value) return;
+      resetData();
+      changeStep(tabName);
+    };
 
     return {
+      t,
       step,
+      isLoading,
+      polls: data,
+      complete,
+      items,
+      getPolls: fetcher,
       changeStep,
+      switchTab,
+
+      updateData
     };
   },
-
   components: {
     PollsList,
     AppTabs,
     PollsItem,
     VariantsList,
+    PollsCard,
   },
 };
 </script>

@@ -10,11 +10,19 @@ function prettyDate(dateStr) {
   return `${groups.day}.${groups.month}.${groups.year} ${groups.hh}:${groups.mm}`;
 }
 
+function displayVal(val) {
+  return val < 10 ? `0${val}` : val;
+}
+
 function localDate(dateStr) {
   const date = new Date(dateStr);
-  let minutes = date.getMinutes();
-  minutes = minutes < 10 ? `0${minutes}` : minutes;
-  return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${minutes}`;
+  const month = displayVal(date.getMonth()+1);
+  
+  const day = displayVal(date.getDate());
+  const hour = displayVal(date.getHours());
+  const minutes = displayVal(date.getMinutes());
+
+  return `${day}.${month}.${date.getFullYear()} ${hour}:${minutes}`;
 }
 
 export default {

@@ -13,7 +13,7 @@ export default {
     send: "Send",
     back: "Back",
     logout: "Logout",
-    getCode: "Get Code",
+    getCode: "Get a call",
     toLK: "Login to your profile",
     hasAccount: "Already have account? {login}",
     setPass: "Set and Login",
@@ -27,10 +27,12 @@ export default {
   inputs: {
     cellphone: "Phone",
     password: "Password",
-    newPass: "New password",
+    newPass: "Repeat password",
+    oldPass: "New password",
     repeatPass: "Repeat password",
     wrongCode: "Enter a correct code",
-    code: "SMS code",
+    // code: "SMS code",
+    code: '',
     wallet: "Wallet address",
     walletReciever: "Recipient's wallet address",
     name: {
@@ -43,6 +45,7 @@ export default {
       wallet: "Wallet",
       history: "History",
       output: "Output",
+      polls: 'Polls'
     },
   },
   landing: {
@@ -55,7 +58,14 @@ export default {
     },
     footer: {
       serviceInfo: "Terms of Service",
-      whyAlga: "Why Alga",
+      serviceInfoFile: "/serviceInfoEng.pdf",
+
+      whyAlga: "Disclaimer ",
+      whyAlgaFile: "/disclaimerEng.pdf",
+      roadmapFile : "/roadmapEng.pdf",
+      whitePaper: "/whitePaperEng.pdf",
+      algaMarket: "Alga Market in development"
+      
     },
     menu: {
       about: "About token",

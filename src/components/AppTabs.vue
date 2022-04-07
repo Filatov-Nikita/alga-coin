@@ -24,6 +24,7 @@ export default {
       type: String,
     },
   },
+  emits: ['switch'],
   setup(props, { emit }) {
     const change = (name) => {
       emit('switch', name);

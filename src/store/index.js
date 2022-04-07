@@ -19,6 +19,7 @@ export default store(function (/* { ssrContext } */) {
       landing: require("./landing").default,
       info: require("./info").default,
       transactions: require("./transactions").default,
+      polls: require("./polls").default,
     },
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

@@ -1,5 +1,5 @@
 @layer base {
-  @import './spaces.scss';
+  @import "./spaces.scss";
 
   input {
     outline: none;
@@ -8,7 +8,9 @@
   *:not(body, html) {
     @include scrollbar();
   }
-
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply tw-font-stolzl tw-text-xs tw-text-white;
   }
@@ -17,22 +19,26 @@
     line-height: 1.4;
   }
 
-  h1, .h1 {
+  h1,
+  .h1 {
     @extend %h;
     @apply tw-text-xl;
   }
 
-  h2, .h2 {
+  h2,
+  .h2 {
     @extend %h;
     @apply tw-text-lg;
   }
 
-  h3, .h3 {
+  h3,
+  .h3 {
     @extend %h;
     @apply tw-text-md1;
   }
 
-  h4, .h4 {
+  h4,
+  .h4 {
     @extend %h;
     @apply tw-text-md2;
   }
@@ -47,7 +53,8 @@
     @apply tw-text-base;
   }
 
-  a, .app-link {
+  a,
+  .app-link {
     @apply tw-text-secondary tw-text-xxs xl:tw-text-xs;
     @include screen-xl {
       &:hover {
@@ -73,10 +80,11 @@
   }
 
   .app-page-bg {
-    background: theme('colors.dark-blue-cover');
+    background: theme("colors.dark-blue-cover");
 
     @include screen-xl {
-      background: theme('colors.dark-blue-cover') url(~assets/images/main-bg.jpg) no-repeat;
+      background: theme("colors.dark-blue-cover")
+        url(~assets/images/main-bg.jpg) no-repeat;
       background-size: 100%;
       background-position: bottom;
     }

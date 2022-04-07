@@ -6,7 +6,8 @@
 
         <AppLink
           class="tw-text-xxs tw-text-white"
-          :to="$app.links.serviceInfo"
+          :to="$t('landing.footer.serviceInfoFile')"
+          
           >{{ $t('landing.footer.serviceInfo') }}</AppLink
         >
 
@@ -20,6 +21,8 @@
                 v-for="link in footer($t)"
                 :key="link.label"
                 :to="link.to"
+                :popup="link.popup"
+                :modalMessage="link.modalMessage"
               >
                 {{ link.label }}
               </AppLink>
@@ -60,6 +63,7 @@ export default {
       soc,
     };
   },
+      
   computed: {
     ...mapGetters('landing', ['footer']),
   },
@@ -71,14 +75,14 @@ function getSoc() {
       icon: require('assets/twitter-icon.svg'),
       name: 'twitter',
     },
-    {
-      icon: require('assets/fb-icon.svg'),
-      name: 'facebook',
-    },
-    {
-      icon: require('assets/inst-icon.svg'),
-      name: 'instagram',
-    },
+    // {
+    //   icon: require('assets/fb-icon.svg'),
+    //   name: 'facebook',
+    // },
+    // {
+    //   icon: require('assets/inst-icon.svg'),
+    //   name: 'instagram',
+    // },
     {
       icon: require('assets/te-icon.svg'),
       name: 'telegram',

@@ -89,12 +89,12 @@ const messages = {
   'ru-RU': {
     header: 'Восстановление доступа',
     subtitle:
-      'Воcстановите доступ в систему с помощью мобильного телефона и СМС-кода',
+      'Вам поступит звонок, далее нужно будет ввести послежние 4 цифры номера телефона.',
     passHeader: 'Пароль сброшен. Установите новый пароль',
   },
   'en-US': {
     header: 'Access recovery',
-    subtitle: 'Restore access to the system using a mobile phone and SMS code',
+    subtitle: 'You will receive a call, then you will need to enter the last 4 digits of the phone number.',
     passHeader: 'The password has been reset. Set a new password',
   },
 };

@@ -47,7 +47,7 @@
         <AppCheckbox
           rules="required"
           name="service"
-          class="tw-text-xxs-2 tw-w-2/3"
+          class="tw-text-xxs-1 xl:tw-text-xxs tw-w-2/3"
         >
           <i18n-t scope="global" keypath="term">
             <template #link>
@@ -80,7 +80,9 @@
           design="flat"
           @click="close"
         >
-          <span class="tw-text-xxs-2">{{ $t('buttons.close') }}</span>
+          <span class="tw-text-xxs-1">{{
+            $t('buttons.close')
+          }}</span>
         </AppButton>
       </AppModal>
     </div>

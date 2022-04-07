@@ -1,7 +1,10 @@
 <template>
   <div class="bottom-menu">
-    <div class="bottom-menu__active" :style="{ left: activeLeft }">
-      <InlineSvg :src="require('assets/menu-active.svg')" />
+    <div class="bottom-menu__active">
+      <InlineSvg
+        @loaded="calcIndicatorCoords"
+        :src="require('assets/menu-active.svg')"
+      />
     </div>
     <div class="bottom-menu__links">
       <div class="tw-pb-safe">
@@ -24,6 +27,7 @@
                 :style="{ width: '16px', height: '16px' }"
               >
                 <InlineSvg
+                  @loaded="calcIndicatorCoords"
                   class="bottom-menu__icon"
                   :src="isExactActive ? item.iconActive : item.icon"
                 />
@@ -38,69 +42,66 @@
 </template>
 
 <script>
+function calcIndicatorCoords() {
+  const list = document.querySelector('.bottom-menu__list');
+  const activeEl = list && list.querySelector('.bottom-menu__link--active');
+  const indicator = document.querySelector('.bottom-menu__active');
+
+  if (!activeEl) {
+    indicator.style.left = '-1000px';
+    return;
+  }
+
+  indicator.style.left = `${
+    activeEl.offsetLeft + activeEl.offsetWidth / 2 - indicator.offsetWidth / 2
+  }px`;
+}
+
+function calcWait() {
+  setTimeout(calcIndicatorCoords, 50);
+}
+
 export default {
   mounted() {
-    document.addEventListener('readystatechange', this.calcIndicatorCoords);
-    window.addEventListener('resize', this.calcIndicatorCoords);
+    window.addEventListener('resize', calcIndicatorCoords);
   },
   unmounted() {
-    document.removeEventListener('readystatechange', this.calcIndicatorCoords);
-    window.removeEventListener('resize', this.calcIndicatorCoords);
+    window.addEventListener('resize', calcIndicatorCoords);
   },
-  data() {
-    return {
-      activeLeft: '0px',
-      items: [
+  computed: {
+    items() {
+      return [
         {
-          label: 'Кошелек',
+          label: this.$t('lk.menu.wallet'),
           to: { name: 'wallet' },
           icon: require('assets/icons/alga.svg'),
           iconActive: require('assets/icons/alga-active.svg'),
         },
         {
-          label: 'История операций',
+          label: this.$t('lk.menu.history'),
           to: { name: 'history' },
           icon: require('assets/icons/history.svg'),
           iconActive: require('assets/icons/history-active.svg'),
         },
         {
-          label: 'Вывод',
+          label: this.$t('lk.menu.output'),
           to: { name: 'output' },
           icon: require('assets/icons/output.svg'),
           iconActive: require('assets/icons/output-active.svg'),
         },
-      ],
-    };
+      ];
+    },
   },
   methods: {
-    calcIndicatorCoords() {
-      const list = document.querySelector('.bottom-menu__list');
-      const activeEl = list && list.querySelector('.bottom-menu__link--active');
-      const indicator = document.querySelector('.bottom-menu__active');
-
-      if (!activeEl) {
-        this.activeLeft = '-1000px';
-        return;
-      }
-
-      this.activeLeft = `${
-        activeEl.offsetLeft +
-        activeEl.offsetWidth / 2 -
-        indicator.offsetWidth / 2
-      }px`;
-    },
     async nav(e, navigate) {
       await navigate(e);
-      this.$nextTick(() => {
-        this.calcIndicatorCoords();
-      });
+      this.$nextTick(calcIndicatorCoords());
     },
+    calcIndicatorCoords: calcWait,
   },
   watch: {
     $route() {
-      this.$nextTick(() => {
-        this.calcIndicatorCoords();
-      });
+      this.$nextTick(calcIndicatorCoords());
     },
   },
 };
