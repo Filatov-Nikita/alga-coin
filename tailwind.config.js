@@ -56,9 +56,11 @@ module.exports = {
       DEFAULT: "100%",
       center: true,
       xl: "1230px",
+      sm: "100%",
       padding: {
-        DEFAULT: "25px",
+        DEFAULT: "16px",
         xl: "30px",
+        sm: "16px",
       },
     },
   },

@@ -2,6 +2,15 @@
   <q-layout
     :view="$q.screen.xl ? 'hHh lpR fFf' : 'hhh lpR fFf'"
     class="tw-bg-dark-blue-cover tw-relative tw-z-10"
+    :style="
+      !$q.screen.xl
+        ? {
+            background:
+              'linear-gradient(110.9deg, #0F1530 1.02%, #090F2B 94.69%)',
+            position: 'relative',
+          }
+        : ''
+    "
   >
     <HeaderLanding v-if="$q.screen.xl">
       <template #menu>
@@ -30,7 +39,8 @@
       </q-page>
     </q-page-container>
     <template v-if="!$q.screen.xl">
-      <div @click="scrollTop" class="top-arrow" ref="arrow">
+      <InvestLanding />
+      <!-- <div @click="scrollTop" class="top-arrow" ref="arrow">
         <div class="arrow-icon">
           <svg
             width="14"
@@ -63,7 +73,7 @@
           <LandngSectionNews />
           <LandngSectionMobileFooter />
         </div>
-      </q-page-container>
+      </q-page-container> -->
     </template>
     <FooterLanding />
 
@@ -122,6 +132,7 @@
 </template>
 
 <script>
+import InvestLanding from "src/components/InvestLanding";
 import LandingSectionAdvantages from "src/components/Landing/LandingSectionAdvantages.vue";
 import LandingSectionFeatures from "src/components/Landing/LandingSectionFeatures.vue";
 import LandingSectionOwners from "src/components/Landing/LandingSectionOwners.vue";
@@ -269,6 +280,7 @@ export default {
     LandingSectionEcosystem,
     LandingSectionDesctopEcosystem,
     LandngSectionMobileFooter,
+    InvestLanding,
   },
 };
 </script>

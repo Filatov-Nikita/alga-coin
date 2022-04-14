@@ -1,0 +1,19 @@
+<svg width="288" height="446" viewBox="0 0 288 446" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_bi_16_1027)">
+<path d="M288 20C288 8.95432 279.046 0 268 0H80C35.8172 0 0 35.8172 0 80V426C0 437.046 8.95432 446 20 446H268C279.046 446 288 437.046 288 426V20Z" fill="white" fill-opacity="0.03"/>
+</g>
+<defs>
+<filter id="filter0_bi_16_1027" x="-86" y="-86" width="460" height="618" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImage" stdDeviation="43"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_16_1027"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_16_1027" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.15 0"/>
+<feBlend mode="normal" in2="shape" result="effect2_innerShadow_16_1027"/>
+</filter>
+</defs>
+</svg>

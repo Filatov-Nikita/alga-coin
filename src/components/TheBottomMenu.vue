@@ -12,15 +12,18 @@
           <router-link
             custom
             v-slot="{ navigate, href, isExactActive }"
-            v-for="item in items"
+            v-for="(item, index) in items"
             :key="item.to"
             :to="item.to"
           >
             <a
               :href="href"
               @click="nav($event, navigate)"
-              class="bottom-menu__link tw-mr-8"
-              :class="{ 'bottom-menu__link--active': isExactActive }"
+              class="bottom-menu__link"
+              :class="[
+                { 'tw-mr-8': index !== items.length - 1 },
+                { 'bottom-menu__link--active': isExactActive },
+              ]"
             >
               <div
                 class="tw-mx-auto"
@@ -43,12 +46,12 @@
 
 <script>
 function calcIndicatorCoords() {
-  const list = document.querySelector('.bottom-menu__list');
-  const activeEl = list && list.querySelector('.bottom-menu__link--active');
-  const indicator = document.querySelector('.bottom-menu__active');
+  const list = document.querySelector(".bottom-menu__list");
+  const activeEl = list && list.querySelector(".bottom-menu__link--active");
+  const indicator = document.querySelector(".bottom-menu__active");
 
   if (!activeEl) {
-    indicator.style.left = '-1000px';
+    indicator.style.left = "-1000px";
     return;
   }
 
@@ -63,31 +66,31 @@ function calcWait() {
 
 export default {
   mounted() {
-    window.addEventListener('resize', calcIndicatorCoords);
+    window.addEventListener("resize", calcIndicatorCoords);
   },
   unmounted() {
-    window.addEventListener('resize', calcIndicatorCoords);
+    window.addEventListener("resize", calcIndicatorCoords);
   },
   computed: {
     items() {
       return [
         {
-          label: this.$t('lk.menu.wallet'),
-          to: { name: 'wallet' },
-          icon: require('assets/icons/alga.svg'),
-          iconActive: require('assets/icons/alga-active.svg'),
+          label: this.$t("lk.menu.wallet"),
+          to: { name: "wallet" },
+          icon: require("assets/icons/alga.svg"),
+          iconActive: require("assets/icons/alga-active.svg"),
         },
         {
-          label: this.$t('lk.menu.history'),
-          to: { name: 'history' },
-          icon: require('assets/icons/history.svg'),
-          iconActive: require('assets/icons/history-active.svg'),
+          label: this.$t("lk.menu.history"),
+          to: { name: "history" },
+          icon: require("assets/icons/history.svg"),
+          iconActive: require("assets/icons/history-active.svg"),
         },
         {
-          label: this.$t('lk.menu.output'),
-          to: { name: 'output' },
-          icon: require('assets/icons/output.svg'),
-          iconActive: require('assets/icons/output-active.svg'),
+          label: this.$t("lk.menu.output"),
+          to: { name: "output" },
+          icon: require("assets/icons/output.svg"),
+          iconActive: require("assets/icons/output-active.svg"),
         },
       ];
     },
