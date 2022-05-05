@@ -1,7 +1,7 @@
 <template>
   <q-layout
     :view="$q.screen.xl ? 'hHh lpR fFf' : 'hhh lpR fFf'"
-    class="tw-bg-dark-blue-cover tw-relative tw-z-10"
+    class="bg-color tw-relative tw-z-10"
     :style="
       !$q.screen.xl
         ? {
@@ -12,7 +12,7 @@
         : ''
     "
   >
-    <HeaderLanding v-if="$q.screen.xl">
+    <!-- <HeaderLanding v-if="$q.screen.xl">
       <template #menu>
         <LandingMenu :activeIndex="menuActive" @to="toSection" />
       </template>
@@ -37,10 +37,10 @@
           </AppFullPage>
         </div>
       </q-page>
-    </q-page-container>
-    <template v-if="!$q.screen.xl">
-      <InvestLanding />
-      <!-- <div @click="scrollTop" class="top-arrow" ref="arrow">
+    </q-page-container> -->
+    <!-- <template v-if="!$q.screen.xl"> -->
+    <InvestLanding />
+    <!-- <div @click="scrollTop" class="top-arrow" ref="arrow">
         <div class="arrow-icon">
           <svg
             width="14"
@@ -74,10 +74,10 @@
           <LandngSectionMobileFooter />
         </div>
       </q-page-container> -->
-    </template>
-    <FooterLanding />
+    <!-- </template> -->
+    <!-- <FooterLanding /> -->
 
-    <transition
+    <!-- <transition
       enter-active-class="animated fadeIn"
       enter-leave-class="animated fadeOut"
       mode="in-out"
@@ -122,12 +122,12 @@
         class="anim-bg anim-bg__yellow"
         v-else-if="!$q.screen.lt.xl && bg === 'yellow'"
       ></div>
-    </transition>
-    <InlineSvg
+    </transition> -->
+    <!-- <InlineSvg
       v-if="$q.screen.xl"
       class="landing-bg-image"
       :src="require('assets/images/landing/main-bg.svg')"
-    />
+    /> -->
   </q-layout>
 </template>
 

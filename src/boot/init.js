@@ -1,6 +1,8 @@
 import { Screen } from "quasar";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../tailwind.config.js";
+import smoothscroll from "smoothscroll-polyfill";
+smoothscroll.polyfill();
 const twConfig = resolveConfig(tailwindConfig);
 
 function setScreenSizes(twConfig) {

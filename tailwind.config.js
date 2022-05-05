@@ -36,6 +36,7 @@ module.exports = {
     },
     fontFamily: {
       stolzl: "Stolzl",
+      ubuntu: "Ubuntu",
     },
     fontSize: {
       "xxs-2": "0.5rem",
@@ -50,7 +51,7 @@ module.exports = {
       xl: "4.5rem",
     },
     screens: {
-      xl: "1280px",
+      xl: "1440px",
     },
     container: {
       DEFAULT: "100%",

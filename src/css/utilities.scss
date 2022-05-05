@@ -1,4 +1,9 @@
 @layer utilities {
+  .bg-color {
+    background: url(~assets/images/big-bg.png) center no-repeat,
+      linear-gradient(110.9deg, #0f1530 1.02%, #090f2b 94.69%);
+    background-size: cover;
+  }
   .text-lette-s {
     letter-spacing: 0.2em;
   }

@@ -15,6 +15,7 @@
     "core-js": "^3.6.5",
     "ky": "^0.28.6",
     "quasar": "^2.0.0",
+    "smoothscroll-polyfill": "^0.4.4",
     "tailwindcss-safe-area": "^0.2.1",
     "vee-validate": "^4.5.2",
     "vue-i18n": "^9.2.0-beta.26",
