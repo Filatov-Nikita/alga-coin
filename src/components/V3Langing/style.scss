@@ -1,0 +1,109 @@
+.header-bg {
+  background: radial-gradient(ellipse, #0f1359, #000320);
+  height: 500px;
+
+  border-radius: 36px;
+  position: relative;
+  overflow: hidden;
+  &__wrapper {
+    padding: 40px 25px;
+  }
+  &__touch {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: luminosity;
+    background: url(./icons/touch.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300%;
+  }
+  &__img {
+    mix-blend-mode: luminosity;
+    position: absolute;
+    background: url(./img/AA_2@2x.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.section {
+  margin-top: 5rem;
+}
+
+.card-big {
+  border-radius: 24px;
+  padding: 40px 25px;
+  position: relative;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url(./icons/touch.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 155%;
+    border-radius: 24px;
+    mix-blend-mode: luminosity;
+    z-index: -1;
+  }
+  .top-icon {
+    position: absolute;
+    right: 0;
+    top: -50px;
+  }
+}
+
+.button {
+  background: linear-gradient(180deg, #4ad66d 0%, #04ac2e 100%);
+  border-radius: 12px;
+  min-height: 60px;
+  padding: 20px;
+  font-size: 1rem;
+  line-height: 19px;
+}
+
+.circle {
+  width: 70px;
+  background: #272b4f;
+  height: 70px;
+  border-radius: 9999px;
+  z-index: 0;
+  mix-blend-mode: luminosity;
+  position: relative;
+  & > img {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+}
+
+.card-gray {
+  padding: 20px 25px;
+  box-shadow: 0px 155px 62px rgba(1, 3, 24, 0.01),
+    0px 87px 52px rgba(1, 3, 24, 0.05), 0px 39px 39px rgba(1, 3, 24, 0.09),
+    0px 10px 21px rgba(1, 3, 24, 0.1), 0px 0px 0px rgba(1, 3, 24, 0.1);
+  border-radius: 24px;
+  background: #141734;
+
+  .tokens {
+    color: #bec3ff;
+  }
+
+  .buy {
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #494d72;
+  }
+}

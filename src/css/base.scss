@@ -13,22 +13,24 @@
   }
   body {
     // @apply tw-font-stolzl tw-text-xs tw-text-white;
-    @apply tw-font-ubuntu tw-text-xs tw-text-white;
+    @apply tw-font-stolzl tw-text-xs tw-text-white;
   }
 
   %h {
     line-height: 1.4;
   }
-
+  p {
+    color: #9596a3;
+  }
   h1,
   .h1 {
-    @extend %h;
+    line-height: 90%;
     @apply tw-text-xl;
   }
 
   h2,
   .h2 {
-    @extend %h;
+    line-height: 110%;
     @apply tw-text-lg;
   }
 

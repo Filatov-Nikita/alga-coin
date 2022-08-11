@@ -14,6 +14,8 @@ module.exports = {
         "3-1": "0.875rem",
         "4-1": "1.125rem",
         "7-1": "1.875rem",
+        3.5: "0.875rem",
+        7.5: "1.875rem",
       },
       letterSpacing: {
         widest: "0.5em",
