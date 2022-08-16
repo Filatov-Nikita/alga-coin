@@ -13,7 +13,8 @@
   }
   body {
     // @apply tw-font-stolzl tw-text-xs tw-text-white;
-    @apply tw-font-stolzl tw-text-xs tw-text-white;
+    @apply tw-font-stolzl tw-text-base tw-text-white;
+    line-height: 140%;
   }
 
   %h {
@@ -32,6 +33,10 @@
   .h2 {
     line-height: 110%;
     @apply tw-text-lg;
+    @media screen and (min-width: 1200px) {
+      @apply tw-text-md1;
+      line-height: 120%;
+    }
   }
 
   h3,

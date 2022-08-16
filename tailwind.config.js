@@ -14,8 +14,12 @@ module.exports = {
         "3-1": "0.875rem",
         "4-1": "1.125rem",
         "7-1": "1.875rem",
+        2.25: "0.563rem",
         3.5: "0.875rem",
+        6.25: "1.563rem",
         7.5: "1.875rem",
+        15: "3.75rem",
+        16: "4.625rem",
       },
       letterSpacing: {
         widest: "0.5em",
@@ -53,7 +57,7 @@ module.exports = {
       xl: "4.5rem",
     },
     screens: {
-      xl: "1440px",
+      xl: "1200px",
     },
     container: {
       DEFAULT: "100%",
@@ -61,9 +65,9 @@ module.exports = {
       xl: "1230px",
       sm: "100%",
       padding: {
-        DEFAULT: "16px",
-        xl: "30px",
-        sm: "16px",
+        DEFAULT: "15px",
+        xl: "130px",
+        sm: "15px",
       },
     },
   },

@@ -1,4 +1,12 @@
 // app global css in SCSS form
+.bg-arrow-brand {
+  background-color: #333653;
+}
+
+.text-arrow-brand {
+  color: #bec3ff;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,3 +20,10 @@
 @import "./wallet.scss";
 @import "./landing.scss";
 @import "./invest-landing.scss";
+
+.q-carousel__next-arrow--horizontal {
+  right: 40px;
+}
+.q-carousel__prev-arrow--horizontal {
+  left: 40px;
+}

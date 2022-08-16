@@ -3,7 +3,7 @@
     <div class="tw-container">
       <nav class="nav">
         <div class="nav__left">
-          logo
+          <img src="./icons/logo.svg" alt="logo" />
           <span class="mob-n">Tokenomics</span>
         </div>
         <div class="nav__right">
@@ -117,13 +117,114 @@
       <h2>Team</h2>
       <div>
         <div>
-          photo
-          <h4>Ural Karazbaev</h4>
-          <p>
-            Founder of ALGA Ecosystem, entrepreneur, founder of Museum of
-            Finance investment club, co-founder of TC Gorod, Forestprom, D.S.R.
-            Ufa
-          </p>
+          <div class="desk-n">
+            <div class="slider">
+              <div class="star star-card--desk">
+                <div class="star-avatar">
+                  <div class="star-avatar__wrapper">
+                    <img
+                      class="star-avatar__bg"
+                      src="./icons/star.svg"
+                      alt=""
+                    />
+                    <img
+                      class="star-avatar__img"
+                      src="./img/karazbaev.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <h4>
+                  Ural <br />
+                  Karazbaev
+                </h4>
+                <p class="tw-mt-5">
+                  Founder of ALGA Ecosystem, entrepreneur, founder of Museum of
+                  Finance investment club, co-founder of TC Gorod, Forestprom,
+                  D.S.R. Ufa
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="mob-n">
+            <div class="star star-card--mob">
+              <div class="star-avatar">
+                <div class="star-avatar__wrapper">
+                  <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                  <img
+                    class="star-avatar__img"
+                    src="./img/karazbaev.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <h4 class="tw-mt-5">Ural Karazbaev</h4>
+              <p class="tw-mt-2.5">
+                Founder of ALGA Ecosystem, entrepreneur, founder of Museum of
+                Finance investment club, co-founder of TC Gorod, Forestprom,
+                D.S.R. Ufa
+              </p>
+            </div>
+          </div>
+
+          <div class="q-pa-md">
+            <q-carousel
+              v-model="slide"
+              transition-prev="scale"
+              transition-next="scale"
+              swipeable
+              animated
+              control-color="white"
+              navigation
+              padding
+              arrows
+              height="300px"
+              class="bg-primary text-white shadow-1 rounded-borders"
+            >
+              <template v-slot:navigation-icon="{ active, btnProps, onClick }">
+                <q-btn
+                  v-if="active"
+                  size="lg"
+                  icon="home"
+                  color="yellow"
+                  flat
+                  round
+                  dense
+                  @click="onClick"
+                ></q-btn>
+                <q-btn
+                  v-else
+                  size="sm"
+                  :icon="btnProps.icon"
+                  color="white"
+                  flat
+                  round
+                  dense
+                  @click="onClick"
+                ></q-btn>
+              </template>
+
+              <q-carousel-slide name="style" class="column no-wrap flex-center">
+                <q-icon name="style" size="56px"></q-icon>
+                <div class="q-mt-md text-center">{{ lorem }}</div>
+              </q-carousel-slide>
+              <q-carousel-slide name="tv" class="column no-wrap flex-center">
+                <q-icon name="live_tv" size="56px"></q-icon>
+                <div class="q-mt-md text-center">{{ lorem }}</div>
+              </q-carousel-slide>
+              <q-carousel-slide
+                name="layers"
+                class="column no-wrap flex-center"
+              >
+                <q-icon name="layers" size="56px"></q-icon>
+                <div class="q-mt-md text-center">{{ lorem }}</div>
+              </q-carousel-slide>
+              <q-carousel-slide name="map" class="column no-wrap flex-center">
+                <q-icon name="terrain" size="56px"></q-icon>
+                <div class="q-mt-md text-center">{{ lorem }}</div>
+              </q-carousel-slide>
+            </q-carousel>
+          </div>
         </div>
       </div>
     </div>
@@ -131,7 +232,24 @@
   <section class="section backers-partner">
     <div class="tw-container">
       <h2>Backers & Partners</h2>
-      <div class="tw-mt-10">logo</div>
+
+      <div class="tw-flex tw-mt-10 tw-gap-2.25 tw-flex-wrap xl:tw-gap-6.25">
+        <div class="card-partner">
+          <a href="#">
+            <img src="./img/satoshi.png" alt="" />
+          </a>
+        </div>
+        <div class="card-partner">
+          <a href="#">
+            <img src="./img/ventures.png" alt="" />
+          </a>
+        </div>
+        <div class="card-partner">
+          <a href="#">
+            <img src="./img/terracrypto.png" alt="" />
+          </a>
+        </div>
+      </div>
     </div>
   </section>
   <section class="section faq">
@@ -172,5 +290,19 @@
       </div>
     </div>
   </section>
-  <footer></footer>
+  <footer>
+    <div class="container">
+      <div class="footer__top"></div>
+      <div class="footer__bottom">
+        <div class="flex tw-flex-col tw-gap-2.5 tw-justify-center">
+          <img src="./img/telegram-round.png" alt="" />
+          <a href="#"> Whitepaper.pdf </a>
+        </div>
+        <div class="flex tw-flex-col tw-gap-2.5 tw-justify-center">
+          <img src="./img/telegram-round.png" alt="" />
+          <a href="#"> Roadmap.pdf </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>
