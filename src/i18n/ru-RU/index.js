@@ -1,10 +1,11 @@
 export default {
-  term: "Я ознакомился(ась) и соглашаюсь с {link} AlgaCoin",
+  term: "Я ознакомился(ась) и соглашаюсь с пользовательским соглашением Alga",
   passRequired:
     "Пароль должен быть на английском языке и содержать не менее 6-и символов",
   errors: {
     code: "Вы ввели неверно код на предыдущем шаге. Введите код в это поле и повторите попытку.",
-    convert: 'Не удалось конвертировать валюту. Попрбуйте ввести значение еще раз.'
+    convert:
+      "Не удалось конвертировать валюту. Попрбуйте ввести значение еще раз.",
   },
   alerts: {
     copy: "{msg} скопирован в буфер обмена | {msg} скопирована в буфер обмена",
@@ -14,7 +15,7 @@ export default {
     send: "Отправить",
     back: "Назад",
     logout: "Выйти",
-    getCode: "Получить звонок",
+    getCode: "Отправить код",
     toLK: "Вход в личный кабинет",
     hasAccount: "Уже зарегистрированы? {login}",
     setPass: "Установить и войти",
@@ -32,13 +33,13 @@ export default {
     oldPass: "Новый пароль",
     repeatPass: "Повторите пароль",
     wrongCode: "Введите правильный код",
-    // code: "Код из смс",
-    code: '',
+    code: "Код из смс",
+    // code: "",
     wallet: "Адрес кошелька",
     walletReciever: "Адрес кошелька получателя",
     name: {
-      label: "ФИО",
-      placeholder: "Иванов Иван Иванович",
+      label: "Имя",
+      placeholder: "Иван",
     },
   },
   lk: {
@@ -46,7 +47,7 @@ export default {
       wallet: "Кошелек",
       history: "История операций",
       output: "Вывод",
-      polls: 'Опросы'
+      polls: "Опросы",
     },
   },
   landing: {
@@ -62,7 +63,7 @@ export default {
       serviceInfoFile: "/serviceInfoRu.pdf",
       whyAlga: "Почему Alga",
       whyAlgaFile: "/disclaimerRu.pdf",
-      roadmapFile : "/roadmapRu.pdf",
+      roadmapFile: "/roadmapRu.pdf",
       whitePaper: "/whitePaperRu.pdf",
       algaMarket: "Alga Market в разработке",
     },

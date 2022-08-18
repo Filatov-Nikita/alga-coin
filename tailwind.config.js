@@ -32,6 +32,7 @@ module.exports = {
       secondary: "#006DCC",
       invalid: "#EF233C",
       blue: "#0A8DFF",
+      green: "#4AD66D",
       valid: "#4AD66D",
       dark: "#0A1E3E",
       white: "#FFFFFF",
@@ -39,6 +40,7 @@ module.exports = {
       "dark-blue": "#003870",
       "blue-hover": "#0083F5",
       "dark-blue-cover": "#001233",
+      "dark-gray": "#141734",
     },
     fontFamily: {
       stolzl: "Stolzl",

@@ -2,8 +2,8 @@
   <q-page class="tw-grid tw-container">
     <div class="app-auth">
       <AppStep name="registr">
-        <h1 class="app-auth__h1">{{ t('header') }}</h1>
-        <p class="app-auth__subtitle">{{ t('subtitle') }}</p>
+        <h1 class="app-auth__h1">{{ t("header") }}</h1>
+        <p class="app-auth__subtitle">{{ t("subtitle") }}</p>
         <Form
           @submit="createUser"
           class="app-auth__form"
@@ -36,13 +36,9 @@
             class="tw-text-left tw-mt-6"
             labelClass="tw-text-xxs"
           >
-            <i18n-t scope="global" keypath="term">
-              <template #link>
-                <AppLink :to="$app.links.serviceInfo">
-                  {{ $t('landing.footer.serviceInfo', 0) }}
-                </AppLink>
-              </template>
-            </i18n-t>
+            <AppLink :to="$app.links.serviceInfo" class="term-link">
+              <i18n-t scope="global" keypath="term"> </i18n-t>
+            </AppLink>
           </AppCheckbox>
           <AppButton
             :label="$t('buttons.registr')"
@@ -59,7 +55,7 @@
         >
           <template #login>
             <AppLink :to="{ name: 'auth.login' }">
-              {{ $t('buttons.logIn') }}
+              {{ $t("buttons.logIn") }}
             </AppLink>
           </template>
         </i18n-t>
@@ -68,8 +64,8 @@
         <FormVerify :cellphone="curCellphone" @entered="handleCode" />
       </AppStep>
       <AppStep name="password">
-        <h1 class="app-auth__h1">{{ t('passHeader') }}</h1>
-        <p class="app-auth__subtitle">{{ $t('passRequired') }}</p>
+        <h1 class="app-auth__h1">{{ t("passHeader") }}</h1>
+        <p class="app-auth__subtitle">{{ $t("passRequired") }}</p>
         <Form
           v-slot="{ isSubmitting }"
           class="app-auth__form"
@@ -98,9 +94,9 @@
           />
         </Form>
         <div class="app-auth__links tw-mt-6">
-          {{ $t('actions.hasAccount') }}
+          {{ $t("actions.hasAccount") }}
           <AppLink :to="{ name: 'auth.login' }">
-            {{ $t('buttons.logIn') }}
+            {{ $t("buttons.logIn") }}
           </AppLink>
         </div>
       </AppStep>
@@ -109,23 +105,23 @@
 </template>
 
 <script>
-import useStep from 'src/composition/useStep';
-import FormVerify from 'src/components/FormVerify.vue';
-import useAuth from 'src/composition/useAuth';
-import { useStore } from 'vuex';
-import AuthCodeVerification from 'src/components/AuthCodeVerification.vue';
-import { useI18n } from 'vue-i18n';
+import useStep from "src/composition/useStep";
+import FormVerify from "src/components/FormVerify.vue";
+import useAuth from "src/composition/useAuth";
+import { useStore } from "vuex";
+import AuthCodeVerification from "src/components/AuthCodeVerification.vue";
+import { useI18n } from "vue-i18n";
 
 const messages = {
-  'ru-RU': {
-    header: 'Зарегистрируйтесь в экосистеме Alga',
-    subtitle: 'с помощью эл. почты и мобильного телефона',
-    passHeader: 'Установите пароль',
+  "ru-RU": {
+    header: "Зарегистрируйтесь",
+    subtitle: "Используя эл. почту и мобильный телефон",
+    passHeader: "Установите пароль",
   },
-  'en-US': {
-    header: 'Sign up in Alga ecosystem',
-    subtitle: 'with e-mail and cellphone',
-    passHeader: 'Set password',
+  "en-US": {
+    header: "Sign up",
+    subtitle: "Using email and mobile phone",
+    passHeader: "Set password",
   },
 };
 
@@ -133,7 +129,7 @@ export default {
   setup() {
     const store = useStore();
     const { t } = useI18n({ messages });
-    const { changeStep, step } = useStep('registr');
+    const { changeStep, step } = useStep("registr");
     const { setPassword, invalidCode, curCode, curCellphone, getCode } =
       useAuth();
 
@@ -142,7 +138,7 @@ export default {
       { setErrors }
     ) => {
       try {
-        const data = await store.dispatch('auth/registr', {
+        const data = await store.dispatch("auth/registr", {
           cellphone,
           name,
           email,
@@ -162,17 +158,17 @@ export default {
     const createUser = async (...args) => {
       try {
         await registr(...args);
-        changeStep('verifing');
+        changeStep("verifing");
         await getCode({ cellphone: args[0].cellphoneFull });
       } catch (e) {
-        if(422 in e) return;
+        if (422 in e) return;
         throw e;
       }
     };
 
     const handleCode = (value) => {
       curCode.value = value;
-      changeStep('password');
+      changeStep("password");
     };
 
     return {
@@ -192,3 +188,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.term-link {
+  color: #fff;
+}
+</style>

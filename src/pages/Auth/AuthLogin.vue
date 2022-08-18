@@ -2,7 +2,7 @@
   <q-page class="tw-grid tw-container">
     <div class="app-auth">
       <h1 class="app-auth__h1" v-html="t('header')"></h1>
-      <p class="app-auth__subtitle">{{ t('subtitle') }}</p>
+      <p class="app-auth__subtitle">{{ t("subtitle") }}</p>
       <Form @submit="login" class="app-auth__form" v-slot="{ isSubmitting }">
         <AppInput
           name="cellphone"
@@ -26,12 +26,14 @@
           :label="$t('buttons.logIn')"
         />
       </Form>
-      <div class="app-auth__links tw-mt-6">
+      <div
+        class="app-auth__links tw-mr-auto tw-ml-0 tw-mt-7.5 tw-flex tw-justify-between"
+      >
         <AppLink class="app-auth__link" :to="{ name: 'auth.reset-password' }">{{
-          $t('buttons.resetPass')
+          $t("buttons.resetPass")
         }}</AppLink>
         <AppLink class="app-auth__link" :to="{ name: 'auth.registr' }">{{
-          $t('buttons.registr')
+          $t("buttons.registr")
         }}</AppLink>
       </div>
     </div>
@@ -39,22 +41,22 @@
 </template>
 
 <script>
-import useAuth from 'src/composition/useAuth';
-import { useRouter } from 'vue-router';
-import { useAlert } from 'src/plugins/app-alert';
-import { useI18n } from 'vue-i18n';
+import useAuth from "src/composition/useAuth";
+import { useRouter } from "vue-router";
+import { useAlert } from "src/plugins/app-alert";
+import { useI18n } from "vue-i18n";
 
 const i18n = {
   messages: {
-    'ru-RU': {
-      header: 'Авторизуйтесь <br /> в экосистеме Alga',
-      subtitle: 'с помощью мобильного телефона и пароля',
-      wrongLogin: 'неверный логин или пароль'
+    "ru-RU": {
+      header: "Войдите",
+      subtitle: "Доступ к вашей учетной записи",
+      wrongLogin: "неверный логин или пароль",
     },
-    'en-US': {
-      header: 'Log in <br /> to Alga ecosystem',
-      subtitle: 'with mobile phone and password',
-      wrongLogin: 'wrong login or password'
+    "en-US": {
+      header: "Sign in",
+      subtitle: "Access to your account",
+      wrongLogin: "wrong login or password",
     },
   },
 };
@@ -69,13 +71,13 @@ export default {
     const login = async ({ cellphoneFull: cellphone, password }) => {
       try {
         await loginApi({ cellphone, password });
-        router.push({ name: 'wallet' });
+        router.push({ name: "wallet" });
       } catch (e) {
         if (!e.response) throw e;
         if (e.response.status === 422) {
           appAlert({
-            type: 'negative',
-            message: t('wrongLogin'),
+            type: "negative",
+            message: t("wrongLogin"),
           });
         } else {
           throw e;

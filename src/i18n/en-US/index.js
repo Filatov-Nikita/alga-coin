@@ -1,5 +1,5 @@
 export default {
-  term: "I have read and agree to the {link} of AlgaCoin",
+  term: "I have read (as) and agree with Alga Terms of Service",
   passRequired: "Password must be in English and contain at least 6 characters",
   errors: {
     code: "You entered the wrong code in the previous step. Enter the code in this field and try again.",
@@ -13,7 +13,7 @@ export default {
     send: "Send",
     back: "Back",
     logout: "Logout",
-    getCode: "Get a call",
+    getCode: "Send the code",
     toLK: "Login to your profile",
     hasAccount: "Already have account? {login}",
     setPass: "Set and Login",
@@ -31,13 +31,13 @@ export default {
     oldPass: "New password",
     repeatPass: "Repeat password",
     wrongCode: "Enter a correct code",
-    // code: "SMS code",
-    code: '',
+    code: "SMS code",
+    // code: "",
     wallet: "Wallet address",
     walletReciever: "Recipient's wallet address",
     name: {
-      label: "Fullname",
-      placeholder: "Ivanov Ivan Ivanovich",
+      label: "Name",
+      placeholder: "Ivan",
     },
   },
   lk: {
@@ -45,7 +45,7 @@ export default {
       wallet: "Wallet",
       history: "History",
       output: "Output",
-      polls: 'Polls'
+      polls: "Polls",
     },
   },
   landing: {
@@ -62,10 +62,9 @@ export default {
 
       whyAlga: "Disclaimer ",
       whyAlgaFile: "/disclaimerEng.pdf",
-      roadmapFile : "/roadmapEng.pdf",
+      roadmapFile: "/roadmapEng.pdf",
       whitePaper: "/whitePaperEng.pdf",
-      algaMarket: "Alga Market in development"
-      
+      algaMarket: "Alga Market in development",
     },
     menu: {
       about: "About token",

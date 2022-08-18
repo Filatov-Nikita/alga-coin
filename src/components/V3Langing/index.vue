@@ -634,11 +634,11 @@
                         id="roadmap-test"
                       >
                         <li>
-                          {{ t("roadmap.stages.1.items.1") }}
+                          {{ t("roadmap.stages.1.items.0") }}
                         </li>
-                        <li>{{ t("roadmap.stages.1.items.2") }}</li>
+                        <li>{{ t("roadmap.stages.1.items.1") }}</li>
                         <li>
-                          {{ t("roadmap.stages.1.items.3") }}
+                          {{ t("roadmap.stages.1.items.2") }}
                         </li>
                       </ul>
                     </div>
@@ -662,14 +662,14 @@
                         id="roadmap-test"
                       >
                         <li>
-                          {{ t("roadmap.stages.2.items.1") }}
+                          {{ t("roadmap.stages.2.items.0") }}
                         </li>
-                        <li>{{ t("roadmap.stages.2.items.2") }}</li>
+                        <li>{{ t("roadmap.stages.2.items.1") }}</li>
+                        <li>
+                          {{ t("roadmap.stages.2.items.2") }}
+                        </li>
                         <li>
                           {{ t("roadmap.stages.2.items.3") }}
-                        </li>
-                        <li>
-                          {{ t("roadmap.stages.2.items.4") }}
                         </li>
                       </ul>
                     </div>
@@ -703,17 +703,17 @@
                         id="roadmap-test"
                       >
                         <li>
-                          {{ t("roadmap.stages.3.items.1") }}
+                          {{ t("roadmap.stages.3.items.0") }}
                         </li>
-                        <li>{{ t("roadmap.stages.3.items.2") }}</li>
+                        <li>{{ t("roadmap.stages.3.items.1") }}</li>
+                        <li>
+                          {{ t("roadmap.stages.3.items.2") }}
+                        </li>
                         <li>
                           {{ t("roadmap.stages.3.items.3") }}
                         </li>
                         <li>
                           {{ t("roadmap.stages.3.items.4") }}
-                        </li>
-                        <li>
-                          {{ t("roadmap.stages.3.items.5") }}
                         </li>
                       </ul>
                     </div>
@@ -737,14 +737,14 @@
                         id="roadmap-test"
                       >
                         <li>
-                          {{ t("roadmap.stages.4.items.1") }}
+                          {{ t("roadmap.stages.4.items.0") }}
                         </li>
-                        <li>{{ t("roadmap.stages.4.items.2") }}</li>
+                        <li>{{ t("roadmap.stages.4.items.1") }}</li>
+                        <li>
+                          {{ t("roadmap.stages.4.items.2") }}
+                        </li>
                         <li>
                           {{ t("roadmap.stages.4.items.3") }}
-                        </li>
-                        <li>
-                          {{ t("roadmap.stages.4.items.4") }}
                         </li>
                       </ul>
                     </div>
@@ -775,11 +775,11 @@
                         id="roadmap-test"
                       >
                         <li>
-                          {{ t("roadmap.stages.5.items.1") }}
+                          {{ t("roadmap.stages.5.items.0") }}
                         </li>
-                        <li>{{ t("roadmap.stages.5.items.2") }}</li>
+                        <li>{{ t("roadmap.stages.5.items.1") }}</li>
                         <li>
-                          {{ t("roadmap.stages.5.items.3") }}
+                          {{ t("roadmap.stages.5.items.2") }}
                         </li>
                       </ul>
                     </div>
@@ -803,14 +803,14 @@
                         id="roadmap-test"
                       >
                         <li>
-                          {{ t("roadmap.stages.6.items.1") }}
+                          {{ t("roadmap.stages.6.items.0") }}
                         </li>
-                        <li>{{ t("roadmap.stages.6.items.2") }}</li>
+                        <li>{{ t("roadmap.stages.6.items.1") }}</li>
+                        <li>
+                          {{ t("roadmap.stages.6.items.2") }}
+                        </li>
                         <li>
                           {{ t("roadmap.stages.6.items.3") }}
-                        </li>
-                        <li>
-                          {{ t("roadmap.stages.6.items.4") }}
                         </li>
                       </ul>
                     </div>
@@ -1596,11 +1596,11 @@ const i18n = {
       },
       header: {
         title: "Алга",
-        subtitle: "Индексы <br> Производные <br> Платформа",
+        subtitle: "Платформа <br> Индексных <br> Деривативов",
       },
       about: {
         title: "О нас",
-        text: "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов. <br> Лежащая в основе передовая технология наряду с огромным опытом основной команды в области торговли делает ALGA универсальным магазином для инвестиций в проверенные и эффективные стратегии, облегчающие вход в криптовалюту для всех. Эти стратегии, основанные на индексных деривативах, состоящих из множества активов, подобранных в наиболее эффективном соотношении, позволяют получать солидный доход на вложенный капитал при минимизации рисков. <br> Платформа создана людьми для людей с единственной целью - обеспечить комфортное отслеживание активов и прозрачность транзакций, чтобы вывести опыт управления активами на совершенно новый уровень.",
+        text: "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов. <br> Лежащая в основе передовая технология наряду с огромным опытом основной команды в области торговли делает ALGA универсальным сервисом для инвестиций в проверенные и эффективные стратегии, облегчающие вход в криптовалюту для всех. Эти стратегии, основанные на индексных деривативах, состоящих из множества активов, подобранных в наиболее эффективном соотношении, позволяют получать солидный доход на вложенный капитал при минимизации рисков. <br> Платформа создана людьми для людей с единственной целью - обеспечить комфортное отслеживание активов и прозрачность транзакций, чтобы вывести опыт управления активами на совершенно новый уровень.",
       },
       indexD: {
         title: "Index Derivatives",
