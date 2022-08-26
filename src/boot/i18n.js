@@ -23,7 +23,7 @@ export default ({ app }) => {
     globalInjection: true,
     warnHtmlMessage: false,
     messages,
-    fallbackLocale: "ru-RU",
+    fallbackLocale: "en-US",
   });
 
   app.use(i18n);

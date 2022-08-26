@@ -12,6 +12,7 @@
     "@quasar/extras": "^1.0.0",
     "@vee-validate/i18n": "^4.5.2",
     "@vee-validate/rules": "^4.5.1",
+    "apexcharts": "^3.35.5",
     "core-js": "^3.6.5",
     "ky": "^0.28.6",
     "quasar": "^2.0.0",
@@ -21,6 +22,7 @@
     "vue-i18n": "^9.2.0-beta.26",
     "vue-inline-svg": "^3.0.0-beta.3",
     "vue-the-mask": "^0.11.1",
+    "vue3-apexcharts": "^1.4.1",
     "vuex": "^4.0.1",
     "yup": "^0.32.9"
   },

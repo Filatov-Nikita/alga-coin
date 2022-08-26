@@ -46,4 +46,12 @@ export default ({ app }) => {
     "AppModalWallet",
     require("src/core/AppModalWallet.vue").default
   );
+  app.component(
+    'base-select',
+    require("src/core/V3/BaseSelect.vue").default
+  );
+  app.component(
+    'base-button',
+    require("src/core/V3/BaseButton.vue").default
+  )
 };

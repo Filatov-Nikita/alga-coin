@@ -1,18 +1,22 @@
 .app-auth {
   max-width: 380px;
+  @include screen-xl {
+    margin-left: 100px;
+  }
   @apply tw-m-auto tw-w-full tw-py-6;
-  margin-left: 100px;
 
   &__h1 {
     @apply tw-text-sm xl:tw-text-md1  tw-mb-2;
   }
 
-  &__subtitle {
+  &__subtitle { 
+    
     @apply tw-text-xxs xl:tw-text-xs  xl:tw-mb-6 tw-mb-4-1;
   }
 
   &__form {
     max-width: 340px;
+    
     @include space-y(18px);
     @apply tw-mr-auto tw-ml-0;
 
@@ -34,8 +38,8 @@
   }
 
   &__links {
-    max-width: 340px;
     @apply tw-text-center tw-text-xxs xl:tw-text-xs;
+    max-width: 340px;
     // @include space-y(8px);
   }
 

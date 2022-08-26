@@ -5,7 +5,7 @@ import AppCopy from "src/plugins/app-copy";
 import ClickOutside from "src/directives/click-outside";
 import AppLocaleApi from "src/plugins/app-locale-api";
 import DatePrettier from "src/plugins/date-prettier";
-
+import VueApexCharts from "vue3-apexcharts";
 export default ({ app }) => {
   app.use(AppAlert);
   app.use(AppDialog);
@@ -14,4 +14,5 @@ export default ({ app }) => {
   app.use(AppCopy);
   app.use(AppLocaleApi);
   app.use(DatePrettier);
+  app.use(VueApexCharts);
 };

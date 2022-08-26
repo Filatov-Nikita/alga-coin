@@ -61,7 +61,7 @@
         </i18n-t>
       </AppStep>
       <AppStep name="verifing">
-        <FormVerify :cellphone="curCellphone" @entered="handleCode" />
+        <FormVerify :mail="mail" @entered="handleCode" />
       </AppStep>
       <AppStep name="password">
         <h1 class="app-auth__h1">{{ t("passHeader") }}</h1>
@@ -85,7 +85,7 @@
             :placeholder="$t('inputs.password')"
             rules="required|confirmed:@password"
           />
-          <AuthCodeVerification v-if="invalidCode" :cellphone="curCellphone" />
+          <AuthCodeVerification v-if="invalidCode" :mail="mail" />
           <AppButton
             :label="$t('actions.setPass')"
             fullWidth
@@ -130,7 +130,7 @@ export default {
     const store = useStore();
     const { t } = useI18n({ messages });
     const { changeStep, step } = useStep("registr");
-    const { setPassword, invalidCode, curCode, curCellphone, getCode } =
+    const { setPassword, invalidCode, curCode, mail, getCode } =
       useAuth();
 
     const registr = async (
@@ -144,7 +144,7 @@ export default {
           email,
         });
 
-        curCellphone.value = data.cellphone;
+        mail.value = data.email;
       } catch (e) {
         if (!e.response) throw e;
         if (e.response.status === 422) {
@@ -159,7 +159,8 @@ export default {
       try {
         await registr(...args);
         changeStep("verifing");
-        await getCode({ cellphone: args[0].cellphoneFull });
+        // consolog.log(...args)
+        await getCode({ mail: args[0].email });
       } catch (e) {
         if (422 in e) return;
         throw e;
@@ -175,7 +176,7 @@ export default {
       t,
       step,
       invalidCode,
-      curCellphone,
+      mail,
       handleCode,
       changeStep,
       createUser,

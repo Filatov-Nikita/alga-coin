@@ -8,21 +8,25 @@
   *:not(body, html) {
     @include scrollbar();
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
     // @apply tw-font-stolzl tw-text-xs tw-text-white;
-    @apply tw-font-stolzl tw-text-base tw-text-white;
-    line-height: 140%;
+    @apply tw-font-stolzl tw-text-xs tw-text-white;
+    line-height: 130%;
   }
 
   %h {
     line-height: 1.4;
   }
+
   p {
     color: #9596a3;
   }
+
   h1,
   .h1 {
     line-height: 90%;
@@ -33,6 +37,7 @@
   .h2 {
     line-height: 110%;
     @apply tw-text-lg;
+
     @media screen and (min-width: 1200px) {
       @apply tw-text-md1;
       line-height: 120%;
@@ -64,6 +69,7 @@
   a,
   .app-link {
     @apply tw-text-secondary tw-text-xxs xl:tw-text-xs;
+
     @include screen-xl {
       &:hover {
         @apply tw-text-blue-hover;
@@ -89,17 +95,20 @@
 
   .app-page-bg {
     background: theme("colors.dark-blue-cover");
-    background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg)
-      no-repeat;
+    background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-repeat;
     background-size: cover;
     background-size: auto;
     background-position: bottom;
+
     @include screen-xl {
-      background: theme("colors.dark-blue-cover")
-        url(~assets/images/auth-bg.svg) no-repeat;
+      background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-repeat;
       background-size: cover;
       background-position: bottom;
     }
+  }
+
+  .app-page-bg_lk {
+    background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk.svg) no-repeat;
   }
 
   .app-logo {

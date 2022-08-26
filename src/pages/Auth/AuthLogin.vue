@@ -4,37 +4,19 @@
       <h1 class="app-auth__h1" v-html="t('header')"></h1>
       <p class="app-auth__subtitle">{{ t("subtitle") }}</p>
       <Form @submit="login" class="app-auth__form" v-slot="{ isSubmitting }">
-        <AppInput
-          name="cellphone"
-          rules="required|cellphone"
-          type="tel"
-          :label="$t('inputs.cellphone')"
-          placeholder="(999) 999-99-99"
-        />
-        <AppInput
-          name="password"
-          rules="required"
-          type="password"
-          :label="$t('inputs.password')"
-          :placeholder="$t('inputs.password')"
-        />
+        <AppInput name="email" rules="required|email" type="email" label="E-mail" placeholder="ivanov@domain.ru" />
+        <AppInput name="password" rules="required" type="password" :label="$t('inputs.password')"
+          :placeholder="$t('inputs.password')" />
 
-        <AppButton
-          :disabled="isSubmitting"
-          type="submit"
-          fullWidth
-          :label="$t('buttons.logIn')"
-        />
+        <AppButton :disabled="isSubmitting" type="submit" fullWidth :label="$t('buttons.logIn')" />
       </Form>
-      <div
-        class="app-auth__links tw-mr-auto tw-ml-0 tw-mt-7.5 tw-flex tw-justify-between"
-      >
+      <div class="app-auth__links tw-mr-auto tw-ml-0 tw-mt-7.5 tw-flex tw-justify-between">
         <AppLink class="app-auth__link" :to="{ name: 'auth.reset-password' }">{{
           $t("buttons.resetPass")
-        }}</AppLink>
+          }}</AppLink>
         <AppLink class="app-auth__link" :to="{ name: 'auth.registr' }">{{
           $t("buttons.registr")
-        }}</AppLink>
+          }}</AppLink>
       </div>
     </div>
   </q-page>
@@ -68,10 +50,10 @@ export default {
     const { login: loginApi } = useAuth();
     const { t } = useI18n(i18n);
 
-    const login = async ({ cellphoneFull: cellphone, password }) => {
+    const login = async ({ email, password }) => {
       try {
-        await loginApi({ cellphone, password });
-        router.push({ name: "wallet" });
+        await loginApi({mail:email, password });
+        router.push({ name: "index-directive" });
       } catch (e) {
         if (!e.response) throw e;
         if (e.response.status === 422) {

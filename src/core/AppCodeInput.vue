@@ -229,7 +229,7 @@ export default defineComponent({
 
 .app-code-input {
   @apply tw-flex tw-flex-wrap;
-  justify-content: flex-start;
+  justify-content: center;
 
   &__field {
     width: 40px;

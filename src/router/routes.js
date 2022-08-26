@@ -35,7 +35,18 @@ const routes = [
       },
     ],
   },
-
+  {
+    path: "/",
+    component: () => import("layouts/V3/Baselayout.vue"),
+    children: [
+      {
+        path: "index-directive",
+        component: () => import("pages/V3/IndexDirective.vue"),
+        name: "index-directive",
+        props: true,
+      },
+    ]
+  },
   // {
   //   path: "",
   //   component: () => import("layouts/GuestLayout.vue"),
@@ -92,6 +103,21 @@ const routes = [
         path: "/components",
         component: () => import("pages/DebugComponents.vue"),
       },
+    ],
+  },
+
+  {
+    path: "/lk",
+    component: () => import("layouts/V3/Baselayout.vue"),
+    children: [
+      ...markAuth(
+        {
+          path: "index-directive",
+          component: () => import("pages/V3/IndexDirective.vue"),
+          name: "index-directive",
+        }
+      )
+      
     ],
   },
 

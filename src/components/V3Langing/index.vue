@@ -11,24 +11,18 @@
             </div>
             <div class="nav__right tw-flex tw-items-center">
               <div class="auth tw-flex tw-gap-2.5 tw-mr-7">
-                <button class="mob-n button-border-light">
+                <button class="mob-n button-border-light" @click="$router.push({ name: 'profile' })">
                   {{ t("dropdown.buttons.login") }}
                 </button>
-                <button class="mob-n button-border-light">
+                <button class="mob-n button-border-light" @click="$router.push({ name: 'auth.registr' })">
                   {{ t("dropdown.buttons.register") }}
                 </button>
               </div>
               <div class="local">
-                <button
-                  @click="newLocale('en-US')"
-                  :class="locale === 'English' ? 'active' : ''"
-                >
+                <button @click="newLocale('en-US')" :class="locale === 'English' ? 'active' : ''">
                   <span>EN</span>
                 </button>
-                <button
-                  @click="newLocale('ru-RU')"
-                  :class="locale === 'Русский' ? 'active' : ''"
-                >
+                <button @click="newLocale('ru-RU')" :class="locale === 'Русский' ? 'active' : ''">
                   <span> RU </span>
                 </button>
               </div>
@@ -44,10 +38,10 @@
       <div class="drop" :class="dropDown ? 'active' : ''" id="dropdown">
         <div class="tw-container">
           <div class="drop__wrapper tw-flex tw-justify-between tw-gap-1">
-            <button class="button-border tw-w-1/2">
+            <button class="button-border tw-w-1/2" @click="$router.push({ name: 'profile' })">
               {{ t("dropdown.buttons.login") }}
             </button>
-            <button class="button tw-w-1/2">
+            <button class="button tw-w-1/2" @click="$router.push({ name: 'auth.registr' })">
               {{ t("dropdown.buttons.register") }}
             </button>
           </div>
@@ -58,7 +52,7 @@
           <div class="header-bg">
             <div class="header-bg__touch"></div>
             <div class="header-bg__wrapper">
-              <div class="xl:tw-self-center">
+              <div class=" tw-flex tw-flex-col tw-gap-5 xl:tw-self-center">
                 <h1 class="header-bg__title">{{ t("header.title") }}</h1>
                 <h2 v-html="t('header.subtitle')"></h2>
               </div>
@@ -77,10 +71,7 @@
     <section class="section about">
       <div class="tw-container">
         <div class="tw-relative">
-          <img
-            class="section-icon tw-right-0 desk-n"
-            src="./img/section-about.png"
-          />
+          <img class="section-icon tw-right-0 desk-n" src="./img/section-about.png" />
         </div>
         <div class="xl:tw-flex xl:tw-gap-24">
           <h2>{{ t("about.title") }}</h2>
@@ -106,10 +97,7 @@
     <section class="section index-directive">
       <div class="tw-container">
         <div class="tw-relative">
-          <img
-            class="section-icon section-icon_scale-x xl:tw-right-0"
-            src="./img/section-directive.png"
-          />
+          <img class="section-icon section-icon_scale-x xl:tw-right-0" src="./img/section-directive.png" />
         </div>
         <h2>Index Derivatives</h2>
         <!-- cards -->
@@ -121,17 +109,14 @@
                 <div class="circle tw-flex-shrink-0">
                   <img src="./img/index-icon_1.png" alt="" />
                 </div>
-                <h4>Golden Rain Index</h4>
+                <h4>ALGA GOLD</h4>
               </div>
               <p class="tw-mt-2.5 tokens">
                 BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p
-                    class="tw-text-white"
-                    v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                  ></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
                     <img src="./icons/up.svg" alt="" />
                     <h4>12,75%</h4>
@@ -152,20 +137,17 @@
                 <div class="circle tw-flex-shrink-0">
                   <img src="./img/index-icon_2.png" alt="" />
                 </div>
-                <h4>RnB 360</h4>
+                <h4>ALGA SILVER</h4>
               </div>
               <p class="tw-mt-2.5 tokens">
                 BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p
-                    class="tw-text-white"
-                    v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                  ></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
                     <img src="./icons/up.svg" alt="" />
-                    <h4>12,75%</h4>
+                    <h4>13,05%</h4>
                   </div>
                 </div>
                 <div>
@@ -184,8 +166,7 @@
                   <img src="./img/index-icon_3.png" alt="" />
                 </div>
                 <h4>
-                  Nascar <br />
-                  1990
+                  ALGA CONSERVATIVE
                 </h4>
               </div>
               <p class="tw-mt-2.5 tokens">
@@ -193,13 +174,10 @@
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p
-                    class="tw-text-white"
-                    v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                  ></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
                     <img src="./icons/up.svg" alt="" />
-                    <h4>12,75%</h4>
+                    <h4>12,15%</h4>
                   </div>
                 </div>
                 <div>
@@ -218,8 +196,7 @@
                   <img src="./img/index-icon_4.png" alt="" />
                 </div>
                 <h4>
-                  FIFA <br />
-                  World Cup
+                  ALGA PROGRESSIVE
                 </h4>
               </div>
               <p class="tw-mt-2.5 tokens">
@@ -227,13 +204,10 @@
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p
-                    class="tw-text-white"
-                    v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                  ></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
                     <img src="./icons/up.svg" alt="" />
-                    <h4>12,75%</h4>
+                    <h4>14,23%</h4>
                   </div>
                 </div>
                 <div>
@@ -252,8 +226,7 @@
                   <img src="./img/index-icon_5.png" alt="" />
                 </div>
                 <h4>
-                  Zoomberg <br />
-                  Global
+                  ALGA ART
                 </h4>
               </div>
               <p class="tw-mt-2.5 tokens">
@@ -261,47 +234,10 @@
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p
-                    class="tw-text-white"
-                    v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                  ></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
                     <img src="./icons/up.svg" alt="" />
-                    <h4>12,75%</h4>
-                  </div>
-                </div>
-                <div>
-                  <img src="./icons/diagram.svg" alt="" />
-
-                  <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
-                    <span class="buy">{{ t("other.button.buy") }}</span>
-                    <img src="./icons/button-arrow.svg" alt="" />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="card card-gray">
-              <div class="tw-flex tw-gap-3.5">
-                <div class="circle tw-flex-shrink-0">
-                  <img src="./img/index-icon_6.png" alt="" />
-                </div>
-                <h4>
-                  Tinkoff All <br />
-                  Beer Rub
-                </h4>
-              </div>
-              <p class="tw-mt-2.5 tokens">
-                BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
-              </p>
-              <div class="tw-mt-5 tw-flex tw-justify-between">
-                <div>
-                  <p
-                    class="tw-text-white"
-                    v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                  ></p>
-                  <div class="tw-flex tw-gap-x-2.5">
-                    <img src="./icons/up.svg" alt="" />
-                    <h4>12,75%</h4>
+                    <h4>13%</h4>
                   </div>
                 </div>
                 <div>
@@ -319,24 +255,10 @@
         <div class="desk-n">
           <div class="index-directive__cards tw-mt-10">
             <!-- card -->
-            <q-carousel
-              v-model="slide"
-              transition-prev="scale"
-              transition-next="scale"
-              swipeable
-              animated
-              navigation
-              padding
-              class="bg-transparent"
-            >
-              <template
-                v-slot:navigation-icon="{ index, active, btnProps, onClick }"
-              >
-                <button
-                  class="slide-paginate active"
-                  v-if="active"
-                  @click="onClick"
-                >
+            <q-carousel v-model="slide" transition-prev="scale" transition-next="scale" swipeable animated navigation
+              padding class="bg-transparent">
+              <template v-slot:navigation-icon="{ index, active, btnProps, onClick }">
+                <button class="slide-paginate active" v-if="active" @click="onClick">
                   {{ index + 1 }}
                 </button>
                 <button class="slide-paginate" v-else @click="onClick">
@@ -350,17 +272,14 @@
                     <div class="circle tw-flex-shrink-0">
                       <img src="./img/index-icon_1.png" alt="" />
                     </div>
-                    <h4>Golden Rain Index</h4>
+                    <h4>ALGA GOLD</h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
                     BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p
-                        class="tw-text-white"
-                        v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                      ></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
                         <img src="./icons/up.svg" alt="" />
                         <h4>12,75%</h4>
@@ -369,9 +288,7 @@
                     <div>
                       <img src="./icons/diagram.svg" alt="" />
 
-                      <button
-                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
-                      >
+                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -385,28 +302,23 @@
                     <div class="circle tw-flex-shrink-0">
                       <img src="./img/index-icon_2.png" alt="" />
                     </div>
-                    <h4>RnB 360</h4>
+                    <h4>ALGA SILVER</h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
                     BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p
-                        class="tw-text-white"
-                        v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                      ></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
                         <img src="./icons/up.svg" alt="" />
-                        <h4>12,75%</h4>
+                        <h4>13,05%</h4>
                       </div>
                     </div>
                     <div>
                       <img src="./icons/diagram.svg" alt="" />
 
-                      <button
-                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
-                      >
+                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -421,8 +333,7 @@
                       <img src="./img/index-icon_3.png" alt="" />
                     </div>
                     <h4>
-                      Nascar <br />
-                      1990
+                      ALGA CONSERVATIVE
                     </h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
@@ -430,21 +341,16 @@
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p
-                        class="tw-text-white"
-                        v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                      ></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
                         <img src="./icons/up.svg" alt="" />
-                        <h4>12,75%</h4>
+                        <h4>12,15%</h4>
                       </div>
                     </div>
                     <div>
                       <img src="./icons/diagram.svg" alt="" />
 
-                      <button
-                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
-                      >
+                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -459,8 +365,7 @@
                       <img src="./img/index-icon_4.png" alt="" />
                     </div>
                     <h4>
-                      FIFA <br />
-                      World Cup
+                      ALGA PROGRESSIVE
                     </h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
@@ -468,21 +373,16 @@
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p
-                        class="tw-text-white"
-                        v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                      ></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
                         <img src="./icons/up.svg" alt="" />
-                        <h4>12,75%</h4>
+                        <h4>14,23%</h4>
                       </div>
                     </div>
                     <div>
                       <img src="./icons/diagram.svg" alt="" />
 
-                      <button
-                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
-                      >
+                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -497,8 +397,7 @@
                       <img src="./img/index-icon_5.png" alt="" />
                     </div>
                     <h4>
-                      Zoomberg <br />
-                      Global
+                      ALGA ART
                     </h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
@@ -506,59 +405,16 @@
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p
-                        class="tw-text-white"
-                        v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                      ></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
                         <img src="./icons/up.svg" alt="" />
-                        <h4>12,75%</h4>
+                        <h4>13%</h4>
                       </div>
                     </div>
                     <div>
                       <img src="./icons/diagram.svg" alt="" />
 
-                      <button
-                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
-                      >
-                        <span class="buy">{{ t("other.button.buy") }}</span>
-                        <img src="./icons/button-arrow.svg" alt="" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </q-carousel-slide>
-              <q-carousel-slide name="6" class="column no-wrap flex-center">
-                <div class="card card-gray">
-                  <div class="tw-flex tw-gap-3.5">
-                    <div class="circle tw-flex-shrink-0">
-                      <img src="./img/index-icon_6.png" alt="" />
-                    </div>
-                    <h4>
-                      Tinkoff All <br />
-                      Beer Rub
-                    </h4>
-                  </div>
-                  <p class="tw-mt-2.5 tokens">
-                    BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
-                  </p>
-                  <div class="tw-mt-5 tw-flex tw-justify-between">
-                    <div>
-                      <p
-                        class="tw-text-white"
-                        v-html="t('indexD.card.profitability.1', { numb: '6' })"
-                      ></p>
-                      <div class="tw-flex tw-gap-x-2.5">
-                        <img src="./icons/up.svg" alt="" />
-                        <h4>12,75%</h4>
-                      </div>
-                    </div>
-                    <div>
-                      <img src="./icons/diagram.svg" alt="" />
-
-                      <button
-                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
-                      >
+                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -579,30 +435,11 @@
         <h2>{{ t("roadmap.title") }}</h2>
         <div class="mob-n">
           <div class="tw-flex tw-gap-5 tw--mx-15">
-            <q-carousel
-              transition-prev="scale"
-              transition-next="scale"
-              v-model="slide"
-              swipeable
-              animated
-              navigation
-              padding
-              height="calc(150% + 100px)"
-              class="bg-transparent"
-              ref="carousel"
-              arrows
-              control-type="regular"
-              control-color="arrow-brand"
-              control-text-color="arrow-brand"
-            >
-              <template
-                v-slot:navigation-icon="{ index, active, btnProps, onClick }"
-              >
-                <button
-                  class="slide-paginate active"
-                  v-if="active"
-                  @click="onClick"
-                >
+            <q-carousel transition-prev="scale" transition-next="scale" v-model="slide" swipeable animated navigation
+              padding height="calc(150% + 100px)" class="bg-transparent" ref="carousel" arrows control-type="regular"
+              control-color="arrow-brand" control-text-color="arrow-brand">
+              <template v-slot:navigation-icon="{ index, active, btnProps, onClick }">
+                <button class="slide-paginate active" v-if="active" @click="onClick">
                   {{ index + 1 }}
                 </button>
                 <button class="slide-paginate" v-else @click="onClick">
@@ -610,14 +447,9 @@
                 </button>
               </template>
 
-              <q-carousel-slide
-                name="1"
-                class="column no-wrap flex-center tw-pt-20"
-              >
+              <q-carousel-slide name="1" class="column no-wrap flex-center tw-pt-20">
                 <div class="tw-flex tw-gap-5">
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
+                  <div class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2">
                     <div class="roadmap__item-wrapper">
                       <div class="roadmap__item-header">
                         <img src="./icons/icon-1.svg" alt="" />
@@ -628,11 +460,7 @@
                           </h5>
                         </div>
                       </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
+                      <ul class="roadmap__item-list" :class="roadmap == 'test' ? 'active' : ''" id="roadmap-test">
                         <li>
                           {{ t("roadmap.stages.1.items.0") }}
                         </li>
@@ -643,9 +471,7 @@
                       </ul>
                     </div>
                   </div>
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
+                  <div class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2">
                     <div class="roadmap__item-wrapper">
                       <div class="roadmap__item-header">
                         <img src="./icons/icon-2.svg" alt="" />
@@ -656,11 +482,7 @@
                           </h5>
                         </div>
                       </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
+                      <ul class="roadmap__item-list" :class="roadmap == 'test' ? 'active' : ''" id="roadmap-test">
                         <li>
                           {{ t("roadmap.stages.2.items.0") }}
                         </li>
@@ -676,19 +498,11 @@
                   </div>
                 </div>
               </q-carousel-slide>
-              <q-carousel-slide
-                name="2"
-                class="column no-wrap flex-center tw-pt-20"
-              >
+              <q-carousel-slide name="2" class="column no-wrap flex-center tw-pt-20">
                 <div class="tw-flex tw-gap-5">
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
+                  <div class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2">
                     <div class="roadmap__item-wrapper">
-                      <div
-                        class="roadmap__item-header"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                      >
+                      <div class="roadmap__item-header" :class="roadmap == 'test' ? 'active' : ''">
                         <img src="./icons/icon-3.svg" alt="" />
                         <div>
                           <h2>{{ t("roadmap.stages.3.title") }}</h2>
@@ -697,11 +511,7 @@
                           </h5>
                         </div>
                       </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
+                      <ul class="roadmap__item-list" :class="roadmap == 'test' ? 'active' : ''" id="roadmap-test">
                         <li>
                           {{ t("roadmap.stages.3.items.0") }}
                         </li>
@@ -718,9 +528,7 @@
                       </ul>
                     </div>
                   </div>
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
+                  <div class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2">
                     <div class="roadmap__item-wrapper">
                       <div class="roadmap__item-header">
                         <img src="./icons/icon-4.svg" alt="" />
@@ -731,11 +539,7 @@
                           </h5>
                         </div>
                       </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
+                      <ul class="roadmap__item-list" :class="roadmap == 'test' ? 'active' : ''" id="roadmap-test">
                         <li>
                           {{ t("roadmap.stages.4.items.0") }}
                         </li>
@@ -751,14 +555,9 @@
                   </div>
                 </div>
               </q-carousel-slide>
-              <q-carousel-slide
-                name="3"
-                class="column no-wrap flex-center tw-pt-20"
-              >
+              <q-carousel-slide name="3" class="column no-wrap flex-center tw-pt-20">
                 <div class="tw-flex tw-gap-5">
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
+                  <div class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2">
                     <div class="roadmap__item-wrapper">
                       <div class="roadmap__item-header">
                         <img src="./icons/icon-5.svg" alt="" />
@@ -769,11 +568,7 @@
                           </h5>
                         </div>
                       </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
+                      <ul class="roadmap__item-list" :class="roadmap == 'test' ? 'active' : ''" id="roadmap-test">
                         <li>
                           {{ t("roadmap.stages.5.items.0") }}
                         </li>
@@ -784,9 +579,7 @@
                       </ul>
                     </div>
                   </div>
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
+                  <div class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2">
                     <div class="roadmap__item-wrapper">
                       <div class="roadmap__item-header">
                         <img src="./icons/icon-6.svg" alt="" />
@@ -797,11 +590,7 @@
                           </h5>
                         </div>
                       </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
+                      <ul class="roadmap__item-list" :class="roadmap == 'test' ? 'active' : ''" id="roadmap-test">
                         <li>
                           {{ t("roadmap.stages.6.items.0") }}
                         </li>
@@ -855,26 +644,16 @@
         </div>
         <div class="desk-n">
           <div class="tw-mt-10 tw-flex tw-flex-col tw-gap-5">
-            <div
-              class="card card__border-line roadmap__item roadmap__item_1"
-              :class="roadmap == '1' ? 'active' : ''"
-            >
+            <div class="card card__border-line roadmap__item roadmap__item_1" :class="roadmap == '1' ? 'active' : ''">
               <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '1' ? 'active' : ''"
-                >
+                <div class="roadmap__item-header" :class="roadmap == '1' ? 'active' : ''">
                   <img src="./icons/icon-1.svg" alt="" />
                   <h2>
                     {{ t("roadmap.stages.1.title") }}
                   </h2>
                   <h5>{{ t("roadmap.stages.1.subtitle") }}</h5>
                 </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '1' ? 'active' : ''"
-                  id="roadmap-1"
-                >
+                <ul class="roadmap__item-list" :class="roadmap == '1' ? 'active' : ''" id="roadmap-1">
                   <li>
                     {{ t("roadmap.stages.1.items.0") }}
                   </li>
@@ -885,40 +664,23 @@
                     {{ t("roadmap.stages.1.items.2") }}
                   </li>
                 </ul>
-                <button
-                  @click="toggleRoadmap('1')"
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '1' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
+                <button @click="toggleRoadmap('1')" class="pie pie-arrow button-arrow"
+                  :class="roadmap == '1' ? 'active' : ''">
+                  <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
                   </q-icon>
                 </button>
               </div>
             </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_2"
-              :class="roadmap == '2' ? 'active' : ''"
-            >
+            <div class="card card__border-line roadmap__item roadmap__item_2" :class="roadmap == '2' ? 'active' : ''">
               <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '2' ? 'active' : ''"
-                >
+                <div class="roadmap__item-header" :class="roadmap == '2' ? 'active' : ''">
                   <img src="./icons/icon-2.svg" alt="" />
                   <h2>
                     {{ t("roadmap.stages.2.title") }}
                   </h2>
                   <h5>{{ t("roadmap.stages.2.subtitle") }}</h5>
                 </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '2' ? 'active' : ''"
-                  id="roadmap-2"
-                >
+                <ul class="roadmap__item-list" :class="roadmap == '2' ? 'active' : ''" id="roadmap-2">
                   <li>
                     {{ t("roadmap.stages.2.items.0") }}
                   </li>
@@ -932,40 +694,23 @@
                     {{ t("roadmap.stages.2.items.3") }}
                   </li>
                 </ul>
-                <button
-                  @click="toggleRoadmap('2')"
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '2' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
+                <button @click="toggleRoadmap('2')" class="pie pie-arrow button-arrow"
+                  :class="roadmap == '2' ? 'active' : ''">
+                  <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
                   </q-icon>
                 </button>
               </div>
             </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_3"
-              :class="roadmap == '3' ? 'active' : ''"
-            >
+            <div class="card card__border-line roadmap__item roadmap__item_3" :class="roadmap == '3' ? 'active' : ''">
               <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '3' ? 'active' : ''"
-                >
+                <div class="roadmap__item-header" :class="roadmap == '3' ? 'active' : ''">
                   <img src="./icons/icon-3.svg" alt="" />
                   <h2>
                     {{ t("roadmap.stages.3.title") }}
                   </h2>
                   <h5>{{ t("roadmap.stages.3.subtitle") }}</h5>
                 </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '3' ? 'active' : ''"
-                  id="roadmap-3"
-                >
+                <ul class="roadmap__item-list" :class="roadmap == '3' ? 'active' : ''" id="roadmap-3">
                   <li>
                     {{ t("roadmap.stages.3.items.0") }}
                   </li>
@@ -982,40 +727,23 @@
                     {{ t("roadmap.stages.3.items.4") }}
                   </li>
                 </ul>
-                <button
-                  @click="toggleRoadmap('3')"
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '3' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
+                <button @click="toggleRoadmap('3')" class="pie pie-arrow button-arrow"
+                  :class="roadmap == '3' ? 'active' : ''">
+                  <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
                   </q-icon>
                 </button>
               </div>
             </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_4"
-              :class="roadmap == '4' ? 'active' : ''"
-            >
+            <div class="card card__border-line roadmap__item roadmap__item_4" :class="roadmap == '4' ? 'active' : ''">
               <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '4' ? 'active' : ''"
-                >
+                <div class="roadmap__item-header" :class="roadmap == '4' ? 'active' : ''">
                   <img src="./icons/icon-4.svg" alt="" />
                   <h2>
                     {{ t("roadmap.stages.4.title") }}
                   </h2>
                   <h5>{{ t("roadmap.stages.4.subtitle") }}</h5>
                 </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '4' ? 'active' : ''"
-                  id="roadmap-4"
-                >
+                <ul class="roadmap__item-list" :class="roadmap == '4' ? 'active' : ''" id="roadmap-4">
                   <li>
                     {{ t("roadmap.stages.4.items.0") }}
                   </li>
@@ -1029,40 +757,23 @@
                     {{ t("roadmap.stages.4.items.3") }}
                   </li>
                 </ul>
-                <button
-                  @click="toggleRoadmap('4')"
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '4' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
+                <button @click="toggleRoadmap('4')" class="pie pie-arrow button-arrow"
+                  :class="roadmap == '4' ? 'active' : ''">
+                  <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
                   </q-icon>
                 </button>
               </div>
             </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_5"
-              :class="roadmap == '5' ? 'active' : ''"
-            >
+            <div class="card card__border-line roadmap__item roadmap__item_5" :class="roadmap == '5' ? 'active' : ''">
               <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '5' ? 'active' : ''"
-                >
+                <div class="roadmap__item-header" :class="roadmap == '5' ? 'active' : ''">
                   <img src="./icons/icon-5.svg" alt="" />
                   <h2>
                     {{ t("roadmap.stages.5.title") }}
                   </h2>
                   <h5>{{ t("roadmap.stages.5.subtitle") }}</h5>
                 </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '5' ? 'active' : ''"
-                  id="roadmap-5"
-                >
+                <ul class="roadmap__item-list" :class="roadmap == '5' ? 'active' : ''" id="roadmap-5">
                   <li>
                     {{ t("roadmap.stages.5.items.0") }}
                   </li>
@@ -1073,40 +784,23 @@
                     {{ t("roadmap.stages.5.items.2") }}
                   </li>
                 </ul>
-                <button
-                  @click="toggleRoadmap('5')"
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '5' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
+                <button @click="toggleRoadmap('5')" class="pie pie-arrow button-arrow"
+                  :class="roadmap == '5' ? 'active' : ''">
+                  <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
                   </q-icon>
                 </button>
               </div>
             </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_6"
-              :class="roadmap == '6' ? 'active' : ''"
-            >
+            <div class="card card__border-line roadmap__item roadmap__item_6" :class="roadmap == '6' ? 'active' : ''">
               <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '6' ? 'active' : ''"
-                >
+                <div class="roadmap__item-header" :class="roadmap == '6' ? 'active' : ''">
                   <img src="./icons/icon-6.svg" alt="" />
                   <h2>
                     {{ t("roadmap.stages.6.title") }}
                   </h2>
                   <h5>{{ t("roadmap.stages.6.subtitle") }}</h5>
                 </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '6' ? 'active' : ''"
-                  id="roadmap-6"
-                >
+                <ul class="roadmap__item-list" :class="roadmap == '6' ? 'active' : ''" id="roadmap-6">
                   <li>
                     {{ t("roadmap.stages.6.items.0") }}
                   </li>
@@ -1120,16 +814,9 @@
                     {{ t("roadmap.stages.6.items.3") }}
                   </li>
                 </ul>
-                <button
-                  @click="toggleRoadmap('6')"
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '6' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
+                <button @click="toggleRoadmap('6')" class="pie pie-arrow button-arrow"
+                  :class="roadmap == '6' ? 'active' : ''">
+                  <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
                   </q-icon>
                 </button>
               </div>
@@ -1141,34 +828,16 @@
     <section class="section team">
       <div class="tw-container">
         <div class="tw-relative">
-          <img
-            class="section-icon section-icon_scale-x xl:tw-right-0"
-            src="./img/section-directive.png"
-          />
+          <img class="section-icon section-icon_scale-x xl:tw-right-0" src="./img/section-directive.png" />
         </div>
         <h2>{{ t("team.title") }}</h2>
         <div class="xl:tw-mt-10">
           <div>
             <div class="desk-n">
-              <q-carousel
-                v-model="slide"
-                transition-prev="scale"
-                transition-next="scale"
-                swipeable
-                animated
-                navigation
-                padding
-                height="calc(150% + 100px)"
-                class="bg-transparent"
-              >
-                <template
-                  v-slot:navigation-icon="{ index, active, btnProps, onClick }"
-                >
-                  <button
-                    class="slide-paginate active"
-                    v-if="active"
-                    @click="onClick"
-                  >
+              <q-carousel v-model="slide" transition-prev="scale" transition-next="scale" swipeable animated navigation
+                padding height="calc(150% + 100px)" class="bg-transparent">
+                <template v-slot:navigation-icon="{ index, active, btnProps, onClick }">
+                  <button class="slide-paginate active" v-if="active" @click="onClick">
                     {{ index + 1 }}
                   </button>
                   <button class="slide-paginate" v-else @click="onClick">
@@ -1176,23 +845,12 @@
                   </button>
                 </template>
 
-                <q-carousel-slide
-                  name="1"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
+                <q-carousel-slide name="1" class="column no-wrap flex-center tw-pt-20">
                   <div class="card card__border-line star star-card--desk">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/karazbaev.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/karazbaev.png" alt="" />
                       </div>
                     </div>
                     <h4>
@@ -1204,23 +862,12 @@
                     </p>
                   </div>
                 </q-carousel-slide>
-                <q-carousel-slide
-                  name="2"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
+                <q-carousel-slide name="2" class="column no-wrap flex-center tw-pt-20">
                   <div class="card card__border-line star star-card--desk">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/latypov.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/latypov.png" alt="" />
                       </div>
                     </div>
                     <h4>
@@ -1233,23 +880,12 @@
                   </div>
                 </q-carousel-slide>
 
-                <q-carousel-slide
-                  name="3"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
+                <q-carousel-slide name="3" class="column no-wrap flex-center tw-pt-20">
                   <div class="card card__border-line star star-card--desk">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/sadreev.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/sadreev.png" alt="" />
                       </div>
                     </div>
                     <h4>
@@ -1262,23 +898,12 @@
                   </div>
                 </q-carousel-slide>
 
-                <q-carousel-slide
-                  name="4"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
+                <q-carousel-slide name="4" class="column no-wrap flex-center tw-pt-20">
                   <div class="card card__border-line star star-card--desk">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/beliy.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/beliy.png" alt="" />
                       </div>
                     </div>
                     <h4>
@@ -1291,23 +916,12 @@
                   </div>
                 </q-carousel-slide>
 
-                <q-carousel-slide
-                  name="5"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
+                <q-carousel-slide name="5" class="column no-wrap flex-center tw-pt-20">
                   <div class="card card__border-line star star-card--desk">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/shakhanova.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/shakhanova.png" alt="" />
                       </div>
                     </div>
                     <h4>
@@ -1327,16 +941,8 @@
                   <div class="star star-card--mob">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/karazbaev.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/karazbaev.png" alt="" />
                       </div>
                     </div>
                     <h4 class="tw-mt-5">
@@ -1352,16 +958,8 @@
                   <div class="star star-card--mob">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/latypov.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/latypov.png" alt="" />
                       </div>
                     </div>
                     <h4 class="tw-mt-5">
@@ -1377,16 +975,8 @@
                   <div class="star star-card--mob">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/sadreev.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/sadreev.png" alt="" />
                       </div>
                     </div>
                     <h4 class="tw-mt-5">
@@ -1402,16 +992,8 @@
                   <div class="star star-card--mob">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/beliy.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/beliy.png" alt="" />
                       </div>
                     </div>
                     <h4 class="tw-mt-5">
@@ -1427,16 +1009,8 @@
                   <div class="star star-card--mob">
                     <div class="star-avatar">
                       <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/shakhanova.png"
-                          alt=""
-                        />
+                        <img class="star-avatar__bg" src="./icons/star.svg" alt="" />
+                        <img class="star-avatar__img" src="./img/shakhanova.png" alt="" />
                       </div>
                     </div>
                     <h4 class="tw-mt-5">
@@ -1457,10 +1031,7 @@
     <section class="section backers-partner">
       <div class="tw-container">
         <div class="tw-relative">
-          <img
-            class="section-icon tw-right-0"
-            src="./img/section-backers.png"
-          />
+          <img class="section-icon tw-right-0" src="./img/section-backers.png" />
         </div>
         <h2>{{ t("backers.title") }}</h2>
 
@@ -1486,35 +1057,21 @@
     <section class="section faq tw-mb-10 xl:tw-mb-20">
       <div class="tw-container">
         <div class="tw-relative">
-          <img
-            class="section-icon tw-right-0 desk-n"
-            src="./img/section-faq.png"
-          />
+          <img class="section-icon tw-right-0 desk-n" src="./img/section-faq.png" />
         </div>
         <h2>{{ t("faq.title") }}</h2>
         <div class="accardion tw-mt-10">
           <div class="accardion-item">
             <div class="card card__border-line accardion-item__card">
               <h4>{{ t("faq.items.1.title") }}</h4>
-              <button
-                @click="toggle('test')"
-                class="pie pie-arrow button-arrow"
-                :class="accardion == 'test' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
+              <button @click="toggle('test')" class="pie pie-arrow button-arrow"
+                :class="accardion == 'test' ? 'active' : ''">
+                <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
                 </q-icon>
               </button>
             </div>
-            <p
-              class="accardion-item__text"
-              :class="accardion == 'test' ? 'active' : ''"
-              id="accordion-test"
-              v-html="t('faq.items.1.text')"
-            ></p>
+            <p class="accardion-item__text" :class="accardion == 'test' ? 'active' : ''" id="accordion-test"
+              v-html="t('faq.items.1.text')"></p>
           </div>
         </div>
         <div class="card-big tw-mt-15 xl:tw-mt-20">
@@ -1525,9 +1082,7 @@
               {{ t("card-big.anyquestion.text") }}
             </p>
           </div>
-          <div
-            class="tw-flex tw-flex-col tw-mt-7.5 tw-gap-5 xl:tw-mt-0 xl:tw-flex-row xl:tw-gap-3"
-          >
+          <div class="tw-flex tw-flex-col tw-mt-7.5 tw-gap-5 xl:tw-mt-0 xl:tw-flex-row xl:tw-gap-3">
             <button class="button">
               {{ t("card-big.anyquestion.contacrusButton") }}
             </button>
@@ -1543,37 +1098,31 @@
         <div class="footer__top tw-flex tw-justify-between tw-items-center">
           <img src="./icons/logo.svg" alt="" />
           <div class="mob-n">
-            <a :href="roadMap" class="text-arrow-brand tw-underline tw-mr-10"
-              >Roadmap.pdf</a
-            >
-            <a :href="whitePaper" class="text-arrow-brand tw-underline"
-              >Whitepaper.pdf</a
-            >
+            <!-- <a :href="roadMap" class="text-arrow-brand tw-underline tw-mr-10">Roadmap.pdf</a>
+            <a :href="whitePaper" class="text-arrow-brand tw-underline">Whitepaper.pdf</a> -->
+            <a href="#" class="text-arrow-brand tw-underline tw-mr-10">Roadmap.pdf</a>
+            <a href="#" class="text-arrow-brand tw-underline">Whitepaper.pdf</a>
           </div>
           <div class="tw-flex tw-gap-2.5">
-            <a href="#" class="pie pie-link"
-              ><img src="./icons/twitter.svg" alt="twitter" /></a
-            ><a href="#" class="pie pie-link"
-              ><img src="./icons/telegram.svg" alt="telegram" /></a
-            ><a href="#" class="pie pie-link"
-              ><img src="./icons/discord.svg" alt="discord"
-            /></a>
+            <a href="#" class="pie pie-link"><img src="./icons/twitter.svg" alt="twitter" /></a><a href="#"
+              class="pie pie-link"><img src="./icons/telegram.svg" alt="telegram" /></a><a href="#"
+              class="pie pie-link"><img src="./icons/discord.svg" alt="discord" /></a>
           </div>
         </div>
-        <div
-          class="footer__bottom tw-flex tw-gap-1.5 tw-justify-center tw-mt-7.5 desk-n"
-        >
+        <div class="footer__bottom tw-flex tw-gap-1.5 tw-justify-center tw-mt-7.5 desk-n">
           <div class="flex tw-flex-col tw-justify-center tw-items-center">
             <img src="./img/whitepaper.png" alt="" />
-            <a :href="whitePaper" class="text-arrow-brand tw-underline">
+            <!-- <a :href="whitePaper" class="text-arrow-brand tw-underline">
               Whitepaper.pdf
-            </a>
+            </a> -->
+            <a href="#" class="text-arrow-brand tw-underline">Whitepaper.pdf</a>
           </div>
           <div class="flex tw-flex-col tw-justify-center tw-items-center">
             <img src="./img/roadmap-link.png" alt="" />
-            <a :href="roadMap" class="text-arrow-brand tw-underline">
+            <!-- <a :href="roadMap" class="text-arrow-brand tw-underline">
               Roadmap.pdf
-            </a>
+            </a> -->
+            <a href="#" class="text-arrow-brand tw-underline tw-mr-10">Roadmap.pdf</a>
           </div>
         </div>
       </div>
@@ -1697,9 +1246,9 @@ const i18n = {
             bio: "Разработчик, кандидат экономических наук, математик. Руководитель группы разработки. Специализируется на разработке высоконагруженных систем и коммерческих блокчейн-проектов с 2017 года.",
           },
           3: {
-            name: "Рустем",
-            lastName: "Садраев",
-            bio: "Основатель и торговый директор криптовалютного фонда Fakel в СНГ, руководитель образовательной программы, квалифицированный трейдер с опытом работы более 8 лет",
+            name: "Раст",
+            lastName: "Пентагон",
+            bio: "Основатель ALGA Ecosystem и торговый директор криптовалютного фонда Fakel в СНГ, основатель консалтинговой компании Take Profit, международный спикер, квалифицированный трейдер с опытом работы более 8 лет.",
           },
           4: {
             name: "Иван",
@@ -1872,7 +1421,7 @@ const i18n = {
           },
         },
       },
-      bakers: {
+      backers: {
         title: "Backers & Partners",
       },
       faq: {

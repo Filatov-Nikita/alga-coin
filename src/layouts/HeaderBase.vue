@@ -1,6 +1,6 @@
 <template>
   <teleport to="body" :disabled="!showMenu">
-    <q-header class="tw-pt-4-1 header" :class="{ 'header--open': showMenu }">
+    <q-header class="tw-pt-4-1 " :class="{ 'header--open': showMenu }">
       <div class="tw-container">
         <div class="tw-pt-safe">
           <div class="app-row app-gutter-col-x tw-items-center">

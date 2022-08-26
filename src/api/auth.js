@@ -1,10 +1,10 @@
 import { MainApi } from "./utilities/service";
 
-export function login({ cellphone, password }) {
+export function login ({ email, password }) {
   return MainApi.mainKy
     .post("b2c/auth/tokens", {
       json: {
-        cellphone,
+        email,
         password,
         name: "1",
       },
@@ -12,7 +12,7 @@ export function login({ cellphone, password }) {
     .json();
 }
 
-export function registr({ cellphone, email, name }) {
+export function registr ({ cellphone, email, name }) {
   return MainApi.mainKy
     .post("b2c/auth/register", {
       json: { cellphone, email, name },
@@ -20,26 +20,26 @@ export function registr({ cellphone, email, name }) {
     .json();
 }
 
-export function setPassword({ cellphone, password, verification_code }) {
+export function setPassword ({ email, password, verification_code }) {
   return MainApi.mainKy.post("b2c/auth/password", {
     headers: {
       Accept: "application/json",
     },
     json: {
-      cellphone,
+      email,
       password,
       verification_code,
     },
   });
 }
 
-export function getVerifingCode({ cellphone }) {
+export function getVerifingCode ({ mail }) {
   return MainApi.mainKy.post("b2c/auth/resend-verification", {
     headers: {
       Accept: "application/json",
     },
     json: {
-      cellphone,
+      mail,
     },
   });
 }

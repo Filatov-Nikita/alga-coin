@@ -12,7 +12,7 @@ export const testApi = new Service("", {
   tokenName: "b2c",
 });
 
-export const MainApi = new Service("https://alga.2apps.ru", {
+export const MainApi = new Service("http://62.113.97.82", {
   apiPath: "api",
   timeout: 10000,
   tokenName: "b2c",

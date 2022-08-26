@@ -7,22 +7,22 @@ export default {
     isAuth: false,
   },
   getters: {
-    isAuth(state) {
+    isAuth (state) {
       return state.isAuth;
     },
   },
   mutations: {
-    setAuth(state, value) {
+    setAuth (state, value) {
       if (typeof value !== "boolean") return;
       state.isAuth = value;
     },
   },
   actions: {
-    async login({ commit }, { cellphone, password }) {
+    async login ({ commit }, { mail, password }) {
       const {
         data: { token, expires_in },
       } = await AuthAPI.login({
-        cellphone,
+        email:mail,
         password,
       });
 
@@ -30,20 +30,21 @@ export default {
       commit("setAuth", true);
       return true;
     },
-    async logout({ commit }) {
+    async logout ({ commit }) {
       Tokens.cleanTokensData();
       commit("setAuth", false);
     },
-    async registr(_c, userData) {
+    async registr (_c, userData) {
       const result = await AuthAPI.registr(userData);
       return result.data;
     },
-    async setPassword(_c, data) {
+    async setPassword (_c, data) {
       await AuthAPI.setPassword(data);
       return true;
     },
-    async getVerifingCode(_c, { cellphone }) {
-      await AuthAPI.getVerifingCode({ cellphone });
+    async getVerifingCode (_c, { mail }) {
+      console.log(mail)
+      await AuthAPI.getVerifingCode({ mail });
       return true;
     },
   },

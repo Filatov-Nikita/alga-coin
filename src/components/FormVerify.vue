@@ -1,15 +1,15 @@
 <template>
   <h1 class="app-auth__h1">{{ t("header") }}</h1>
-  <p class="app-auth__subtitle" v-html="t('subtitle', { cellphone })"></p>
+  <p class="app-auth__subtitle" v-html="t('subtitle', { mail })"></p>
   <Form class="app-auth__form tw-mb-6" v-slot="{ validate }">
     <AppCodeInput
-      :length="6"
+      :length="4"
       class="app-auth__code"
       :label="$t('inputs.code')"
       @update:code="submit($event, { validate })"
     />
   </Form>
-  <AuthCodeRepeat :cellphone="cellphone" />
+  <AuthCodeRepeat :mail="mail" />
 </template>
 
 <script>
@@ -18,7 +18,7 @@ import AuthCodeRepeat from "./AuthCodeRepeat.vue";
 
 export default {
   props: {
-    cellphone: {
+    mail: {
       required: true,
       type: String,
     },
@@ -30,7 +30,7 @@ export default {
         "ru-RU": {
           header: "Верификация по номеру телефона",
           subtitle:
-            // 'Введите 6-значный код подтверждения, <br /> который был отправлен на {cellphone}. <br /> Код действителен в течение 30 минут.',
+            // 'Введите 6-значный код подтверждения, <br /> который был отправлен на {mail}. <br /> Код действителен в течение 30 минут.',
             "Восстановить доступ к системе с помощью <br/> мобильного телефона и смс-кода.",
         },
         "en-US": {

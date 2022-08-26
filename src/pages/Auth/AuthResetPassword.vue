@@ -5,23 +5,10 @@
         <h1 class="app-auth__h1" v-html="t('header')"></h1>
         <p class="app-auth__subtitle" v-html="t('subtitle')"></p>
         <Form class="app-auth__form" @submit="submit" v-slot="{ isSubmitting }">
-          <AppInput
-            name="cellphone"
-            rules="required|cellphone"
-            type="tel"
-            :label="$t('inputs.cellphone')"
-            placeholder="(999) 999-99-99"
-          />
-          <AppButton
-            type="submit"
-            fullWidth
-            :label="$t('actions.getCode')"
-            :disabled="isSubmitting"
-          />
+          <AppInput name="email" rules="required|email" type="email" label="E-mail" placeholder="ivanov@domain.ru" />
+          <AppButton type="submit" fullWidth :label="$t('actions.getCode')" :disabled="isSubmitting" />
         </Form>
-        <div
-          class="app-auth__links tw-flex tw-flex-col tw-justify-center tw-gap-2 tw-mt-5"
-        >
+        <div class="app-auth__links tw-flex tw-flex-col tw-justify-center tw-gap-2 tw-mt-5">
           <AppLink class="app-auth__link" :to="{ name: 'auth.login' }">
             {{ $t("actions.toLK") }}
           </AppLink>
@@ -31,44 +18,20 @@
         </div>
       </AppStep>
       <AppStep name="verifing">
-        <FormVerify :cellphone="curCellphone" @entered="handleCode" />
+        <FormVerify :mail="mail" @entered="handleCode" />
       </AppStep>
       <AppStep name="password">
         <h1 class="app-auth__h1" v-html="t('passHeader')"></h1>
         <p class="app-auth__subtitle">{{ $t("passRequired") }}</p>
-        <Form
-          class="app-auth__form"
-          @submit="setPassword"
-          v-slot="{ isSubmitting }"
-        >
-          <AppInput
-            name="password"
-            rules="required"
-            type="password"
-            :label="$t('inputs.newPass')"
-            :placeholder="$t('inputs.password')"
-          />
-          <AppInput
-            name="password2"
-            rules="required|confirmed:@password"
-            type="password"
-            :label="$t('inputs.repeatPass')"
-            :placeholder="$t('inputs.repeatPass')"
-          />
-          <AuthCodeVerification v-if="invalidCode" :cellphone="curCellphone" />
-          <AppButton
-            type="submit"
-            fullWidth
-            :label="$t('actions.setPass')"
-            :disabled="isSubmitting"
-          />
+        <Form class="app-auth__form" @submit="setPassword" v-slot="{ isSubmitting }">
+          <AppInput name="password" rules="required" type="password" :label="$t('inputs.newPass')"
+            :placeholder="$t('inputs.password')" />
+          <AppInput name="password2" rules="required|confirmed:@password" type="password"
+            :label="$t('inputs.repeatPass')" :placeholder="$t('inputs.repeatPass')" />
+          <AuthCodeVerification v-if="invalidCode" :cellphone="mail" />
+          <AppButton type="submit" fullWidth :label="$t('actions.setPass')" :disabled="isSubmitting" />
         </Form>
-        <i18n-t
-          tag="div"
-          class="app-auth__links tw-mt-6"
-          keypath="actions.hasAccount"
-          scope="global"
-        >
+        <i18n-t tag="div" class="app-auth__links tw-mt-6" keypath="actions.hasAccount" scope="global">
           <template #login>
             <AppLink :to="{ name: 'auth.login' }">
               {{ $t("buttons.logIn") }}
@@ -106,12 +69,12 @@ export default {
   setup() {
     const { t } = useI18n({ messages });
     const { changeStep, step } = useStep("input");
-    const { curCode, curCellphone, setPassword, getCode, invalidCode } =
+    const { curCode, mail, setPassword, getCode, invalidCode } =
       useAuth();
 
-    const submit = async ({ cellphoneFull: cellphone }) => {
-      await getCode({ cellphone });
-      curCellphone.value = cellphone;
+    const submit = async ({ email }) => {
+      await getCode({ mail:email });
+      mail.value = email;
       changeStep("verifing");
     };
 
@@ -122,7 +85,7 @@ export default {
 
     return {
       step,
-      curCellphone,
+      mail,
       invalidCode,
       t,
       submit,
