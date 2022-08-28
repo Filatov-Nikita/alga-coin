@@ -1,73 +1,7 @@
 <!-- <template src="./index.html"></template> -->
 <template>
   <div>
-    <header>
-      <nav class="nav">
-        <div class="tw-container">
-          <div class="nav__wrapper tw-flex tw-justify-between tw-items-center">
-            <div class="nav__left tw-flex tw-gap-12 tw-items-center">
-              <img src="./icons/logo.svg" alt="logo" />
-              <span class="mob-n">Tokenomics</span>
-            </div>
-            <div class="nav__right tw-flex tw-items-center">
-              <div class="auth tw-flex tw-gap-2.5 tw-mr-7">
-                <button class="mob-n button-border-light" @click="$router.push({ name: 'profile' })">
-                  {{ t("dropdown.buttons.login") }}
-                </button>
-                <button class="mob-n button-border-light" @click="$router.push({ name: 'auth.registr' })">
-                  {{ t("dropdown.buttons.register") }}
-                </button>
-              </div>
-              <div class="local">
-                <button @click="newLocale('en-US')" :class="locale === 'English' ? 'active' : ''">
-                  <span>EN</span>
-                </button>
-                <button @click="newLocale('ru-RU')" :class="locale === 'Русский' ? 'active' : ''">
-                  <span> RU </span>
-                </button>
-              </div>
-              <div class="desk-n">
-                <button class="burger" @click="toggleDrop">
-                  <span></span><span></span><span></span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <div class="drop" :class="dropDown ? 'active' : ''" id="dropdown">
-        <div class="tw-container">
-          <div class="drop__wrapper tw-flex tw-justify-between tw-gap-1">
-            <button class="button-border tw-w-1/2" @click="$router.push({ name: 'profile' })">
-              {{ t("dropdown.buttons.login") }}
-            </button>
-            <button class="button tw-w-1/2" @click="$router.push({ name: 'auth.registr' })">
-              {{ t("dropdown.buttons.register") }}
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="tw-mt-7.5">
-        <div class="tw-container">
-          <div class="header-bg">
-            <div class="header-bg__touch"></div>
-            <div class="header-bg__wrapper">
-              <div class=" tw-flex tw-flex-col tw-gap-5 xl:tw-self-center">
-                <h1 class="header-bg__title">{{ t("header.title") }}</h1>
-                <h2 v-html="t('header.subtitle')"></h2>
-              </div>
-              <!-- <div class="header-bg__img"></div> -->
-              <div class="header-bg__img">
-                <picture>
-                  <source srcset="./img/AA_1.png" media="(min-width: 1100px)" />
-                  <img src="./img/AA_2@2x.png" alt="" />
-                </picture>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+   
     <section class="section about">
       <div class="tw-container">
         <div class="tw-relative">
@@ -88,7 +22,7 @@
               {{ t("card-big.signin.text") }}
             </p>
           </div>
-          <button class="tw-mt-7.5 xl:tw-mt-0 button">
+          <button class="tw-mt-7.5 xl:tw-mt-0 button" @click="$router.push({ name: 'auth.registr' })">
             {{ t("card-big.signin.createButton") }}
           </button>
         </div>
@@ -123,9 +57,22 @@
                   </div>
                 </div>
                 <div>
-                  <img src="./icons/diagram.svg" alt="" />
+                  <MiniAreaChart :values="[
+                    [1327359600000, 30.95],
+                    [1330383600000, 33.27],
+                    [1331506800000, 33.56],
+                    [1332885600000, 34.46],
+                    [1334181600000, 33.55],
+                    [1336946400000, 32.23],
+                    [1338242400000, 32.05],
+                    [1338933600000, 31.69],
+                    [1342994400000, 30.64],
+                    [1345759200000, 32.26],
+                    [1361919600000, 39.60],
+                  ]" />
 
-                  <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                  <button @click="$router.push({ name: 'index-directive' })"
+                    class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
                   </button>
@@ -151,9 +98,23 @@
                   </div>
                 </div>
                 <div>
-                  <img src="./icons/diagram.svg" alt="" />
+                  <MiniAreaChart :values="
+                  [
+                    [1327359600000, 30.95],
+                    [1330383600000, 33.27],
+                    [1331506800000, 33.56],
+                    [1332885600000, 34.46],
+                    [1334181600000, 33.55],
+                    [1336946400000, 35.23],
+                    [1338242400000, 32.05],
+                    [1338933600000, 31.69],
+                    [1342994400000, 30.64],
+                    [1345759200000, 32.26],
+                    [1361919600000, 39.60],
+                  ]" />
 
-                  <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                  <button @click="$router.push({ name: 'index-directive' })"
+                    class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
                   </button>
@@ -181,9 +142,22 @@
                   </div>
                 </div>
                 <div>
-                  <img src="./icons/diagram.svg" alt="" />
+                  <MiniAreaChart :values="[
+                    [1327359600000, 30.95],
+                    [1330383600000, 33.27],
+                    [1331506800000, 33.56],
+                    [1332885600000, 34.46],
+                    [1334181600000, 33.55],
+                    [1336946400000, 32.23],
+                    [1338242400000, 35.05],
+                    [1338933600000, 31.69],
+                    [1342994400000, 30.64],
+                    [1345759200000, 32.26],
+                    [1361919600000, 31.60],
+                  ]" />
 
-                  <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                  <button @click="$router.push({ name: 'index-directive' })"
+                    class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
                   </button>
@@ -211,9 +185,22 @@
                   </div>
                 </div>
                 <div>
-                  <img src="./icons/diagram.svg" alt="" />
+                  <MiniAreaChart :values="[
+                    [1327359600000, 35.95],
+                    [1330383600000, 33.27],
+                    [1331506800000, 32.56],
+                    [1332885600000, 31.46],
+                    [1334181600000, 33.55],
+                    [1336946400000, 32.23],
+                    [1338242400000, 32.05],
+                    [1338933600000, 31.69],
+                    [1342994400000, 30.64],
+                    [1345759200000, 32.26],
+                    [1361919600000, 39.60],
+                  ]" />
 
-                  <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                  <button @click="$router.push({ name: 'index-directive' })"
+                    class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
                   </button>
@@ -241,9 +228,22 @@
                   </div>
                 </div>
                 <div>
-                  <img src="./icons/diagram.svg" alt="" />
+                  <MiniAreaChart :values="[
+                    [1327359600000, 30.95],
+                    [1330383600000, 33.27],
+                    [1331506800000, 33.56],
+                    [1332885600000, 34.46],
+                    [1334181600000, 33.55],
+                    [1336946400000, 32.23],
+                    [1338242400000, 32.05],
+                    [1338933600000, 31.69],
+                    [1342994400000, 34.64],
+                    [1345759200000, 35.26],
+                    [1361919600000, 39.60],
+                  ]" />
 
-                  <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                  <button @click="$router.push({ name: 'index-directive' })"
+                    class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
                   </button>
@@ -286,9 +286,22 @@
                       </div>
                     </div>
                     <div>
-                      <img src="./icons/diagram.svg" alt="" />
+                      <MiniAreaChart :values="[
+                        [1327359600000, 30.95],
+                        [1330383600000, 33.27],
+                        [1331506800000, 33.56],
+                        [1332885600000, 34.46],
+                        [1334181600000, 33.55],
+                        [1336946400000, 32.23],
+                        [1338242400000, 32.05],
+                        [1338933600000, 31.69],
+      [1342994400000, 30.64],
+                        [1345759200000, 32.26],
+                        [1361919600000, 39.60],
+                      ]" />/>
 
-                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                      <button @click="$router.push({ name: 'index-directive' })"
+                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -316,9 +329,23 @@
                       </div>
                     </div>
                     <div>
-                      <img src="./icons/diagram.svg" alt="" />
+                      <MiniAreaChart :values="
+                      [
+                        [1327359600000, 30.95],
+                        [1330383600000, 33.27],
+                        [1331506800000, 33.56],
+                        [1332885600000, 34.46],
+                        [1334181600000, 33.55],
+                        [1336946400000, 35.23],
+                        [1338242400000, 32.05],
+                        [1338933600000, 31.69],
+                        [1342994400000, 30.64],
+                        [1345759200000, 32.26],
+                        [1361919600000, 39.60],
+                      ]" />
 
-                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                      <button @click="$router.push({ name: 'index-directive' })"
+                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -348,9 +375,22 @@
                       </div>
                     </div>
                     <div>
-                      <img src="./icons/diagram.svg" alt="" />
+                      <MiniAreaChart :values="[
+                        [1327359600000, 30.95],
+                        [1330383600000, 33.27],
+                        [1331506800000, 33.56],
+                        [1332885600000, 34.46],
+                        [1334181600000, 33.55],
+                        [1336946400000, 32.23],
+                        [1338242400000, 35.05],
+                        [1338933600000, 31.69],
+                        [1342994400000, 30.64],
+                        [1345759200000, 32.26],
+                        [1361919600000, 31.60],
+                      ]" />
 
-                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                      <button @click="$router.push({ name: 'index-directive' })"
+                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -380,9 +420,22 @@
                       </div>
                     </div>
                     <div>
-                      <img src="./icons/diagram.svg" alt="" />
+                      <MiniAreaChart :values="[
+                        [1327359600000, 35.95],
+                        [1330383600000, 33.27],
+                        [1331506800000, 32.56],
+                        [1332885600000, 31.46],
+                        [1334181600000, 33.55],
+                        [1336946400000, 32.23],
+                        [1338242400000, 32.05],
+                        [1338933600000, 31.69],
+                        [1342994400000, 30.64],
+                        [1345759200000, 32.26],
+                        [1361919600000, 39.60],
+                      ]" />
 
-                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                      <button @click="$router.push({ name: 'index-directive' })"
+                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -412,9 +465,22 @@
                       </div>
                     </div>
                     <div>
-                      <img src="./icons/diagram.svg" alt="" />
+                      <MiniAreaChart :values="[
+                        [1327359600000, 30.95],
+                        [1330383600000, 33.27],
+                        [1331506800000, 33.56],
+                        [1332885600000, 34.46],
+                        [1334181600000, 33.55],
+                        [1336946400000, 32.23],
+                        [1338242400000, 32.05],
+                        [1338933600000, 31.69],
+                        [1342994400000, 34.64],
+                        [1345759200000, 35.26],
+                        [1361919600000, 39.60],
+                      ]" />
 
-                      <button class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
+                      <button @click="$router.push({ name: 'index-directive' })"
+                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
                       </button>
@@ -1093,46 +1159,13 @@
         </div>
       </div>
     </section>
-    <footer class="tw-pt-10 tw-pb-8">
-      <div class="tw-container">
-        <div class="footer__top tw-flex tw-justify-between tw-items-center">
-          <img src="./icons/logo.svg" alt="" />
-          <div class="mob-n">
-            <!-- <a :href="roadMap" class="text-arrow-brand tw-underline tw-mr-10">Roadmap.pdf</a>
-            <a :href="whitePaper" class="text-arrow-brand tw-underline">Whitepaper.pdf</a> -->
-            <a href="#" class="text-arrow-brand tw-underline tw-mr-10">Roadmap.pdf</a>
-            <a href="#" class="text-arrow-brand tw-underline">Whitepaper.pdf</a>
-          </div>
-          <div class="tw-flex tw-gap-2.5">
-            <a href="#" class="pie pie-link"><img src="./icons/twitter.svg" alt="twitter" /></a><a href="#"
-              class="pie pie-link"><img src="./icons/telegram.svg" alt="telegram" /></a><a href="#"
-              class="pie pie-link"><img src="./icons/discord.svg" alt="discord" /></a>
-          </div>
-        </div>
-        <div class="footer__bottom tw-flex tw-gap-1.5 tw-justify-center tw-mt-7.5 desk-n">
-          <div class="flex tw-flex-col tw-justify-center tw-items-center">
-            <img src="./img/whitepaper.png" alt="" />
-            <!-- <a :href="whitePaper" class="text-arrow-brand tw-underline">
-              Whitepaper.pdf
-            </a> -->
-            <a href="#" class="text-arrow-brand tw-underline">Whitepaper.pdf</a>
-          </div>
-          <div class="flex tw-flex-col tw-justify-center tw-items-center">
-            <img src="./img/roadmap-link.png" alt="" />
-            <!-- <a :href="roadMap" class="text-arrow-brand tw-underline">
-              Roadmap.pdf
-            </a> -->
-            <a href="#" class="text-arrow-brand tw-underline tw-mr-10">Roadmap.pdf</a>
-          </div>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 <script>
 import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
+import MiniAreaChart from "src/components/V3/MiniAreaChart.vue"
 const i18n = {
   messages: {
     "ru-RU": {
@@ -1455,6 +1488,9 @@ const i18n = {
   },
 };
 export default {
+  components: {
+    MiniAreaChart
+  },
   setup() {
     const $i18n = useI18n();
     const store = useStore();

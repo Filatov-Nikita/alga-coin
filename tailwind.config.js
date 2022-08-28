@@ -38,10 +38,12 @@ module.exports = {
       white: "#FFFFFF",
       "deep-dark": "#001538",
       "dark-blue": "#003870",
+      "dark-blue-2": "#272B4F",
       "blue-hover": "#0083F5",
       "dark-blue-cover": "#000320",
       "dark-gray": "#141734",
-      "text-gray": "#9596a3"
+      "text-gray": "#9596a3",
+      "purple-light": '#BEC3FF'
     },
     fontFamily: {
       stolzl: "Stolzl",

@@ -81,5 +81,18 @@
       }
     }
     
+        .mob-n {
+          display: none;
+    
+          @media screen and (min-width: 1200px) {
+            display: block;
+          }
+        }
+    
+        .desk-n {
+          @media screen and (min-width: 1200px) {
+            display: none;
+          }
+        }
   
 }

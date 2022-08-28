@@ -95,17 +95,20 @@
 
   .app-page-bg {
     background: theme("colors.dark-blue-cover");
-    background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-repeat;
+    
     background-size: cover;
     background-size: auto;
     background-position: bottom;
 
     @include screen-xl {
-      background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-repeat;
       background-size: cover;
       background-position: bottom;
     }
   }
+
+    .app-page-bg_auth {
+background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-repeat;
+    }
 
   .app-page-bg_lk {
     background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk.svg) no-repeat;

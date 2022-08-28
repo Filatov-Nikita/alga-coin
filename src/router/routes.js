@@ -3,8 +3,19 @@ import { markAuth } from "./utilities/auth";
 const routes = [
   {
     path: "/",
-    component: () => import("pages/Landing.vue"),
-    name: "home",
+    component: () => import("layouts/V3/Landing/BaseLayout.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("pages/Landing.vue"),
+        name: "home",
+      },
+      {
+        path: "/tokenomics",
+        component: () => import("pages/V3/Tokenomics.vue"),
+        name: "tokenomics",
+      },
+    ]
   },
   {
     path: "/",
@@ -70,11 +81,11 @@ const routes = [
           name: "output",
         },
 
-        {
-          path: "history",
-          component: () => import("pages/History.vue"),
-          name: "history",
-        },
+        // {
+        //   path: "history",
+        //   component: () => import("pages/History.vue"),
+        //   name: "history",
+        // },
 
         {
           path: "/profile",
@@ -115,9 +126,14 @@ const routes = [
           path: "index-directive",
           component: () => import("pages/V3/IndexDirective.vue"),
           name: "index-directive",
-        }
+        },
+        {
+          path: "history",
+          component: () => import("pages/V3/History.vue"),
+          name: "history",
+        },
       )
-      
+
     ],
   },
 

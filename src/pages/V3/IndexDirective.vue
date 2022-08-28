@@ -1,6 +1,7 @@
 <template>
     <!-- slider -->
     <div class=" tw-flex  tw-flex-col">
+        
         <div class=" item tw-flex tw-justify-between tw-items-center  ">
             <h2>
                 Index Derivatives
@@ -36,37 +37,37 @@
 
             <q-carousel-slide :name="1">
                 <div class="card card__border-line tw-mb-10 index-directive">
-                        <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
-                            <div class=" tw-flex tw-gap-5 tw-items-center">
-                                <div>
-                                    <img :src="require('assets/icons/index-directive/indg-1.png')" alt=""/>
-                                </div>
-                                <div class=" tw-flex  tw-gap-10 tw-items-center">
-                                    <div class=" tw-flex tw-flex-col">
-                                        <h4>BTC</h4>
-                                        <p>
-                                            from 12.08.2020 to 12.12.2020
-                                        </p>
-                                    </div>
-                                    <base-button class="button">buy</base-button>
-                                </div>
+                    <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
+                        <div class=" tw-flex tw-gap-5 tw-items-center">
+                            <div>
+                                <img :src="require('assets/icons/index-directive/indg-1.png')" alt="" />
                             </div>
-                            <div class=" tw-flex tw-gap-2.5">
-                                <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
-                                <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
+                            <div class=" tw-flex  tw-gap-10 tw-items-center">
+                                <div class=" tw-flex tw-flex-col">
+                                    <h4>BTC</h4>
+                                    <p>
+                                        from 12.08.2020 to 12.12.2020
+                                    </p>
+                                </div>
+                                <base-button class="button">buy</base-button>
                             </div>
                         </div>
-                        <p class="text">
-                            Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
-                            opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
-                            opens
-                        </p>
+                        <div class=" tw-flex tw-gap-2.5">
+                            <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                            <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text">
+                        Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
+                        opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
+                        opens
+                    </p>
 
                 </div>
 
@@ -76,9 +77,11 @@
                     </h4>
                     <div class="inside tw-mb-10">
                         <div class="inside-card card card__border-line">
-                            <RoundDiagram class="inside__round" :values="[75,25]" textBefore="%" :colors="['#F26437', '#EC249B']">
+                            <RoundDiagram class="inside__round" :values="[75,25]" textBefore="%"
+                                :colors="['#F26437', '#EC249B']">
                                 <template #image>
-                                    <image  x="180" y="180" width="140"   :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
+                                    <image x="180" y="180" width="140"
+                                        :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
                                 </template>
                             </RoundDiagram>
                         </div>
@@ -98,7 +101,7 @@
                                     </div>
                                     <span>25%</span>
                                 </li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -132,37 +135,37 @@
 
             <q-carousel-slide :name="2">
                 <div class="card card__border-line tw-mb-10 index-directive">
-                        <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
-                            <div class=" tw-flex tw-gap-5 tw-items-center">
-                                <div>
-                                    <img :src="require('assets/icons/index-directive/indg-1.png')" alt=""/>
-                                </div>
-                                <div class=" tw-flex  tw-gap-10 tw-items-center">
-                                    <div class=" tw-flex tw-flex-col">
-                                        <h4>ETH</h4>
-                                        <p>
-                                            from 12.08.2020 to 12.12.2020
-                                        </p>
-                                    </div>
-                                    <base-button class="button">buy</base-button>
-                                </div>
+                    <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
+                        <div class=" tw-flex tw-gap-5 tw-items-center">
+                            <div>
+                                <img :src="require('assets/icons/index-directive/indg-1.png')" alt="" />
                             </div>
-                            <div class=" tw-flex tw-gap-2.5">
-                                <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
-                                <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
+                            <div class=" tw-flex  tw-gap-10 tw-items-center">
+                                <div class=" tw-flex tw-flex-col">
+                                    <h4>ETH</h4>
+                                    <p>
+                                        from 12.08.2020 to 12.12.2020
+                                    </p>
+                                </div>
+                                <base-button class="button">buy</base-button>
                             </div>
                         </div>
-                        <p class="text">
-                            Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
-                            opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
-                            opens
-                        </p>
+                        <div class=" tw-flex tw-gap-2.5">
+                            <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                            <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text">
+                        Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
+                        opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
+                        opens
+                    </p>
 
                 </div>
 
@@ -172,12 +175,14 @@
                     </h4>
                     <div class="inside tw-mb-10">
                         <div class="inside-card card card__border-line">
-                            <RoundDiagram class="inside__round" :values="[65,10,10,15]" textBefore="%" :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441']">
+                            <RoundDiagram class="inside__round" :values="[65,10,10,15]" textBefore="%"
+                                :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441']">
                                 <template #image>
-                                    <image  x="180" y="180" width="140"   :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
+                                    <image x="180" y="180" width="140"
+                                        :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
                                 </template>
-                                </RoundDiagram>
-                                
+                            </RoundDiagram>
+
                         </div>
                         <div class=" ">
                             <ul class="coinlist" style="width:170px">
@@ -209,7 +214,7 @@
                                     </div>
                                     <span>15%</span>
                                 </li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -243,37 +248,37 @@
 
             <q-carousel-slide :name="3">
                 <div class="card card__border-line tw-mb-10 index-directive">
-                        <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
-                            <div class=" tw-flex tw-gap-5 tw-items-center">
-                                <div>
-                                    <img :src="require('assets/icons/index-directive/indg-1.png')" alt=""/>
-                                </div>
-                                <div class=" tw-flex  tw-gap-10 tw-items-center">
-                                    <div class=" tw-flex tw-flex-col">
-                                        <h4>BTC combo</h4>
-                                        <p>
-                                            from 12.08.2020 to 12.12.2020
-                                        </p>
-                                    </div>
-                                    <base-button class="button">buy</base-button>
-                                </div>
+                    <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
+                        <div class=" tw-flex tw-gap-5 tw-items-center">
+                            <div>
+                                <img :src="require('assets/icons/index-directive/indg-1.png')" alt="" />
                             </div>
-                            <div class=" tw-flex tw-gap-2.5">
-                                <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
-                                <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
+                            <div class=" tw-flex  tw-gap-10 tw-items-center">
+                                <div class=" tw-flex tw-flex-col">
+                                    <h4>BTC combo</h4>
+                                    <p>
+                                        from 12.08.2020 to 12.12.2020
+                                    </p>
+                                </div>
+                                <base-button class="button">buy</base-button>
                             </div>
                         </div>
-                        <p class="text">
-                            Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
-                            opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
-                            opens
-                        </p>
+                        <div class=" tw-flex tw-gap-2.5">
+                            <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                            <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text">
+                        Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
+                        opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
+                        opens
+                    </p>
 
                 </div>
 
@@ -283,9 +288,11 @@
                     </h4>
                     <div class="inside tw-mb-10">
                         <div class="inside-card card card__border-line">
-                            <RoundDiagram class="inside__round" :values="[45,25,10,10,10]" textBefore="%" :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441', '#3362D2']">
+                            <RoundDiagram class="inside__round" :values="[45,25,10,10,10]" textBefore="%"
+                                :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441', '#3362D2']">
                                 <template #image>
-                                    <image  x="180" y="180" width="140"   :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
+                                    <image x="180" y="180" width="140"
+                                        :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
                                 </template>
                             </RoundDiagram>
                         </div>
@@ -327,7 +334,7 @@
                                     </div>
                                     <span>10%</span>
                                 </li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -361,37 +368,37 @@
 
             <q-carousel-slide :name="4">
                 <div class="card card__border-line tw-mb-10 index-directive">
-                        <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
-                            <div class=" tw-flex tw-gap-5 tw-items-center">
-                                <div>
-                                    <img :src="require('assets/icons/index-directive/indg-1.png')" alt=""/>
-                                </div>
-                                <div class=" tw-flex  tw-gap-10 tw-items-center">
-                                    <div class=" tw-flex tw-flex-col">
-                                        <h4>ETH combo</h4>
-                                        <p>
-                                            from 12.08.2020 to 12.12.2020
-                                        </p>
-                                    </div>
-                                    <base-button class="button">buy</base-button>
-                                </div>
+                    <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
+                        <div class=" tw-flex tw-gap-5 tw-items-center">
+                            <div>
+                                <img :src="require('assets/icons/index-directive/indg-1.png')" alt="" />
                             </div>
-                            <div class=" tw-flex tw-gap-2.5">
-                                <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
-                                <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
+                            <div class=" tw-flex  tw-gap-10 tw-items-center">
+                                <div class=" tw-flex tw-flex-col">
+                                    <h4>ETH combo</h4>
+                                    <p>
+                                        from 12.08.2020 to 12.12.2020
+                                    </p>
+                                </div>
+                                <base-button class="button">buy</base-button>
                             </div>
                         </div>
-                        <p class="text">
-                            Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
-                            opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
-                            opens
-                        </p>
+                        <div class=" tw-flex tw-gap-2.5">
+                            <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                            <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text">
+                        Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
+                        opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
+                        opens
+                    </p>
 
                 </div>
 
@@ -401,9 +408,11 @@
                     </h4>
                     <div class="inside tw-mb-10">
                         <div class="inside-card card card__border-line">
-                            <RoundDiagram class="inside__round" :values="[45,25,10,5,5,10]" textBefore="%" :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441', '#3362D2', '#0F6FDF']">
+                            <RoundDiagram class="inside__round" :values="[45,25,10,5,5,10]" textBefore="%"
+                                :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441', '#3362D2', '#0F6FDF']">
                                 <template #image>
-                                    <image  x="180" y="180" width="140"   :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
+                                    <image x="180" y="180" width="140"
+                                        :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
                                 </template>
                             </RoundDiagram>
                         </div>
@@ -445,7 +454,7 @@
                                     </div>
                                     <span>5%</span>
                                 </li>
-                                
+
                                 <li class=" item tw-flex tw-justify-between tw-items-center">
                                     <div class=" tw-flex tw-gap-3-1 tw-items-center">
                                         <img :src="require('assets/icons/tokens/test.svg')" alt="bitcoin">
@@ -486,37 +495,37 @@
 
             <q-carousel-slide :name="5">
                 <div class="card card__border-line tw-mb-10 index-directive">
-                        <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
-                            <div class=" tw-flex tw-gap-5 tw-items-center">
-                                <div>
-                                    <img :src="require('assets/icons/index-directive/indg-1.png')" alt=""/>
-                                </div>
-                                <div class=" tw-flex  tw-gap-10 tw-items-center">
-                                    <div class=" tw-flex tw-flex-col">
-                                        <h4>DeFi combo</h4>
-                                        <p>
-                                            from 12.08.2020 to 12.12.2020
-                                        </p>
-                                    </div>
-                                    <base-button class="button">buy</base-button>
-                                </div>
+                    <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
+                        <div class=" tw-flex tw-gap-5 tw-items-center">
+                            <div>
+                                <img :src="require('assets/icons/index-directive/indg-1.png')" alt="" />
                             </div>
-                            <div class=" tw-flex tw-gap-2.5">
-                                <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
-                                <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
+                            <div class=" tw-flex  tw-gap-10 tw-items-center">
+                                <div class=" tw-flex tw-flex-col">
+                                    <h4>DeFi combo</h4>
+                                    <p>
+                                        from 12.08.2020 to 12.12.2020
+                                    </p>
+                                </div>
+                                <base-button class="button">buy</base-button>
                             </div>
                         </div>
-                        <p class="text">
-                            Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
-                            opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
-                            opens
-                        </p>
+                        <div class=" tw-flex tw-gap-2.5">
+                            <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                            <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text">
+                        Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
+                        opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
+                        opens
+                    </p>
 
                 </div>
 
@@ -526,9 +535,11 @@
                     </h4>
                     <div class="inside tw-mb-10">
                         <div class="inside-card card card__border-line">
-                            <RoundDiagram class="inside__round" :values="[20,10,10,10,10,25,15]" textBefore="%" :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441', '#3362D2', '#0F6FDF', '#0FDF49']">
+                            <RoundDiagram class="inside__round" :values="[20,10,10,10,10,25,15]" textBefore="%"
+                                :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441', '#3362D2', '#0F6FDF', '#0FDF49']">
                                 <template #image>
-                                    <image  x="180" y="180" width="140"   :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
+                                    <image x="180" y="180" width="140"
+                                        :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
                                 </template>
                             </RoundDiagram>
                         </div>
@@ -570,7 +581,7 @@
                                     </div>
                                     <span>10%</span>
                                 </li>
-                                
+
                                 <li class=" item tw-flex tw-justify-between tw-items-center">
                                     <div class=" tw-flex tw-gap-3-1 tw-items-center">
                                         <img :src="require('assets/icons/tokens/test.svg')" alt="bitcoin">
@@ -578,7 +589,7 @@
                                     </div>
                                     <span>25%</span>
                                 </li>
-                                                                <li class=" item tw-flex tw-justify-between tw-items-center">
+                                <li class=" item tw-flex tw-justify-between tw-items-center">
                                     <div class=" tw-flex tw-gap-3-1 tw-items-center">
                                         <img :src="require('assets/icons/tokens/test.svg')" alt="bitcoin">
                                         <span>Stables</span>
@@ -618,37 +629,37 @@
 
             <q-carousel-slide :name="6">
                 <div class="card card__border-line tw-mb-10 index-directive">
-                        <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
-                            <div class=" tw-flex tw-gap-5 tw-items-center">
-                                <div>
-                                    <img :src="require('assets/icons/index-directive/indg-1.png')" alt=""/>
-                                </div>
-                                <div class=" tw-flex  tw-gap-10 tw-items-center">
-                                    <div class=" tw-flex tw-flex-col">
-                                        <h4>Stable index </h4>
-                                        <p>
-                                            from 12.08.2020 to 12.12.2020
-                                        </p>
-                                    </div>
-                                    <base-button class="button">buy</base-button>
-                                </div>
+                    <div class=" item tw-flex tw-justify-between tw-items-center tw-mb-5">
+                        <div class=" tw-flex tw-gap-5 tw-items-center">
+                            <div>
+                                <img :src="require('assets/icons/index-directive/indg-1.png')" alt="" />
                             </div>
-                            <div class=" tw-flex tw-gap-2.5">
-                                <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
-                                <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
-                                    <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
-                                    </q-icon>
-                                </button>
+                            <div class=" tw-flex  tw-gap-10 tw-items-center">
+                                <div class=" tw-flex tw-flex-col">
+                                    <h4>Stable index </h4>
+                                    <p>
+                                        from 12.08.2020 to 12.12.2020
+                                    </p>
+                                </div>
+                                <base-button class="button">buy</base-button>
                             </div>
                         </div>
-                        <p class="text">
-                            Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
-                            opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
-                            opens
-                        </p>
+                        <div class=" tw-flex tw-gap-2.5">
+                            <button @click="$refs.carousel.previous()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_left" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                            <button @click="$refs.carousel.next()" class="pie pie-arrow button-arrow">
+                                <q-icon name="r_keyboard_arrow_right" size="35px" class="arrow-icon">
+                                </q-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text">
+                        Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was
+                        opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and
+                        opens
+                    </p>
 
                 </div>
 
@@ -658,9 +669,11 @@
                     </h4>
                     <div class="inside tw-mb-10">
                         <div class="inside-card card card__border-line">
-                            <RoundDiagram class="inside__round" :values="[20,20,20,20,20]" textBefore="%" :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441', '#3362D2']">
+                            <RoundDiagram class="inside__round" :values="[20,20,20,20,20]" textBefore="%"
+                                :colors="['#2CCCFF','#F26437', '#EC249B', '#92D441', '#3362D2']">
                                 <template #image>
-                                    <image  x="180" y="180" width="140"   :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
+                                    <image x="180" y="180" width="140"
+                                        :xlink:href="require('assets/icons/index-directive/indg-1.png')" />
                                 </template>
                             </RoundDiagram>
                         </div>
@@ -732,7 +745,7 @@
 
                 </div>
             </q-carousel-slide>
-            
+
         </q-carousel>
     </div>
 </template>
@@ -741,10 +754,12 @@
 import {ref} from "vue"
 import RoundDiagram from "src/components/V3/RaoundDiagram.vue"
 import AreaChart from "src/components/V3/AreaChart.vue"
+
 export default {
     components: {
         RoundDiagram,
-        AreaChart
+        AreaChart,
+        
     },
     setup(){
         return {

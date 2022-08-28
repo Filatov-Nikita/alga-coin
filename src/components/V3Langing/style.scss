@@ -1,135 +1,13 @@
-.mob-n {
-  display: none;
-  @media screen and (min-width: 1200px) {
-    display: block;
-  }
-}
-
-.desk-n {
-  @media screen and (min-width: 1200px) {
-    display: none;
-  }
-}
 
 
 
-.burger {
-  margin-left: 24px;
-  background: #101333;
-  border: 4px solid #333653;
-  box-shadow: 0px 155px 62px rgba(1, 3, 24, 0.01),
-    0px 87px 52px rgba(1, 3, 24, 0.05), 0px 39px 39px rgba(1, 3, 24, 0.09),
-    0px 10px 21px rgba(1, 3, 24, 0.1), 0px 0px 0px rgba(1, 3, 24, 0.1);
-  border-radius: 14px;
-  width: 50px;
-  height: 50px;
-  padding: 11px 9px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  & > span {
-    background-color: #fff;
-    height: 3px;
-    width: 100%;
-    border-radius: 14px;
-  }
-}
 
-.drop {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  filter: drop-shadow(0px 153px 61px rgba(4, 8, 47, 0.01))
-    drop-shadow(0px 86px 51px rgba(4, 8, 47, 0.05))
-    drop-shadow(0px 38px 38px rgba(4, 8, 47, 0.09))
-    drop-shadow(0px 10px 21px rgba(4, 8, 47, 0.1))
-    drop-shadow(0px 0px 0px rgba(4, 8, 47, 0.1));
 
-  background: rgba(20, 23, 52, 0.112);
-  box-shadow: inset 1.86559px -1.86559px 1.86559px rgba(40, 48, 121, 0.424);
 
-  backdrop-filter: blur(30.4091px);
-  /* Note: backdrop-filter has minimal browser support */
 
-  border-radius: 0 0 24px 24px;
-  max-height: 0;
-  transition: all 0.3s ease;
-  overflow: hidden;
 
-  &__wrapper {
-    padding: 35px 0;
-  }
-}
 
-.nav {
-  background-color: #101333;
-  &__wrapper {
-    min-height: 80px;
-    height: 100%;
-  }
-}
 
-.header-bg {
-  background: radial-gradient(ellipse, #0f1359, #000320);
-  // height: 500px;
-
-  border-radius: 36px;
-  position: relative;
-  overflow: hidden;
-  &__wrapper {
-    padding: 40px 25px 0 25px;
-    @media screen and (min-width: 1200px) {
-      padding-top: 0;
-      padding-left: 80px;
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-  &__touch {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    mix-blend-mode: luminosity;
-    background: url(./icons/touch.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 300%;
-  }
-  &__title {
-    font-weight: 500;
-    font-size: 96px;
-    line-height: 90%;
-    /* or 86px */
-        text-transform: uppercase;
-    letter-spacing: -0.01em;
-
-    /* Main Gradient */
-
-    background: linear-gradient(180deg, #4ad66d 0%, #04ac2e 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-  }
-  &__img {
-    mix-blend-mode: luminosity;
-    margin-right: -25px;
-    @media screen and (min-width: 1200px) {
-      width: 50%;
-    }
-    & > picture > img {
-      margin-right: 0;
-      margin-left: auto;
-    }
-    // position: absolute;
-    // background: url(./img/AA_2@2x.png);
-    // background-repeat: no-repeat;
-    // background-position: right center;
-    // background-size: 100%;
-    // height: 100%;
-  }
-}
 
 .section {
   margin-top: 5rem;
@@ -153,7 +31,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: url(./icons/touch.svg);
+    // background: url(./icons/touch.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 155%;
