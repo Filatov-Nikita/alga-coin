@@ -1,5 +1,5 @@
 <template>
-<div class=" tw-flex tw-flex-col tw-justify-between tw-h-full">
+<div class=" tw-flex tw-flex-col tw-justify-between tw-h-full tw-relative">
     <div>
         <div class=" tw-text-xxs tw-text-text-gray tw-mb-7.5  tw-mt-6">
           MENU
@@ -21,7 +21,7 @@
           </router-link>
         </ul>
     </div>
-    <div  class=" tw-mb-4">
+    <div  class=" tw-fixed tw-bottom-0 tw-mb-4">
         <div class=" tw-text-xxs tw-text-text-gray tw-mb-7.5  tw-mt-6">
           PROFILE
         </div>
@@ -74,7 +74,7 @@ export default {
 <style lang="scss" scoped>
 .profile {
     &__name {
-            white-space: nowrap;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     }

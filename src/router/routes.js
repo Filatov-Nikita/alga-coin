@@ -74,7 +74,11 @@ const routes = [
           component: () => import("pages/Wallet.vue"),
           name: "wallet",
         },
-
+        {
+          path: "profile2",
+          component: () => import("pages/Profile.vue"),
+          name: "profile2",
+        },
         {
           path: "/output",
           component: () => import("pages/Output.vue"),
@@ -87,11 +91,11 @@ const routes = [
         //   name: "history",
         // },
 
-        {
-          path: "/profile",
-          component: () => import("pages/Profile.vue"),
-          name: "profile",
-        },
+        // {
+        //   path: "/profile2",
+        //   component: () => import("pages/Profile.vue"),
+        //   name: "profile2",
+        // },
 
         {
           path: "/polls",
@@ -123,6 +127,11 @@ const routes = [
     children: [
       ...markAuth(
         {
+          path: "profile",
+          component: () => import("pages/V3/Profile.vue"),
+          name: "profile",
+        },  
+        {
           path: "index-directive",
           component: () => import("pages/V3/IndexDirective.vue"),
           name: "index-directive",
@@ -132,6 +141,11 @@ const routes = [
           component: () => import("pages/V3/History.vue"),
           name: "history",
         },
+        //  {
+        //   path: "index-directive2",
+        //   component: () => import("pages/V3/IndexDirective.vue"),
+        //   name: "index-directive",
+        // },
       )
 
     ],

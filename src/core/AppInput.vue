@@ -13,6 +13,7 @@ import {
   h,
   withDirectives,
   ref,
+  watch,
   getCurrentInstance,
   defineComponent,
   toRef,
@@ -64,7 +65,7 @@ export default defineComponent({
     },
     ...{ rules: Field.props.rules, standalone: Field.props.standalone },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'isError'],
   setup(props, { slots, emit, attrs, expose }) {
     const { label, name, type, rules, creditCard, currency, rootAttrs } = props;
     const inputRef = ref(null);
@@ -73,7 +74,6 @@ export default defineComponent({
 
     let field;
     let opts = null;
-
     const fieldStg = { label, standalone: props.standalone, ...rootAttrs };
     if (type === 'tel') {
       ({ field, ...opts } = _useTelField(name, rules, fieldStg));
@@ -103,6 +103,8 @@ export default defineComponent({
     const changeVal = (val) => {
       field.setValue(val);
     };
+
+    watch(field.errors,(val)=>emit('isError', !val[0] ? true : false))
     useModel(field.value, modelValueRef, modelValueEmit, changeVal);
 
     return () => {

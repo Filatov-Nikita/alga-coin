@@ -43,6 +43,7 @@ module.exports = {
       "dark-blue-cover": "#000320",
       "dark-gray": "#141734",
       "text-gray": "#9596a3",
+      "purple-dark": "#9596A3",
       "purple-light": '#BEC3FF'
     },
     fontFamily: {

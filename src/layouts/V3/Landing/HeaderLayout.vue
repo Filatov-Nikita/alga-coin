@@ -528,7 +528,7 @@ export default {
     width: 100%;
     height: 100%;
     mix-blend-mode: luminosity;
-    background: url('/src/asset/icons/touch.svg');
+    background: url('src/assets/icons/touch.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 300%;

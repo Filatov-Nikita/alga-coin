@@ -14,7 +14,7 @@
      
           
           <q-page-container class="tw-container  tw-px-7.5 tw-grid content">
-            <div class="width:200px">
+            <div class="width:200px sidebar">
                 <SideBar/>
             </div>
           <router-view />
@@ -51,7 +51,16 @@ export default {
 }
 
 .content {
+  @include screen-xl {
     grid-template-columns: 170px 1fr;
     gap: 90px;
+  }
+}
+
+.sidebar {
+  display: none;
+  @include screen-xl {
+    display: block;
+  }
 }
 </style>

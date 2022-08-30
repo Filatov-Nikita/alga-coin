@@ -1,5 +1,5 @@
 <template>
-  <button class="button" :class="`button__${design}`">
+  <button class="button" :type="type" :class="`button__${design}`">
     <slot></slot>
   </button>
 </template>
@@ -11,6 +11,10 @@ export default {
       design: {
         type: String,
         default: 'green'
+      },
+      type: {
+        default: 'button',
+        type: String
       }
     }
 }
