@@ -111,7 +111,12 @@ background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-r
     }
 
   .app-page-bg_lk {
-    background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk.svg) no-repeat;
+    background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk-mob.svg) no-repeat;
+    background-position: center bottom;
+    @include screen-xl {
+      background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk.svg) no-repeat;
+          background-position: inherit;
+    }
   }
 
   .app-logo {

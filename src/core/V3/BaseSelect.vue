@@ -48,8 +48,8 @@ export default {
 .dropdown {
     $this: &;
     margin: 0;
-    max-width: 130px;
-    width: 100%;
+    max-width: 180px;
+    width: max-content;
     position: relative;
 
     &__head {

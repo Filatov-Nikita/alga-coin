@@ -160,7 +160,7 @@ export default {
         await registr(...args);
         changeStep("verifing");
         // consolog.log(...args)
-        await getCode({ mail: args[0].email });
+        // await getCode({ mail: args[0].email });
       } catch (e) {
         if (422 in e) return;
         throw e;

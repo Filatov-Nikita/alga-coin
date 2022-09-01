@@ -22,7 +22,7 @@
               {{ t("card-big.signin.text") }}
             </p>
           </div>
-          <button class="tw-mt-7.5 xl:tw-mt-0 button" @click="$router.push({ name: 'auth.registr' })">
+          <button class="tw-mt-7.5 xl:tw-mt-0 button" @click="stage1">
             {{ t("card-big.signin.createButton") }}
           </button>
         </div>
@@ -43,35 +43,23 @@
                 <div class="circle tw-flex-shrink-0">
                   <img src="./img/index-icon_1.png" alt="" />
                 </div>
-                <h4>ALGA GOLD</h4>
+                <h4>BTC main</h4>
               </div>
               <p class="tw-mt-2.5 tokens">
-                BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                BTC, STABLES
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
-                    <img src="./icons/up.svg" alt="" />
-                    <h4>12,75%</h4>
+                    <MarkIcon :mark="btnMainTwoMonthPrecent"/>
+                    <h4>{{btnMainTwoMonthPrecent}}%</h4>
                   </div>
                 </div>
                 <div>
-                  <MiniAreaChart :values="[
-                    [1327359600000, 30.95],
-                    [1330383600000, 33.27],
-                    [1331506800000, 33.56],
-                    [1332885600000, 34.46],
-                    [1334181600000, 33.55],
-                    [1336946400000, 32.23],
-                    [1338242400000, 32.05],
-                    [1338933600000, 31.69],
-                    [1342994400000, 30.64],
-                    [1345759200000, 32.26],
-                    [1361919600000, 39.60],
-                  ]" />
+                  <MiniAreaChart :values="btnMainData" />
 
-                  <button @click="$router.push({ name: 'index-directive' })"
+                  <button @click="stage2"
                     class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
@@ -84,36 +72,23 @@
                 <div class="circle tw-flex-shrink-0">
                   <img src="./img/index-icon_2.png" alt="" />
                 </div>
-                <h4>ALGA SILVER</h4>
+                <h4>ETH main</h4>
               </div>
               <p class="tw-mt-2.5 tokens">
-                BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                ETH, ETC, ETHfork, STABLES
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
-                    <img src="./icons/up.svg" alt="" />
-                    <h4>13,05%</h4>
+                    <MarkIcon :mark="ethMainTwoMonthPrecent"/>
+                    <h4>{{ethMainTwoMonthPrecent}}%</h4>
                   </div>
                 </div>
                 <div>
-                  <MiniAreaChart :values="
-                  [
-                    [1327359600000, 30.95],
-                    [1330383600000, 33.27],
-                    [1331506800000, 33.56],
-                    [1332885600000, 34.46],
-                    [1334181600000, 33.55],
-                    [1336946400000, 35.23],
-                    [1338242400000, 32.05],
-                    [1338933600000, 31.69],
-                    [1342994400000, 30.64],
-                    [1345759200000, 32.26],
-                    [1361919600000, 39.60],
-                  ]" />
+                  <MiniAreaChart :values="ethMainData" />
 
-                  <button @click="$router.push({ name: 'index-directive' })"
+                  <button @click="stage2"
                     class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
@@ -127,36 +102,24 @@
                   <img src="./img/index-icon_3.png" alt="" />
                 </div>
                 <h4>
-                  ALGA CONSERVATIVE
+                  BTC combo
                 </h4>
               </div>
               <p class="tw-mt-2.5 tokens">
-                BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                BTC, ETH, BNB, LTC, STABLES
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
-                    <img src="./icons/up.svg" alt="" />
-                    <h4>12,15%</h4>
+                    <MarkIcon :mark="btcComboTwoMonthPrecent"/>
+                    <h4>{{btcComboTwoMonthPrecent}}%</h4>
                   </div>
                 </div>
                 <div>
-                  <MiniAreaChart :values="[
-                    [1327359600000, 30.95],
-                    [1330383600000, 33.27],
-                    [1331506800000, 33.56],
-                    [1332885600000, 34.46],
-                    [1334181600000, 33.55],
-                    [1336946400000, 32.23],
-                    [1338242400000, 35.05],
-                    [1338933600000, 31.69],
-                    [1342994400000, 30.64],
-                    [1345759200000, 32.26],
-                    [1361919600000, 31.60],
-                  ]" />
+                  <MiniAreaChart :values="btcComboData"/>
 
-                  <button @click="$router.push({ name: 'index-directive' })"
+                  <button @click="stage2"
                     class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
@@ -170,36 +133,24 @@
                   <img src="./img/index-icon_4.png" alt="" />
                 </div>
                 <h4>
-                  ALGA PROGRESSIVE
+                  ETH combo 
                 </h4>
               </div>
               <p class="tw-mt-2.5 tokens">
-                BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                ETH, BTC, ETC, BNB, LTC, STABLES
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
-                    <img src="./icons/up.svg" alt="" />
-                    <h4>14,23%</h4>
+                    <MarkIcon :mark="ethComboTwoMonthPrecent"/>
+                    <h4>{{ethComboTwoMonthPrecent}}%</h4>
                   </div>
                 </div>
                 <div>
-                  <MiniAreaChart :values="[
-                    [1327359600000, 35.95],
-                    [1330383600000, 33.27],
-                    [1331506800000, 32.56],
-                    [1332885600000, 31.46],
-                    [1334181600000, 33.55],
-                    [1336946400000, 32.23],
-                    [1338242400000, 32.05],
-                    [1338933600000, 31.69],
-                    [1342994400000, 30.64],
-                    [1345759200000, 32.26],
-                    [1361919600000, 39.60],
-                  ]" />
+                  <MiniAreaChart :values="ethComboData" />
 
-                  <button @click="$router.push({ name: 'index-directive' })"
+                  <button @click="stage2"
                     class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
@@ -213,36 +164,24 @@
                   <img src="./img/index-icon_5.png" alt="" />
                 </div>
                 <h4>
-                  ALGA ART
+                  Stable index 
                 </h4>
               </div>
               <p class="tw-mt-2.5 tokens">
-                BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                ERC20, TRC20, BUSD, GUSD, USDC
               </p>
               <div class="tw-mt-5 tw-flex tw-justify-between">
                 <div>
-                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                  <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                   <div class="tw-flex tw-gap-x-2.5">
-                    <img src="./icons/up.svg" alt="" />
-                    <h4>13%</h4>
+                    <MarkIcon :mark="stableIndexTwoMonthPrecent"/>
+                    <h4>{{stableIndexTwoMonthPrecent}}%</h4>
                   </div>
                 </div>
                 <div>
-                  <MiniAreaChart :values="[
-                    [1327359600000, 30.95],
-                    [1330383600000, 33.27],
-                    [1331506800000, 33.56],
-                    [1332885600000, 34.46],
-                    [1334181600000, 33.55],
-                    [1336946400000, 32.23],
-                    [1338242400000, 32.05],
-                    [1338933600000, 31.69],
-                    [1342994400000, 34.64],
-                    [1345759200000, 35.26],
-                    [1361919600000, 39.60],
-                  ]" />
+                  <MiniAreaChart :values="stableIndexData" />
 
-                  <button @click="$router.push({ name: 'index-directive' })"
+                  <button @click="stage2"
                     class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                     <span class="buy">{{ t("other.button.buy") }}</span>
                     <img src="./icons/button-arrow.svg" alt="" />
@@ -272,35 +211,23 @@
                     <div class="circle tw-flex-shrink-0">
                       <img src="./img/index-icon_1.png" alt="" />
                     </div>
-                    <h4>ALGA GOLD</h4>
+                    <h4>BTC main</h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
-                    BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                    BTC, STABLES
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
-                        <img src="./icons/up.svg" alt="" />
-                        <h4>12,75%</h4>
+                        <MarkIcon :mark="btnMainTwoMonthPrecent"/>
+                        <h4>{{btnMainTwoMonthPrecent}}%</h4>
                       </div>
                     </div>
                     <div>
-                      <MiniAreaChart :values="[
-                        [1327359600000, 30.95],
-                        [1330383600000, 33.27],
-                        [1331506800000, 33.56],
-                        [1332885600000, 34.46],
-                        [1334181600000, 33.55],
-                        [1336946400000, 32.23],
-                        [1338242400000, 32.05],
-                        [1338933600000, 31.69],
-      [1342994400000, 30.64],
-                        [1345759200000, 32.26],
-                        [1361919600000, 39.60],
-                      ]" />/>
+                      <MiniAreaChart :values="btnMainData"/>
 
-                      <button @click="$router.push({ name: 'index-directive' })"
+                      <button @click="stage2"
                         class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
@@ -315,36 +242,24 @@
                     <div class="circle tw-flex-shrink-0">
                       <img src="./img/index-icon_2.png" alt="" />
                     </div>
-                    <h4>ALGA SILVER</h4>
+                    <h4>ETH main</h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
-                    BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                    ETH, ETC, ETHfork, STABLES
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
-                        <img src="./icons/up.svg" alt="" />
-                        <h4>13,05%</h4>
+                        <MarkIcon :mark="ethMainTwoMonthPrecent"/>
+                        <h4>{{ethMainTwoMonthPrecent}}%</h4>
                       </div>
                     </div>
                     <div>
                       <MiniAreaChart :values="
-                      [
-                        [1327359600000, 30.95],
-                        [1330383600000, 33.27],
-                        [1331506800000, 33.56],
-                        [1332885600000, 34.46],
-                        [1334181600000, 33.55],
-                        [1336946400000, 35.23],
-                        [1338242400000, 32.05],
-                        [1338933600000, 31.69],
-                        [1342994400000, 30.64],
-                        [1345759200000, 32.26],
-                        [1361919600000, 39.60],
-                      ]" />
+                      ethMainData" />
 
-                      <button @click="$router.push({ name: 'index-directive' })"
+                      <button @click="stage2"
                         class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
@@ -360,36 +275,24 @@
                       <img src="./img/index-icon_3.png" alt="" />
                     </div>
                     <h4>
-                      ALGA CONSERVATIVE
+                      BTC combo 
                     </h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
-                    BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                    BTC, ETH, BNB, LTC, STABLES
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
-                        <img src="./icons/up.svg" alt="" />
-                        <h4>12,15%</h4>
+                        <MarkIcon :mark="btcComboTwoMonthPrecent"/>
+                        <h4>{{btcComboTwoMonthPrecent}}%</h4>
                       </div>
                     </div>
                     <div>
-                      <MiniAreaChart :values="[
-                        [1327359600000, 30.95],
-                        [1330383600000, 33.27],
-                        [1331506800000, 33.56],
-                        [1332885600000, 34.46],
-                        [1334181600000, 33.55],
-                        [1336946400000, 32.23],
-                        [1338242400000, 35.05],
-                        [1338933600000, 31.69],
-                        [1342994400000, 30.64],
-                        [1345759200000, 32.26],
-                        [1361919600000, 31.60],
-                      ]" />
+                      <MiniAreaChart :values="btcComboData" />
 
-                      <button @click="$router.push({ name: 'index-directive' })"
+                      <button @click="stage2"
                         class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
@@ -405,36 +308,24 @@
                       <img src="./img/index-icon_4.png" alt="" />
                     </div>
                     <h4>
-                      ALGA PROGRESSIVE
+                      ETH combo
                     </h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
-                    BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                    ETH, BTC, ETC, BNB, LTC, STABLES 
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
-                        <img src="./icons/up.svg" alt="" />
-                        <h4>14,23%</h4>
+                        <MarkIcon :mark="ethComboTwoMonthPrecent"/>
+                        <h4>{{ethComboTwoMonthPrecent}}%</h4>
                       </div>
                     </div>
                     <div>
-                      <MiniAreaChart :values="[
-                        [1327359600000, 35.95],
-                        [1330383600000, 33.27],
-                        [1331506800000, 32.56],
-                        [1332885600000, 31.46],
-                        [1334181600000, 33.55],
-                        [1336946400000, 32.23],
-                        [1338242400000, 32.05],
-                        [1338933600000, 31.69],
-                        [1342994400000, 30.64],
-                        [1345759200000, 32.26],
-                        [1361919600000, 39.60],
-                      ]" />
+                      <MiniAreaChart :values="ethComboData" />
 
-                      <button @click="$router.push({ name: 'index-directive' })"
+                      <button @click="stage2"
                         class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
@@ -450,36 +341,24 @@
                       <img src="./img/index-icon_5.png" alt="" />
                     </div>
                     <h4>
-                      ALGA ART
+                      Stable index 
                     </h4>
                   </div>
                   <p class="tw-mt-2.5 tokens">
-                    BNB, ETH, ALG, BNB, ETH, ALG, ETH, ALG
+                    ERC20, TRC20, BUSD, GUSD, USDC
                   </p>
                   <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
-                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '6' })"></p>
+                      <p class="tw-text-white" v-html="t('indexD.card.profitability.1', { numb: '2' })"></p>
                       <div class="tw-flex tw-gap-x-2.5">
-                        <img src="./icons/up.svg" alt="" />
-                        <h4>13%</h4>
+                        <MarkIcon :mark="stableIndexTwoMonthPrecent"/>
+                        <h4>{{stableIndexTwoMonthPrecent}}%</h4>
                       </div>
                     </div>
                     <div>
-                      <MiniAreaChart :values="[
-                        [1327359600000, 30.95],
-                        [1330383600000, 33.27],
-                        [1331506800000, 33.56],
-                        [1332885600000, 34.46],
-                        [1334181600000, 33.55],
-                        [1336946400000, 32.23],
-                        [1338242400000, 32.05],
-                        [1338933600000, 31.69],
-                        [1342994400000, 34.64],
-                        [1345759200000, 35.26],
-                        [1361919600000, 39.60],
-                      ]" />
+                      <MiniAreaChart :values="stableIndexData" />
 
-                      <button @click="$router.push({ name: 'index-directive' })"
+                      <button @click="stage2"
                         class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center">
                         <span class="buy">{{ t("other.button.buy") }}</span>
                         <img src="./icons/button-arrow.svg" alt="" />
@@ -1149,12 +1028,12 @@
             </p>
           </div>
           <div class="tw-flex tw-flex-col tw-mt-7.5 tw-gap-5 xl:tw-mt-0 xl:tw-flex-row xl:tw-gap-3">
-            <button class="button">
+            <a class="button" href="https://t.me/algafinancechat" target="blank">
               {{ t("card-big.anyquestion.contacrusButton") }}
-            </button>
-            <button class="button-black">
+            </a>
+            <a class="button-black" href="https://t.me/algafinancechat" target="blank">
               {{ t("card-big.anyquestion.joinButton") }}
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -1165,7 +1044,11 @@
 import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
+import useChartData from "src/composition/V3/useChartData.js"
+
 import MiniAreaChart from "src/components/V3/MiniAreaChart.vue"
+import MarkIcon from "src/components/V3/MarkIcon.vue"
+import { method } from "lodash";
 const i18n = {
   messages: {
     "ru-RU": {
@@ -1489,9 +1372,13 @@ const i18n = {
 };
 export default {
   components: {
-    MiniAreaChart
+    MiniAreaChart,
+    MarkIcon
   },
   setup() {
+    const {btnMainData, ethMainData, btcComboData, ethComboData,stableIndexData,
+            btnMainTwoMonthPrecent, ethMainTwoMonthPrecent, btcComboTwoMonthPrecent, ethComboTwoMonthPrecent, stableIndexTwoMonthPrecent
+        } = useChartData();
     const $i18n = useI18n();
     const store = useStore();
     const locale = computed(() => {
@@ -1573,8 +1460,23 @@ export default {
       slide: ref("1"),
       lorem:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.",
+
+      btnMainData, ethMainData, btcComboData, ethComboData,stableIndexData,
+            btnMainTwoMonthPrecent, ethMainTwoMonthPrecent, btcComboTwoMonthPrecent, ethComboTwoMonthPrecent, stableIndexTwoMonthPrecent
     };
+
+
   },
+  methods: {
+    stage1(){
+      ym(90160255,'reachGoal','stage1');
+      this.$router.push({ name: 'auth.registr' })
+    },
+    stage2 (){
+      ym(90160255,'reachGoal','stage 2')
+      this.$router.push({ name: 'index-directive' })
+    }
+  }
 };
 </script>
 

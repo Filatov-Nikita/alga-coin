@@ -10,7 +10,8 @@
             <a href="#" class="text-arrow-brand tw-underline">Whitepaper.pdf</a> -->
         </div>
         <div class="tw-flex tw-gap-2.5">
-          <a href="#" class="pie pie-link"><img :src="require('assets/icons/twitter.svg')" alt="twitter" /></a><a href="#"
+          <a href="https://twitter.com/AlgaEcosystem" target="blank" class="pie pie-link"><img :src="require('assets/icons/twitter.svg')" alt="twitter" /></a>
+          <a href="https://t.me/algafinance" target="blank"
             class="pie pie-link"><img :src="require('assets/icons/telegram.svg')" alt="telegram" /></a><a href="#"
             class="pie pie-link"><img :src="require('assets/icons/discord.svg')" alt="discord" /></a>
         </div>

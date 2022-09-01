@@ -1,8 +1,8 @@
 import { resolveComponent, h, ref } from "vue";
 import { useField } from "vee-validate";
 
-const NUMBER_FLAG = { "+7": "ru", "+1": "ru", "+3": "ru" };
-const OPTION_VALUES = ["+7", "+1", "+3", "+7", "+1", "+3", "+7", "+1", "+3"];
+const NUMBER_FLAG = { "+7": "ru" };
+const OPTION_VALUES = ["+7"];
 const DEFAULT_PREFIX = '+7';
 
 function createSelect(ctx) {

@@ -39,7 +39,7 @@ export function getVerifingCode ({ mail }) {
       Accept: "application/json",
     },
     json: {
-      mail,
+      email:mail,
     },
   });
 }

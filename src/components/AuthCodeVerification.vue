@@ -1,8 +1,8 @@
 <template>
   <div>
+    <!-- :label="$t('inputs.code')" -->
     <AppInput
       name="verification_code"
-      :label="$t('inputs.code')"
       :placeholder="$t('inputs.wrongCode')"
       rules="required"
     />

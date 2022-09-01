@@ -37,8 +37,8 @@
                 <RoundDiagram class="inside__round" @clickCircle="clickCircle" :values="allValue"
                                 :colors="allColor" :isText="false" :activeCircleIndex="activeIndex" :clickable="true">
                     <template #image>
-                        <image x="130" y="130" width="240"
-                            :xlink:href="require('assets/icons/index-directive/indg-2.svg')" />
+                        <image x="160" y="160" width="180"
+                            :xlink:href="require('assets/images/tokenomics-icon.png')" />
                     </template>
                 </RoundDiagram>
                     <div class="round__card" >

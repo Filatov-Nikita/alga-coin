@@ -5,11 +5,11 @@
     <AppCodeInput
       :length="4"
       class="app-auth__code"
-      :label="$t('inputs.code')"
       @update:code="submit($event, { validate })"
-    />
+      />
+      <!-- :label="$t('inputs.code')" -->
+    <AuthCodeRepeat :mail="mail" />
   </Form>
-  <AuthCodeRepeat :mail="mail" />
 </template>
 
 <script>
@@ -28,15 +28,15 @@ export default {
     const { t } = useI18n({
       messages: {
         "ru-RU": {
-          header: "Верификация по номеру телефона",
+          header: "Введите код",
           subtitle:
             // 'Введите 6-значный код подтверждения, <br /> который был отправлен на {mail}. <br /> Код действителен в течение 30 минут.',
-            "Восстановить доступ к системе с помощью <br/> мобильного телефона и смс-кода.",
+            "Мы отправили код на вашу электронную почту",
         },
         "en-US": {
-          header: "Verification by phone number",
+          header: "Enter Code",
           subtitle:
-            "Restore access to the system using <br/> a mobile phone and an SMS code.",
+            "We are sending code to your email",
         },
       },
     });

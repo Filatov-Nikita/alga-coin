@@ -94,6 +94,7 @@
   padding: 20px;
   font-size: 1rem;
   line-height: 19px;
+  position: relative;
 }
 .button {
   background: linear-gradient(180deg, #4ad66d 0%, #04ac2e 100%);
@@ -103,6 +104,8 @@
   min-height: 60px;
   padding: 20px;
   font-size: 1rem;
+  color: #fff;
+  position: relative;
   line-height: 19px;
 }
 
@@ -176,6 +179,7 @@
   &-card--desk {
     padding: 40px 25px;
     position: relative;
+    margin-top: 80px;
     #{$this}-avatar {
       position: absolute;
       right: 20px;

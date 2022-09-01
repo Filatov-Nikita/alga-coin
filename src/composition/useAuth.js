@@ -38,7 +38,7 @@ export default function () {
         verification_code: verification_code || curCode.value,
       });
 
-      await login({ mail, password });
+      await login({ mail:mail.value, password });
 
       router.push({ name: "index-directive" });
     } catch (e) {
