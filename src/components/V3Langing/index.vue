@@ -130,7 +130,7 @@
             <div class="card card-gray">
               <div class="tw-flex tw-gap-3.5">
                 <div class="circle tw-flex-shrink-0">
-                  <img src="./img/index-icon_4.png" alt="" />
+                  <img src="./img/index-icon_6.png" alt="" />
                 </div>
                 <h4>
                   ETH combo 
@@ -1008,7 +1008,7 @@
         <div class="accardion tw-mt-10">
           <div class="accardion-item">
             <div class="card card__border-line accardion-item__card">
-              <h4>{{ t("faq.items.1.title") }}</h4>
+              <h4 v-html="t('faq.items.1.title')"></h4>
               <button @click="toggle('test')" class="pie pie-arrow button-arrow"
                 :class="accardion == 'test' ? 'active' : ''">
                 <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
@@ -1017,6 +1017,71 @@
             </div>
             <p class="accardion-item__text" :class="accardion == 'test' ? 'active' : ''" id="accordion-test"
               v-html="t('faq.items.1.text')"></p>
+          </div>
+
+          <div class="accardion-item">
+            <div class="card card__border-line accardion-item__card">
+              <h4 v-html="t('faq.items.2.title')"></h4>
+              <button @click="toggle('2')" class="pie pie-arrow button-arrow"
+                :class="accardion == '2' ? 'active' : ''">
+                <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
+                </q-icon>
+              </button>
+            </div>
+            <p class="accardion-item__text" :class="accardion == '2' ? 'active' : ''" id="accordion-2"
+              v-html="t('faq.items.2.text')"></p>
+          </div>
+
+          <div class="accardion-item">
+            <div class="card card__border-line accardion-item__card">
+              <h4 v-html="t('faq.items.3.title')"></h4>
+              <button @click="toggle('3')" class="pie pie-arrow button-arrow"
+                :class="accardion == '3' ? 'active' : ''">
+                <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
+                </q-icon>
+              </button>
+            </div>
+            <p class="accardion-item__text" :class="accardion == '3' ? 'active' : ''" id="accordion-3"
+              v-html="t('faq.items.3.text')"></p>
+          </div>
+
+          <div class="accardion-item">
+            <div class="card card__border-line accardion-item__card">
+              <h4 v-html="t('faq.items.4.title')"></h4>
+              <button @click="toggle('4')" class="pie pie-arrow button-arrow"
+                :class="accardion == '4' ? 'active' : ''">
+                <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
+                </q-icon>
+              </button>
+            </div>
+            <p class="accardion-item__text" :class="accardion == '4' ? 'active' : ''" id="accordion-4"
+              v-html="t('faq.items.4.text')"></p>
+          </div>
+
+          <div class="accardion-item">
+            <div class="card card__border-line accardion-item__card">
+              <h4 v-html="t('faq.items.5.title')"></h4>
+              <button @click="toggle('5')" class="pie pie-arrow button-arrow"
+                :class="accardion == '5' ? 'active' : ''">
+                <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
+                </q-icon>
+              </button>
+            </div>
+            <p class="accardion-item__text" :class="accardion == '5' ? 'active' : ''" id="accordion-5"
+              v-html="t('faq.items.5.text')"></p>
+          </div>
+
+          <div class="accardion-item">
+            <div class="card card__border-line accardion-item__card">
+              <h4 v-html="t('faq.items.6.title')"></h4>
+              <button @click="toggle('6')" class="pie pie-arrow button-arrow"
+                :class="accardion == '6' ? 'active' : ''">
+                <q-icon name="r_keyboard_arrow_down" size="35px" class="arrow-icon">
+                </q-icon>
+              </button>
+            </div>
+            <p class="accardion-item__text" :class="accardion == '6' ? 'active' : ''" id="accordion-6"
+              v-html="t('faq.items.6.text')"></p>
           </div>
         </div>
         <div class="card-big tw-mt-15 xl:tw-mt-20">
@@ -1185,9 +1250,59 @@ const i18n = {
         title: "FAQ",
         items: {
           1: {
-            title: "Для чего используется WalletConnect?",
-            text: "WalletConnect формирует соединения и переводит средства между децентрализованными кошельками и приложениями. Многие люди неправильно понимают WalletConnect как какой-то кошелек. Однако это не так. Некоторые из наиболее распространенных вариантов использования WalletConnect включают перевод средств на децентрализованные платформы для ставок, онлайн-казино, службы на основе DApp и т. д. <br> Следовательно, всякий раз, когда присутствует элемент транзакции, на сцену выходит WalletConnect. Значение WalletConnect заключается в зашифрованном соединении, которое он предлагает. Естественно, безопасность является главным приоритетом, когда речь идет о онлайн-транзакциях.",
+            title: "Что такое Alga Ecosystem?",
+            text: `
+              Alga Ecosystem — это совершенно новый инструмент для удобного входа в мир криптовалюты и разумных инвестиций. На начальном этапе в экосистема будет состоять из трех основных продуктов:
+              <br>
+              -Платформа индексных деривативов Alga (AID)
+              <br>
+              -Образовательная платформа Alga (AE)
+              <br>
+              -Социальная сеть Alga Indexview (AI)
+            `,
           },
+          2: {
+            title: "Что такое Платформа индексных деривативов Alga?",
+            text: `
+              Это CeFi платформа, которая позволяет вам инвестировать в криптовалюты через индексные деривативы. Команда объединила передовые технологии и личный торговый опыт, чтобы создать среду безопасного инвестирования средств пользователей и получения сбалансированной доходности на аллокированный капитал с помощью индексов. AID дает возможность отдельным лицам или учреждениям создавать, управлять и вкладываться в инновационные инвестиционные инструменты.
+            `
+          },
+          3: {
+            title: "Что такое индекс?",
+            text: `
+              Индекс — это дериватив, который представляет собой полностью обеспеченный портфель активов, который может позволить людям или организациям управлять своим капиталом и капиталом других в безопасной среде.
+            `
+          },
+          4: {
+            title: "Какие виды индексов есть у вас на платформе?",
+            text: `
+              В настоящий момент на платформе AID представлено 5 индексов:
+              <br>
+              - BTC MAIN ALGA INDEX;
+              <br>
+              - ETH MAIN ALGA INDEX;
+              <br>
+              - BTC COMBO ALGA INDEX;
+              <br>
+              - ETH COMBO ALGA INDEX;
+              <br>
+              - STABLE ALGA INDEX.
+              <br>
+              С развитием платформы будут добавляться новые индексы.
+            `
+          },
+          5: {
+            title: "Что такое Alga Token и для чего он нужен?",
+            text: `
+              Токен Alga является нативным токеном экосистемы. Владельцы Alga получат ряд преимуществ, таких как: возможность стейкинга и участия в DAO, создания собственных индексов. Кроме того, за токены Alga можно будет получить скидку на образовательные программы и различные функции кастомизации в Alga Indexview.
+            `
+          },
+          6: {
+            title: "Законна ли деятельность вашей платформы?",
+            text: `
+            Да, интеллектуальная собственность Alga Ecosystem принадлежит юридическому лицу, официально оформленному в г. Дубай (ОАЭ). Оно имеет лицензию на работу с цифровыми активами.
+            `
+          }
         },
       },
       "card-big": {
@@ -1199,8 +1314,8 @@ const i18n = {
         anyquestion: {
           title: "Остались вопросы?",
           text: "По всем вопросам пишите нам и оператор свяжется с вами в ближайшее время",
-          contacrusButton: "Свяжитесь с нами",
-          joinButton: "Присоединяйтесь к нашему сообществу",
+          contacrusButton: "Напишите нам",
+          joinButton: "Вступайте в сообщество",
         },
       },
       other: {
@@ -1344,9 +1459,59 @@ const i18n = {
         title: "FAQ",
         items: {
           1: {
-            title: "What is WalletConnect used for?",
-            text: "WalletConnect forms connections and transfers funds between decentralized wallets and applications. Many people misunderstand WalletConnect to be some wallet. However, that's not true. Some of the most common use cases of WalletConnect include transferring funds to decentralized betting platforms, online casinos, DApps based services, etc. <br> Hence, whenever there is an element of transaction involved, WalletConnect comes into the picture. The significance of WalletConnect is the encrypted connection that it offers. Naturally, security is the topmost priority when it comes to online transactions.",
+            title: "What is the Alga Ecosystem?",
+            text: `
+              Alga Ecosystem is the brand new tool for both comfortable entrance to the crypto world and smart investments. At the early stage the Ecosystem contains three main products:
+              <br>
+              -Alga Index Derivatives platform (AID)
+              <br>
+              -Alga Education platform (AE)
+              <br>
+              -Alga Indexview social network (AI)
+            `,
           },
+          2: {
+            title: 'What is the Alga Index Derivatives platform?',
+            text: `
+              It is a CeFi platform that allows you to invest in cryptocurrencies through index derivatives.
+              <br>
+              Founders combine advanced technology and personal trading experience to create an environment for safe investment of users’ funds and balanced returns on allocated capital with the help of indexes. AID empowers individuals or institutions to create, manage and invest in innovative on-chain investment tools.
+            `
+          },
+          3: {
+            title: 'What is index?',
+            text: `
+              Index is a derivative that represents a fully collateralized portfolio of assets that can enable people or entities to manage their wealth & the wealth of others within a safe environment. 
+            `
+          },
+          4: {
+            title: 'What kind of indexes are represented at AIDT?',
+            text: `
+              Currently we have 5 indexes:
+              <br>
+              - BTC MAIN ALGA INDEX;
+              <br>
+              - ETH MAIN ALGA INDEX;
+              <br>
+              - BTC COMBO ALGA INDEX;
+              <br>
+              - ETH COMBO ALGA INDEX;
+              <br>
+              - STABLE ALGA INDEX.
+              <br>
+              With the development of the platform it will be more.
+            `
+          },
+          5: {
+            title: 'What is an Alga token and what are its use cases?',
+            text: `
+              Alga token is native token of the Alga Ecosystem. Holders of Alga will have several benefits, such as: possibility of staking and DAO participation, creation of own indexes. Discounts for Educational programs and different customization features at Alga Indexview.
+            `
+          },
+          6: {
+            title: 'Is the operation of Alga Ecosystem legal?',
+            text: `Yes, Alga Ecosystem works under the registered legal entity in Dubai (UAE). Entity is licensed to work with digital assets.`
+          }
         },
       },
       "card-big": {
