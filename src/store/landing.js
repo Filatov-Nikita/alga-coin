@@ -1,20 +1,56 @@
 import * as landingAPI from "src/api/landing";
 
+const formatingDate = (date) => {
+  const newDate = new Date(date);
+  return `${newDate.getDate()}.${
+    String(newDate.getMonth()).length == 1
+      ? "0" + newDate.getMonth()
+      : newDate.getMonth()
+  }.${newDate.getFullYear()} `;
+};
 export default {
   namespaced: true,
   state: {
+    derivatives: null,
     projects: null,
     news: null,
     footer: (t) => [
-      { label: "White paper",to: t("landing.footer.whitePaper") },
+      { label: "White paper", to: t("landing.footer.whitePaper") },
       { label: "Roadmap", to: t("landing.footer.roadmapFile") },
-      { label: t("landing.footer.whyAlga"), to: t("landing.footer.whyAlgaFile") },
-      { label: "Alga Market", to: "#", popup: true, modalMessage: t("landing.footer.algaMarket")},
+      {
+        label: t("landing.footer.whyAlga"),
+        to: t("landing.footer.whyAlgaFile"),
+      },
+      {
+        label: "Alga Market",
+        to: "#",
+        popup: true,
+        modalMessage: t("landing.footer.algaMarket"),
+      },
     ],
     curEco: "BANKING",
     curOwner: "0",
   },
   getters: {
+    derivatives(state) {
+      if (state.derivatives?.length > 0) {
+        const newDirevative = state.derivatives.map((item) => {
+          return {
+            ...item,
+            closing_at: formatingDate(item["closing_at"]),
+            opening_at: formatingDate(item["opening_at"]),
+            withdrawal_since: formatingDate(item["withdrawal_since"]),
+          };
+        });
+        return newDirevative;
+      }
+      return null;
+    },
+
+    chart(state) {
+      return state.chart;
+    },
+
     footer(state) {
       return state.footer;
     },
@@ -46,6 +82,9 @@ export default {
       if (!Array.isArray(payload)) return;
       state.projects = payload;
     },
+    setDerivatives(state, payload) {
+      state.derivatives = payload;
+    },
   },
   actions: {
     async projectsList({ commit }) {
@@ -76,6 +115,17 @@ export default {
     },
     async createOffer(_c, formData) {
       const { data } = await landingAPI.createOffer(formData);
+      return data;
+    },
+
+    async getDerivatives({ commit }) {
+      const { data } = await landingAPI.getDerivatives();
+      commit("setDerivatives", data);
+      return data;
+    },
+
+    async getChartDerivative({ commit }, id) {
+      const { data } = await landingAPI.getChartDerivative(id);
       return data;
     },
   },

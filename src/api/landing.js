@@ -1,5 +1,13 @@
 import { MainApi } from "./utilities/service";
 
+export function getDerivatives() {
+  return MainApi.mainKy("landing/index-derivatives").json();
+}
+
+export function getChartDerivative(id) {
+  return MainApi.mainKy(`landing/index-derivatives/${id}/value-chart`).json();
+}
+
 export function newsList(searchParams = {}) {
   return MainApi.mainKy("landing/novelties", {
     searchParams,
