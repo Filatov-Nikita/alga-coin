@@ -51,5 +51,9 @@ export default {
     async setNewPassword(_c, data) {
       await AuthAPI.setNewPassword(data);
     },
+
+    async editPhone(_c, data) {
+      await AuthAPI.setNewPhone(data);
+    },
   },
 };

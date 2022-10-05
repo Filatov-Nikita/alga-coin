@@ -15,7 +15,7 @@ const routes = [
         component: () => import("pages/V3/Tokenomics.vue"),
         name: "tokenomics",
       },
-    ]
+    ],
   },
   {
     path: "/",
@@ -56,7 +56,7 @@ const routes = [
         name: "index-directive",
         props: true,
       },
-    ]
+    ],
   },
   // {
   //   path: "",
@@ -130,7 +130,7 @@ const routes = [
           path: "profile",
           component: () => import("pages/V3/Profile.vue"),
           name: "profile",
-        },  
+        },
         {
           path: "index-directive",
           component: () => import("pages/V3/IndexDirective.vue"),
@@ -141,13 +141,17 @@ const routes = [
           component: () => import("pages/V3/History.vue"),
           name: "history",
         },
+        {
+          path: "portfolio",
+          component: () => import("pages/V3/Portfolio.vue"),
+          name: "portfolio",
+        }
         //  {
         //   path: "index-directive2",
         //   component: () => import("pages/V3/IndexDirective.vue"),
         //   name: "index-directive",
         // },
-      )
-
+      ),
     ],
   },
 

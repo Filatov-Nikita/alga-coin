@@ -5,27 +5,27 @@ export default {
   namespaced: true,
   state: {
     profile: null,
-    name: null
+    name: null,
   },
   getters: {
     name(state) {
       if (state.name === null) return "";
-      const arrStr = state.name.split(" ")
-      if(arrStr.length !== 3)return arrStr[0];
+      const arrStr = state.name.split(" ");
+      if (arrStr.length !== 3) return arrStr[0];
       return arrStr[1];
     },
-    fio(state){
+    fio(state) {
       if (state.profile === null) return "";
       return state.profile.name;
     },
-    phone(state){
+    phone(state) {
       if (state.profile === null) return "";
       return state.profile.cellphone.replace("+7", "");
     },
-    email(state){
+    email(state) {
       if (state.profile === null) return "";
       return state.profile.email;
-    }
+    },
   },
   mutations: {
     setProfile(state, payload) {
@@ -33,31 +33,31 @@ export default {
       state.profile = payload.data;
     },
     setName(state, payload) {
-     state.name = payload
+      state.name = payload;
     },
     setFio(state, payload) {
-      state.profile.name = payload
-    }
+      state.profile.name = payload;
+    },
   },
   actions: {
     async show({ commit }) {
       const profileData = await ProfileAPI.show();
+      console.log(profileData);
       commit("setProfile", profileData);
       commit("setName", profileData.data.name);
-      return profileData
+      return profileData;
     },
 
-    async editName(_c, name){
+    async editName(_c, name) {
       const profileData = await ProfileAPI.editName(name);
-      console.log(name)
+      console.log(name);
       _c.commit("setName", name);
       return profileData;
     },
 
-    async editPassword(_c, password){
-      
+    async editPassword(_c, password) {
       const profileData = await ProfileAPI.editPassword(password);
       return profileData;
-    }
+    },
   },
 };

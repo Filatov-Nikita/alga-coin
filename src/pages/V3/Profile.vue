@@ -11,91 +11,111 @@
       <h4>Constantine</h4>
     </div>
 
-    <AppStep name="profile">
-      <div class="profile-step profile-step1">
+    <div class="profile-step profile-step1">
+      <div class="profile-step__item tw-mb-5">
+        <div class="tw-text-purple-dark">E-mail</div>
+        <div>{{ email }}</div>
+      </div>
+      <div>
         <div class="profile-step__item tw-mb-5">
-          <div class="tw-text-purple-dark">E-mail</div>
-          <div>example@mail.com</div>
-        </div>
-        <div>
-          <div class="profile-step__item tw-mb-5">
-            <div class="tw-text-purple-dark">Password</div>
-            <div>••••••••</div>
-            <div @click="edit('password')" class="tw-text-purple-light">
-              Edit
-            </div>
+          <div class="tw-text-purple-dark">Password</div>
+          <div>••••••••</div>
+          <div
+            v-if="editPassword"
+            @click="editPassword = false"
+            class="tw-text-purple-light tw-cursor-pointer"
+          >
+            Cancel
           </div>
-          <div class="tw-mb-5">
-            <Form @submit="updatePassword" v-slot="{ isSubmitting }">
-              <div class="profile-step__item-form">
-                <div class="tw-text-purple-dark">Old Password</div>
-                <AppInput
-                  type="password"
-                  name="oldPassword"
-                  :placeholder="$t('inputs.password')"
-                  rules="required|password"
-                  @isError="isErrorPassword"
-                />
-              </div>
-              <div class="profile-step__item-form">
-                <div class="tw-text-purple-dark">
-                  {{ $t("inputs.password") }}
-                </div>
-                <AppInput
-                  type="password"
-                  name="password"
-                  :placeholder="$t('inputs.password')"
-                  rules="required|password"
-                  @isError="isErrorPassword"
-                />
-              </div>
-              <div class="profile-step__item-form">
-                <div class="tw-text-purple-dark">
-                  {{ $t("inputs.repeatPass") }}
-                </div>
-                <AppInput
-                  type="password"
-                  name="pass2"
-                  :placeholder="$t('inputs.password')"
-                  rules="required|confirmed:@password"
-                  @isError="isErrorPassword"
-                />
-              </div>
-              <div class="profile-step__item-button tw-mt-7.5">
-                <div></div>
-                <base-button type="submit" :disabled="isSubmitting"
-                  >Change Password</base-button
-                >
-              </div>
-            </Form>
+          <div
+            v-else
+            @click="editPassword = true"
+            class="tw-text-purple-light tw-cursor-pointer"
+          >
+            Edit
           </div>
         </div>
-        <div class="profile-step__item">
-          <div class="tw-text-purple-dark">Phone number</div>
-          <div>7 (917) 481-94-57</div>
-          <div @click="edit('phone')" class="tw-text-purple-light">Edit</div>
-        </div>
-        <div>
-          <Form @submit="updatePhone">
+        <div class="tw-mb-5" v-if="editPassword">
+          <Form @submit="updatePassword" v-slot="{ isSubmitting }">
             <div class="profile-step__item-form">
-              <div class="tw-text-purple-dark">New Phone number</div>
+              <div class="tw-text-purple-dark">Old Password</div>
               <AppInput
-                rules="required"
-                type="tel"
-                name="cellphone"
-                placeholder="(999) 999 99 99"
-                @isError="isErrorPhone"
+                type="password"
+                name="oldPassword"
+                :placeholder="$t('inputs.password')"
+                rules="required|password"
+                @isError="isErrorPassword"
+              />
+            </div>
+            <div class="profile-step__item-form">
+              <div class="tw-text-purple-dark">
+                {{ $t("inputs.password") }}
+              </div>
+              <AppInput
+                type="password"
+                name="password"
+                :placeholder="$t('inputs.password')"
+                rules="required|password"
+                @isError="isErrorPassword"
+              />
+            </div>
+            <div class="profile-step__item-form">
+              <div class="tw-text-purple-dark">
+                {{ $t("inputs.repeatPass") }}
+              </div>
+              <AppInput
+                type="password"
+                name="pass2"
+                :placeholder="$t('inputs.password')"
+                rules="required|confirmed:@password"
+                @isError="isErrorPassword"
               />
             </div>
             <div class="profile-step__item-button tw-mt-7.5">
               <div></div>
-              <base-button type="submit">Change Phone Number</base-button>
+              <base-button type="submit" :disabled="isSubmitting"
+                >Change Password</base-button
+              >
             </div>
           </Form>
         </div>
       </div>
-    </AppStep>
-    <AppStep name="edit"> Тестирование2 </AppStep>
+      <div class="profile-step__item">
+        <div class="tw-text-purple-dark">Phone number</div>
+        <div>{{ phone }}</div>
+        <div
+          v-if="editPhone"
+          @click="editPhone = false"
+          class="tw-text-purple-light tw-cursor-pointer"
+        >
+          Cancel
+        </div>
+        <div
+          v-else
+          @click="editPhone = true"
+          class="tw-text-purple-light tw-cursor-pointer"
+        >
+          Edit
+        </div>
+      </div>
+      <div v-if="editPhone">
+        <Form @submit="updatePhone" v-slot="{ isSubmitting }">
+          <div class="profile-step__item-form">
+            <div class="tw-text-purple-dark">New Phone number</div>
+            <AppInput
+              rules="required|cellphone"
+              placeholder="+123456789012345"
+              name="cellphone"
+              @isError="isErrorPhone"
+            />
+          </div>
+          <div class="profile-step__item-button tw-mt-7.5">
+            <div></div>
+            <base-button type="submit">Change Phone Number</base-button>
+          </div>
+        </Form>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -103,7 +123,7 @@
 import { useStore } from "vuex";
 import useStep from "src/composition/useStep";
 import BaseButton from "src/core/V3/BaseButton.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 export default {
   components: { BaseButton },
   setup() {
@@ -112,7 +132,6 @@ export default {
 
     const edit = (type) => {
       changeStep("edit");
-      console.log(type);
     };
 
     const updateEmail = () => {
@@ -124,8 +143,14 @@ export default {
         old_password: values.oldPassword,
       });
     };
-    const updatePhone = () => {
-      console.log("test");
+    const updatePhone = async (values) => {
+      try {
+        await store.dispatch("profile/show");
+        await store.dispatch("auth/editPhone", {
+          cellphone: values.cellphone,
+          name: name.value,
+        });
+      } catch (e) {}
     };
 
     const simpleSchema = () => {};
@@ -144,6 +169,13 @@ export default {
     const isErrorPhone = (val) => {
       isSubmittingPhone.value = val;
     };
+
+    const email = computed(() => store.getters["profile/email"]);
+    const name = computed(() => store.getters["profile/name"]);
+    const phone = computed(() => store.getters["profile/phone"]);
+
+    const editPassword = ref(false);
+    const editPhone = ref(false);
     return {
       step,
       edit,
@@ -158,6 +190,12 @@ export default {
       isSubmittingEmail,
       isSubmittingPassword,
       isSubmittingPhone,
+
+      email,
+      phone,
+
+      editPassword,
+      editPhone,
     };
   },
 };

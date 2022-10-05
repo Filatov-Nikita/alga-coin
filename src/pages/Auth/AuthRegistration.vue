@@ -23,11 +23,10 @@
             placeholder="ivanov@domain.ru"
           />
           <AppInput
-            rules="required"
-            type="tel"
+            rules="required|cellphone"
             name="cellphone"
             :label="$t('inputs.cellphone')"
-            placeholder="(999) 999 99 99"
+            placeholder="+123456789012345"
           />
 
           <AppCheckbox
@@ -130,13 +129,9 @@ export default {
     const store = useStore();
     const { t } = useI18n({ messages });
     const { changeStep, step } = useStep("registr");
-    const { setPassword, invalidCode, curCode, mail, getCode } =
-      useAuth();
+    const { setPassword, invalidCode, curCode, mail, getCode } = useAuth();
 
-    const registr = async (
-      { cellphoneFull: cellphone, name, email },
-      { setErrors }
-    ) => {
+    const registr = async ({ cellphone, name, email }, { setErrors }) => {
       try {
         const data = await store.dispatch("auth/registr", {
           cellphone,

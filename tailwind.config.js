@@ -19,6 +19,7 @@ module.exports = {
         6.25: "1.563rem",
         7.5: "1.875rem",
         15: "3.75rem",
+        15.5: "4.375rem",
         16: "4.625rem",
       },
       letterSpacing: {
@@ -40,14 +41,14 @@ module.exports = {
       "dark-blue": "#003870",
       "dark-blue-2": "#272B4F",
       "dark-blue-3": "#101333",
-      
+
       "blue-hover": "#0083F5",
       "dark-blue-cover": "#000320",
       "dark-gray": "#141734",
       "text-gray": "#9596a3",
+      "text-gray-dark-50": "#6F7186",
       "purple-dark": "#9596A3",
-      "purple-light": '#BEC3FF',
-
+      "purple-light": "#BEC3FF",
     },
     fontFamily: {
       stolzl: "Stolzl",

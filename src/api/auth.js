@@ -51,3 +51,11 @@ export function setNewPassword({ new_password, old_password }) {
     })
     .json();
 }
+
+export function setNewPhone({ cellphone, name }) {
+  return MainApi.swot
+    .patch("b2c/profile", {
+      json: { cellphone, name },
+    })
+    .json();
+}

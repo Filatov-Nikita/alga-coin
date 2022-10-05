@@ -16,7 +16,8 @@ function decimal(value) {
 
 function cellphone(value) {
   // паттерн для чисел со знаком, дробная часть опциональна
-  const pattern = /^\(\d{3}\)\s\d{3}\-\d{2}\-\d{2}$/;
+  // const pattern = /^\(\d{3}\)\s\d{3}\-\d{2}\-\d{2}$/;
+  const pattern = /^\+[1-9]\d{8,14}$/;
   return pattern.test(value);
 }
 

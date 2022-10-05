@@ -1,4 +1,4 @@
-$xl: theme('screens.xl');
+$xl: theme("screens.xl");
 $columns: 18;
 $offset: 30px;
 
@@ -6,11 +6,13 @@ $offset: 30px;
   &::-webkit-scrollbar {
     // контейнер
     width: 2px;
+    height: 2px;
   }
 
   &::-webkit-scrollbar-track {
     // контейнер
-    @apply tw-bg-dark;
+    // @apply tw-bg-dark;
+    background-color: #494d71;
   }
 
   &::-webkit-scrollbar-button {
@@ -20,7 +22,9 @@ $offset: 30px;
 
   &::-webkit-scrollbar-thumb {
     // полоса
-    @apply tw-bg-blue-hover;
+    // @apply tw-bg-blue-hover;
+    background: #bec3ff;
+    border-radius: 50px;
   }
 }
 
@@ -119,7 +123,7 @@ $offset: 30px;
 }
 
 @mixin space($val) {
- > * + * {
+  > * + * {
     margin-left: $val;
     margin-top: $val;
   }
@@ -127,30 +131,30 @@ $offset: 30px;
 
 @mixin space-x($val) {
   > * + * {
-     margin-left: $val;
-   }
- }
+    margin-left: $val;
+  }
+}
 
- @mixin space-y($val) {
+@mixin space-y($val) {
   > * + * {
-     margin-top: $val;
-   }
- }
+    margin-top: $val;
+  }
+}
 
- @mixin el-center {
-   transform: translateX(-50%) translateY(-50%);
-   left: 50%;
-   top: 50%;
- }
+@mixin el-center {
+  transform: translateX(-50%) translateY(-50%);
+  left: 50%;
+  top: 50%;
+}
 
- @mixin col-shift-left($n){
+@mixin col-shift-left($n) {
   $val: 100% / $columns * $n;
   margin-left: #{calc(#{$val} + #{$offset})};
 }
 
-@mixin col-shift-left-xl($n){
+@mixin col-shift-left-xl($n) {
   @include screen-xl {
-   @include col-shift-left($n);
+    @include col-shift-left($n);
   }
 }
 
