@@ -28,7 +28,7 @@ export default {
     cellphone: "Phone",
     password: "Password",
     newPass: "Repeat password",
-    oldPass: "New password",
+    oldPass: "Old password",
     repeatPass: "Repeat password",
     wrongCode: "Enter a correct code",
     code: "SMS code",

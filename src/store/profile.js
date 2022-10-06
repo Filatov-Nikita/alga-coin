@@ -59,5 +59,10 @@ export default {
       const profileData = await ProfileAPI.editPassword(password);
       return profileData;
     },
+    async sendMessageSupport(_c, body) {
+      console.log(body);
+      const res = await ProfileAPI.sendAppear(body);
+      return res;
+    },
   },
 };

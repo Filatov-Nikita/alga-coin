@@ -108,7 +108,18 @@ module.exports = configure(function (ctx) {
 
     animations: "all", // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: ["zoomIn", "zoomOut"],
+    animations: [
+      "zoomIn",
+      "zoomOut",
+      "fadeOutRight",
+      "fadeInRight",
+      "fadeOutLeft",
+      "fadeInLeft",
+      "slideInLeft",
+      "slideInRight",
+      "slideOutLeft",
+      "slideOutRight",
+    ],
 
     // https://v2.quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {

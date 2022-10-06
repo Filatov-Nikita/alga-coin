@@ -145,6 +145,11 @@ const routes = [
           path: "portfolio",
           component: () => import("pages/V3/Portfolio.vue"),
           name: "portfolio",
+        },
+        {
+          path: "support",
+          component: () => import("pages/V3/Support.vue"),
+          name: "support",
         }
         //  {
         //   path: "index-directive2",

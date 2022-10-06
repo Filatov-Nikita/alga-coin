@@ -1,21 +1,27 @@
 <template>
   <div class="tw-flex tw-flex-col tw-justify-between tw-h-full tw-relative">
     <div>
-      <div class="tw-text-xxs tw-text-text-gray tw-mb-7.5 tw-mt-6">MENU</div>
-      <ul class="tw-flex tw-flex-col tw-gap-8">
+      <div class="tw-text-xxs tw-text-text-gray tw-mb-7.5 tw-mt-6 tw-uppercase">
+        {{ t("menu-title") }}
+      </div>
+      <ul class="nav-links tw-flex tw-flex-col tw-gap-8">
         <router-link
           :to="{ name: 'index-directive' }"
           custom
           v-slot="{ isExactActive, navigate }"
         >
-          <li class="tw-flex tw-items-center tw-gap-5">
+          <li
+            class="nav-links__item item tw-flex tw-items-center tw-gap-5"
+            :class="{ active: isExactActive }"
+            @click="navigate"
+          >
             <svg
               width="20"
               height="20"
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              :class="{ active: isExactActive }"
+              class="item__icon"
             >
               <path
                 fill-rule="evenodd"
@@ -24,9 +30,7 @@
                 fill="#BEC3FF"
               />
             </svg>
-            <span :class="{ active: isExactActive }" @click="navigate">
-              Index Derivatives
-            </span>
+            <span class="item__text"> {{ t("nav[0]") }} </span>
           </li>
         </router-link>
         <router-link
@@ -34,13 +38,18 @@
           custom
           v-slot="{ isExactActive, navigate }"
         >
-          <li class="tw-flex tw-items-center tw-gap-5">
+          <li
+            class="nav-links__item item tw-flex tw-items-center tw-gap-5"
+            :class="{ active: isExactActive }"
+            @click="navigate"
+          >
             <svg
               width="20"
               height="20"
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              class="item__icon"
             >
               <path
                 d="M17.2 5.57895H14.5V3.78947C14.5 2.80258 13.6927 2 12.7 2H7.3C6.3073 2 5.5 2.80258 5.5 3.78947V5.57895H2.8C1.8073 5.57895 1 6.38153 1 7.36842V10.0526H19V7.36842C19 6.38153 18.1927 5.57895 17.2 5.57895ZM7.3 3.78947H12.7V5.57895H7.3V3.78947ZM11.8 12.7368H8.2V10.9474H1V17.2105C1 18.1974 1.8073 19 2.8 19H17.2C18.1927 19 19 18.1974 19 17.2105V10.9474H11.8V12.7368Z"
@@ -48,23 +57,26 @@
               />
             </svg>
 
-            <span :class="{ active: isExactActive }" @click="navigate">
-              My portfolio
-            </span>
+            <span class="item__text"> {{ t("nav[1]") }} </span>
           </li>
         </router-link>
         <router-link
-          :to="{ name: 'index-directive' }"
+          :to="{ name: 'history' }"
           custom
           v-slot="{ isExactActive, navigate }"
         >
-          <li class="tw-flex tw-items-center tw-gap-5">
+          <li
+            class="nav-links__item item tw-flex tw-items-center tw-gap-5"
+            :class="{ active: isExactActive }"
+            @click="navigate"
+          >
             <svg
               width="20"
               height="20"
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              class="item__icon"
             >
               <path
                 fill-rule="evenodd"
@@ -74,41 +86,42 @@
               />
             </svg>
 
-            <span :class="{ active: isExactActive }" @click="navigate">
-              History
-            </span>
+            <span class="item__text"> {{ t("nav[2]") }} </span>
           </li>
         </router-link>
         <router-link
-          :to="{ name: 'index-directive' }"
+          :to="{ name: 'support' }"
           custom
-          v-slot="{ isExactActive, navigate, href }"
+          v-slot="{ isExactActive, navigate }"
         >
-          <li class="tw-flex tw-items-center tw-gap-5">
-            <a :href="href">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 1C5.0374 1 1 5.0374 1 10V13.7287C1 14.6503 1.8073 15.4 2.8 15.4H3.7C3.93869 15.4 4.16761 15.3052 4.3364 15.1364C4.50518 14.9676 4.6 14.7387 4.6 14.5V9.8713C4.6 9.63261 4.50518 9.40369 4.3364 9.2349C4.16761 9.06612 3.93869 8.9713 3.7 8.9713H2.8828C3.3832 5.4883 6.3802 2.8 10 2.8C13.6198 2.8 16.6168 5.4883 17.1172 8.9713H16.3C16.0613 8.9713 15.8324 9.06612 15.6636 9.2349C15.4948 9.40369 15.4 9.63261 15.4 9.8713V15.4C15.4 16.3927 14.5927 17.2 13.6 17.2H11.8V16.3H8.2V19H13.6C15.5854 19 17.2 17.3854 17.2 15.4C18.1927 15.4 19 14.6503 19 13.7287V10C19 5.0374 14.9626 1 10 1Z"
-                  fill="#363B72"
-                />
-              </svg>
+          <li
+            class="nav-links__item item tw-flex tw-items-center tw-gap-5"
+            :class="{ active: isExactActive }"
+            @click="navigate"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="item__icon"
+            >
+              <path
+                d="M10 1C5.0374 1 1 5.0374 1 10V13.7287C1 14.6503 1.8073 15.4 2.8 15.4H3.7C3.93869 15.4 4.16761 15.3052 4.3364 15.1364C4.50518 14.9676 4.6 14.7387 4.6 14.5V9.8713C4.6 9.63261 4.50518 9.40369 4.3364 9.2349C4.16761 9.06612 3.93869 8.9713 3.7 8.9713H2.8828C3.3832 5.4883 6.3802 2.8 10 2.8C13.6198 2.8 16.6168 5.4883 17.1172 8.9713H16.3C16.0613 8.9713 15.8324 9.06612 15.6636 9.2349C15.4948 9.40369 15.4 9.63261 15.4 9.8713V15.4C15.4 16.3927 14.5927 17.2 13.6 17.2H11.8V16.3H8.2V19H13.6C15.5854 19 17.2 17.3854 17.2 15.4C18.1927 15.4 19 14.6503 19 13.7287V10C19 5.0374 14.9626 1 10 1Z"
+                fill="#363B72"
+              />
+            </svg>
 
-              <span :class="{ active: isExactActive }" @click="navigate">
-                Support
-              </span>
-            </a>
+            <span class="item__text"> {{ t("nav[3]") }} </span>
           </li>
         </router-link>
       </ul>
     </div>
     <div class="tw-fixed tw-bottom-0 tw-mb-4">
-      <div class="tw-text-xxs tw-text-text-gray tw-mb-7.5 tw-mt-6">PROFILE</div>
+      <div class="tw-text-xxs tw-text-text-gray tw-mb-7.5 tw-mt-6 tw-uppercase">
+        {{ t("profile-title") }}
+      </div>
       <div class="profile tw-flex tw-flex-col tw-justify-center">
         <div class="tw-flex tw-items-center tw-gap-5 tw-mb-7.5">
           <img :src="require('assets/icons/avatar.svg')" alt="avatar" />
@@ -120,7 +133,7 @@
               :to="{ name: 'profile' }"
               class="tw-text-purple-light tw-text-xxs tw-underline"
             >
-              <span>Edit</span>
+              <span>{{ t("edit") }}</span>
             </router-link>
           </div>
         </div>
@@ -149,7 +162,7 @@
                   fill="#BEC3FF"
                 />
               </svg>
-              Log out
+              {{ t("log-out") }}
             </span>
           </template>
         </base-button>
@@ -169,7 +182,7 @@
         </div>
         <p class="tw-text-center">
           © 2021-2022 ALGA. <br />
-          All Rights Reserved
+          {{ t("reserved") }}
         </p>
       </div>
     </div>
@@ -178,23 +191,69 @@
 
 <script>
 import useLocal from "src/composition/V3/useLocal";
+import { useI18n } from "vue-i18n";
+const i18n = {
+  messages: {
+    "ru-RU": {
+      "menu-title": "Меню",
+      nav: ["Индекс Диревативы", "Портфолио", "История", "Поддержка"],
+      "profile-title": "Профиль",
+      edit: "Редактировать",
+      "log-out": "Выйти",
+      reserved: "Все права защищены",
+    },
+    "en-US": {
+      "menu-title": "Menu",
+      nav: ["Index Derivatives", "My Portfolio", "History", "Support"],
+      "profile-title": "Profile",
+      edit: " Edit",
+      "log-out": "Log out",
+      reserved: " All Rights Reserved ",
+    },
+  },
+};
 export default {
   setup() {
+    const { t } = useI18n(i18n);
     const { locale, newLocale } = useLocal();
     return {
       locale,
       newLocale,
+      t,
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
+//$
 .profile {
   &__name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+.nav-links {
+  &__item.item {
+    cursor: pointer;
+    .item__icon > path {
+      transition: all 0.3s ease;
+      fill: #363b72;
+    }
+    .item__text {
+      transition: all 0.3s ease;
+      color: #8285ac;
+    }
+    &.active > .item__icon > path {
+      fill: theme("colors[purple-light]");
+    }
+    &.active > .item__text {
+      color: theme("colors[purple-light]");
+    }
+    // .item__text {
+    //   color: #8285ac;
+    // }
   }
 }
 </style>

@@ -1,6 +1,35 @@
 <template>
   <footer class="tw-pt-10 tw-pb-8">
     <div class="tw-container">
+      <div class="popup-footer" ref="popupFooter">
+        <transition
+          appear
+          mode="out-in"
+          enter-active-class="animated zoomIn"
+          leave-active-class="animated zoomOut"
+        >
+          <div
+            v-if="currentLinks"
+            class="card card__border-line tw-absolute tw-w-full tw-z-50 tw-flex tw-justify-center tw-gap-8"
+          >
+            <a
+              v-for="(link, index) in currentLinks"
+              :key="index"
+              :href="link.href"
+              target="_blank"
+              class="link-popup"
+              ><img
+                :src="require(`assets/icons/${link.icon}-popup.svg`)"
+                :alt="link.name"
+                class="link-popup__icon"
+              />
+              <p class="tw-text-white tw-text-xs">{{ link.title }}</p>
+            </a>
+
+            <!-- <div v-for=""></div> -->
+          </div>
+        </transition>
+      </div>
       <div class="footer__top tw-flex tw-justify-between tw-items-center">
         <img :src="require('assets/images/logo-v3.svg')" alt="" />
         <div class="mob-n">
@@ -10,12 +39,30 @@
             <a href="#" class="text-arrow-brand tw-underline">Whitepaper.pdf</a> -->
         </div>
         <div class="tw-flex tw-gap-2.5">
-          <a href="https://twitter.com/AlgaEcosystem" target="blank" class="pie pie-link"><img :src="require('assets/icons/twitter.svg')" alt="twitter" /></a>
-          <a href="https://t.me/algafinance" target="blank"
-            class="pie pie-link"><img :src="require('assets/icons/telegram.svg')" alt="telegram" /></a><a href="#"
-            class="pie pie-link"><img :src="require('assets/icons/discord.svg')" alt="discord" /></a>
+          <div
+            @click="choiceLink('twitter')"
+            class="tw-cursor-pointer pie pie-link"
+            data-link
+          >
+            <img :src="require('assets/icons/twitter.svg')" alt="twitter" />
+          </div>
+          <div
+            @click="choiceLink('telegram')"
+            class="tw-cursor-pointer pie pie-link"
+            data-link
+          >
+            <img :src="require('assets/icons/telegram.svg')" alt="telegram" />
+          </div>
+          <div
+            @click="choiceLink('discord')"
+            class="tw-cursor-pointer pie pie-link"
+            data-link
+          >
+            <img :src="require('assets/icons/discord.svg')" alt="discord" />
+          </div>
         </div>
       </div>
+
       <!-- <a :href="whitePaper" class="text-arrow-brand tw-underline">
             Whitepaper.pdf
           </a> -->
@@ -36,23 +83,132 @@
   </footer>
 </template>
 
-<script>
-export default {
+<script setup>
+import { ref, computed, onMounted, onUnmounted, nextTick } from "vue";
+const popupFooter = ref(null);
+const links = [
+  {
+    name: "discord",
+    icon: "discord",
+    title: "title",
+    href: "https://twitter.com/AlgaEcosystem",
+  },
+  {
+    name: "twitter",
+    icon: "twitter",
+    title: "title",
+    href: "https://twitter.com/AlgaEcosystem",
+  },
+  {
+    name: "telegram",
+    icon: "telegram",
+    title: "title",
+    href: "https://twitter.com/AlgaEcosystem",
+  },
+  {
+    name: "telegram",
+    icon: "telegram",
+    title: "title",
+    href: "https://twitter.com/AlgaEcosystem",
+  },
+  {
+    name: "telegram",
+    icon: "telegram",
+    title: "title",
+    href: "https://twitter.com/AlgaEcosystem",
+  },
+];
+const linkName = ref("");
+const currentLinks = computed(() => {
+  if (linkName.value !== "") {
+    return links.filter((link) => link.name === linkName.value);
+  }
+  return null;
+});
+const scollWindow = (e) => {
+  if (linkName.value !== "") {
+    linkName.value = "";
+    console.log(e);
+  }
+};
 
-}
+const targetClick = (e) => {
+  let currentElem = e.target;
+  let open = false;
+  // console.log(currentElem);
+  while (currentElem) {
+    if (currentElem.hasAttribute("data-link")) {
+      open = true;
+      break;
+    } else currentElem = currentElem.parentElement;
+  }
+  if (
+    !open &&
+    linkName.value &&
+    !e.composedPath().includes(popupFooter.value)
+  ) {
+    console.log(open);
+    console.log(e.target);
+    console.log(currentElem);
+    linkName.value = "";
+  }
+  // console.log(linkName.value);
+};
+onMounted(() => {
+  window.addEventListener("scroll", scollWindow);
+
+  window.addEventListener("click", targetClick);
+});
+onUnmounted(() => {
+  window.removeEventListener("scroll", scollWindow);
+  window.removeEventListener("click", targetClick);
+});
+const choiceLink = (name) => (linkName.value = name);
 </script>
 
 <style lang="scss" scoped>
-    footer {
-      position: relative;
-  
-      &::before {
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 1px;
-        background-color: #101333;
-        top: 0;
-      }
+//$
+footer {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #101333;
+    top: 0;
+  }
+}
+
+.popup-footer {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  @include screen-xl {
+    width: 660px;
+  }
+  & > div {
+    top: -110px;
+    // height: 170px;
+  }
+}
+.link-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  max-width: 132px;
+  width: 100%;
+  @include screen-xl {
+  }
+  &__icon {
+    width: 40px;
+    height: 40px;
+    @include screen-xl {
+      width: 60px;
+      height: 60px;
     }
+  }
+}
 </style>

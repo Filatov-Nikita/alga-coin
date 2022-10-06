@@ -20,7 +20,10 @@ module.exports = {
         7.5: "1.875rem",
         15: "3.75rem",
         15.5: "4.375rem",
+        15.75: "4.25rem",
         16: "4.625rem",
+        30: "7.5rem",
+        42: "10.5rem",
       },
       letterSpacing: {
         widest: "0.5em",

@@ -1,6 +1,6 @@
 <template>
   <section class="profile">
-    <h2 class="tw-mb-15">My Profile</h2>
+    <h2 class="tw-mb-15">{{ t("title") }}</h2>
     <div class="card-big"></div>
     <div class="tw-flex tw-flex-col tw-items-center tw-gap-7.5 profile-header">
       <img
@@ -18,27 +18,27 @@
       </div>
       <div>
         <div class="profile-step__item tw-mb-5">
-          <div class="tw-text-purple-dark">Password</div>
+          <div class="tw-text-purple-dark">{{ t("password-title") }}</div>
           <div>••••••••</div>
           <div
             v-if="editPassword"
             @click="editPassword = false"
             class="tw-text-purple-light tw-cursor-pointer"
           >
-            Cancel
+            {{ t("cancel") }}
           </div>
           <div
             v-else
             @click="editPassword = true"
             class="tw-text-purple-light tw-cursor-pointer"
           >
-            Edit
+            {{ t("edit") }}
           </div>
         </div>
         <div class="tw-mb-5" v-if="editPassword">
           <Form @submit="updatePassword" v-slot="{ isSubmitting }">
             <div class="profile-step__item-form">
-              <div class="tw-text-purple-dark">Old Password</div>
+              <div class="tw-text-purple-dark">{{ $t("inputs.oldPass") }}</div>
               <AppInput
                 type="password"
                 name="oldPassword"
@@ -73,35 +73,35 @@
             </div>
             <div class="profile-step__item-button tw-mt-7.5">
               <div></div>
-              <base-button type="submit" :disabled="isSubmitting"
-                >Change Password</base-button
-              >
+              <base-button type="submit" :disabled="isSubmitting">{{
+                t("change-password")
+              }}</base-button>
             </div>
           </Form>
         </div>
       </div>
       <div class="profile-step__item">
-        <div class="tw-text-purple-dark">Phone number</div>
+        <div class="tw-text-purple-dark">{{ t("phone-title") }}</div>
         <div>{{ phone }}</div>
         <div
           v-if="editPhone"
           @click="editPhone = false"
           class="tw-text-purple-light tw-cursor-pointer"
         >
-          Cancel
+          {{ t("cancel") }}
         </div>
         <div
           v-else
           @click="editPhone = true"
           class="tw-text-purple-light tw-cursor-pointer"
         >
-          Edit
+          {{ t("edit") }}
         </div>
       </div>
       <div v-if="editPhone">
         <Form @submit="updatePhone" v-slot="{ isSubmitting }">
           <div class="profile-step__item-form">
-            <div class="tw-text-purple-dark">New Phone number</div>
+            <div class="tw-text-purple-dark">{{ t("phone.label") }}</div>
             <AppInput
               rules="required|cellphone"
               placeholder="+123456789012345"
@@ -111,7 +111,7 @@
           </div>
           <div class="profile-step__item-button tw-mt-7.5">
             <div></div>
-            <base-button type="submit">Change Phone Number</base-button>
+            <base-button type="submit">{{ t("change-phone") }}</base-button>
           </div>
         </Form>
       </div>
@@ -124,9 +124,39 @@ import { useStore } from "vuex";
 import useStep from "src/composition/useStep";
 import BaseButton from "src/core/V3/BaseButton.vue";
 import { ref, computed } from "vue";
+import { useI18n } from "vue-i18n";
+const i18n = {
+  messages: {
+    "ru-RU": {
+      title: "Профиль",
+      edit: "Изменить",
+      cancel: "Отменить",
+      "password-title": "Пароль",
+      "change-password": "Изменить пароль",
+      "change-phone": "Изменить телефон",
+      "phone-title": "Новый номер телефона",
+      phone: {
+        label: "Номер телефона",
+      },
+    },
+    "en-US": {
+      title: "",
+      edit: "Edit",
+      cancel: "Cancel",
+      "password-title": "Password",
+      "change-password": "Change Password",
+      "change-phone": "Change Phone",
+      "phone-title": "New Phone Number",
+      phone: {
+        label: "Phone number",
+      },
+    },
+  },
+};
 export default {
   components: { BaseButton },
   setup() {
+    const { t } = useI18n(i18n);
     const store = useStore();
     const { changeStep, step } = useStep("profile");
 
@@ -196,6 +226,7 @@ export default {
 
       editPassword,
       editPhone,
+      t,
     };
   },
 };
