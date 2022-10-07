@@ -2,7 +2,7 @@
   <q-layout
     style="min-height: 100vh"
     class="app-page-bg app-page-bg_lk"
-    view="hhh lpr lff"
+    view="hhh lpr lFf"
   >
     <!-- <HeaderBase /> -->
 
@@ -34,7 +34,7 @@
       </div>
       <router-view class="tw-pt-15 xl:tw-pt-0" />
     </q-page-container>
-    <q-footer v-if="!$q.screen.xl" class="tw-pt-5 tw-pb-2.5">
+    <q-footer v-if="!$q.screen.xl" class="tw-pt-5 tw-pb-2.5 app-page-bg">
       <div class="tw-container">
         <ul class="tw-flex tw-justify-between">
           <router-link
@@ -62,7 +62,7 @@
                   fill="#BEC3FF"
                 />
               </svg>
-              <span class="item__text tw-text-xxs-1"> Index Derivatives </span>
+              <span class="item__text tw-text-xxs-1"> {{ t("nav[0]") }} </span>
             </li>
           </router-link>
           <router-link
@@ -92,7 +92,7 @@
                 class="item__text tw-text-xxs-1"
                 :class="{ active: isExactActive }"
               >
-                My portfolio
+                {{ t("nav[1]") }}
               </span>
             </li>
           </router-link>
@@ -123,7 +123,7 @@
               </svg>
 
               <span class="item__text tw-text-xxs-1" @click="navigate">
-                History
+                {{ t("nav[2]") }}
               </span>
             </li>
           </router-link>
@@ -156,7 +156,7 @@
                 :class="{ active: isExactActive }"
                 @click="navigate"
               >
-                Support
+                {{ t("nav[3]") }}
               </span>
             </li>
           </router-link>
@@ -170,9 +170,18 @@
 import TheBottomMenu from "src/components/TheBottomMenu.vue";
 import SideBar from "./Lk/SidebarLayout.vue";
 import HeaderBase from "../HeaderBase.vue";
-
+import { useI18n } from "vue-i18n";
 import Locale from "src/components/V3/LocaleButtons.vue";
-
+const i18n = {
+  messages: {
+    "ru-RU": {
+      nav: ["Деривативы", "Портфолио", "История", "Поддержка"],
+    },
+    "en-US": {
+      nav: ["Index Derivatives", "My Portfolio", "History", "Support"],
+    },
+  },
+};
 export default {
   components: {
     TheBottomMenu,
@@ -180,7 +189,12 @@ export default {
     SideBar,
     Locale,
   },
-  setup() {},
+  setup() {
+    const { t } = useI18n(i18n);
+    return {
+      t,
+    };
+  },
 };
 </script>
 

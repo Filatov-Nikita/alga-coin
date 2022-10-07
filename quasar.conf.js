@@ -51,7 +51,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: "history", // available values: 'hash', 'history'
+      vueRouterMode: "hash", // available values: 'hash', 'history'
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
@@ -156,13 +156,14 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `alga coin`,
-        short_name: `alga coin`,
-        description: `This is a wallet`,
+        name: `Alga Ecosystem - Financial Derivatives Platform`,
+        short_name: `Alga Ecosystem`,
+        description: `Alga is a new kind of investing. Our goal is to form a completely new “entry point” into the market to make cryptocurrencies even more democratic financial tool.`,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
         theme_color: "#027be3",
+        url: "https://alga.finance/",
         icons: [
           {
             src: "icons/icon-128x128.png",

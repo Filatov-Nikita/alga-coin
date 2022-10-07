@@ -18,4 +18,10 @@ export const MainApi = new Service("https://admin.alga.finance", {
   tokenName: "b2c",
 });
 
+export const MainApiDbg = new Service("https://admin.alga.finance", {
+  apiPath: "dbg",
+  timeout: 10000,
+  tokenName: "b2c",
+});
+
 export default api;

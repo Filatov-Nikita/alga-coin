@@ -1,81 +1,123 @@
 <template>
-    <header>
-      <nav class="nav">
-        <div class="tw-container">
-          <div class="nav__wrapper tw-flex tw-justify-between tw-items-center">
-            <div class="nav__left tw-flex tw-gap-12 tw-items-center">
-              <img :src="require('assets/images/logo-v3.svg')" alt="logo" class=" tw-cursor-pointer"  @click="$router.push({name:'home'})" />
-              <span class="mob-n tw-cursor-pointer" @click="$router.push({name:'tokenomics'})">Tokenomics</span>
-            </div>
-            <div class="nav__right tw-flex tw-items-center">
-              <div class="auth tw-flex tw-gap-2.5 tw-mr-7">
-                <!-- <button class="mob-n button-border-light" @click="$router.push({ name: 'auth.login' })">
+  <header>
+    <nav class="nav">
+      <div class="tw-container">
+        <div class="nav__wrapper tw-flex tw-justify-between tw-items-center">
+          <div class="nav__left tw-flex tw-gap-12 tw-items-center">
+            <img
+              :src="require('assets/images/logo-v3.svg')"
+              alt="logo"
+              class="tw-cursor-pointer"
+              @click="$router.push({ name: 'home' })"
+            />
+            <span
+              class="mob-n tw-cursor-pointer"
+              @click="$router.push({ name: 'tokenomics' })"
+              >{{ t("tokenomic-title") }}</span
+            >
+          </div>
+          <div class="nav__right tw-flex tw-items-center">
+            <div class="auth tw-flex tw-gap-2.5 tw-mr-7">
+              <!-- <button class="mob-n button-border-light" @click="$router.push({ name: 'auth.login' })">
                   {{ t("dropdown.buttons.login") }}
                 </button> -->
-                <button class="mob-n button-border-light" @click="$router.push({ name: 'auth.registr' })">
-                  {{ t("dropdown.buttons.register") }}
-                </button>
-              </div>
-              <div class="local">
-                <button @click="newLocale('en-US')" :class="locale === 'English' ? 'active' : ''">
-                  <span>EN</span>
-                </button>
-                <button @click="newLocale('ru-RU')" :class="locale === 'Русский' ? 'active' : ''">
-                  <span> RU </span>
-                </button>
-              </div>
-              <div class="desk-n">
-                <button class="burger" @click="toggleDrop">
-                  <span></span><span></span><span></span>
-                </button>
-              </div>
+              <button
+                v-if="isAuth"
+                class="mob-n button-border-light"
+                @click="$router.push({ name: 'index-directive' })"
+              >
+                {{ t("lk") }}
+              </button>
+              <button
+                v-else
+                class="mob-n button-border-light"
+                @click="$router.push({ name: 'auth.registr' })"
+              >
+                {{ t("dropdown.buttons.register") }}
+              </button>
+            </div>
+            <div class="local">
+              <button
+                @click="newLocale('en-US')"
+                :class="locale === 'English' ? 'active' : ''"
+              >
+                <span>EN</span>
+              </button>
+              <button
+                @click="newLocale('ru-RU')"
+                :class="locale === 'Русский' ? 'active' : ''"
+              >
+                <span> RU </span>
+              </button>
+            </div>
+            <div class="desk-n">
+              <button class="burger" @click="toggleDrop">
+                <span></span><span></span><span></span>
+              </button>
             </div>
           </div>
         </div>
-      </nav>
-      <div class="drop" :class="dropDown ? 'active' : ''" id="dropdown">
-        <div class="tw-container">
-          <div class="drop__wrapper tw-flex tw-justify-between tw-gap-1">
-            <!-- <button class="button-border tw-w-1/2" @click="$router.push({ name: 'profile' })">
+      </div>
+    </nav>
+    <div class="drop" :class="dropDown ? 'active' : ''" id="dropdown">
+      <div class="tw-container">
+        <div class="drop__wrapper tw-flex tw-justify-between tw-gap-1">
+          <!-- <button class="button-border tw-w-1/2" @click="$router.push({ name: 'profile' })">
               {{ t("dropdown.buttons.login") }}
             </button> -->
-            <button class="button tw-w-full" @click="$router.push({ name: 'auth.registr' })">
-              {{ t("dropdown.buttons.register") }}
-            </button>
-          </div>
+          <button
+            v-if="isAuth"
+            class="button tw-w-full"
+            @click="$router.push({ name: 'index-directive' })"
+          >
+            {{ t("lk") }}
+          </button>
+          <button
+            v-else
+            class="button tw-w-full"
+            @click="$router.push({ name: 'auth.registr' })"
+          >
+            {{ t("dropdown.buttons.register") }}
+          </button>
         </div>
       </div>
-      <div v-if=" $route.name === 'home'" class="tw-mt-7.5">
-        <div class="tw-container">
-          <div class="header-bg">
-            <div class="header-bg__touch"></div>
-            <div class="header-bg__wrapper">
-              <div class=" tw-flex tw-flex-col tw-gap-5 xl:tw-self-center">
-                <h1 class="header-bg__title">{{ t("header.title") }}</h1>
-                <h2 v-html="t('header.subtitle')"></h2>
-              </div>
-              <!-- <div class="header-bg__img"></div> -->
-              <div class="header-bg__img">
-                <picture>
-                  <source :srcset="require('assets/images/AA_1.png')" media="(min-width: 1100px)" />
-                  <img :src="require('assets/images/AA_2@2x.png')" alt="" />
-                </picture>
-              </div>
+    </div>
+    <div v-if="$route.name === 'home'" class="tw-mt-7.5">
+      <div class="tw-container">
+        <div class="header-bg">
+          <div class="header-bg__touch"></div>
+          <div class="header-bg__wrapper">
+            <div class="tw-flex tw-flex-col tw-gap-5 xl:tw-self-center">
+              <h1 class="header-bg__title">{{ t("header.title") }}</h1>
+              <h2 v-html="t('header.subtitle')"></h2>
+            </div>
+            <!-- <div class="header-bg__img"></div> -->
+            <div class="header-bg__img">
+              <picture>
+                <source
+                  :srcset="require('assets/images/AA_1.png')"
+                  media="(min-width: 1100px)"
+                />
+                <img :src="require('assets/images/AA_2@2x.png')" alt="" />
+              </picture>
             </div>
           </div>
         </div>
       </div>
-    </header>
-  
+    </div>
+  </header>
 </template>
 
 <script>
-import useLocal from "src/composition/V3/useLocal"
-import {ref} from 'vue';
+import useLocal from "src/composition/V3/useLocal";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 const i18n = {
   messages: {
     "ru-RU": {
+      lk: "Личный кабинет",
+      "tokenomic-title": "Токеномика",
       dropdown: {
         buttons: {
           register: "Регистрация",
@@ -94,6 +136,8 @@ const i18n = {
     },
 
     "en-US": {
+      lk: "Personal Area",
+      "tokenomic-title": "Tokenomics",
       dropdown: {
         buttons: {
           register: "Sign Up",
@@ -113,31 +157,33 @@ const i18n = {
   },
 };
 export default {
-    setup(){
-        const dropDown = ref(false);
-        const toggleDrop = () => {
-            const element = document.querySelector("#dropdown");
-            if (element) {
-                if (element.style.maxHeight) {
-                element.style.maxHeight = null;
-                dropDown.value = false;
-                } else {
-                dropDown.value = true;
-                element.style.maxHeight = element.scrollHeight + "px";
-                }
-            }
-            };
-        const {locale, newLocale} = useLocal();
-        const { t } = useI18n(i18n);
-        return {
-            locale,
-            newLocale,
-            t,
-            toggleDrop,
-            dropDown,
+  setup() {
+    const store = useStore();
+    const dropDown = ref(false);
+    const toggleDrop = () => {
+      const element = document.querySelector("#dropdown");
+      if (element) {
+        if (element.style.maxHeight) {
+          element.style.maxHeight = null;
+          dropDown.value = false;
+        } else {
+          dropDown.value = true;
+          element.style.maxHeight = element.scrollHeight + "px";
         }
-    }
-}
+      }
+    };
+    const { locale, newLocale } = useLocal();
+    const { t } = useI18n(i18n);
+    return {
+      locale,
+      newLocale,
+      t,
+      toggleDrop,
+      dropDown,
+      isAuth: computed(() => store.getters["auth/isAuth"]),
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -225,7 +271,7 @@ export default {
     width: 100%;
     height: 100%;
     mix-blend-mode: luminosity;
-    background: url('src/assets/icons/touch.svg');
+    background: url("src/assets/icons/touch.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 300%;
@@ -235,7 +281,7 @@ export default {
     font-size: 96px;
     line-height: 90%;
     /* or 86px */
-        text-transform: uppercase;
+    text-transform: uppercase;
     letter-spacing: -0.01em;
 
     /* Main Gradient */

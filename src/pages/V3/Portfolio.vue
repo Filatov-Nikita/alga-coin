@@ -18,8 +18,10 @@
         </div>
       </div>
       <div>
-        <p class="tw-text-white tw-text-md2 tw-leading-7">Constantine</p>
-        <p class="tw-text-white tw-text-md2 tw-leading-7">Constantinople</p>
+        <p class="tw-text-white tw-text-md2 tw-leading-7">
+          {{ $store.getters["profile/name"] }}
+        </p>
+        <!-- <p class="tw-text-white tw-text-md2 tw-leading-7">Constantinople</p> -->
       </div>
     </div>
     <div class="">
@@ -33,21 +35,17 @@
           <p>{{ t("index-table.header[4]") }}</p>
         </div>
         <div class="tw-flex tw-flex-col tw-gap-y-7.5">
-          <div v-for="i in 10" :key="i" data-index>
+          <div v-for="ind in indexList" :key="ind.id" data-index>
             <div class="index-content index-grid tw-items-center">
               <div class="tw-flex tw-items-center tw-gap-5 tw-mr-15">
-                <q-img
-                  :src="require('assets/icons/index-directive/indg-1.png')"
-                  width="50px"
-                  height="50px"
-                />
+                <q-img :src="ind.image.url" width="50px" height="50px" />
                 <div class="tw-flex-grow">
                   <div class="tw-flex tw-justify-between tw-items-center">
-                    <span class="">ALGA GOLD</span>
+                    <span class="">{{ ind.name }}</span>
                     <div
-                      @click="choiseIndex(i)"
+                      @click="choiseIndex(ind.id)"
                       class="index-content__dropicon tw-cursor-pointer"
-                      :class="{ active: activeIndex == i }"
+                      :class="{ active: activeIndex == ind.id }"
                     >
                       <svg
                         width="14"
@@ -65,12 +63,15 @@
                       </svg>
                     </div>
                   </div>
-                  <p class="tw-text-xxs">12.08.2020-12.12.2020</p>
+                  <p class="tw-text-xxs">
+                    {{ ind["opening_at"] }}-{{ ind["closing_at"] }}
+                  </p>
                 </div>
               </div>
-              <div>30 {{ t("index-table.body.date") }}</div>
+              <div>{{ ind["closing_in_days"] }}</div>
               <div>
-                1.255 <span class="tw-text-text-gray tw-ml-2.5"> USDT</span>
+                {{ ind["balance_amount"] }}
+                <span class="tw-text-text-gray tw-ml-2.5"> USDT</span>
               </div>
               <div>
                 <span class="tw-text-green"> + 0.215 </span>
@@ -92,33 +93,24 @@
             <div>
               <div
                 class="index-dropdown tw-flex tw-flex-col tw-gap-7.5 tw-mt-7.5"
-                :class="{ active: activeIndex === i }"
+                :class="{ active: activeIndex === ind.id }"
               >
-                <div class="index-grid tw-items-center">
+                <div
+                  class="index-grid tw-items-center"
+                  v-for="contract in ind.contracts"
+                  :key="contract.id"
+                >
                   <div class="tw-flex tw-items-center tw-mr-15">
                     <div class="tw-ml-15.5">
-                      <p class="tw-text-xxs">12.08.2020-12.12.2020</p>
+                      <p class="tw-text-xxs">
+                        {{ contract["created_at"] }}
+                      </p>
                     </div>
                   </div>
                   <div></div>
                   <div>
-                    1.255 <span class="tw-text-text-gray tw-ml-2.5"> USDT</span>
-                  </div>
-                  <div>
-                    <span class="tw-text-green"> + 0.215 </span>
+                    {{ contract["balance_amount"] }}
                     <span class="tw-text-text-gray tw-ml-2.5"> USDT</span>
-                  </div>
-                  <div></div>
-                </div>
-                <div class="index-grid tw-items-center">
-                  <div class="tw-flex tw-items-center tw-mr-15">
-                    <div class="tw-ml-15.5">
-                      <p class="tw-text-xxs">12.08.2020-12.12.2020</p>
-                    </div>
-                  </div>
-                  <div></div>
-                  <div>
-                    1.255 <span class="tw-text-text-gray tw-ml-2.5"> USDT</span>
                   </div>
                   <div>
                     <span class="tw-text-green"> + 0.215 </span>
@@ -156,21 +148,21 @@
           @submit="popupAction"
           v-slot="{ isSubmitting }"
         >
-          <div class="tw-flex tw-flex-col xl:tw-w-1/3">
+          <!-- <div class="tw-flex tw-flex-col xl:tw-w-1/3">
             <label
               class="tw-text-purple-dark tw-text-xs tw-leading-4"
               for="amount"
               >{{ t("popup.amount.label") }}</label
             >
             <AppInput id="amount" rules="" name="amount" />
-          </div>
-          <div class="tw-flex tw-flex-col xl:tw-w-1/3">
+          </div> -->
+          <div class="tw-flex tw-flex-col tw-flex-grow">
             <label
               class="tw-text-purple-dark tw-text-xs tw-leading-4"
               for="wallet"
               >{{ t("popup.wallet-number.label") }}</label
             >
-            <AppInput id="wallet" rules="" name="wallet" />
+            <AppInput id="wallet" rules="" name="address" />
           </div>
           <base-button
             class="xl:tw-self-end xl:tw-w-1/3"
@@ -185,7 +177,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 const i18n = {
   messages: {
@@ -260,7 +253,17 @@ const i18n = {
   },
 };
 const { t } = useI18n(i18n);
+const store = useStore();
 const popup = ref(null);
+const popupAction = async (value, { resetForm }) => {
+  try {
+    await store.dispatch("profile/widthdrawalIndex", value);
+    resetForm();
+    isPopup.value = false;
+  } catch (e) {
+    throw e;
+  }
+};
 const activeIndex = ref(null);
 const isPopup = ref(false);
 const choiseIndex = (index) => {
@@ -334,8 +337,12 @@ const targetClick = (e) => {
   }
   // console.log(linkName.value);
 };
+
+const indexList = computed(() => store.getters["profile/getPorfolioList"]);
+
 onMounted(() => {
-  window.addEventListener("scroll", scollWindow);
+  store.dispatch("profile/listPortfolioData"),
+    window.addEventListener("scroll", scollWindow);
 
   window.addEventListener("click", targetClick);
 });

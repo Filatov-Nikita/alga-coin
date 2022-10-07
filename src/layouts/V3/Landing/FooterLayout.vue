@@ -23,7 +23,10 @@
                 :alt="link.name"
                 class="link-popup__icon"
               />
-              <p class="tw-text-white tw-text-xs">{{ link.title }}</p>
+              <p
+                class="tw-text-white tw-text-xs tw-text-center"
+                v-html="link.title"
+              ></p>
             </a>
 
             <!-- <div v-for=""></div> -->
@@ -39,26 +42,26 @@
             <a href="#" class="text-arrow-brand tw-underline">Whitepaper.pdf</a> -->
         </div>
         <div class="tw-flex tw-gap-2.5">
-          <div
-            @click="choiceLink('twitter')"
+          <a
+            href="https://instagram.com/algaecosystem?igshid=NmZiMzY2Mjc="
             class="tw-cursor-pointer pie pie-link"
-            data-link
+            target="_blank"
           >
-            <img :src="require('assets/icons/twitter.svg')" alt="twitter" />
-          </div>
+            <img :src="require('assets/icons/instagram.svg')" alt="twitter" />
+          </a>
+          <a
+            href="https://medium.com/@algaecosystem"
+            class="tw-cursor-pointer pie pie-link"
+            target="_blank"
+          >
+            <img :src="require('assets/icons/medium.svg')" alt="twitter" />
+          </a>
           <div
             @click="choiceLink('telegram')"
             class="tw-cursor-pointer pie pie-link"
             data-link
           >
             <img :src="require('assets/icons/telegram.svg')" alt="telegram" />
-          </div>
-          <div
-            @click="choiceLink('discord')"
-            class="tw-cursor-pointer pie pie-link"
-            data-link
-          >
-            <img :src="require('assets/icons/discord.svg')" alt="discord" />
           </div>
         </div>
       </div>
@@ -86,42 +89,40 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick } from "vue";
 const popupFooter = ref(null);
-const links = [
-  {
-    name: "discord",
-    icon: "discord",
-    title: "title",
-    href: "https://twitter.com/AlgaEcosystem",
+import { useI18n } from "vue-i18n";
+const i18n = {
+  messages: {
+    "ru-RU": {
+      links: {
+        telegram: ["Канал <br> Алгафинанс", "Чат <br> Алгафинанс"],
+      },
+    },
+    "en-US": {
+      links: {
+        telegram: ["Сhannel <br> Algafinance", "Chat <br> Algafinance"],
+      },
+    },
   },
+};
+const { t } = useI18n(i18n);
+const links = ref([
   {
-    name: "twitter",
-    icon: "twitter",
-    title: "title",
-    href: "https://twitter.com/AlgaEcosystem",
+    name: "telegram",
+    icon: "telegram",
+    title: t("links.telegram[0]"),
+    href: "https://t.me/algafinance",
   },
   {
     name: "telegram",
     icon: "telegram",
-    title: "title",
-    href: "https://twitter.com/AlgaEcosystem",
+    title: t("links.telegram[1]"),
+    href: "https://t.me/algafinancechat",
   },
-  {
-    name: "telegram",
-    icon: "telegram",
-    title: "title",
-    href: "https://twitter.com/AlgaEcosystem",
-  },
-  {
-    name: "telegram",
-    icon: "telegram",
-    title: "title",
-    href: "https://twitter.com/AlgaEcosystem",
-  },
-];
+]);
 const linkName = ref("");
 const currentLinks = computed(() => {
   if (linkName.value !== "") {
-    return links.filter((link) => link.name === linkName.value);
+    return links.value.filter((link) => link.name === linkName.value);
   }
   return null;
 });

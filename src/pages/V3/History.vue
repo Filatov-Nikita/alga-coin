@@ -1,7 +1,6 @@
 <template>
   <div class="tw-overflow-hidden">
     <h2 class="tw-mb-10">{{ t("title") }}</h2>
-
     <div class="switch tw-mb-10">
       <span class="option active" @click="choiceList(1)">
         {{ t("nav.buy") }}
@@ -43,23 +42,25 @@
         class="history-list tw-flex tw-flex-col tw-gap-2.5"
       >
         <div
-          class="history-item card card__border-line tw-flex tw-gap-15 tw-items-center"
+          class="history-item card card__border-line tw-items-center"
+          v-for="list in buyList"
+          :key="list.id"
         >
           <div>
             <div>{{ t("table.completed") }}</div>
-            <p>2022-11-11 19:26:24</p>
+            <p>{{ list["created_at"] }}</p>
           </div>
           <div>
-            <div>USDT</div>
+            <div>{{ list["index_derivative"].name }}</div>
           </div>
           <div>
-            <div>1 256.065</div>
+            <div>{{ list.amount }}</div>
           </div>
           <div>
-            <div>1 256.065</div>
+            <div>{{ list.invoice.status }}</div>
           </div>
           <div>
-            <div>1 256.065</div>
+            <div>{{ list.status }}</div>
           </div>
         </div>
       </div>
@@ -69,6 +70,8 @@
       >
         <div
           class="history-item card card__border-line tw-flex tw-gap-15 tw-items-center"
+          v-for="list in widthdrawalList"
+          :key="list.id"
         >
           <div>
             <div>{{ t("table.completed") }}</div>
@@ -93,7 +96,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
+import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 const i18n = {
   messages: {
@@ -120,6 +124,23 @@ const i18n = {
   },
 };
 const { t } = useI18n(i18n);
+const store = useStore();
+onMounted(async () => {
+  await Promise.all([
+    store.dispatch("profile/listHistoryBuy"),
+    store.dispatch("profile/listHistoryWidthdrawal"),
+  ]);
+});
+const buyList = computed(() => store.getters["profile/getBuyList"]);
+const widthdrawalList = computed(
+  () => store.getters["profile/getWidthdrawalList"]
+);
+// store.dispatch("profile/listHistoryBuy");
+// await Promise.all([
+//   store.dispatch("profile/listHistoryBuy"),
+//   store.dispatch("profile/listHistoryWidthdrawal"),
+// ]);
+// console.log(store.dispatch("profile/listHistoryWidthdrawal"));
 const activeNav = ref(1);
 const activeContent = ref(1);
 const fadeIn = ref("animated fadeInLeft");
@@ -200,5 +221,7 @@ const choiceList = (index) => {
 .history-item {
   min-width: max-content;
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 </style>

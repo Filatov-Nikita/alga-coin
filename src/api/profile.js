@@ -1,4 +1,4 @@
-import { testApi, MainApi } from "./utilities/service";
+import { testApi, MainApi, MainApiDbg } from "./utilities/service";
 
 export function show() {
   return MainApi.swot("b2c/profile").json();
@@ -32,5 +32,24 @@ export function sendAppear(body) {
     .post("b2c/support_issues", {
       body,
     })
+    .json();
+}
+
+export function listHistoryShopping() {
+  console.log("hi");
+  return MainApiDbg.mainKy("b2c/orders").json();
+}
+
+export function listHistoryWidthdrawal() {
+  return MainApiDbg.mainKy("b2c/withdrawals").json();
+}
+
+export function listPortfolio() {
+  return MainApiDbg.mainKy("b2c/my_indices").json();
+}
+
+export function widthdrawalIndex(address) {
+  return MainApiDbg.mainKy
+    .post("b2c/withdrawals", { json: { address } })
     .json();
 }
