@@ -5,10 +5,10 @@
     <div class="tw-flex tw-flex-col tw-items-center tw-gap-7.5 profile-header">
       <img
         class="profile-header__icon"
-        :src="require('assets/icons/index-directive/indg-1.png')"
+        :src="require('assets/icons/index-directive/indg-5.svg')"
         alt=""
       />
-      <h4>Constantine</h4>
+      <h4>{{ $store.getters["profile/name"] }}</h4>
     </div>
 
     <div class="profile-step profile-step1">

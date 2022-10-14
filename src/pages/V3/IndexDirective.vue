@@ -192,7 +192,7 @@ import { ref, onMounted, computed } from "vue";
 import RoundDiagram from "src/components/V3/RaoundDiagram.vue";
 import AreaChart from "src/components/V3/AreaChart.vue";
 import MarkIcon from "src/components/V3/MarkIcon.vue";
-
+import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
 import useChartData from "src/composition/V3/useChartData.js";
@@ -265,19 +265,26 @@ export default {
       stableIndexTwoMonthPrecent,
     } = useChartData();
     const { t } = useI18n(i18n);
-
+    const $q = useQuasar();
     const derivatives = computed(() => store.getters["landing/derivatives"]);
     const charts = ref(null);
     onMounted(async () => {
-      await store.dispatch("landing/getDerivatives").then((resolve) => {
-        const requests = resolve.map((derivative) =>
-          store.dispatch("landing/getChartDerivative", derivative.id)
-        );
+      try {
+        $q.loading.show();
+        await store.dispatch("landing/getDerivatives").then((resolve) => {
+          const requests = resolve.map((derivative) =>
+            store.dispatch("landing/getChartDerivative", derivative.id)
+          );
 
-        Promise.all(requests).then((responses) => {
-          charts.value = responses;
+          Promise.all(requests).then((responses) => {
+            charts.value = responses;
+          });
         });
-      });
+      } catch (e) {
+        throw e;
+      } finally {
+        $q.loading.hide();
+      }
     });
 
     const roundDiagramData = (currencys) => {

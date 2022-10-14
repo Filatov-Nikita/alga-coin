@@ -23,9 +23,11 @@
 @import "./v3/ui.scss";
 
 .q-carousel__next-arrow--horizontal {
+  top: -16px;
   right: 40px;
 }
 .q-carousel__prev-arrow--horizontal {
+  top: 16px;
   left: 40px;
 }
 

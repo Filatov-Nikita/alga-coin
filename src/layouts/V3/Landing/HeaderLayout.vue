@@ -51,7 +51,7 @@
               </button>
             </div>
             <div class="desk-n">
-              <button class="burger" @click="toggleDrop">
+              <button class="burger" @click="dropDown = !dropDown">
                 <span></span><span></span><span></span>
               </button>
             </div>
@@ -59,28 +59,37 @@
         </div>
       </div>
     </nav>
-    <div class="drop" :class="dropDown ? 'active' : ''" id="dropdown">
-      <div class="tw-container">
-        <div class="drop__wrapper tw-flex tw-justify-between tw-gap-1">
-          <!-- <button class="button-border tw-w-1/2" @click="$router.push({ name: 'profile' })">
-              {{ t("dropdown.buttons.login") }}
-            </button> -->
-          <button
-            v-if="isAuth"
-            class="button tw-w-full"
-            @click="$router.push({ name: 'index-directive' })"
-          >
-            {{ t("lk") }}
-          </button>
-          <button
-            v-else
-            class="button tw-w-full"
-            @click="$router.push({ name: 'auth.registr' })"
-          >
-            {{ t("dropdown.buttons.register") }}
-          </button>
+    <div>
+      <transition
+        appear
+        mode="out-in"
+        enter-active-class="animated fadeIn"
+        leave-active-class="animated fadeOut"
+      >
+        <div class="drop" v-if="dropDown">
+          <div class="tw-container">
+            <div class="drop__wrapper tw-flex tw-justify-between tw-gap-1">
+              <!-- <button class="button-border tw-w-1/2" @click="$router.push({ name: 'profile' })">
+                    {{ t("dropdown.buttons.login") }}
+                  </button> -->
+              <button
+                v-if="isAuth"
+                class="button tw-w-full"
+                @click="$router.push({ name: 'index-directive' })"
+              >
+                {{ t("lk") }}
+              </button>
+              <button
+                v-else
+                class="button tw-w-full"
+                @click="$router.push({ name: 'auth.registr' })"
+              >
+                {{ t("dropdown.buttons.register") }}
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </transition>
     </div>
     <div v-if="$route.name === 'home'" class="tw-mt-7.5">
       <div class="tw-container">
@@ -136,7 +145,7 @@ const i18n = {
     },
 
     "en-US": {
-      lk: "Personal Area",
+      lk: "Personal",
       "tokenomic-title": "Tokenomics",
       dropdown: {
         buttons: {
@@ -160,25 +169,25 @@ export default {
   setup() {
     const store = useStore();
     const dropDown = ref(false);
-    const toggleDrop = () => {
-      const element = document.querySelector("#dropdown");
-      if (element) {
-        if (element.style.maxHeight) {
-          element.style.maxHeight = null;
-          dropDown.value = false;
-        } else {
-          dropDown.value = true;
-          element.style.maxHeight = element.scrollHeight + "px";
-        }
-      }
-    };
+    // const toggleDrop = () => {
+    //   const element = document.querySelector("#dropdown");
+    //   if (element) {
+    //     if (element.style.maxHeight) {
+    //       element.style.maxHeight = null;
+    //       dropDown.value = false;
+    //     } else {
+    //       dropDown.value = true;
+    //       element.style.maxHeight = element.scrollHeight + "px";
+    //     }
+    //   }
+    // };
     const { locale, newLocale } = useLocal();
     const { t } = useI18n(i18n);
     return {
       locale,
       newLocale,
       t,
-      toggleDrop,
+      // toggleDrop,
       dropDown,
       isAuth: computed(() => store.getters["auth/isAuth"]),
     };
@@ -235,7 +244,6 @@ export default {
   /* Note: backdrop-filter has minimal browser support */
 
   border-radius: 0 0 24px 24px;
-  max-height: 0;
   transition: all 0.3s ease;
   overflow: hidden;
 

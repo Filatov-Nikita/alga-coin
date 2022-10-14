@@ -47,8 +47,7 @@
           :key="list.id"
         >
           <div>
-            <div>{{ t("table.completed") }}</div>
-            <p>{{ list["created_at"] }}</p>
+            <div>{{ list.status }}</div>
           </div>
           <div>
             <div>{{ list["index_derivative"].name }}</div>
@@ -59,9 +58,6 @@
           <div>
             <div>{{ list.invoice.status }}</div>
           </div>
-          <div>
-            <div>{{ list.status }}</div>
-          </div>
         </div>
       </div>
       <div
@@ -69,25 +65,22 @@
         class="history-list tw-flex tw-flex-col tw-gap-2.5"
       >
         <div
-          class="history-item card card__border-line tw-flex tw-gap-15 tw-items-center"
+          class="history-item history-item__widthdrawal card card__border-line tw-flex tw-gap-5 tw-items-center"
           v-for="list in widthdrawalList"
           :key="list.id"
         >
           <div>
-            <div>{{ t("table.completed") }}</div>
-            <p>2022-11-11 19:26:24</p>
+            <div>{{ list.status }}</div>
           </div>
           <div>
-            <div>USDT</div>
+            <div>{{ list["index_derivative"].name }}</div>
           </div>
           <div>
-            <div>1 256.065</div>
+            <div>{{ list.amount }}</div>
           </div>
+
           <div>
-            <div>1 256.065</div>
-          </div>
-          <div>
-            <div>1 256.065</div>
+            <div>{{ list.address }}</div>
           </div>
         </div>
       </div>
@@ -97,6 +90,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
+import { useQuasar } from "quasar";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 const i18n = {
@@ -124,12 +118,20 @@ const i18n = {
   },
 };
 const { t } = useI18n(i18n);
+const $q = useQuasar();
 const store = useStore();
 onMounted(async () => {
-  await Promise.all([
-    store.dispatch("profile/listHistoryBuy"),
-    store.dispatch("profile/listHistoryWidthdrawal"),
-  ]);
+  try {
+    $q.loading.show();
+    await Promise.all([
+      store.dispatch("profile/listHistoryBuy"),
+      store.dispatch("profile/listHistoryWidthdrawal"),
+    ]);
+  } catch (e) {
+    throw e;
+  } finally {
+    $q.loading.hide();
+  }
 });
 const buyList = computed(() => store.getters["profile/getBuyList"]);
 const widthdrawalList = computed(
@@ -223,5 +225,9 @@ const choiceList = (index) => {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+}
+
+.history-item__widthdrawal {
+  grid-template-columns: 150px 80px 100px 50px 100px;
 }
 </style>

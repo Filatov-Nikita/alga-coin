@@ -84,7 +84,6 @@ export default {
         const list = state.widthdrawalList.map((item) => {
           return {
             ...item,
-            created_at: formatingFullDate(item["created_at"]),
           };
         });
         return list;

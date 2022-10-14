@@ -153,19 +153,19 @@ export default {
     const menuActive = ref(0);
     const scroll = ref(false);
     const fullPage = ref(null);
-    (async () => {
-      $q.loading.show();
-      try {
-        await Promise.all([
-          store.dispatch("landing/newsList"),
-          store.dispatch("landing/projectsList"),
-        ]);
-      } catch (e) {
-        throw e;
-      } finally {
-        $q.loading.hide();
-      }
-    })();
+    // (async () => {
+    //   $q.loading.show();
+    //   try {
+    //     await Promise.all([
+    //       // store.dispatch("landing/newsList"),
+    //       // store.dispatch("landing/projectsList"),
+    //     ]);
+    //   } catch (e) {
+    //     throw e;
+    //   } finally {
+    //     $q.loading.hide();
+    //   }
+    // })();
 
     const screenBgColors = reactive({
       0: "blue",

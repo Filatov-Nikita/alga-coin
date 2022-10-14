@@ -44,7 +44,7 @@
             class="xl:tw-ml-42 tw-flex tw-flex-col xl:tw-flex-row xl:tw-justify-between tw-gap-5"
           >
             <div
-              @click="$refs.uploadFile.click()"
+              @click="uploadFile.click()"
               class="upload__btn tw-cursor-pointer tw-text-purple-light tw-flex tw-gap-3.5 tw-items-center"
             >
               <svg

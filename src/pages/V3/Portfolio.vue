@@ -179,6 +179,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { useStore } from "vuex";
+import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 const i18n = {
   messages: {
@@ -253,6 +254,7 @@ const i18n = {
   },
 };
 const { t } = useI18n(i18n);
+const $q = useQuasar();
 const store = useStore();
 const popup = ref(null);
 const popupAction = async (value, { resetForm }) => {
@@ -340,9 +342,16 @@ const targetClick = (e) => {
 
 const indexList = computed(() => store.getters["profile/getPorfolioList"]);
 
-onMounted(() => {
-  store.dispatch("profile/listPortfolioData"),
-    window.addEventListener("scroll", scollWindow);
+onMounted(async () => {
+  try {
+    $q.loading.show();
+    await store.dispatch("profile/listPortfolioData");
+  } catch (e) {
+    throw e;
+  } finally {
+    $q.loading.hide();
+  }
+  window.addEventListener("scroll", scollWindow);
 
   window.addEventListener("click", targetClick);
 });

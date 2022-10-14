@@ -96,7 +96,7 @@
           <div class="index-directive__cards tw-mt-10">
             <!-- card -->
             <q-carousel
-              v-model="slideIndex"
+              v-model="slide"
               transition-prev="scale"
               transition-next="scale"
               swipeable
@@ -141,16 +141,13 @@
                       {{ currency.code }} &nbsp;
                     </template>
                   </p>
-                  <div
-                    class="tw-mt-5 tw-flex tw-justify-between"
-                    v-if="getChart(derivative.id)"
-                  >
+                  <div class="tw-mt-5 tw-flex tw-justify-between">
                     <div>
                       <p
                         class="tw-text-white"
                         v-html="t('indexD.card.profitability.1', { numb: '2' })"
                       ></p>
-                      <div class="tw-flex tw-gap-x-2.5">
+                      <div class="tw-flex tw-gap-x-2.5" v-if="derivative.id">
                         <MarkIcon
                           :mark="getChart(derivative.id)?.profitability"
                         />
@@ -183,11 +180,11 @@
         </div>
         <h2>{{ t("roadmap.title") }}</h2>
         <div class="mob-n">
-          <div class="tw-flex tw-gap-5 tw--mx-15 tw-mt-10">
+          <div class="tw-flex tw-gap-5 tw--mx-15">
             <q-carousel
               transition-prev="scale"
               transition-next="scale"
-              v-model="slideRoud"
+              v-model="slide"
               swipeable
               animated
               navigation
@@ -421,7 +418,7 @@
                 </div>
               </q-carousel-slide>
 
-              <!-- <template v-slot:control> </template> -->
+              <template v-slot:control> </template>
             </q-carousel>
           </div>
         </div>
@@ -430,7 +427,6 @@
             <div
               class="card card__border-line roadmap__item roadmap__item_1"
               :class="roadmap == '1' ? 'active' : ''"
-              @click="toggleRoadmap('1')"
             >
               <div class="roadmap__item-wrapper">
                 <div
@@ -459,6 +455,7 @@
                   </li>
                 </ul>
                 <button
+                  @click="toggleRoadmap('1')"
                   class="pie pie-arrow button-arrow"
                   :class="roadmap == '1' ? 'active' : ''"
                 >
@@ -474,7 +471,6 @@
             <div
               class="card card__border-line roadmap__item roadmap__item_2"
               :class="roadmap == '2' ? 'active' : ''"
-              @click="toggleRoadmap('2')"
             >
               <div class="roadmap__item-wrapper">
                 <div
@@ -506,6 +502,7 @@
                   </li>
                 </ul>
                 <button
+                  @click="toggleRoadmap('2')"
                   class="pie pie-arrow button-arrow"
                   :class="roadmap == '2' ? 'active' : ''"
                 >
@@ -521,7 +518,6 @@
             <div
               class="card card__border-line roadmap__item roadmap__item_3"
               :class="roadmap == '3' ? 'active' : ''"
-              @click="toggleRoadmap('3')"
             >
               <div class="roadmap__item-wrapper">
                 <div
@@ -556,6 +552,7 @@
                   </li>
                 </ul>
                 <button
+                  @click="toggleRoadmap('3')"
                   class="pie pie-arrow button-arrow"
                   :class="roadmap == '3' ? 'active' : ''"
                 >
@@ -571,7 +568,6 @@
             <div
               class="card card__border-line roadmap__item roadmap__item_4"
               :class="roadmap == '4' ? 'active' : ''"
-              @click="toggleRoadmap('4')"
             >
               <div class="roadmap__item-wrapper">
                 <div
@@ -603,6 +599,7 @@
                   </li>
                 </ul>
                 <button
+                  @click="toggleRoadmap('4')"
                   class="pie pie-arrow button-arrow"
                   :class="roadmap == '4' ? 'active' : ''"
                 >
@@ -618,7 +615,6 @@
             <div
               class="card card__border-line roadmap__item roadmap__item_5"
               :class="roadmap == '5' ? 'active' : ''"
-              @click="toggleRoadmap('5')"
             >
               <div class="roadmap__item-wrapper">
                 <div
@@ -647,6 +643,7 @@
                   </li>
                 </ul>
                 <button
+                  @click="toggleRoadmap('5')"
                   class="pie pie-arrow button-arrow"
                   :class="roadmap == '5' ? 'active' : ''"
                 >
@@ -662,7 +659,6 @@
             <div
               class="card card__border-line roadmap__item roadmap__item_6"
               :class="roadmap == '6' ? 'active' : ''"
-              @click="toggleRoadmap('6')"
             >
               <div class="roadmap__item-wrapper">
                 <div
@@ -694,6 +690,7 @@
                   </li>
                 </ul>
                 <button
+                  @click="toggleRoadmap('6')"
                   class="pie pie-arrow button-arrow"
                   :class="roadmap == '6' ? 'active' : ''"
                 >
@@ -723,7 +720,7 @@
           <div>
             <div class="desk-n">
               <q-carousel
-                v-model="slideTeam"
+                v-model="slide"
                 transition-prev="scale"
                 transition-next="scale"
                 swipeable
@@ -1065,10 +1062,11 @@
         </div>
         <h2>{{ t("faq.title") }}</h2>
         <div class="accardion tw-mt-10">
-          <div class="accardion-item" @click="toggle('test')">
+          <div class="accardion-item">
             <div class="card card__border-line accardion-item__card">
               <h4 v-html="t('faq.items.1.title')"></h4>
               <button
+                @click="toggle('test')"
                 class="pie pie-arrow button-arrow"
                 :class="accardion == 'test' ? 'active' : ''"
               >
@@ -1088,10 +1086,11 @@
             ></p>
           </div>
 
-          <div class="accardion-item" @click="toggle('2')">
+          <div class="accardion-item">
             <div class="card card__border-line accardion-item__card">
               <h4 v-html="t('faq.items.2.title')"></h4>
               <button
+                @click="toggle('2')"
                 class="pie pie-arrow button-arrow"
                 :class="accardion == '2' ? 'active' : ''"
               >
@@ -1111,10 +1110,11 @@
             ></p>
           </div>
 
-          <div class="accardion-item" @click="toggle('3')">
+          <div class="accardion-item">
             <div class="card card__border-line accardion-item__card">
               <h4 v-html="t('faq.items.3.title')"></h4>
               <button
+                @click="toggle('3')"
                 class="pie pie-arrow button-arrow"
                 :class="accardion == '3' ? 'active' : ''"
               >
@@ -1134,10 +1134,11 @@
             ></p>
           </div>
 
-          <div class="accardion-item" @click="toggle('4')">
+          <div class="accardion-item">
             <div class="card card__border-line accardion-item__card">
               <h4 v-html="t('faq.items.4.title')"></h4>
               <button
+                @click="toggle('4')"
                 class="pie pie-arrow button-arrow"
                 :class="accardion == '4' ? 'active' : ''"
               >
@@ -1157,10 +1158,11 @@
             ></p>
           </div>
 
-          <div class="accardion-item" @click="toggle('5')">
+          <div class="accardion-item">
             <div class="card card__border-line accardion-item__card">
               <h4 v-html="t('faq.items.5.title')"></h4>
               <button
+                @click="toggle('5')"
                 class="pie pie-arrow button-arrow"
                 :class="accardion == '5' ? 'active' : ''"
               >
@@ -1180,10 +1182,11 @@
             ></p>
           </div>
 
-          <div class="accardion-item" @click="toggle('6')">
+          <div class="accardion-item">
             <div class="card card__border-line accardion-item__card">
               <h4 v-html="t('faq.items.6.title')"></h4>
               <button
+                @click="toggle('6')"
                 class="pie pie-arrow button-arrow"
                 :class="accardion == '6' ? 'active' : ''"
               >
@@ -1774,9 +1777,7 @@ export default {
       test,
       accardion,
       toggle,
-      slideIndex: ref(1),
-      slideRoud: ref("1"),
-      slideTeam: ref("1"),
+      slide: ref(1),
       lorem:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.",
 
