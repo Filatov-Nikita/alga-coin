@@ -42,21 +42,28 @@
         class="history-list tw-flex tw-flex-col tw-gap-2.5"
       >
         <div
-          class="history-item card card__border-line tw-items-center"
+          class="history-item card card__border-line tw-items-center tw-gap-7"
           v-for="list in buyList"
           :key="list.id"
         >
           <div>
-            <div>{{ list.status }}</div>
+            <div>{{ list.status.title }}</div>
+            <div>{{ list.created_at }}</div>
           </div>
           <div>
             <div>{{ list["index_derivative"].name }}</div>
           </div>
           <div>
+            <div>{{ list.invoice.coin.value }}</div>
+          </div>
+          <div>
+            <div>{{ list.invoice.declared_amount }}</div>
+          </div>
+          <div>
             <div>{{ list.amount }}</div>
           </div>
           <div>
-            <div>{{ list.invoice.status }}</div>
+            <div>{{ list.invoice.status.title }}</div>
           </div>
         </div>
       </div>
@@ -98,8 +105,8 @@ const i18n = {
     "ru-RU": {
       title: "История",
       nav: {
-        buy: "Купить",
-        widthdrawal: "Вывод",
+        buy: "Заказы на покупку",
+        widthdrawal: "Заявки на вывод",
       },
       table: {
         completed: "Завершенный",
@@ -224,7 +231,7 @@ const choiceList = (index) => {
   min-width: max-content;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .history-item__widthdrawal {

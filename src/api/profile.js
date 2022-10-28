@@ -37,7 +37,9 @@ export function sendAppear(body) {
 
 export function listHistoryShopping() {
   console.log("hi");
-  return MainApiDbg.mainKy("b2c/orders").json();
+  return MainApi.swot("b2c/portfolio/orders").json();
+
+  //
 }
 
 export function listHistoryWidthdrawal() {
@@ -51,5 +53,13 @@ export function listPortfolio() {
 export function widthdrawalIndex(address) {
   return MainApiDbg.mainKy
     .post("b2c/withdrawals", { json: { address } })
+    .json();
+}
+
+export function createOrder({ amount, inder_id }) {
+  return MainApi.swot
+    .post("b2c/portfolio/register-order", {
+      json: { amount, inder_id, test: true },
+    })
     .json();
 }

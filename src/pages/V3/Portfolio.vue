@@ -80,12 +80,12 @@
               <div class="tw-flex tw-justify-between">
                 <span
                   class="tw-underline tw-cursor-pointer"
-                  @click="buy($event)"
+                  @click="buy($event, ind.id)"
                   >{{ t("index-table.body.action.buy") }}</span
                 >
                 <span
                   class="tw-underline tw-cursor-pointer"
-                  @click="widthdrawal($event)"
+                  @click="widthdrawal($event, ind.id)"
                   >{{ t("index-table.body.action.widthdrawal") }}</span
                 >
               </div>
@@ -137,40 +137,68 @@
         class="card card__border-line tw-absolute tw-w-full tw-top-1/2"
         ref="popup"
       >
-        <div class="tw-text-lg tw-leading-snug xl:tw-text-md2 tw-mb-2.5">
-          {{ t("popup.title") }}
-        </div>
-        <p class="tw-text-purple-dark tw-text-base xl:tw-text-sm tw-mb-5">
-          {{ t("popup.text") }} 12.302 USDT
-        </p>
-        <Form
-          class="tw-flex tw-flex-col xl:tw-flex-row tw-gap-2.5"
-          @submit="popupAction"
-          v-slot="{ isSubmitting }"
-        >
-          <!-- <div class="tw-flex tw-flex-col xl:tw-w-1/3">
-            <label
-              class="tw-text-purple-dark tw-text-xs tw-leading-4"
-              for="amount"
-              >{{ t("popup.amount.label") }}</label
-            >
-            <AppInput id="amount" rules="" name="amount" />
-          </div> -->
-          <div class="tw-flex tw-flex-col tw-flex-grow">
-            <label
-              class="tw-text-purple-dark tw-text-xs tw-leading-4"
-              for="wallet"
-              >{{ t("popup.wallet-number.label") }}</label
-            >
-            <AppInput id="wallet" rules="" name="address" />
+        <template v-if="popupContent.popup_name === 'widthdrawal'">
+          <div class="tw-text-lg tw-leading-snug xl:tw-text-md2 tw-mb-2.5">
+            {{ t("popup.title") }}
           </div>
-          <base-button
-            class="xl:tw-self-end xl:tw-w-1/3"
-            type="submit"
-            :disabled="isSubmitting"
-            >{{ t("popup.request") }}</base-button
+          <p class="tw-text-purple-dark tw-text-base xl:tw-text-sm tw-mb-5">
+            {{ t("popup.text") }} 12.302 USDT
+          </p>
+          <Form
+            class="tw-flex tw-flex-col xl:tw-flex-row tw-gap-2.5"
+            @submit="popupAction"
+            v-slot="{ isSubmitting }"
           >
-        </Form>
+            <!-- <div class="tw-flex tw-flex-col xl:tw-w-1/3">
+              <label
+                class="tw-text-purple-dark tw-text-xs tw-leading-4"
+                for="amount"
+                >{{ t("popup.amount.label") }}</label
+              >
+              <AppInput id="amount" rules="" name="amount" />
+            </div> -->
+            <div class="tw-flex tw-flex-col tw-flex-grow">
+              <label
+                class="tw-text-purple-dark tw-text-xs tw-leading-4"
+                for="wallet"
+                >{{ t("popup.wallet-number.label") }}</label
+              >
+              <AppInput id="wallet" rules="" name="address" />
+            </div>
+            <base-button
+              class="xl:tw-self-end xl:tw-w-1/3"
+              type="submit"
+              :disabled="isSubmitting"
+              >{{ t("popup.request") }}</base-button
+            >
+          </Form>
+        </template>
+        <template v-else-if="popupContent.popup_name === 'buy'">
+          <div class="tw-text-lg tw-leading-snug xl:tw-text-md2 tw-mb-2.5">
+            {{ t("popup.titleBuy") }}
+          </div>
+          <Form
+            class="tw-flex tw-flex-col xl:tw-flex-row tw-gap-2.5"
+            @submit="popupAction"
+            v-slot="{ isSubmitting }"
+          >
+            <div class="tw-flex tw-flex-col xl:tw-w-1/3">
+              <label
+                class="tw-text-purple-dark tw-text-xs tw-leading-4"
+                for="amount"
+                >{{ t("popup.amount.label") }}</label
+              >
+              <AppInput id="amount" rules="" name="amount" />
+            </div>
+
+            <base-button
+              class="xl:tw-self-end xl:tw-w-1/3"
+              type="submit"
+              :disabled="isSubmitting"
+              >{{ t("popup.request") }}</base-button
+            >
+          </Form>
+        </template>
       </div>
     </Transition>
   </q-page>
@@ -181,6 +209,7 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 import { useStore } from "vuex";
 import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
+import useBuyWidthdrawalPopup from "src/composition/V3/useBuyWidthdrawalPopup";
 const i18n = {
   messages: {
     "ru-RU": {
@@ -207,6 +236,7 @@ const i18n = {
       },
       popup: {
         title: "Запрос на вывод средств",
+        titleBuy: "Запрос на пополнение",
         text: "Доступно для вывода:",
         amount: {
           label: "Количество",
@@ -241,6 +271,7 @@ const i18n = {
       },
       popup: {
         title: "Withdrawal Request",
+        titleBuy: "Replenishment request",
         text: "Available for withdrawal:",
         amount: {
           label: "Withdrawal amount",
@@ -256,88 +287,16 @@ const i18n = {
 const { t } = useI18n(i18n);
 const $q = useQuasar();
 const store = useStore();
-const popup = ref(null);
-const popupAction = async (value, { resetForm }) => {
-  try {
-    await store.dispatch("profile/widthdrawalIndex", value);
-    resetForm();
-    isPopup.value = false;
-  } catch (e) {
-    throw e;
-  }
-};
+const { popup, isPopup, popupContent, buy, widthdrawal, popupAction } =
+  useBuyWidthdrawalPopup();
+
 const activeIndex = ref(null);
-const isPopup = ref(false);
+
 const choiseIndex = (index) => {
   if (activeIndex.value === index) activeIndex.value = null;
   else {
     activeIndex.value = index;
   }
-};
-
-const buy = (e) => {
-  console.log("buy");
-};
-const widthdrawal = (e) => {
-  let currentElem = e.target;
-  let open = false;
-  // console.log(currentElem);
-  while (currentElem) {
-    if (currentElem.hasAttribute("data-index")) {
-      isPopup.value = true;
-      break;
-    } else currentElem = currentElem.parentElement;
-  }
-
-  console.log();
-  if (isPopup.value) {
-    const pageHeight = window.innerHeight + window.pageYOffset;
-    const windowHeight =
-      currentElem.getBoundingClientRect().height +
-      currentElem.getBoundingClientRect().top +
-      window.pageYOffset;
-    const positionY =
-      currentElem.getBoundingClientRect().top + window.pageYOffset;
-    popup.value.style.display = "block";
-    const popupHeight = popup.value.offsetHeight;
-    console.log(pageHeight - windowHeight < popupHeight);
-    if (pageHeight - windowHeight < popupHeight) {
-      popup.value.style.top =
-        positionY -
-        currentElem.getBoundingClientRect().height -
-        popupHeight +
-        "px";
-      console.log(popup.value);
-    } else {
-      popup.value.style.top = positionY + "px";
-    }
-  }
-};
-
-const scollWindow = (e) => {
-  if (isPopup.value) {
-    isPopup.value = false;
-    console.log(e);
-  }
-};
-
-const targetClick = (e) => {
-  let currentElem = e.target;
-  let open = false;
-  // console.log(currentElem);
-  while (currentElem) {
-    if (currentElem.hasAttribute("data-index")) {
-      open = true;
-      break;
-    } else currentElem = currentElem.parentElement;
-  }
-  if (!open && isPopup.value && !e.composedPath().includes(popup.value)) {
-    console.log(open);
-    console.log(e.target);
-    console.log(currentElem);
-    isPopup.value = false;
-  }
-  // console.log(linkName.value);
 };
 
 const indexList = computed(() => store.getters["profile/getPorfolioList"]);
@@ -351,13 +310,6 @@ onMounted(async () => {
   } finally {
     $q.loading.hide();
   }
-  window.addEventListener("scroll", scollWindow);
-
-  window.addEventListener("click", targetClick);
-});
-onUnmounted(() => {
-  window.removeEventListener("scroll", scollWindow);
-  window.removeEventListener("click", targetClick);
 });
 </script>
 

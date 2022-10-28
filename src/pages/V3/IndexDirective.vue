@@ -1,6 +1,6 @@
 <template>
   <!-- slider -->
-  <div class="tw-flex tw-flex-col">
+  <div class="tw-flex tw-flex-col tw-relative">
     <div
       class="item tw-flex tw-justify-between tw-items-center tw-mb-6 xl:tw-mb-10"
     >
@@ -55,7 +55,8 @@
                 </div>
               </div>
               <base-button
-                @click="stage2"
+                data-index
+                @click="stage2($event, derivative.id)"
                 class="button tw-w-full tw-hidden xl:tw-block xl:tw-w-auto"
                 >{{ t("buy") }}</base-button
               >
@@ -89,6 +90,8 @@
             {{ derivative.description }}
           </p>
           <base-button
+            data-index
+            @click="stage2($event, derivative.id)"
             class="button tw-w-full tw-mt-5 xl:tw-hidden xl:tw-w-auto"
             >{{ t("buy") }}</base-button
           >
@@ -184,6 +187,45 @@
         </div>
       </q-carousel-slide>
     </q-carousel>
+
+    <Transition
+      appear
+      mode="out-in"
+      enter-active-class="animated zoomIn"
+      leave-active-class="animated zoomOut"
+    >
+      <div
+        v-show="isPopup"
+        data-popup
+        class="card card__border-line tw-absolute tw-w-full tw-top-1/2"
+        ref="popup"
+      >
+        <div class="tw-text-lg tw-leading-snug xl:tw-text-md2 tw-mb-2.5">
+          {{ t("popup.titleBuy") }}
+        </div>
+        <Form
+          class="tw-flex tw-flex-col xl:tw-flex-row tw-gap-2.5"
+          @submit="popupAction"
+          v-slot="{ isSubmitting }"
+        >
+          <div class="tw-flex tw-flex-col xl:tw-w-1/3">
+            <label
+              class="tw-text-purple-dark tw-text-xs tw-leading-4"
+              for="amount"
+              >{{ t("popup.amount.label") }}</label
+            >
+            <AppInput id="amount" rules="" name="amount" />
+          </div>
+
+          <base-button
+            class="xl:tw-self-end xl:tw-w-1/3"
+            type="submit"
+            :disabled="isSubmitting"
+            >{{ t("popup.request") }}</base-button
+          >
+        </Form>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -196,6 +238,7 @@ import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
 import useChartData from "src/composition/V3/useChartData.js";
+import useBuyWidthdrawalPopup from "src/composition/V3/useBuyWidthdrawalPopup";
 const i18n = {
   messages: {
     "en-US": {
@@ -219,6 +262,18 @@ const i18n = {
         profitText: "Profitability <br> for {numb} months",
         selectProfit: "Last {numb} months",
       },
+      popup: {
+        title: "Withdrawal Request",
+        titleBuy: "Replenishment request",
+        text: "Available for withdrawal:",
+        amount: {
+          label: "Withdrawal amount",
+        },
+        "wallet-number": {
+          label: "Wallet number",
+        },
+        request: "Leave a request",
+      },
     },
     "ru-RU": {
       buy: "Купить",
@@ -240,6 +295,18 @@ const i18n = {
         title: "Статистика",
         profitText: "Доходность <br> за {numb} месяца",
         selectProfit: "Последние {numb} месяца",
+      },
+      popup: {
+        title: "Запрос на вывод средств",
+        titleBuy: "Запрос на пополнение",
+        text: "Доступно для вывода:",
+        amount: {
+          label: "Количество",
+        },
+        "wallet-number": {
+          label: "Номер счета",
+        },
+        request: "Оставить заявку",
       },
     },
   },
@@ -264,6 +331,8 @@ export default {
       ethComboTwoMonthPrecent,
       stableIndexTwoMonthPrecent,
     } = useChartData();
+    const { popup, isPopup, popupContent, buy, popupAction } =
+      useBuyWidthdrawalPopup();
     const { t } = useI18n(i18n);
     const $q = useQuasar();
     const derivatives = computed(() => store.getters["landing/derivatives"]);
@@ -317,12 +386,17 @@ export default {
       roundDiagramColors,
       getChartData,
       getChart,
+      popup,
+      popupAction,
+      buy,
+      isPopup,
     };
   },
   methods: {
-    stage2() {
+    stage2(e, id) {
       console.log("stage2");
       ym(90160255, "reachGoal", "stage 2");
+      console.log(this.buy(e, id));
       //   this.$router.push({ name: 'index-directive' })
     },
   },

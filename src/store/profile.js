@@ -173,5 +173,9 @@ export default {
     async widthdrawalIndex(_c, address) {
       await ProfileAPI.widthdrawalIndex(address);
     },
+    async buyIndex(_c, obj) {
+      const { data } = await ProfileAPI.createOrder(obj);
+      return data;
+    },
   },
 };
