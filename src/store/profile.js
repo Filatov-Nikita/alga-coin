@@ -46,6 +46,7 @@ export default {
     buyList: null,
     widthdrawalList: null,
     porfolioList: null,
+    balance: null
   },
   getters: {
     name(state) {
@@ -110,6 +111,16 @@ export default {
       }
       return null;
     },
+
+    getBalance(state){
+      if(state.balance === null) return {
+        actual_balance: 0,
+        relative_profit: null,
+        is_profit_positive: false,
+        coin: null
+      };
+      return state.balance;
+    }
   },
   mutations: {
     setProfile(state, payload) {
@@ -131,6 +142,10 @@ export default {
     setListPorfolio(state, payload) {
       state.porfolioList = payload;
     },
+
+    setBalance(state, data) {
+      state.balance = data;
+    }
   },
   actions: {
     async show({ commit }) {
@@ -177,5 +192,11 @@ export default {
       const { data } = await ProfileAPI.createOrder(obj);
       return data;
     },
+    async getBalanceProfile(_c) {
+      const {data} = await ProfileAPI.balanceProfile();
+      console.log(data)
+      _c.commit('setBalance', data)
+    }
   },
+
 };

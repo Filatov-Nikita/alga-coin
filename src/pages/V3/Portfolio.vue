@@ -8,12 +8,12 @@
         {{ t("card.title") }}
       </h6>
       <div class="tw-text-md1 tw-flex tw-gap-2.5 tw-mb-7.5">
-        <span>12.302</span>
+        <span>{{ (+balance.actual_balance).toFixed(2) }}</span>
 
         <div class="tw-relative">
-          <span class="tw-text-text-gray-dark-50">USDT</span>
-          <span class="tw-text-base tw-text-green tw-relative tw-bottom-full"
-            >+ 18%</span
+          <span class="tw-text-text-gray-dark-50" v-if="balance.coin">{{balance.coin}}</span>
+          <span class="tw-text-base tw-text-green tw-relative tw-bottom-full" :class="[balance.is_profit_positive?'tw-text-green': 'tw-text-invalid']" v-if="balance.relative_profit"
+            >{{ balance.is_profit_positive?'+':'-'}} {{ (+balance.relative_profit).toFixed(2) }}%</span
           >
         </div>
       </div>
@@ -23,6 +23,7 @@
         </p>
         <!-- <p class="tw-text-white tw-text-md2 tw-leading-7">Constantinople</p> -->
       </div>
+      
     </div>
     <div class="">
       <h4 class="tw-mb-5">{{ t("index-title") }}</h4>
@@ -300,11 +301,19 @@ const choiseIndex = (index) => {
 };
 
 const indexList = computed(() => store.getters["profile/getPorfolioList"]);
-
+const balance = computed(() =>store.getters['profile/getBalance'])
 onMounted(async () => {
+
+  
+
+ 
+
   try {
     $q.loading.show();
-    await store.dispatch("profile/listPortfolioData");
+    Promise.all([
+      await store.dispatch("profile/getBalanceProfile"),
+      await store.dispatch("profile/listPortfolioData"),
+    ])
   } catch (e) {
     throw e;
   } finally {

@@ -63,3 +63,8 @@ export function createOrder({ amount, inder_id }) {
     })
     .json();
 }
+
+
+export function balanceProfile(){
+  return MainApi.swot('b2c/portfolio/balance').json()
+}
