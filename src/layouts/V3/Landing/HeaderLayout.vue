@@ -74,14 +74,14 @@
                   </button> -->
               <button
                 v-if="isAuth"
-                class="button tw-w-full"
+                class="button tw-w-full tw-relative tw-z-10"
                 @click="$router.push({ name: 'index-directive' })"
               >
                 {{ t("lk") }}
               </button>
               <button
                 v-else
-                class="button tw-w-full"
+                class="button tw-w-full tw-relative tw-z-10"
                 @click="$router.push({ name: 'auth.registr' })"
               >
                 {{ t("dropdown.buttons.register") }}
@@ -199,7 +199,11 @@ export default {
   position: absolute;
   z-index: 1;
   width: 100%;
-  filter: drop-shadow(0px 153px 61px rgba(4, 8, 47, 0.01)) drop-shadow(0px 86px 51px rgba(4, 8, 47, 0.05)) drop-shadow(0px 38px 38px rgba(4, 8, 47, 0.09)) drop-shadow(0px 10px 21px rgba(4, 8, 47, 0.1)) drop-shadow(0px 0px 0px rgba(4, 8, 47, 0.1));
+  filter: drop-shadow(0px 153px 61px rgba(4, 8, 47, 0.01))
+    drop-shadow(0px 86px 51px rgba(4, 8, 47, 0.05))
+    drop-shadow(0px 38px 38px rgba(4, 8, 47, 0.09))
+    drop-shadow(0px 10px 21px rgba(4, 8, 47, 0.1))
+    drop-shadow(0px 0px 0px rgba(4, 8, 47, 0.1));
 
   background: rgba(20, 23, 52, 0.112);
   box-shadow: inset 1.86559px -1.86559px 1.86559px rgba(40, 48, 121, 0.424);
@@ -247,7 +251,6 @@ export default {
   font-size: 1rem;
   line-height: 19px;
 }
-
 
 .nav {
   background-color: #101333;

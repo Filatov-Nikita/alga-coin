@@ -1,6 +1,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { useStore } from "vuex";
-import { useRouter} from "vue-router"
+import { useRouter } from "vue-router";
+import { AppAlert } from "src/plugins/app-alert";
 export default function () {
   const router = useRouter();
   const popup = ref(null);
@@ -20,9 +21,13 @@ export default function () {
     }
   };
   const popupAction = async (value, { resetForm }) => {
+    console.log(value);
     if (popupContent.value.popup_name === "widthdrawal") {
       try {
-        await store.dispatch("profile/widthdrawalIndex", { ...value, inder_id:popupContent.value.id});
+        await store.dispatch("profile/widthdrawalIndex", {
+          ...value,
+          inder_id: popupContent.value.id,
+        });
         resetForm();
         isPopup.value = false;
       } catch (e) {
@@ -39,10 +44,22 @@ export default function () {
         const data = await store.dispatch("profile/buyIndex", obj);
         resetForm();
         isPopup.value = false;
-        window.open(data.payment_url, "_blank");
-        router.push({name: 'history'})
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          window.location.href = data.payment_url;
+        } else {
+          window.open(data.payment_url, "_blank");
+
+          router.push({ name: "history" });
+        }
       } catch (e) {
-        throw e;
+        if (!e.response) throw e;
+        if (e.response.status === 422) {
+          const { errors } = await e.response.json();
+          AppAlert({
+            message: () => errors.amount[0],
+            type: "negative",
+          });
+        } else throw e;
       }
     }
   };
@@ -83,7 +100,7 @@ export default function () {
       const positionY =
         currentElem.getBoundingClientRect().top + window.pageYOffset;
       popup.value.style.display = "block";
-      setTimeout(()=>{
+      setTimeout(() => {
         const popupHeight = popup.value.offsetHeight;
         console.log(pageHeight - windowHeight < popupHeight);
         popup.value.style.top =
@@ -91,8 +108,7 @@ export default function () {
           currentElem.getBoundingClientRect().height -
           popupHeight +
           "px";
-
-      },0)
+      }, 0);
       // if (pageHeight - windowHeight < popupHeight) {
       // } else {
       //   popup.value.style.top = positionY + "px";
@@ -109,7 +125,6 @@ export default function () {
     targetPopup(e);
   };
   onMounted(async () => {
-
     window.addEventListener("click", targetClick);
   });
   onUnmounted(() => {

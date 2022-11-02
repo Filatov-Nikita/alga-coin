@@ -8,7 +8,6 @@ import ru from "@vee-validate/i18n/dist/locale/ru.json";
 import en from "@vee-validate/i18n/dist/locale/en.json";
 
 export default ({ app }) => {
-  
   let curLocale;
   if (window.localStorage.getItem("locale") === null) {
     curLocale = Quasar.lang.getLocale();
@@ -17,24 +16,24 @@ export default ({ app }) => {
     curLocale = window.localStorage.getItem("locale");
   }
   function customRule(choice, choicesLength, orgRule) {
-    console.log(choice)
-    console.log(choicesLength)
-    console.log(orgRule)
-  if (choice === 0) {
-    return 0
-  }
+    console.log(choice);
+    console.log(choicesLength);
+    console.log(orgRule);
+    if (choice === 0) {
+      return 0;
+    }
 
-  const teen = choice > 10 && choice < 20
-  const endsWithOne = choice % 10 === 1
-  if (!teen && endsWithOne) {
-    return 1
-  }
-  if (!teen && choice % 10 >= 2 && choice % 10 <= 4) {
-    return 2
-  }
+    const teen = choice > 10 && choice < 20;
+    const endsWithOne = choice % 10 === 1;
+    if (!teen && endsWithOne) {
+      return 1;
+    }
+    if (!teen && choice % 10 >= 2 && choice % 10 <= 4) {
+      return 2;
+    }
 
-  return choicesLength < 4 ? 2 : 3
-}
+    return choicesLength < 4 ? 2 : 3;
+  }
   const i18n = createI18n({
     locale: curLocale,
     legacy: false,
@@ -43,11 +42,11 @@ export default ({ app }) => {
     messages,
     fallbackLocale: "en-US",
     pluralizationRules: {
-      'ru-RU':customRule
+      "ru-RU": customRule,
     },
-    pluralRules:{
-      'ru-RU':customRule
-    }
+    pluralRules: {
+      "ru-RU": customRule,
+    },
   });
 
   app.use(i18n);
@@ -59,6 +58,7 @@ export default ({ app }) => {
     confirmed: "Пароли не совпадают",
     walletAddress: "Адреса кошелька должен быть 40 символов",
     cellphone: "Номер телефона введен некорректно",
+    min: "Сумма должна превышать 100 USDT",
   });
 
   Object.assign(en.messages, {
@@ -66,6 +66,7 @@ export default ({ app }) => {
     confirmed: "Password mismatch",
     walletAddress: "Wallet address must be 40 chars",
     cellphone: "Phone number entered incorrectly",
+    min: "The sum must exceed 100 USDT",
   });
 
   configure({

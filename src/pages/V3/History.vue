@@ -1,9 +1,12 @@
 <template>
   <div class="tw-overflow-hidden">
-    <Pagination/>
+    <!-- <Pagination/> -->
     <h2 class="tw-mb-10">{{ t("title") }}</h2>
     <div class="switch tw-mb-10">
-      <span class="option active" @click="choiceList(1)">
+      <span
+        class="option active"
+        @click="choiceList(1, buyList?.length > 0 ? true : false)"
+      >
         {{ t("nav.buy") }}
 
         <div class="option__line">
@@ -18,7 +21,10 @@
           </transition>
         </div>
       </span>
-      <span class="option" @click="choiceList(2)">
+      <span
+        class="option"
+        @click="choiceList(2, widthdrawalList?.length > 0 ? true : false)"
+      >
         {{ t("nav.widthdrawal") }}
         <div class="option__line">
           <transition
@@ -38,70 +44,91 @@
       enter-active-class="animated zoomIn"
       leave-active-class="animated zoomOut"
     >
-    <div v-if="activeContent == 1" class="history-list tw-grid tw-gap-4">
-
-      <div class=" tw-gap-7" style="display: grid;grid-template-columns: 189px 110px 100px 125px 140px;    padding: 10px 30px;">
-        <p>{{t('table.head[0]')}}</p>
-        <p>{{t('table.head[1]')}}</p>
-        <p>{{t('table.head[2]')}}</p>
-        <p>{{t('table.head[3]')}}</p>
-        <p>{{t('table.head[4]')}}</p>
-      </div>
-      <div
-        
-        class=" tw-flex tw-flex-col tw-gap-2.5"
-        ref="content"
-      >
+      <div v-if="activeContent == 1" class="history-list tw-grid tw-gap-4">
         <div
-          class="history-item card card__border-line tw-items-center tw-gap-7"
-          v-for="list in buyList"
-          :key="list.id"
-
+          class="tw-gap-7"
+          style="
+            display: grid;
+            grid-template-columns: 189px 110px 100px 125px 1fr;
+            padding: 10px 30px;
+          "
         >
-          <div>
-            <div>{{ list.status.title }}</div>
-            <div>{{ list.created_at }}</div>
-          </div>
-          <div>
-            <div>{{ list["index_derivative"].name }}</div>
-          </div>
-          <div >
-            <div v-if="list.invoice">{{ list.invoice.coin.value }}</div>
-          </div>
-          <!-- <div v-if="list.invoice">
+          <p>{{ t("table.head.buy[0]") }}</p>
+          <p>{{ t("table.head.buy[1]") }}</p>
+          <p>{{ t("table.head.buy[2]") }}</p>
+          <p>{{ t("table.head.buy[3]") }}</p>
+          <p>{{ t("table.head.buy[4]") }}</p>
+        </div>
+        <div class="tw-flex tw-flex-col tw-gap-2.5" ref="content">
+          <div
+            class="history-item card card__border-line tw-items-center tw-gap-7"
+            v-for="list in buyList"
+            :key="list.id"
+          >
+            <div>
+              <div>{{ list.status.title }}</div>
+              <div>{{ list.created_at }}</div>
+            </div>
+            <div>
+              <div>{{ list["index_derivative"].name }}</div>
+            </div>
+            <div>
+              <div v-if="list.invoice">{{ list.invoice.coin.value }}</div>
+            </div>
+            <!-- <div v-if="list.invoice">
             <div>{{ (+list.invoice.declared_amount).toFixed(2) }}</div>
           </div> -->
-          <div>
-            <div>{{ list.status.is_deposited ? (+list.deposited_amount).toFixed(2): (+list.declared_amount).toFixed(2) }}</div>
-          </div>
-          <div >
-            <div v-if="list.invoice">{{ list.invoice.status.title }}</div>
+            <div>
+              <div>
+                {{
+                  list.status.is_deposited
+                    ? (+list.deposited_amount).toFixed(2)
+                    : (+list.declared_amount).toFixed(2)
+                }}
+              </div>
+            </div>
+            <div>
+              <div v-if="list.invoice">{{ list.invoice.status.title }}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
       <div
-        v-else-if="activeContent == 2"
-        class="history-list tw-flex tw-flex-col tw-gap-2.5"
-        ref="content"
+        v-else-if="activeContent == 2 && widthdrawalList?.length > 0"
+        class="history-list tw-grid tw-gap-4"
       >
         <div
-          class="history-item history-item__widthdrawal card card__border-line tw-flex tw-gap-5 tw-items-center"
-          v-for="list in widthdrawalList"
-          :key="list.id"
+          class="tw-gap-7"
+          style="
+            display: grid;
+            grid-template-columns: 189px 110px 100px 125px;
+            padding: 10px 30px;
+          "
         >
-          <div>
-            <div>{{ list.status.title }}</div>
-          </div>
-          <div>
-            <div>{{ list.coin }}</div>
-          </div>
-          <div v-if="list.amount">
-            <div>{{ +(list.amount).toFixed(2) }}</div>
-          </div>
+          <p>{{ t("table.head.widthdrawal[0]") }}</p>
+          <p>{{ t("table.head.widthdrawal[1]") }}</p>
+          <p>{{ t("table.head.widthdrawal[2]") }}</p>
+          <p>{{ t("table.head.widthdrawal[3]") }}</p>
+        </div>
+        <div class="tw-flex tw-flex-col tw-gap-2.5" ref="content">
+          <div
+            class="history-item history-item__widthdrawal card card__border-line tw-flex tw-gap-7 tw-items-center"
+            v-for="list in widthdrawalList"
+            :key="list.id"
+          >
+            <div>
+              <div>{{ list.status.title }}</div>
+            </div>
+            <div>
+              <div>{{ list.coin }}</div>
+            </div>
+            <div v-if="list.amount">
+              <div>{{ (+list.amount).toFixed(2) }}</div>
+            </div>
 
-          <div>
-            <div>{{ list.address }}</div>
+            <div>
+              <div>{{ list.address }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -111,7 +138,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
-import Pagination from 'src/components/V3/Pagination.vue'
+import Pagination from "src/components/V3/Pagination.vue";
 import { useQuasar } from "quasar";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
@@ -125,7 +152,10 @@ const i18n = {
       },
       table: {
         completed: "Завершенный",
-        head: ['Статус заказа', 'Индекс', 'Валюта', 'Сумма', 'Статус платежа']
+        head: {
+          buy: ["Статус заказа", "Индекс", "Валюта", "Сумма", "Статус платежа"],
+          widthdrawal: ["Статус заказа", "Валюта", "Сумма", "Адрес"],
+        },
       },
     },
     "en-US": {
@@ -136,7 +166,17 @@ const i18n = {
       },
       table: {
         completed: "Completed",
-        head: ['Status order', 'Index', 'Valute', 'Balance', 'Status', 'Payment status']
+        head: {
+          buy: [
+            "Status order",
+            "Index",
+            "Valute",
+            "Balance",
+            "Status",
+            "Payment status",
+          ],
+          widthdrawal: ["Status order", "Valute", "Balance", "Address"],
+        },
       },
     },
   },
@@ -147,14 +187,15 @@ const store = useStore();
 
 const content = ref();
 const pos = ref({
-  top: 0, left: 0, x: 0, y: 0
-})
-
+  top: 0,
+  left: 0,
+  x: 0,
+  y: 0,
+});
 
 const mouseDownHandler = function (e) {
-
-  content.value.style.cursor = 'grabbing';
-  content.value.style.userSelect = 'none';
+  content.value.style.cursor = "grabbing";
+  content.value.style.userSelect = "none";
   pos.value = {
     // The current scroll
     left: content.value.scrollLeft,
@@ -163,17 +204,15 @@ const mouseDownHandler = function (e) {
     x: e.clientX,
     y: e.clientY,
   };
-  
-  document.addEventListener('mousemove', mouseMoveHandler);
-  document.addEventListener('mouseup', mouseUpHandler);
-};
 
+  document.addEventListener("mousemove", mouseMoveHandler);
+  document.addEventListener("mouseup", mouseUpHandler);
+};
 
 const mouseMoveHandler = function (e) {
   // How far the mouse has been moved
   const dx = e.clientX - pos.value.x;
   const dy = e.clientY - pos.value.y;
-  
 
   // Scroll the element
   content.value.scrollTop = pos.value.top - dy;
@@ -181,16 +220,15 @@ const mouseMoveHandler = function (e) {
 };
 
 const mouseUpHandler = function () {
-  document.removeEventListener('mousemove', mouseMoveHandler);
-  document.removeEventListener('mouseup', mouseUpHandler);
+  document.removeEventListener("mousemove", mouseMoveHandler);
+  document.removeEventListener("mouseup", mouseUpHandler);
 
-  content.value.style.cursor = 'grab';
-  content.value.style.removeProperty('user-select');
+  content.value.style.cursor = "grab";
+  content.value.style.removeProperty("user-select");
 };
 
 onMounted(async () => {
-
-  content.value.addEventListener('mousedown', mouseDownHandler);
+  content.value.addEventListener("mousedown", mouseDownHandler);
   try {
     $q.loading.show();
     await Promise.all([
@@ -296,10 +334,9 @@ const choiceList = (index) => {
   width: 100%;
   display: grid;
   grid-template-columns: 189px 110px 100px 125px 140px;
-  
 }
 
 .history-item__widthdrawal {
-  grid-template-columns: 150px 80px 100px 50px 100px;
+  grid-template-columns: 189px 110px 100px 1fr;
 }
 </style>

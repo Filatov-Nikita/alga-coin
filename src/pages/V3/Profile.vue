@@ -125,6 +125,7 @@ import useStep from "src/composition/useStep";
 import BaseButton from "src/core/V3/BaseButton.vue";
 import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
+import { AppAlert } from "src/plugins/app-alert";
 const i18n = {
   messages: {
     "ru-RU": {
@@ -167,22 +168,44 @@ export default {
     const updateEmail = () => {
       console.log("test");
     };
-    const updatePassword = (values) => {
-      store.dispatch("auth/setNewPassword", {
-        new_password: values.password,
-        old_password: values.oldPassword,
-      });
-      editPassword.value = false
+    const updatePassword = async (values, { setErrors }) => {
+      try {
+        await store.dispatch("auth/setNewPassword", {
+          new_password: values.password,
+          old_password: values.oldPassword,
+        });
+        editPassword.value = false;
+      } catch (e) {
+        const { errors } = await e.response.json();
+        if (!e.response) throw e;
+        if (e.response.status === 422) {
+          AppAlert({
+            message: () => errors.old_password[0],
+            type: "negative",
+          });
+          setErrors(errors);
+        } else throw e;
+      }
     };
     const updatePhone = async (values) => {
       try {
         await store.dispatch("auth/editPhone", {
-          cellphone: `+${values.cellphone.replace('+', '')}`,
+          cellphone: `+${values.cellphone.replace("+", "")}`,
           name: name.value,
         });
         await store.dispatch("profile/show");
-        editPhone.value = false
-      } catch (e) {}
+        editPhone.value = false;
+      } catch (e) {
+        const { errors } = await e.response.json();
+        if (!e.response) throw e;
+        if (e.response.status === 422) {
+          AppAlert({
+            message: () => errors.cellphone[0],
+            type: "negative",
+          });
+          setErrors(errors);
+        } else throw e;
+      }
     };
 
     const simpleSchema = () => {};
@@ -269,7 +292,6 @@ export default {
     background-position: center -177px;
     @include screen-xl {
       background-position: center -440px;
-
     }
   }
 }
@@ -288,7 +310,6 @@ export default {
   &-step1 {
     margin: 0 auto;
     @include screen-xl {
-
       width: 547px;
     }
     .profile-step__item {
@@ -298,10 +319,10 @@ export default {
     }
     .profile-step__item-form {
       display: flex;
-        flex-direction: column;
-        align-items: baseline;
-        gap: 20px;
-        margin-bottom: 10px;
+      flex-direction: column;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 10px;
       @include screen-xl {
         grid-template-columns: 140px 300px;
         display: grid;
@@ -311,10 +332,10 @@ export default {
     }
     .profile-step__item-button {
       @include screen-xl {
-      grid-template-columns: 140px 200px;
-      gap: 20px;
-      align-items: center;
-      display: grid;
+        grid-template-columns: 140px 200px;
+        gap: 20px;
+        align-items: center;
+        display: grid;
       }
     }
   }

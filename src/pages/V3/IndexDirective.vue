@@ -214,7 +214,7 @@
               for="amount"
               >{{ t("popup.amount.label") }}</label
             >
-            <AppInput id="amount" rules="" name="amount" />
+            <AppInput id="amount" type="number" name="amount" />
           </div>
 
           <base-button
@@ -267,7 +267,7 @@ const i18n = {
         titleBuy: "Deposite request",
         text: "Available for withdrawal:",
         amount: {
-          label: "Deposite summ",
+          label: "Deposite sum, USDT",
         },
         "wallet-number": {
           label: "Wallet number",
@@ -278,7 +278,7 @@ const i18n = {
     "ru-RU": {
       buy: "Купить",
       indexderivatives: {
-        title: "Производные индексы",
+        title: "Индексные диревативы",
         time: "с {from} по {to}",
         items: [
           "BTC main – базовый индекс ALGA INDEX DERIVATIVES PLATFORM. Это индекс, предназначенный для отслеживания крупнейшего в мире криптоактива. Вы получите доступ к криптоактиву с безопасностью и удобством традиционного инвестиционного инструмента, снижая при этом логистические барьеры для входа (доступ к биржам, хранение и затраты на исполнение).",
@@ -301,12 +301,12 @@ const i18n = {
         titleBuy: "Запрос на пополнение",
         text: "Доступно для вывода:",
         amount: {
-          label: "Введите сумму в USDT",
+          label: "Введите сумму, в USDT",
         },
         "wallet-number": {
           label: "Номер счета",
         },
-        request: "Оставить заявку",
+        request: "К оплате",
       },
     },
   },

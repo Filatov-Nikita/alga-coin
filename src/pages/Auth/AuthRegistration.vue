@@ -110,7 +110,7 @@ import useAuth from "src/composition/useAuth";
 import { useStore } from "vuex";
 import AuthCodeVerification from "src/components/AuthCodeVerification.vue";
 import { useI18n } from "vue-i18n";
-
+import { AppAlert } from "src/plugins/app-alert";
 const messages = {
   "ru-RU": {
     header: "Зарегистрируйтесь",
@@ -134,7 +134,7 @@ export default {
     const registr = async ({ cellphone, name, email }, { setErrors }) => {
       try {
         const data = await store.dispatch("auth/registr", {
-          cellphone: `+${cellphone.replace('+', '')}`,
+          cellphone: `+${cellphone.replace("+", "")}`,
           name,
           email,
         });
@@ -143,6 +143,10 @@ export default {
       } catch (e) {
         if (!e.response) throw e;
         if (e.response.status === 422) {
+          AppAlert({
+            message: () => errors.password[0],
+            type: "negative",
+          });
           const { errors } = await e.response.json();
           setErrors(errors);
           throw { 422: true };

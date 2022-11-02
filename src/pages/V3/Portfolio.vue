@@ -1,6 +1,5 @@
 <template>
   <q-page class="tw-flex tw-flex-col tw-relative tw-overflow-hidden">
-
     <div class="tw-flex tw-flex-col">
       <h2 class="tw-mb-15">{{ t("title") }}</h2>
     </div>
@@ -12,9 +11,17 @@
         <span>{{ (+balance.actual_balance).toFixed(2) }}</span>
 
         <div class="tw-relative">
-          <span class="tw-text-text-gray-dark-50" v-if="balance.coin">{{balance.coin}}</span>
-          <span class="tw-text-base  tw-relative tw-bottom-full" :class="[balance.is_profit_positive?'tw-text-green': 'tw-text-invalid']" v-if="balance.relative_profit"
-            >{{ balance.is_profit_positive?'+':'-'}} {{ (+balance.relative_profit).toFixed(2) }}%</span
+          <span class="tw-text-text-gray-dark-50" v-if="balance.coin">{{
+            balance.coin
+          }}</span>
+          <span
+            class="tw-text-base tw-relative tw-bottom-full"
+            :class="[
+              balance.is_profit_positive ? 'tw-text-green' : 'tw-text-invalid',
+            ]"
+            v-if="balance.relative_profit"
+            >{{ balance.is_profit_positive ? "+" : "-" }}
+            {{ (+balance.relative_profit).toFixed(2) }}%</span
           >
         </div>
       </div>
@@ -24,11 +31,10 @@
         </p>
         <!-- <p class="tw-text-white tw-text-md2 tw-leading-7">Constantinople</p> -->
       </div>
-      
     </div>
-    <div class="">
+    <div class="" v-if="indexList?.length > 0">
       <h4 class="tw-mb-5">{{ t("index-title") }}</h4>
-      <div class="index-list" v-if=" indexList?.length >0">
+      <div class="index-list">
         <div class="index-grid tw-mb-7.5">
           <p>{{ t("index-table.header[0]") }}</p>
           <p>{{ t("index-table.header[1]") }}</p>
@@ -70,29 +76,45 @@
                   </p>
                 </div>
               </div>
-              <div>{{ $t('days', ind.inder["closing_in_days"])  }} </div>
-              <div v-if="ind.total.actual_amount"> 
+              <div>{{ $t("days", ind.inder["closing_in_days"]) }}</div>
+              <div v-if="ind.total.actual_amount">
                 <!-- {{ ind["balance_amount"] }} -->
                 {{ (+ind.total.actual_amount).toFixed(2) }}
-                <span class="tw-text-text-gray tw-ml-2.5"> {{ind.total.coin}}</span>
+                <span class="tw-text-text-gray tw-ml-2.5">
+                  {{ ind.total.coin }}</span
+                >
               </div>
               <div>
-                <span v-if="ind.total.absolute_profit" :class="[ind.total.is_profit_positive?'tw-text-green':'tw-text-invalid']"> {{ind.total.is_profit_positive?'+':'-'}} {{ (+ind.total.absolute_profit).toFixed(2) }} </span>
-                <span class="tw-text-text-gray tw-ml-2.5"> {{ind.total.coin}}</span>
+                <span
+                  v-if="ind.total.absolute_profit"
+                  :class="[
+                    ind.total.is_profit_positive
+                      ? 'tw-text-green'
+                      : 'tw-text-invalid',
+                  ]"
+                >
+                  {{ ind.total.is_profit_positive ? "+" : "-" }}
+                  {{ (+ind.total.absolute_profit).toFixed(2) }}
+                </span>
+                <span class="tw-text-text-gray tw-ml-2.5">
+                  {{ ind.total.coin }}</span
+                >
               </div>
               <div class="tw-flex tw-justify-between">
                 <button
                   :disabled="!ind.action_flags.buyable"
                   class="tw-underline tw-cursor-pointer"
                   @click="buy($event, ind.inder.id)"
-                  >{{ t("index-table.body.action.buy") }}</button
                 >
+                  {{ t("index-table.body.action.buy") }}
+                </button>
                 <button
-                :disabled="!ind.action_flags.widthdrawable"
+                  :disabled="!ind.action_flags.withdrawable"
                   class="tw-underline tw-cursor-pointer"
                   @click="widthdrawal($event, ind.inder.id)"
-                  >{{ t("index-table.body.action.widthdrawal") }}</button
                 >
+                  {{ t("index-table.body.action.widthdrawal") }}
+                </button>
               </div>
             </div>
             <div>
@@ -115,10 +137,21 @@
                   <div></div>
                   <div>
                     {{ (+contract["actual_amount"]).toFixed(2) }}
-                    <span class="tw-text-text-gray tw-ml-2.5"> {{ contract.coin }}</span>
+                    <span class="tw-text-text-gray tw-ml-2.5">
+                      {{ contract.coin }}</span
+                    >
                   </div>
                   <div>
-                    <span :class="contract.is_profit_positive? 'tw-text-green': 'tw-text-invalid'"> {{ contract.is_profit_positive?'+':'-'}} {{ (+contract.absolute_profit).toFixed(2)}} </span>
+                    <span
+                      :class="
+                        contract.is_profit_positive
+                          ? 'tw-text-green'
+                          : 'tw-text-invalid'
+                      "
+                    >
+                      {{ contract.is_profit_positive ? "+" : "-" }}
+                      {{ (+contract.absolute_profit).toFixed(2) }}
+                    </span>
                     <span class="tw-text-text-gray tw-ml-2.5"> USDT</span>
                   </div>
                   <div></div>
@@ -128,14 +161,19 @@
           </div>
         </div>
       </div>
-      <div v-else class=" tw-flex tw-flex-col tw-gap-5 xl:tw-items-center xl:tw-flex-row ">
-        <span class=" tw-text-sm xl:tw-text-md2">
-
-          {{t('index-not')}}
-        </span>
-        <base-button  @click=" $router.push({name: 'index-directive'})"
-          class="button ">{{t('index-not-btn')}}</base-button>
-      </div>
+    </div>
+    <div
+      v-else
+      class="tw-flex tw-flex-col tw-gap-5 xl:tw-items-center xl:tw-flex-row"
+    >
+      <span class="tw-text-sm xl:tw-text-md2">
+        {{ t("index-not") }}
+      </span>
+      <base-button
+        @click="$router.push({ name: 'index-directive' })"
+        class="button"
+        >{{ t("index-not-btn") }}</base-button
+      >
     </div>
     <!-- popup -->
     <Transition
@@ -155,7 +193,14 @@
             {{ t("popup.title") }}
           </div>
           <p class="tw-text-purple-dark tw-text-base xl:tw-text-sm tw-mb-5">
-            {{ t("popup.text") }} {{ amountPopup ? `${(+amountPopup.total.actual_amount).toFixed(2)} ${amountPopup.total.coin}`:"0 USDT" }}  
+            {{ t("popup.text") }}
+            {{
+              amountPopup
+                ? `${(+amountPopup.total.actual_amount).toFixed(2)} ${
+                    amountPopup.total.coin
+                  }`
+                : "0 USDT"
+            }}
           </p>
           <Form
             class="tw-flex tw-flex-col xl:tw-flex-row tw-gap-2.5"
@@ -249,7 +294,7 @@ const i18n = {
           },
         },
       },
-      
+
       popup: {
         title: "Запрос на вывод средств",
         titleBuy: "Запрос на пополнение",
@@ -269,7 +314,7 @@ const i18n = {
         title: "Balance",
       },
       "index-title": "My Indexes",
-      'index-not': "You have not orders yet",
+      "index-not": "You have not orders yet",
       "index-not-btn": "Choice index",
       "index-table": {
         header: [
@@ -283,11 +328,11 @@ const i18n = {
           date: "days",
           action: {
             buy: "Buy",
-            widthdrawal: "Widthdawal",
+            widthdrawal: "Widthdraw",
           },
         },
       },
-      
+
       popup: {
         title: "Withdrawal Request",
         titleBuy: "Replenishment request",
@@ -310,11 +355,13 @@ const { popup, isPopup, popupContent, buy, widthdrawal, popupAction } =
   useBuyWidthdrawalPopup();
 
 const activeIndex = ref(null);
-const amountPopup  =computed(()=>{
+const amountPopup = computed(() => {
   console.log(indexList.value);
   console.log(popupContent.value.id);
-  return indexList.value.find(item=>item.inder.id === popupContent.value.id)
-})
+  return indexList.value.find(
+    (item) => item.inder.id === popupContent.value.id
+  );
+});
 const choiseIndex = (index) => {
   if (activeIndex.value === index) activeIndex.value = null;
   else {
@@ -323,15 +370,14 @@ const choiseIndex = (index) => {
 };
 
 const indexList = computed(() => store.getters["profile/getPorfolioList"]);
-const balance = computed(() =>store.getters['profile/getBalance'])
+const balance = computed(() => store.getters["profile/getBalance"]);
 onMounted(async () => {
-
   try {
     $q.loading.show();
     Promise.all([
       await store.dispatch("profile/getBalanceProfile"),
       await store.dispatch("profile/listPortfolioData"),
-    ])
+    ]);
   } catch (e) {
     throw e;
   } finally {

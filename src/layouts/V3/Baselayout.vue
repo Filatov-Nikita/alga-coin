@@ -27,17 +27,30 @@
         </div>
       </div>
       <div>
-        <transition appear mode="out-in" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+        <transition
+          appear
+          mode="out-in"
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+        >
           <div class="drop" v-if="dropDown">
             <div class="tw-container">
-              <div class="drop__wrapper tw-flex tw-justify-between tw-gap-1 tw-py-5">
+              <div
+                class="drop__wrapper tw-flex tw-justify-between tw-gap-1 tw-py-5"
+              >
                 <!-- <button class="button-border tw-w-1/2" @click="$router.push({ name: 'profile' })">
                           {{ t("dropdown.buttons.login") }}
                         </button> -->
-                        <base-button @click="$router.push({ name: 'profile' })" class="button tw-w-full">
-                          {{ t("profile") }}
-                        </base-button>
-                <base-button @click.prevent="$app.logout" class="button tw-w-full" >
+                <base-button
+                  @click="$router.push({ name: 'profile' })"
+                  class="button tw-w-full tw-relative tw-z-10"
+                >
+                  {{ t("profile") }}
+                </base-button>
+                <base-button
+                  @click.prevent="$app.logout"
+                  class="button tw-w-full tw-relative tw-z-10"
+                >
                   {{ t("log-out") }}
                 </base-button>
               </div>
@@ -51,7 +64,7 @@
       <div class="width:200px sidebar">
         <SideBar />
       </div>
-      <router-view class="tw-pt-15 xl:tw-pt-0 xl:tw-pb-10"  />
+      <router-view class="tw-pt-15 xl:tw-pt-0 xl:tw-pb-10" />
     </q-page-container>
     <q-footer v-if="!$q.screen.xl" class="tw-pt-5 tw-pb-2.5 app-page-bg">
       <div class="tw-container">
@@ -190,19 +203,19 @@ import TheBottomMenu from "src/components/TheBottomMenu.vue";
 import SideBar from "./Lk/SidebarLayout.vue";
 import HeaderBase from "../HeaderBase.vue";
 import { useI18n } from "vue-i18n";
-import {ref} from "vue";
+import { ref } from "vue";
 import Locale from "src/components/V3/LocaleButtons.vue";
 const i18n = {
   messages: {
     "ru-RU": {
       nav: ["Деривативы", "Портфолио", "История", "Поддержка"],
       "log-out": "Выйти",
-      'profile': "Профиль"
+      profile: "Профиль",
     },
     "en-US": {
       nav: ["Index Derivatives", "My Portfolio", "History", "Support"],
       "log-out": "Log out",
-      'profile': "Profile"
+      profile: "Profile",
     },
   },
 };
@@ -218,7 +231,7 @@ export default {
     const { t } = useI18n(i18n);
     return {
       t,
-      dropDown
+      dropDown,
     };
   },
 };

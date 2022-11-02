@@ -181,7 +181,7 @@
           </button>
         </div>
         <p class="tw-text-center">
-          © 2021-2022 ALGA. <br />
+          © 2021-{{ new Date().getFullYear() }} ALGA. <br />
           {{ t("reserved") }}
         </p>
       </div>
