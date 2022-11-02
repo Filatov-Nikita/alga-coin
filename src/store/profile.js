@@ -64,7 +64,7 @@ export default {
     },
     phone(state) {
       if (state.profile === null) return "";
-      return state.profile.cellphone.replace("+7", "");
+      return state.profile.cellphone;
     },
     email(state) {
       if (state.profile === null) return "";

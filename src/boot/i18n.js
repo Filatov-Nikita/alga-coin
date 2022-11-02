@@ -10,7 +10,8 @@ import en from "@vee-validate/i18n/dist/locale/en.json";
 export default ({ app }) => {
   let curLocale;
   if (window.localStorage.getItem("locale") === null) {
-    curLocale = Quasar.lang.getLocale();
+    // curLocale = Quasar.lang.getLocale();
+    curLocale = "en-US";
     if (curLocale.indexOf("en") === 0) curLocale = "en-US";
   } else {
     curLocale = window.localStorage.getItem("locale");

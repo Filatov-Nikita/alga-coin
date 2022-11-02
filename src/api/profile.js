@@ -59,7 +59,7 @@ export function widthdrawalIndex(obj) {
 export function createOrder({ amount, inder_id }) {
   return MainApi.swot
     .post("b2c/portfolio/register-order", {
-      json: { amount, inder_id, test: true },
+      json: { amount, inder_id },
     })
     .json();
 }
