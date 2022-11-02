@@ -1,6 +1,8 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { useStore } from "vuex";
+import { useRouter} from "vue-router"
 export default function () {
+  const router = useRouter();
   const popup = ref(null);
   const isPopup = ref(false);
   const popupContent = ref({
@@ -20,7 +22,7 @@ export default function () {
   const popupAction = async (value, { resetForm }) => {
     if (popupContent.value.popup_name === "widthdrawal") {
       try {
-        await store.dispatch("profile/widthdrawalIndex", value);
+        await store.dispatch("profile/widthdrawalIndex", { ...value, inder_id:popupContent.value.id});
         resetForm();
         isPopup.value = false;
       } catch (e) {
@@ -37,8 +39,8 @@ export default function () {
         const data = await store.dispatch("profile/buyIndex", obj);
         resetForm();
         isPopup.value = false;
-        // window.location = data.payment_url;
         window.open(data.payment_url, "_blank");
+        router.push({name: 'history'})
       } catch (e) {
         throw e;
       }
@@ -81,18 +83,21 @@ export default function () {
       const positionY =
         currentElem.getBoundingClientRect().top + window.pageYOffset;
       popup.value.style.display = "block";
-      const popupHeight = popup.value.offsetHeight;
-      console.log(pageHeight - windowHeight < popupHeight);
-      if (pageHeight - windowHeight < popupHeight) {
+      setTimeout(()=>{
+        const popupHeight = popup.value.offsetHeight;
+        console.log(pageHeight - windowHeight < popupHeight);
         popup.value.style.top =
           positionY -
           currentElem.getBoundingClientRect().height -
           popupHeight +
           "px";
-        console.log(popup.value);
-      } else {
-        popup.value.style.top = positionY + "px";
-      }
+
+      },0)
+      // if (pageHeight - windowHeight < popupHeight) {
+      // } else {
+      //   popup.value.style.top = positionY + "px";
+      //   console.log(popup.value.style.top);
+      // }
     }
   };
   const buy = (e, id) => {
@@ -104,12 +109,10 @@ export default function () {
     targetPopup(e);
   };
   onMounted(async () => {
-    window.addEventListener("scroll", scollWindow);
 
     window.addEventListener("click", targetClick);
   });
   onUnmounted(() => {
-    window.removeEventListener("scroll", scollWindow);
     window.removeEventListener("click", targetClick);
   });
   return {

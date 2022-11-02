@@ -158,7 +158,7 @@
                 <base-select
                   :options="[
                     {
-                      label: t('statistics.selectProfit', { numb: '2' }),
+                      label: t('statistics.selectProfit', { numb: '4' }),
                       id: 1,
                     },
                   ]"
@@ -175,7 +175,7 @@
               >
                 <div
                   class="tw-mb-2.5"
-                  v-html="t('statistics.profitText', { numb: '2' })"
+                  v-html="t('statistics.profitText', { numb: '4' })"
                 ></div>
                 <div class="tw-text-md2 tw-flex tw-gap-x-2.5">
                   <MarkIcon :mark="getChart(derivative.id).profitability" />
@@ -264,10 +264,10 @@ const i18n = {
       },
       popup: {
         title: "Withdrawal Request",
-        titleBuy: "Replenishment request",
+        titleBuy: "Deposite request",
         text: "Available for withdrawal:",
         amount: {
-          label: "Withdrawal amount",
+          label: "Deposite summ",
         },
         "wallet-number": {
           label: "Wallet number",
@@ -301,7 +301,7 @@ const i18n = {
         titleBuy: "Запрос на пополнение",
         text: "Доступно для вывода:",
         amount: {
-          label: "Количество",
+          label: "Введите сумму в USDT",
         },
         "wallet-number": {
           label: "Номер счета",
@@ -394,9 +394,8 @@ export default {
   },
   methods: {
     stage2(e, id) {
-      console.log("stage2");
       ym(90160255, "reachGoal", "stage 2");
-      console.log(this.buy(e, id));
+      this.buy(e, id);
       //   this.$router.push({ name: 'index-directive' })
     },
   },

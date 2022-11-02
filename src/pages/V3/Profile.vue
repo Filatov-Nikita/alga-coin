@@ -172,14 +172,16 @@ export default {
         new_password: values.password,
         old_password: values.oldPassword,
       });
+      editPassword.value = false
     };
     const updatePhone = async (values) => {
       try {
-        await store.dispatch("profile/show");
         await store.dispatch("auth/editPhone", {
-          cellphone: values.cellphone,
+          cellphone: `+${values.cellphone.replace('+', '')}`,
           name: name.value,
         });
+        await store.dispatch("profile/show");
+        editPhone.value = false
       } catch (e) {}
     };
 
@@ -233,6 +235,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//$
 .card-big {
   @apply tw-flex tw-flex-col tw-py-10 tw-px-6
   xl:tw-flex-row xl:tw-items-end xl:tw-justify-between
@@ -259,11 +262,15 @@ export default {
     transform: translate(-50%, -50%);
     background: url("src/assets/icons/touch.svg");
     background-repeat: no-repeat;
-    background-position: center -440px;
     background-size: 155%;
     border-radius: 24px;
     mix-blend-mode: luminosity;
     z-index: 0;
+    background-position: center -177px;
+    @include screen-xl {
+      background-position: center -440px;
+
+    }
   }
 }
 
@@ -280,23 +287,35 @@ export default {
   }
   &-step1 {
     margin: 0 auto;
-    width: 547px;
+    @include screen-xl {
+
+      width: 547px;
+    }
     .profile-step__item {
       display: grid;
       grid-template-columns: 140px 1fr auto;
       gap: 20px;
     }
     .profile-step__item-form {
-      display: grid;
-      grid-template-columns: 140px 300px;
-      gap: 20px;
-      align-items: center;
+      display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        gap: 20px;
+        margin-bottom: 10px;
+      @include screen-xl {
+        grid-template-columns: 140px 300px;
+        display: grid;
+        gap: 20px;
+        align-items: center;
+      }
     }
     .profile-step__item-button {
-      display: grid;
+      @include screen-xl {
       grid-template-columns: 140px 200px;
       gap: 20px;
       align-items: center;
+      display: grid;
+      }
     }
   }
 }

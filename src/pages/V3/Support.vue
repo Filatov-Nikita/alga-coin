@@ -109,7 +109,7 @@ const i18n = {
       },
       "file-text": "Прикрепить файл",
       send: "Отправить",
-      "popup-text": "Спасибо",
+      "popup-text": "Спасибо, ваша заявка принята. Мы обработаем в течение суток.",
     },
     "en-US": {
       title: "Support",
@@ -121,7 +121,7 @@ const i18n = {
       },
       "file-text": "Attach the file",
       send: "Send",
-      "popup-text": "Thank you",
+      "popup-text": "Thank you, your application has been accepted. We will process within a day.",
     },
   },
 };

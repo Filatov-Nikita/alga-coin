@@ -194,7 +194,28 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.drop {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  filter: drop-shadow(0px 153px 61px rgba(4, 8, 47, 0.01)) drop-shadow(0px 86px 51px rgba(4, 8, 47, 0.05)) drop-shadow(0px 38px 38px rgba(4, 8, 47, 0.09)) drop-shadow(0px 10px 21px rgba(4, 8, 47, 0.1)) drop-shadow(0px 0px 0px rgba(4, 8, 47, 0.1));
 
+  background: rgba(20, 23, 52, 0.112);
+  box-shadow: inset 1.86559px -1.86559px 1.86559px rgba(40, 48, 121, 0.424);
+
+  backdrop-filter: blur(30.4091px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 0 0 24px 24px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &__wrapper {
+    padding: 35px 0;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .button-border {
   border: 1px solid #ffffff;
@@ -227,30 +248,7 @@ export default {
   line-height: 19px;
 }
 
-.drop {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  filter: drop-shadow(0px 153px 61px rgba(4, 8, 47, 0.01))
-    drop-shadow(0px 86px 51px rgba(4, 8, 47, 0.05))
-    drop-shadow(0px 38px 38px rgba(4, 8, 47, 0.09))
-    drop-shadow(0px 10px 21px rgba(4, 8, 47, 0.1))
-    drop-shadow(0px 0px 0px rgba(4, 8, 47, 0.1));
 
-  background: rgba(20, 23, 52, 0.112);
-  box-shadow: inset 1.86559px -1.86559px 1.86559px rgba(40, 48, 121, 0.424);
-
-  backdrop-filter: blur(30.4091px);
-  /* Note: backdrop-filter has minimal browser support */
-
-  border-radius: 0 0 24px 24px;
-  transition: all 0.3s ease;
-  overflow: hidden;
-
-  &__wrapper {
-    padding: 35px 0;
-  }
-}
 .nav {
   background-color: #101333;
   &__wrapper {

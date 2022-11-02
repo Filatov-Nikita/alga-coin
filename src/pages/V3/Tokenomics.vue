@@ -124,7 +124,7 @@ import { useI18n } from "vue-i18n";
 const i18n = {
   messages: {
     "ru-RU": {
-      main: "Гавная",
+      main: "Главная",
       tokenomics: "Токеномика",
       total: "Общее количество",
       price: "Цена токена",

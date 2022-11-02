@@ -19,13 +19,16 @@
         <div class="card-big tw-mt-10 xl:tw-mt-15">
           <img src="./img/plus.png" alt="plus" class="top-icon" />
           <div class="card-big__left">
-            <h2 class="title">{{ t("card-big.signin.title") }}</h2>
+            <h2 class="title">{{  isAuth? t("card-big.signin.titleSign"):t("card-big.signin.titleReg") }}</h2>
             <p class="tw-mt-5">
               {{ t("card-big.signin.text") }}
             </p>
           </div>
+
+          
+          
           <button class="tw-mt-7.5 xl:tw-mt-0 button" @click="stage1">
-            {{ t("card-big.signin.createButton") }}
+            {{isAuth? t("card-big.signin.createButtonSign"): t("card-big.signin.createButtonReg") }}
           </button>
         </div>
       </div>
@@ -38,7 +41,7 @@
             src="./img/section-directive.png"
           />
         </div>
-        <h2>Index Derivatives</h2>
+        <h2>{{t('indexD.title')}}</h2>
         <!-- cards -->
         <div class="mob-n">
           <div class="index-directive__cards tw-mt-10">
@@ -69,7 +72,7 @@
                 <div>
                   <p
                     class="tw-text-white"
-                    v-html="t('indexD.card.profitability.1', { numb: '2' })"
+                    v-html="t('indexD.card.profitability.1', { numb: '4' })"
                   ></p>
                   <div class="tw-flex tw-gap-x-2.5">
                     <MarkIcon :mark="getChart(derivative.id)?.profitability" />
@@ -148,7 +151,7 @@
                     <div>
                       <p
                         class="tw-text-white"
-                        v-html="t('indexD.card.profitability.1', { numb: '2' })"
+                        v-html="t('indexD.card.profitability.1', { numb: '4' })"
                       ></p>
                       <div class="tw-flex tw-gap-x-2.5">
                         <MarkIcon
@@ -1260,19 +1263,19 @@ const i18n = {
         text: "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов. <br> Лежащая в основе передовая технология наряду с огромным опытом основной команды в области торговли делает ALGA универсальным сервисом для инвестиций в проверенные и эффективные стратегии, облегчающие вход в криптовалюту для всех. Эти стратегии, основанные на индексных деривативах, состоящих из множества активов, подобранных в наиболее эффективном соотношении, позволяют получать солидный доход на вложенный капитал при минимизации рисков. <br> Платформа создана людьми для людей с единственной целью - обеспечить комфортное отслеживание активов и прозрачность транзакций, чтобы вывести опыт управления активами на совершенно новый уровень.",
       },
       indexD: {
-        title: "Index Derivatives",
+        title: "Деривативы",
         card: {
           profitability: {
-            1: "Прибыльность <br/> за {numb} месяцев",
-            2: "Прибыльность <br/> за {numb} месяцев",
-            3: "Прибыльность <br/> за {numb} месяцев",
-            4: "Прибыльность <br/> за {numb} месяцев",
-            5: "Прибыльность <br/> за {numb} месяцев",
-            6: "Прибыльность <br/> за {numb} месяцев",
-            7: "Прибыльность <br/> за {numb} месяцев",
-            8: "Прибыльность <br/> за {numb} месяцев",
-            9: "Прибыльность <br/> за {numb} месяцев",
-            10: "Прибыльность <br/> за {numb} месяцев",
+            1: "Прибыльность <br/> за {numb} месяцa",
+            2: "Прибыльность <br/> за {numb} месяцa",
+            3: "Прибыльность <br/> за {numb} месяцa",
+            4: "Прибыльность <br/> за {numb} месяцa",
+            5: "Прибыльность <br/> за {numb} месяцa",
+            6: "Прибыльность <br/> за {numb} месяцa",
+            7: "Прибыльность <br/> за {numb} месяцa",
+            8: "Прибыльность <br/> за {numb} месяцa",
+            9: "Прибыльность <br/> за {numb} месяцa",
+            10: "Прибыльность <br/> за {numb} месяцa",
           },
         },
       },
@@ -1290,7 +1293,7 @@ const i18n = {
           },
           2: {
             title: "Этап 2",
-            subtitle: "Март-Май, 2022",
+            subtitle: "Март - сентябрь, 2022",
             items: [
               "Разработка платформы MVP",
               "Разработка маркетингового плана",
@@ -1300,7 +1303,7 @@ const i18n = {
           },
           3: {
             title: "Этап 3",
-            subtitle: "Май-Июль, 2022",
+            subtitle: "Сентябрь - ноябрь, 2022",
             items: [
               "Создание компании и получение юридических документов",
               "Начало сбора средств",
@@ -1311,7 +1314,7 @@ const i18n = {
           },
           4: {
             title: "Этап 4",
-            subtitle: "Июль-Сентябрь, 2022",
+            subtitle: "Ноябрь 2022 - январь 2023",
             items: [
               "Старт глобальной маркетинговой кампании",
               "Проведение IEO на CEX",
@@ -1321,7 +1324,7 @@ const i18n = {
           },
           5: {
             title: "Этап 5",
-            subtitle: "Сентябрь-Ноябрь, 2022",
+            subtitle: "Декабрь 2022 - февраль 2023",
             items: [
               "Обновление функционала платформы",
               "Запуск программы индексов Alga Advisors",
@@ -1329,8 +1332,8 @@ const i18n = {
             ],
           },
           6: {
-            title: "Этап 5",
-            subtitle: "Ноябрь 2022-Фев 2023",
+            title: "Этап 6",
+            subtitle: "Ноябрь 2022 - Февраль 2023",
             items: [
               "Листинг на других централизованных биржах",
               "Разработка собственной индексной биржи",
@@ -1341,7 +1344,7 @@ const i18n = {
         },
       },
       team: {
-        title: "Team",
+        title: "Команда",
         peoples: {
           1: {
             name: "Урал",
@@ -1434,9 +1437,11 @@ const i18n = {
       },
       "card-big": {
         signin: {
-          title: "Создать",
+          titleReg: "Регистрация",
+          titleSign: "Личный кабинет",
           text: "По всем вопросам пишите нам и оператор свяжется с вами в ближайшее время",
-          createButton: "Создать аккаунт",
+          createButtonReg: "Регистрация",
+          createButtonSign: "Личный кабинет",
         },
         anyquestion: {
           title: "Остались вопросы?",
@@ -1539,7 +1544,7 @@ const i18n = {
           },
           6: {
             title: "Stage 6",
-            subtitle: "Nov 2022-Feb 2023",
+            subtitle: "November 2022 - February 2023",
             items: [
               "Listing on other Centralized exchanges",
               "Development of the own index exchange",
@@ -1643,9 +1648,11 @@ const i18n = {
       },
       "card-big": {
         signin: {
-          title: "Sign up",
+          titleReg: "Registration",
+          titleSign: "Personal",
           text: "For all questions, write to us and the operator will contact you as soon as possible",
-          createButton: "Create an account",
+          createButtonReg: "Registration",
+          createButtonSign: "Personal",
         },
         anyquestion: {
           title: "Any questions?",
@@ -1784,6 +1791,7 @@ export default {
       charts,
       getChart,
       getChartData,
+      isAuth: computed(() => store.getters["auth/isAuth"]),
     };
   },
   methods: {

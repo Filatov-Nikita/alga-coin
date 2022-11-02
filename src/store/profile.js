@@ -3,14 +3,15 @@ import * as ProfileAPI from "src/api/profile";
 const formatingFullDate = (date) => {
   const newDate = new Date(date);
   const year = newDate.getFullYear();
+  const m = String(newDate.getMonth() + 1) 
   const month =
-    String(newDate.getMonth()).length == 1
-      ? "0" + newDate.getMonth()
-      : newDate.getMonth();
+    m.length == 1
+      ? "0" + m
+      : m;
   const day =
-    String(newDate.getDay()).length == 1
-      ? "0" + newDate.getDay()
-      : newDate.getDay();
+    String(newDate.getDate()).length == 1
+      ? "0" + newDate.getDate()
+      : newDate.getDate();
   const hours =
     String(newDate.getHours()).length == 1
       ? "0" + newDate.getHours()
@@ -23,19 +24,21 @@ const formatingFullDate = (date) => {
     String(newDate.getSeconds()).length == 1
       ? "0" + newDate.getSeconds()
       : newDate.getSeconds();
-  return `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
+  return `${hours}:${minutes}:${seconds} ${day}.${month}.${year} `;
 };
 
 const formatingDate = (date) => {
   const newDate = new Date(date);
+  const month = String(newDate.getMonth()+1);
+  const d = String(newDate.getDate())
   return `${
-    String(newDate.getDay()).length == 1
-      ? "0" + newDate.getDay()
-      : newDate.getDay()
+    d.length == 1
+      ? "0" + d
+      : d
   }.${
-    String(newDate.getMonth()).length == 1
-      ? "0" + newDate.getMonth()
-      : newDate.getMonth()
+    month.length == 1
+      ? "0" + month
+      : month
   }.${newDate.getFullYear()} `;
 };
 export default {
@@ -70,9 +73,12 @@ export default {
     getBuyList(state) {
       if (state.buyList !== null) {
         const list = state.buyList.map((item) => {
+          
+          item.status
           return {
             ...item,
             created_at: formatingFullDate(item["created_at"]),
+            
           };
         });
         return list;
@@ -85,6 +91,7 @@ export default {
         const list = state.widthdrawalList.map((item) => {
           return {
             ...item,
+            created_at: formatingFullDate(item["created_at"]),
           };
         });
         return list;
@@ -93,24 +100,39 @@ export default {
     },
     getPorfolioList(state) {
       if (state.porfolioList !== null) {
+        
+
+
         const list = state.porfolioList.map((item) => {
+          
+          const inder = {...item.inder,closing_at:formatingDate(item.inder.closing_at), opening_at:formatingDate(item.inder.opening_at)}
+          const orders = item.orders.map(order=>{return {...order, created_at: formatingDate(order.created_at)}})
+          
           return {
             ...item,
-            closing_at: formatingDate(item["closing_at"]),
-            opening_at: formatingDate(item["opening_at"]),
-            withdrawal_since: formatingDate(item["withdrawal_since"]),
-            contracts: item.contracts.map((contract) => {
-              return {
-                ...contract,
-                created_at: formatingDate(contract["created_at"]),
-              };
-            }),
+            inder,
+            orders
           };
         });
         return list;
       }
       return null;
     },
+
+
+//     closing_at:"2022-12-11T19:00:00Z"
+// closing_in_days:41
+// id:1
+// image:Object
+// name:"BTC main"
+// opening_at:"2022-08-11T19:00:00Z
+
+// closing_at:"01.11.2022 "
+// closing_in_days:41
+// id:1
+// image:Object
+// name:"BTC main"
+// opening_at:"05.07.2022 "
 
     getBalance(state){
       if(state.balance === null) return {
@@ -185,8 +207,8 @@ export default {
       const { data } = await ProfileAPI.listPortfolio();
       _c.commit("setListPorfolio", data);
     },
-    async widthdrawalIndex(_c, address) {
-      await ProfileAPI.widthdrawalIndex(address);
+    async widthdrawalIndex(_c, obj) {
+      await ProfileAPI.widthdrawalIndex(obj);
     },
     async buyIndex(_c, obj) {
       const { data } = await ProfileAPI.createOrder(obj);

@@ -1,5 +1,6 @@
 <template>
   <div class="tw-overflow-hidden">
+    <Pagination/>
     <h2 class="tw-mb-10">{{ t("title") }}</h2>
     <div class="switch tw-mb-10">
       <span class="option active" @click="choiceList(1)">
@@ -37,14 +38,25 @@
       enter-active-class="animated zoomIn"
       leave-active-class="animated zoomOut"
     >
+    <div v-if="activeContent == 1" class="history-list tw-grid tw-gap-4">
+
+      <div class=" tw-gap-7" style="display: grid;grid-template-columns: 189px 110px 100px 125px 140px;    padding: 10px 30px;">
+        <p>{{t('table.head[0]')}}</p>
+        <p>{{t('table.head[1]')}}</p>
+        <p>{{t('table.head[2]')}}</p>
+        <p>{{t('table.head[3]')}}</p>
+        <p>{{t('table.head[4]')}}</p>
+      </div>
       <div
-        v-if="activeContent == 1"
-        class="history-list tw-flex tw-flex-col tw-gap-2.5"
+        
+        class=" tw-flex tw-flex-col tw-gap-2.5"
+        ref="content"
       >
         <div
           class="history-item card card__border-line tw-items-center tw-gap-7"
           v-for="list in buyList"
           :key="list.id"
+
         >
           <div>
             <div>{{ list.status.title }}</div>
@@ -53,23 +65,25 @@
           <div>
             <div>{{ list["index_derivative"].name }}</div>
           </div>
-          <div>
-            <div>{{ list.invoice.coin.value }}</div>
+          <div >
+            <div v-if="list.invoice">{{ list.invoice.coin.value }}</div>
           </div>
+          <!-- <div v-if="list.invoice">
+            <div>{{ (+list.invoice.declared_amount).toFixed(2) }}</div>
+          </div> -->
           <div>
-            <div>{{ list.invoice.declared_amount }}</div>
+            <div>{{ list.status.is_deposited ? (+list.deposited_amount).toFixed(2): (+list.declared_amount).toFixed(2) }}</div>
           </div>
-          <div>
-            <div>{{ list.amount }}</div>
-          </div>
-          <div>
-            <div>{{ list.invoice.status.title }}</div>
+          <div >
+            <div v-if="list.invoice">{{ list.invoice.status.title }}</div>
           </div>
         </div>
       </div>
+    </div>
       <div
         v-else-if="activeContent == 2"
         class="history-list tw-flex tw-flex-col tw-gap-2.5"
+        ref="content"
       >
         <div
           class="history-item history-item__widthdrawal card card__border-line tw-flex tw-gap-5 tw-items-center"
@@ -77,13 +91,13 @@
           :key="list.id"
         >
           <div>
-            <div>{{ list.status }}</div>
+            <div>{{ list.status.title }}</div>
           </div>
           <div>
-            <div>{{ list["index_derivative"].name }}</div>
+            <div>{{ list.coin }}</div>
           </div>
-          <div>
-            <div>{{ list.amount }}</div>
+          <div v-if="list.amount">
+            <div>{{ +(list.amount).toFixed(2) }}</div>
           </div>
 
           <div>
@@ -97,6 +111,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
+import Pagination from 'src/components/V3/Pagination.vue'
 import { useQuasar } from "quasar";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
@@ -110,6 +125,7 @@ const i18n = {
       },
       table: {
         completed: "Завершенный",
+        head: ['Статус заказа', 'Индекс', 'Валюта', 'Сумма', 'Статус платежа']
       },
     },
     "en-US": {
@@ -120,6 +136,7 @@ const i18n = {
       },
       table: {
         completed: "Completed",
+        head: ['Status order', 'Index', 'Valute', 'Balance', 'Status', 'Payment status']
       },
     },
   },
@@ -127,7 +144,53 @@ const i18n = {
 const { t } = useI18n(i18n);
 const $q = useQuasar();
 const store = useStore();
+
+const content = ref();
+const pos = ref({
+  top: 0, left: 0, x: 0, y: 0
+})
+
+
+const mouseDownHandler = function (e) {
+
+  content.value.style.cursor = 'grabbing';
+  content.value.style.userSelect = 'none';
+  pos.value = {
+    // The current scroll
+    left: content.value.scrollLeft,
+    top: content.value.scrollTop,
+    // Get the current mouse position
+    x: e.clientX,
+    y: e.clientY,
+  };
+  
+  document.addEventListener('mousemove', mouseMoveHandler);
+  document.addEventListener('mouseup', mouseUpHandler);
+};
+
+
+const mouseMoveHandler = function (e) {
+  // How far the mouse has been moved
+  const dx = e.clientX - pos.value.x;
+  const dy = e.clientY - pos.value.y;
+  
+
+  // Scroll the element
+  content.value.scrollTop = pos.value.top - dy;
+  content.value.scrollLeft = pos.value.left - dx;
+};
+
+const mouseUpHandler = function () {
+  document.removeEventListener('mousemove', mouseMoveHandler);
+  document.removeEventListener('mouseup', mouseUpHandler);
+
+  content.value.style.cursor = 'grab';
+  content.value.style.removeProperty('user-select');
+};
+
 onMounted(async () => {
+
+  content.value.addEventListener('mousedown', mouseDownHandler);
   try {
     $q.loading.show();
     await Promise.all([
@@ -225,13 +288,15 @@ const choiceList = (index) => {
 
 .history-list {
   overflow-x: auto;
+  cursor: grab;
 }
 
 .history-item {
   min-width: max-content;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: 189px 110px 100px 125px 140px;
+  
 }
 
 .history-item__widthdrawal {

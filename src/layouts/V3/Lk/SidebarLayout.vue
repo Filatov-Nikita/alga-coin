@@ -119,11 +119,11 @@
       </ul>
     </div>
     <div class="tw-fixed tw-bottom-0 tw-mb-4">
-      <div class="tw-text-xxs tw-text-text-gray tw-mb-7.5 tw-mt-6 tw-uppercase">
+      <div class="tw-text-xxs tw-text-text-gray tw-mb-5 tw-mt-6 tw-uppercase">
         {{ t("profile-title") }}
       </div>
       <div class="profile tw-flex tw-flex-col tw-justify-center">
-        <div class="tw-flex tw-items-center tw-gap-5 tw-mb-7.5">
+        <div class="tw-flex tw-items-center tw-gap-5 tw-mb-5">
           <img :src="require('assets/icons/avatar.svg')" alt="avatar" />
           <div class="tw-flex tw-flex-col">
             <span class="profile__name tw-text-xs">{{
@@ -138,7 +138,7 @@
           </div>
         </div>
         <base-button
-          class="tw-mb-10"
+          class="tw-mb-8"
           @click.prevent="$app.logout"
           design="border-line"
         >
@@ -166,7 +166,7 @@
             </span>
           </template>
         </base-button>
-        <div class="local tw-self-center tw-mb-7.5">
+        <div class="local tw-self-center tw-mb-5">
           <button
             @click="newLocale('en-US')"
             :class="locale === 'English' ? 'active' : ''"

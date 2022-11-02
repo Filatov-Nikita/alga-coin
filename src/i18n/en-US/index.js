@@ -89,4 +89,5 @@ export default {
     429: "You have made too many attempts. We have to wait a bit.",
     500: "Something went wrong on the server, maybe everything will be fixed soon. If the problem persists, write to us about it.",
   },
+  days: '{n} day | {n} days',
 };

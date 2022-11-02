@@ -134,7 +134,7 @@ export default {
     const registr = async ({ cellphone, name, email }, { setErrors }) => {
       try {
         const data = await store.dispatch("auth/registr", {
-          cellphone,
+          cellphone: `+${cellphone.replace('+', '')}`,
           name,
           email,
         });
