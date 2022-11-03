@@ -47,7 +47,13 @@ export default function () {
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
           window.location.href = data.payment_url;
         } else {
-          window.open(data.payment_url, "_blank");
+
+          var newWin = window.open(data.payment_url, "_blank");             
+
+          if(!newWin || newWin.closed || typeof newWin.closed=='undefined') 
+          { 
+              window.location.href = data.payment_url;
+          }
 
           router.push({ name: "history" });
         }

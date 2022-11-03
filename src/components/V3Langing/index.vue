@@ -1504,7 +1504,7 @@ const i18n = {
           },
           2: {
             title: "Stage 2",
-            subtitle: "March-May, 2022",
+            subtitle: "March-September, 2022",
             items: [
               "Development of platform MVP",
               "Development of the marketing plan",
@@ -1514,7 +1514,7 @@ const i18n = {
           },
           3: {
             title: "Stage 3",
-            subtitle: "May-July, 2022",
+            subtitle: "September-November, 2022",
             items: [
               "Company establishment and obtaining of legal documents",
               "Start of the fundraise",
@@ -1525,7 +1525,7 @@ const i18n = {
           },
           4: {
             title: "Stage 4",
-            subtitle: "July-September, 2022",
+            subtitle: "November 2022-January 2023",
             items: [
               "Start of the global marketing campaign",
               "Conduction of IEO on CEX",
@@ -1535,7 +1535,7 @@ const i18n = {
           },
           5: {
             title: "Stage 5",
-            subtitle: "September-November, 2022",
+            subtitle: "December 2022 - February 2023",
             items: [
               "Platform functionality update",
               "Launch of the Alga Advisors indexes program",
