@@ -57,7 +57,7 @@ export default ({ app }) => {
   Object.assign(ru.messages, {
     password: "Пароль должен быть больше 6 знаков",
     confirmed: "Пароли не совпадают",
-    walletAddress: "Адреса кошелька должен быть 40 символов",
+    walletAddress: "Адреса кошелька должен иметь 40 символов",
     cellphone: "Номер телефона введен некорректно",
     min: "Сумма должна превышать 100 USDT",
   });

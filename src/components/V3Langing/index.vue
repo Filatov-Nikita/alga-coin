@@ -19,16 +19,24 @@
         <div class="card-big tw-mt-10 xl:tw-mt-15">
           <img src="./img/plus.png" alt="plus" class="top-icon" />
           <div class="card-big__left">
-            <h2 class="title">{{  isAuth? t("card-big.signin.titleSign"):t("card-big.signin.titleReg") }}</h2>
+            <h2 class="title">
+              {{
+                isAuth
+                  ? t("card-big.signin.titleSign")
+                  : t("card-big.signin.titleReg")
+              }}
+            </h2>
             <p class="tw-mt-5">
               {{ t("card-big.signin.text") }}
             </p>
           </div>
 
-          
-          
           <button class="tw-mt-7.5 xl:tw-mt-0 button" @click="stage1">
-            {{isAuth? t("card-big.signin.createButtonSign"): t("card-big.signin.createButtonReg") }}
+            {{
+              isAuth
+                ? t("card-big.signin.createButtonSign")
+                : t("card-big.signin.createButtonReg")
+            }}
           </button>
         </div>
       </div>
@@ -41,7 +49,7 @@
             src="./img/section-directive.png"
           />
         </div>
-        <h2>{{t('indexD.title')}}</h2>
+        <h2>{{ t("indexD.title") }}</h2>
         <!-- cards -->
         <div class="mob-n">
           <div class="index-directive__cards tw-mt-10">
@@ -1260,7 +1268,7 @@ const i18n = {
       },
       about: {
         title: "О нас",
-        text: "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов. <br> Лежащая в основе передовая технология наряду с огромным опытом основной команды в области торговли делает ALGA универсальным сервисом для инвестиций в проверенные и эффективные стратегии, облегчающие вход в криптовалюту для всех. Эти стратегии, основанные на индексных деривативах, состоящих из множества активов, подобранных в наиболее эффективном соотношении, позволяют получать солидный доход на вложенный капитал при минимизации рисков. <br> Платформа создана людьми для людей с единственной целью - обеспечить комфортное отслеживание активов и прозрачность транзакций, чтобы вывести опыт управления активами на совершенно новый уровень.",
+        text: "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов. <br> Лежащая в основе передовая технология, наряду с огромным опытом основной команды в области торговли, делает ALGA универсальным сервисом для инвестиций в проверенные и эффективные стратегии, облегчающие вход в криптовалюту для всех. Эти стратегии, основанные на индексных деривативах, состоящих из множества активов, подобранных в наиболее эффективном соотношении, позволяют получать солидный доход на вложенный капитал при минимизации рисков. <br> Платформа создана людьми для людей с единственной целью - обеспечить комфортное отслеживание активов и прозрачность транзакций, чтобы вывести опыт управления активами на совершенно новый уровень",
       },
       indexD: {
         title: "Деривативы",
@@ -1284,7 +1292,7 @@ const i18n = {
         stages: {
           1: {
             title: "Этап 1",
-            subtitle: "Январь-Март, 2022",
+            subtitle: "январь - март 2022",
             items: [
               "Разработка концепции и брендбука проекта",
               "Разработка архитектуры платформы",
@@ -1293,7 +1301,7 @@ const i18n = {
           },
           2: {
             title: "Этап 2",
-            subtitle: "Март - сентябрь, 2022",
+            subtitle: "март - сентябрь 2022",
             items: [
               "Разработка платформы MVP",
               "Разработка маркетингового плана",
@@ -1303,7 +1311,7 @@ const i18n = {
           },
           3: {
             title: "Этап 3",
-            subtitle: "Сентябрь - ноябрь, 2022",
+            subtitle: "сентябрь - ноябрь 2022",
             items: [
               "Создание компании и получение юридических документов",
               "Начало сбора средств",
@@ -1314,7 +1322,7 @@ const i18n = {
           },
           4: {
             title: "Этап 4",
-            subtitle: "Ноябрь 2022 - январь 2023",
+            subtitle: "ноябрь 2022 - январь 2023",
             items: [
               "Старт глобальной маркетинговой кампании",
               "Проведение IEO на CEX",
@@ -1324,7 +1332,7 @@ const i18n = {
           },
           5: {
             title: "Этап 5",
-            subtitle: "Декабрь 2022 - февраль 2023",
+            subtitle: "декабрь 2022 - февраль 2023",
             items: [
               "Обновление функционала платформы",
               "Запуск программы индексов Alga Advisors",
@@ -1333,7 +1341,7 @@ const i18n = {
           },
           6: {
             title: "Этап 6",
-            subtitle: "Ноябрь 2022 - Февраль 2023",
+            subtitle: "ноябрь 2022 - февраль 2023",
             items: [
               "Листинг на других централизованных биржах",
               "Разработка собственной индексной биржи",
@@ -1354,12 +1362,12 @@ const i18n = {
           2: {
             name: "Данат",
             lastName: "Латыпов",
-            bio: "Разработчик, кандидат экономических наук, математик. Руководитель группы разработки. Специализируется на разработке высоконагруженных систем и коммерческих блокчейн-проектов с 2017 года.",
+            bio: "Разработчик, кандидат экономических наук, математик. Руководитель группы разработки. Специализируется на разработке высоконагруженных систем и коммерческих блокчейн-проектов с 2017 года",
           },
           3: {
             name: "Раст",
             lastName: "Пентагон",
-            bio: "Основатель ALGA Ecosystem и торговый директор криптовалютного фонда Fakel в СНГ, основатель консалтинговой компании Take Profit, международный спикер, квалифицированный трейдер с опытом работы более 8 лет.",
+            bio: "Основатель ALGA Ecosystem и торговый директор криптовалютного фонда Fakel в СНГ, основатель консалтинговой компании Take Profit, международный спикер, квалифицированный трейдер с опытом работы более 8 лет",
           },
           4: {
             name: "Иван",
@@ -1369,7 +1377,7 @@ const i18n = {
           5: {
             name: "Елена",
             lastName: "Шаханова",
-            bio: "Бизнесмен, основатель и генеральный директор агентства цифрового брендинга YES IDEA, арт-директор российских и международных проектов",
+            bio: "Бизнесвумен, основатель и генеральный директор агентства цифрового брендинга YES IDEA, арт-директор российских и международных проектов",
           },
         },
       },
@@ -1384,27 +1392,27 @@ const i18n = {
             text: `
               Alga Ecosystem — это совершенно новый инструмент для удобного входа в мир криптовалюты и разумных инвестиций. На начальном этапе экосистема будет состоять из трех основных продуктов:
               <br>
-              -Платформа индексных деривативов Alga (AID)
+              - Платформа индексных деривативов Alga (AID)
               <br>
-              -Образовательная платформа Alga (AE)
+              - Образовательная платформа Alga (AE)
               <br>
-              -Социальная сеть Alga Indexview (AI)
+              - Социальная сеть Alga Indexview (AI)
             `,
           },
           2: {
             title: "Что такое Платформа индексных деривативов Alga?",
             text: `
-              Это CeFi платформа, которая позволяет вам инвестировать в криптовалюты через индексные деривативы. Команда объединила передовые технологии и личный торговый опыт, чтобы создать среду безопасного инвестирования средств пользователей и получения сбалансированной доходности на аллокированный капитал с помощью индексов. AID дает возможность отдельным лицам или учреждениям создавать, управлять и вкладываться в инновационные инвестиционные инструменты.
+              Это CeFi платформа, которая позволяет вам инвестировать в криптовалюты через индексные деривативы. Команда объединила передовые технологии и личный торговый опыт, чтобы создать среду безопасного инвестирования средств пользователей и получения сбалансированной доходности на аллокированный капитал с помощью индексов. AID дает возможность отдельным лицам или учреждениям создавать, управлять и вкладывать в инновационные инвестиционные инструменты
             `,
           },
           3: {
             title: "Что такое индекс?",
             text: `
-              Индекс — это дериватив, который представляет собой полностью обеспеченный портфель активов, который может позволить людям или организациям управлять своим капиталом и капиталом других в безопасной среде.
+              Индекс — это дериватив, который представляет собой полностью обеспеченный портфель активов, который может позволить людям или организациям управлять своим капиталом и капиталом других в безопасной среде
             `,
           },
           4: {
-            title: "Какие виды индексов есть у вас на платформе?",
+            title: "Какие виды индексов есть на платформе?",
             text: `
               В настоящий момент на платформе AID представлено 5 индексов:
               <br>
@@ -1418,19 +1426,19 @@ const i18n = {
               <br>
               - STABLE ALGA INDEX.
               <br>
-              С развитием платформы будут добавляться новые индексы.
+              С развитием платформы будут добавляться новые индексы
             `,
           },
           5: {
             title: "Что такое Alga Token и для чего он нужен?",
             text: `
-              Токен Alga является нативным токеном экосистемы. Владельцы Alga получат ряд преимуществ, таких как: возможность стейкинга и участия в DAO, создания собственных индексов. Кроме того, за токены Alga можно будет получить скидку на образовательные программы и различные функции кастомизации в Alga Indexview.
+              Токен Alga является нативным токеном экосистемы. Владельцы Alga получат ряд преимуществ, таких как возможность стейкинга и участия в DAO, создания собственных индексов. Кроме того, за токены Alga можно будет получить скидку на образовательные программы и различные функции кастомизации в Alga Indexview
             `,
           },
           6: {
             title: "Законна ли деятельность вашей платформы?",
             text: `
-            Да, интеллектуальная собственность Alga Ecosystem принадлежит юридическому лицу, официально оформленному в г. Дубай (ОАЭ). Оно имеет лицензию на работу с цифровыми активами.
+            Да, интеллектуальная собственность Alga Ecosystem принадлежит юридическому лицу, официально оформленному в г. Дубай (ОАЭ), которое имеет лицензию на работу с цифровыми активами
             `,
           },
         },
@@ -1439,13 +1447,13 @@ const i18n = {
         signin: {
           titleReg: "Регистрация",
           titleSign: "Личный кабинет",
-          text: "По всем вопросам пишите нам и оператор свяжется с вами в ближайшее время",
+          text: "По всем вопросам пишите нам, оператор свяжется с вами в ближайшее время",
           createButtonReg: "Регистрация",
           createButtonSign: "Личный кабинет",
         },
         anyquestion: {
           title: "Остались вопросы?",
-          text: "По всем вопросам пишите нам и оператор свяжется с вами в ближайшее время",
+          text: "По всем вопросам пишите нам, оператор свяжется с вами в ближайшее время",
           contacrusButton: "Напишите нам",
           joinButton: "Вступайте в сообщество",
         },
@@ -1471,7 +1479,7 @@ const i18n = {
       },
       about: {
         title: "About",
-        text: "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives. <br> The underlying cutting edge technology along with a huge background of the core team in  trading makes ALGA the one-stop shop for investments into proven and efficient strategies facilitating entry to the crypto for everyone. These strategies based on index derivatives consisting of many assets selected in the most effective ratio allow to receive solid return on the allocated capital while minimizing risks. <br> The platform is designed by people for people with the only one goal - to ensure comfortable tracking of assets and transparent transactions in order to bring asset management experience to completely new level.",
+        bio: "Businesswoman, founder and CEO of YES IDEA digital branding agency, art director of Russian and international projects",
       },
       indexD: {
         title: "Index Derivatives",
@@ -1607,13 +1615,13 @@ const i18n = {
             text: `
               It is a CeFi platform that allows you to invest in cryptocurrencies through index derivatives.
               <br>
-              Founders combine advanced technology and personal trading experience to create an environment for safe investment of users’ funds and balanced returns on allocated capital with the help of indexes. AID empowers individuals or institutions to create, manage and invest in innovative on-chain investment tools.
+              Founders combine advanced technology and personal trading experience to create an environment for safe investment of users’ funds and balanced returns on allocated capital with the help of indexes. AID empowers individuals or institutions to create, manage and invest in innovative on-chain investment tools
             `,
           },
           3: {
             title: "What is index?",
             text: `
-              Index is a derivative that represents a fully collateralized portfolio of assets that can enable people or entities to manage their wealth & the wealth of others within a safe environment.
+              Index is a derivative that represents a fully collateralized portfolio of assets that can enable people or entities to manage their wealth & the wealth of others within a safe environment
             `,
           },
           4: {
@@ -1631,18 +1639,18 @@ const i18n = {
               <br>
               - STABLE ALGA INDEX.
               <br>
-              With the development of the platform it will be more.
+              With the development of the platform it will be more
             `,
           },
           5: {
             title: "What is an Alga token and what are its use cases?",
             text: `
-              Alga token is native token of the Alga Ecosystem. Holders of Alga will have several benefits, such as: possibility of staking and DAO participation, creation of own indexes. Discounts for Educational programs and different customization features at Alga Indexview.
+              Alga token is native token of the Alga Ecosystem. Holders of Alga will have several benefits, such as: possibility of staking and DAO participation, creation of own indexes. Discounts for Educational programs and different customization features at Alga Indexview
             `,
           },
           6: {
             title: "Is the operation of Alga Ecosystem legal?",
-            text: `Yes, Alga Ecosystem works under the registered legal entity in Dubai (UAE). Entity is licensed to work with digital assets.`,
+            text: `Yes, Alga Ecosystem works under the registered legal entity in Dubai (UAE). Entity is licensed to work with digital assets`,
           },
         },
       },

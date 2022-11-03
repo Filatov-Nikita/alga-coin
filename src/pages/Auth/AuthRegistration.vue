@@ -35,9 +35,17 @@
             class="tw-text-left tw-mt-6"
             labelClass="tw-text-xxs"
           >
-            <AppLink :to="$app.links.serviceInfo" class="term-link">
-              <i18n-t scope="global" keypath="term"> </i18n-t>
-            </AppLink>
+            <div class="tw-text-xxs">
+              {{ $t("termBefore") }}
+              <AppLink
+                :to="$t('serviceInfoFile')"
+                class="term-link tw-text-xxs"
+              >
+                <!-- <i18n-t scope="global" keypath="term" > </i18n-t> -->
+                {{ $t("term-link") }}
+              </AppLink>
+              {{ $t("termAfter") }}
+            </div>
           </AppCheckbox>
           <AppButton
             :label="$t('buttons.registr')"
@@ -190,6 +198,6 @@ export default {
 </script>
 <style scoped>
 .term-link {
-  color: #fff;
+  color: #bec3ff;
 }
 </style>

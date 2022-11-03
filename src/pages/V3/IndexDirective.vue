@@ -214,7 +214,16 @@
               for="amount"
               >{{ t("popup.amount.label") }}</label
             >
-            <AppInput id="amount" type="number" name="amount" />
+            <AppInput
+              id="amount"
+              type="number"
+              name="amount"
+              inputClass="app-input__field--standart-valute"
+            >
+              <template #append>
+                <span class="tw-text-purple-light">USDT</span>
+              </template>
+            </AppInput>
           </div>
 
           <base-button
@@ -224,6 +233,11 @@
             >{{ t("popup.request") }}</base-button
           >
         </Form>
+        <p class="tw-mt-5 tw-text-xxs">
+          *После нажатия кнопки, оплатить, вы будете перенаправлены на шлюз.
+          Если ничего не открылось, просим проверить блокировку всплывающих окон
+          браузера
+        </p>
       </div>
     </Transition>
   </div>
@@ -247,11 +261,11 @@ const i18n = {
         title: "Index Derivatives",
         time: "from {from} to {to}",
         items: [
-          "BTC main is the base index of ALGA INDEX DERIVATIVES PLATFORM. It is an index designed to track the world's largest crypto asset. You will gain access to a crypto asset with the security and convenience of a traditional investment vehicle, while lowering the logistical barriers to entry (access to exchanges, storage, and execution costs).",
-          "ETH main - ALGA INDEX DERIVATIVES PLATFORM base index. It is a capitalization-weighted index that tracks the performance of major financial crypto assets built on the Ethereum blockchain. You will gain access to a crypto asset with the security and convenience of a traditional investment vehicle, while lowering the logistical barriers to entry (access to exchanges, storage, and execution costs).",
-          "BTC combo - ALGA INDEX DERIVATIVES PLATFORM base index. it is a balanced index composed of the most valuable cryptoassets, weighted by market capitalization, time-tested and monitored for certain risks with monthly rebalancing. The index has a public methodology for its formation, which includes the rules of acceptability, identifying critical risks (storage, liquidity, execution costs, and others).",
-          "ETH combo - ALGA INDEX DERIVATIVES PLATFORM base index. It is a balanced index composed of the most valuable cryptoassets, weighted by market capitalization, time-tested and monitored for certain risks with monthly rebalancing. The index has a public methodology for its formation, which includes the rules of acceptability, identifying critical risks (storage, liquidity, execution costs, and others).",
-          "Stable index is a stable base index ALGA INDEX DERIVATIVES PLATFORM, consisting of 6 leading stablecoins in the cryptocurrency market, weighted by capitalization. The index is not subject to high volatility in the market, allowing you to keep your cryptocurrency savings for a certain period. Stable index is a smart and secure way to get diversified access to crypto assets with minimal fees.",
+          "BTC main is the base index of ALGA INDEX DERIVATIVES PLATFORM. It is an index designed to track the world's largest crypto asset. You will gain access to a crypto asset with the security and convenience of a traditional investment vehicle, while lowering the logistical barriers to entry (access to exchanges, storage, and execution costs)",
+          "ETH main - ALGA INDEX DERIVATIVES PLATFORM base index. It is a capitalization-weighted index that tracks the performance of major financial crypto assets built on the Ethereum blockchain. You will gain access to a crypto asset with the security and convenience of a traditional investment vehicle, while lowering the logistical barriers to entry (access to exchanges, storage, and execution costs)",
+          "BTC combo - ALGA INDEX DERIVATIVES PLATFORM base index. it is a balanced index composed of the most valuable cryptoassets, weighted by market capitalization, time-tested and monitored for certain risks with monthly rebalancing. The index has a public methodology for its formation, which includes the rules of acceptability, identifying critical risks (storage, liquidity, execution costs, and others)",
+          "ETH combo - ALGA INDEX DERIVATIVES PLATFORM base index. It is a balanced index composed of the most valuable cryptoassets, weighted by market capitalization, time-tested and monitored for certain risks with monthly rebalancing. The index has a public methodology for its formation, which includes the rules of acceptability, identifying critical risks (storage, liquidity, execution costs, and others)",
+          "Stable index is a stable base index ALGA INDEX DERIVATIVES PLATFORM, consisting of 6 leading stablecoins in the cryptocurrency market, weighted by capitalization. The index is not subject to high volatility in the market, allowing you to keep your cryptocurrency savings for a certain period. Stable index is a smart and secure way to get diversified access to crypto assets with minimal fees",
         ],
       },
       inside: {

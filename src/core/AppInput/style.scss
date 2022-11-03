@@ -56,6 +56,9 @@
     &--standart {
       padding: 0 21px;
       @apply tw-w-full;
+      &-valute {
+        @apply tw-pr-15;
+      }
     }
 
     &::placeholder {

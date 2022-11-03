@@ -74,6 +74,7 @@ export default defineComponent({
 
     let field;
     let opts = null;
+
     const fieldStg = { label, standalone: props.standalone, ...rootAttrs };
     if (type === "tel") {
       ({ field, ...opts } = _useTelField(name, rules, fieldStg));
