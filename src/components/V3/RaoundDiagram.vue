@@ -6,14 +6,14 @@
       <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
       <feComposite in="SourceGraphic" in2="goo" operator="atop" />
     </filter> -->
-    <filter id="filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+    <!-- <filter id="filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
 	<feGaussianBlur stdDeviation="5 2" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"/>
 	<feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" x="0%" y="0%" width="100%" height="100%" in="blur" result="colormatrix"/>
-	<feComposite in="SourceGraphic" in2="colormatrix" operator="atop" x="0%" y="0%" width="100%" height="100%" result="composite1"/>
+	<feComposite in="SourceGraphic" in2="colormatrix" operator="atop" x="0%" y="0%" width="100%" height="100%" result="composite1"/> -->
   <!-- <feDropShadow stdDeviation="5 5" in="composite2" dx="10" dy="10" flood-color="#88ceff" flood-opacity="1" x="0%" y="0%" width="100%" height="100%" result="dropShadow5"/>
 	<feDropShadow stdDeviation="5 5" in="dropShadow5" dx="10" dy="10" flood-color="#109CFF" flood-opacity="1" x="0%" y="0%" width="100%" height="100%" result="dropShadow6"/> -->
       <!-- filter: drop-shadow(0 0px 19px rgba(16, 156, 255, 0.5)) drop-shadow(0px 0px 34.272px #109CFF); -->
-</filter>
+<!-- </filter> -->
     <g v-for="(value, index) in sortedValues " :key="index">
       <circle class="circle" :class="{'circle-pointer': clickable}" cx="50%" cy="50%" :r="radius" :stroke="colorsLocal[index]" :stroke-width="strokeWidth"
         :stroke-dasharray="adjustedCircumference" :stroke-dashoffset="calculateStrokeDashOffset(value, circumference)"
@@ -32,12 +32,14 @@
 
     </g>
     <slot name="image">
-      
+
     </slot>
   </svg>
 </template>
 
 <script>
+import { throttle } from 'throttle-debounce';
+
 export default {
   props: {
     isText: {
@@ -67,7 +69,7 @@ export default {
           '#0F6FDF',
           '#0395FF',
           '#DF410F',
-          
+
         ];
       },
       type: Array,
@@ -148,17 +150,17 @@ export default {
           parent.style.filter = `drop-shadow(0px 0px 15px ${color}) drop-shadow(0px 0px 19px ${this.hexToRgbA(color)})`;
           circles[index].setAttribute('r', newRadius)
           circles[index].setAttribute('stroke-dasharray',2 * Math.PI  * newRadius - 5)
-          circles[index].setAttribute('stroke-dashoffset', 
+          circles[index].setAttribute('stroke-dashoffset',
           this.calculateStrokeDashOffset( circles[index].getAttribute('data-value'),2 * Math.PI  * newRadius))
         }
       } else {
         const parent = circles[oldIndex].parentNode;
         circles.forEach(el=>{if(el !== circles[oldIndex])el.style.opacity=1;})
-        
+
         if(parent)
         parent.style.filter = 'none'
         circles[oldIndex].setAttribute('stroke-dasharray',2 * Math.PI  * this.radius - 5)
-        circles[oldIndex].setAttribute('stroke-dashoffset', 
+        circles[oldIndex].setAttribute('stroke-dashoffset',
         this.calculateStrokeDashOffset( circles[oldIndex].getAttribute('data-value'),2 * Math.PI  * this.radius))
       }
     },
@@ -221,7 +223,7 @@ export default {
     this.$nextTick(()=>{
       // const svg = this.$refs.round
       // const circles =  svg.querySelectorAll('.circle');
-      
+
       // circles.forEach((circle,index)=>{
       //   circle.addEventListener("mouseover", (e)=>{
       //     const newRadius = 165;
@@ -232,7 +234,7 @@ export default {
       //       parent.style.filter = `drop-shadow(0px 0px 15px ${color}) drop-shadow(0px 0px 19px ${this.hexToRgbA(color)})`;
       //       e.target.setAttribute('r', newRadius)
       //       e.target.setAttribute('stroke-dasharray',2 * Math.PI  * newRadius - 5)
-      //       e.target.setAttribute('stroke-dashoffset', 
+      //       e.target.setAttribute('stroke-dashoffset',
       //       this.calculateStrokeDashOffset( e.target.getAttribute('data-value'),2 * Math.PI  * newRadius))
       //     }
       //   })
@@ -243,7 +245,7 @@ export default {
       //     parent.style.filter = 'none'
       //     e.target.setAttribute('r', this.radius)
       //     e.target.setAttribute('stroke-dasharray',2 * Math.PI  * this.radius - 5)
-      //     e.target.setAttribute('stroke-dashoffset', 
+      //     e.target.setAttribute('stroke-dashoffset',
       //     this.calculateStrokeDashOffset( e.target.getAttribute('data-value'),2 * Math.PI  * this.radius))
       //   })
       // })
@@ -255,19 +257,19 @@ export default {
   },
 
   watch:{
-    activeCircleIndex(val,oldVal){
+    activeCircleIndex: throttle(50, function (val,oldVal) {
       if(this.clickable)
       this.choiceCircle(val, oldVal)
-    }
+    })
   }
 };
 </script>
 
 <style scoped lang="scss">
 
-circle {
-  filter: url(#filter);
-}
+// circle {
+//   filter: url(#filter);
+// }
 
 .text {
   @apply tw-text-white tw-text-xs;
@@ -278,11 +280,11 @@ circle {
 .circle {
   fill: none;
   stroke-width: 90;
-  
+
   animation-name: render;
-  animation-duration: 1.5s;
-  transition-property: all; 
-  transition-duration: 1.5s;
+  animation-duration: 500ms;
+  transition-property: all;
+  transition-duration: 500ms;
   &-pointer {
 
     cursor: pointer;
