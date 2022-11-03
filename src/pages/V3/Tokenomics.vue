@@ -26,6 +26,7 @@
             v-for="(item, index) in listLeft"
             :key="index"
             class="tokenomic tw-flex tw-items-center tw-gap-5"
+            @click="clickTocken"
           >
             <HexahedronIcon
               :fill="item.color"
@@ -170,6 +171,7 @@ export default {
       show.value = false;
       activeIndex.value = null;
     };
+    
     onMounted(() => {
       const tokenomics = document.querySelectorAll(".tokenomic");
       tokenomics.forEach((tokenomic, index) => {

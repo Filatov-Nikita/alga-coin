@@ -315,7 +315,7 @@ const i18n = {
       },
       "index-title": "My Indexes",
       "index-not": "You have not orders yet",
-      "index-not-btn": "Choice index",
+      "index-not-btn": "Choose index",
       "index-table": {
         header: [
           "Index",

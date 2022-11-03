@@ -128,11 +128,8 @@ background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-r
   }
 
   .app-logo-2 {
-    width: 74px;
+    width: 164px;
 
-    @include screen-xl {
-      width: 136px;
-    }
   }
 
   .app-logo-i {

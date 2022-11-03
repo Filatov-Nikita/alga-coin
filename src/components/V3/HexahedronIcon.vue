@@ -28,9 +28,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .text {
-        @apply tw-text-white tw-text-xs;
+.text {
+        @apply tw-text-white;
         fill: #fff;
-        font-size: 14px;
+        font: normal 14px Stolzl;
     }
 </style>
