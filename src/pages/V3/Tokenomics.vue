@@ -136,6 +136,12 @@ const i18n = {
       total: "Total supply",
       price: "Token price",
     },
+    de: {
+      main: "Startseite",
+      tokenomics: "Тokenomik",
+      total: "Gesamtzahl",
+      price: "Der Preis des Tokens",
+    },
   },
 };
 export default {
@@ -171,7 +177,7 @@ export default {
       show.value = false;
       activeIndex.value = null;
     };
-    
+
     onMounted(() => {
       const tokenomics = document.querySelectorAll(".tokenomic");
       tokenomics.forEach((tokenomic, index) => {

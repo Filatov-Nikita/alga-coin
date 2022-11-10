@@ -36,18 +36,63 @@
                 {{ t("dropdown.buttons.register") }}
               </button>
             </div>
+            <div class="select-lang">
+              <div
+                class="select-lang__head"
+                @click="activeSelectLang = !activeSelectLang"
+              >
+                <span>
+                  {{ selectLang }}
+                </span>
+              </div>
+              <div
+                class="select-lang__body"
+                :class="{ active: activeSelectLang }"
+              >
+                <div class="select-lang__body-wrapper">
+                  <div
+                    class="option"
+                    :class="locale === 'Русский' ? 'active' : ''"
+                    @click="newLocale('ru-RU')"
+                  >
+                    <span> RU </span>
+                  </div>
+                  <div
+                    class="option"
+                    :class="locale === 'English' ? 'active' : ''"
+                    @click="newLocale('en-US')"
+                  >
+                    <span> EN </span>
+                  </div>
+                  <div
+                    class="option"
+                    :class="locale === 'Deutsch' ? 'active' : ''"
+                    @click="newLocale('de')"
+                  >
+                    <span> DE </span>
+                  </div>
+                  <div
+                    class="option"
+                    :class="locale === '中国人' ? 'active' : ''"
+                    @click="newLocale('zh_CN')"
+                  >
+                    <span> 中国人 </span>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="local">
               <button
-              @click="newLocale('ru-RU')"
-                  :class="locale === 'Русский' ? 'active' : ''"
+                @click="newLocale('ru-RU')"
+                :class="locale === 'Русский' ? 'active' : ''"
               >
-              <span>RU</span>
-            </button>
-            <button
-            @click="newLocale('en-US')"
-            :class="locale === 'English' ? 'active' : ''"
+                <span>RU</span>
+              </button>
+              <button
+                @click="newLocale('en-US')"
+                :class="locale === 'English' ? 'active' : ''"
               >
-                <span>EN  </span>
+                <span>EN </span>
               </button>
             </div>
             <div class="desk-n">
@@ -181,8 +226,9 @@ export default {
     //     }
     //   }
     // };
-    const { locale, newLocale } = useLocal();
+    const { locale, newLocale, selectLang, activeSelectLang } = useLocal();
     const { t } = useI18n(i18n);
+
     return {
       locale,
       newLocale,
@@ -190,6 +236,8 @@ export default {
       // toggleDrop,
       dropDown,
       isAuth: computed(() => store.getters["auth/isAuth"]),
+      selectLang,
+      activeSelectLang,
     };
   },
 };

@@ -125,6 +125,19 @@ const i18n = {
       "popup-text":
         "Thank you, your application has been accepted. We will process within a day",
     },
+    de: {
+      title: "Support",
+      topic: {
+        label: "Thema",
+      },
+      question: {
+        label: "Frage",
+      },
+      "file-text": "Dateianhang",
+      send: "Senden",
+      "popup-text":
+        "Vielen Dank, Ihr Antrag wurde angenommen. Wir werden sie innerhalb von 24 Stunden bearbeiten.",
+    },
   },
 };
 const store = useStore();

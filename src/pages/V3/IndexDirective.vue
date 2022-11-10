@@ -323,6 +323,40 @@ const i18n = {
         request: "К оплате",
       },
     },
+    de: {
+      buy: "Kaufen",
+      indexderivatives: {
+        title: "Index Derivates",
+        time: "von {from} bis {to}",
+        items: [
+          "BTC main ist der Basisindex von ALGA INDEX DERIVATIVES PLATFORM. Es handelt sich um einen Index, der das weltweit größte Krypto-Asset abbildet. Sie erhalten Zugang zu Krypto-Vermögenswerten mit der Sicherheit und dem Komfort eines traditionellen Anlageinstruments und reduzieren gleichzeitig die logistischen Zugangsbarrieren (Zugang zu Börsen, Lagerungs- und Ausführungskosten)",
+          "ETH main ist der Basisindex der ALGA INDEX DERIVATIVES PLATFORM. Es handelt sich um einen kapitalisierungsgewichteten Index, der die Wertentwicklung der wichtigsten finanziellen Krypto-Assets abbildet, die auf der Ethereum-Blockchain basieren. Sie erhalten Zugang zu Krypto-Assets mit der Sicherheit und Bequemlichkeit eines traditionellen Anlageinstruments und reduzieren gleichzeitig die logistischen Zugangsbarrieren (Zugang zu Börsen, Lagerungs- und Ausführungskosten)",
+          "Die BTC-Kombination ist der zugrunde liegende Index ALGA INDEX DERIVATIVES PLATFORM. Es handelt sich um einen ausgewogenen Index, der sich aus den wertvollsten Krypto-Assets zusammensetzt, die nach ihrer Marktkapitalisierung gewichtet sind, sich bewährt haben und auf bestimmte Risiken hin überwacht und monatlich neu gewichtet werden. Der Index verfügt über eine öffentlich zugängliche Methodik für seine Bildung, die Zulassungsregeln, die Identifizierung kritischer Risiken (Lagerung, Liquidität, Ausführungskosten und andere) umfasst",
+          "ETH combo ist der zugrunde liegende Index ALGA INDEX DERIVATIVES PLATFORM. Es handelt sich um einen ausgewogenen Index, der sich aus den wertvollsten Krypto-Assets zusammensetzt, die nach ihrer Marktkapitalisierung gewichtet sind, sich bewährt haben und auf bestimmte Risiken hin überwacht und monatlich neu gewichtet werden. Der Index verfügt über eine öffentlich zugängliche Methodik für seine Bildung, die Zulassungsregeln, die Identifizierung kritischer Risiken (Lagerung, Liquidität, Ausführungskosten und andere) umfasst",
+          "Stable Index ist ein stabiler Benchmark-Index ALGA INDEX DERIVATIVES PLATFORM, der sich aus den 6 wichtigsten Kryptowährungs-Steiblocoins zusammensetzt, gewichtet nach Kapitalisierung. Der Index unterliegt keiner hohen Marktvolatilität, so dass Sie Ihre Ersparnisse in Kryptowährungen für einen bestimmten Zeitraum behalten können. Ein stabiler Index ist ein intelligenter und sicherer Weg, um einen diversifizierten Zugang zu Krypto-Assets mit minimalen Gebühren zu erhalten",
+        ],
+      },
+      inside: {
+        title: "Was gibt es drin",
+      },
+      statistics: {
+        title: "Statistiken",
+        profitText: "Rendite <br> für {numb} Monate",
+        selectProfit: "Die letzten {numb} Monate",
+      },
+      popup: {
+        title: "Antrag auf Auszahlung",
+        titleBuy: "Antrag auf Aufladung",
+        text: "Verfügbar zur Auszahlung:",
+        amount: {
+          label: "Geben Sie den Betrag in USDT ein",
+        },
+        "wallet-number": {
+          label: "Kontonummer",
+        },
+        request: "Zu zahlen",
+      },
+    },
   },
 };
 export default {

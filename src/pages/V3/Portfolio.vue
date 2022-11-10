@@ -346,6 +346,44 @@ const i18n = {
         request: "Leave a request",
       },
     },
+    de: {
+      title: "Mein Portfolio",
+      card: {
+        title: "Saldo",
+      },
+      "index-title": "Meine Indexe",
+      "index-not": "Sie haben noch keine Käufe getätigt",
+      "index-not-btn": "Index auswählen",
+      "index-table": {
+        header: [
+          "Index",
+          "Abschlussdatum",
+          "Saldo",
+          "Realisierter Gewinn",
+          "Aktion",
+        ],
+        body: {
+          date: "Tage",
+          action: {
+            buy: "Kaufen",
+            widthdrawal: "Auszahlung",
+          },
+        },
+      },
+
+      popup: {
+        title: "Antrag auf Auszahlung",
+        titleBuy: "ntrag auf Aufladung",
+        text: "Verfügbar zur Auszahlung:",
+        amount: {
+          label: "Anzahl",
+        },
+        "wallet-number": {
+          label: "Kontonummer",
+        },
+        request: "Einen Antrag stellen",
+      },
+    },
   },
 };
 const { t } = useI18n(i18n);

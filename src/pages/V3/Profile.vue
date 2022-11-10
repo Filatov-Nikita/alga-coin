@@ -152,6 +152,18 @@ const i18n = {
         label: "Phone number",
       },
     },
+    de: {
+      title: "Konto",
+      edit: "Ändern",
+      cancel: "Abbrechen",
+      "password-title": "Passwort",
+      "change-password": "Passwort ändern",
+      "change-phone": "Handynummer ändern",
+      "phone-title": "Neue Telefonnnumer",
+      phone: {
+        label: "Telefonnummer",
+      },
+    },
   },
 };
 export default {

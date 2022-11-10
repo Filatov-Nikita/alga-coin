@@ -179,6 +179,31 @@ const i18n = {
         },
       },
     },
+    de: {
+      title: "Verlauf",
+      nav: {
+        buy: "Bestellungen",
+        widthdrawal: "Anträge auf Rückzug",
+      },
+      table: {
+        completed: "Fertig",
+        head: {
+          buy: [
+            "Status der Bestellung",
+            "Index",
+            "Währung",
+            "Betrag",
+            "Zahlungsstatus",
+          ],
+          widthdrawal: [
+            "Status der Bestellung",
+            "Währung",
+            "Betrag",
+            "Adresse",
+          ],
+        },
+      },
+    },
   },
 };
 const { t } = useI18n(i18n);

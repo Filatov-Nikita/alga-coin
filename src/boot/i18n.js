@@ -6,12 +6,15 @@ import { configure } from "vee-validate";
 import { localize, setLocale as VeeSetLocale } from "@vee-validate/i18n";
 import ru from "@vee-validate/i18n/dist/locale/ru.json";
 import en from "@vee-validate/i18n/dist/locale/en.json";
+import de from "@vee-validate/i18n/dist/locale/de.json";
+import zh_CN from "@vee-validate/i18n/dist/locale/zh_CN.json";
 
 export default ({ app }) => {
   let curLocale;
   if (window.localStorage.getItem("locale") === null) {
     // curLocale = Quasar.lang.getLocale();
     curLocale = "en-US";
+    // curLocale = "zh_CN";
     if (curLocale.indexOf("en") === 0) curLocale = "en-US";
   } else {
     curLocale = window.localStorage.getItem("locale");
@@ -68,6 +71,14 @@ export default ({ app }) => {
     walletAddress: "Wallet address must be 40 chars",
     cellphone: "Phone number entered incorrectly",
     min: "The sum must exceed 100 USDT",
+  });
+
+  Object.assign(de.messages, {
+    password: "Das Passwort muss mehr als 6 Zeichen lang sein",
+    confirmed: "Passwörter stimmen nicht überein",
+    walletAddress: "Die Adresse der Wallets muss 40 Zeichen lang sein.",
+    cellphone: "Falsch eingegebene Handynummer",
+    min: "Der Betrag muss mehr als 100 USDT betragen.",
   });
 
   configure({
