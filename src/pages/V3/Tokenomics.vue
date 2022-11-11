@@ -142,6 +142,12 @@ const i18n = {
       total: "Gesamtzahl",
       price: "Der Preis des Tokens",
     },
+    "zh-CN": {
+      main: "主要的",
+      tokenomics: "代币经济学",
+      total: "总供应量",
+      price: "代币价格",
+    },
   },
 };
 export default {

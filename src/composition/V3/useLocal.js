@@ -14,8 +14,8 @@ export default function () {
     if ($i18n.locale.value === "ru-RU" || $i18n.locale.value === "ru")
       return "Русский";
     if ($i18n.locale.value === "de") return "Deutsch";
-    if ($i18n.locale.value === "zh_CN" || $i18n.locale.value === "zh")
-      return "中国人";
+    if ($i18n.locale.value === "zh-CN" || $i18n.locale.value === "zh")
+      return "中文";
     return null;
   });
 
@@ -25,8 +25,8 @@ export default function () {
     if ($i18n.locale.value === "ru-RU" || $i18n.locale.value === "ru")
       return "RU";
     if ($i18n.locale.value === "de") return "DE";
-    if ($i18n.locale.value === "zh_CN" || $i18n.locale.value === "zh")
-      return "中国人";
+    if ($i18n.locale.value === "zh-CN" || $i18n.locale.value === "zh")
+      return "中文";
     return null;
   });
 

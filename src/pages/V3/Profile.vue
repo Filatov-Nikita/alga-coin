@@ -141,7 +141,7 @@ const i18n = {
       },
     },
     "en-US": {
-      title: "",
+      title: "Profile",
       edit: "Edit",
       cancel: "Cancel",
       "password-title": "Password",
@@ -162,6 +162,18 @@ const i18n = {
       "phone-title": "Neue Telefonnnumer",
       phone: {
         label: "Telefonnummer",
+      },
+    },
+    "zh-CN": {
+      title: "轮廓",
+      edit: "编辑",
+      cancel: "取消",
+      "password-title": "密码",
+      "change-password": "更改密码",
+      "change-phone": "更换电话",
+      "phone-title": "新电话号码",
+      phone: {
+        label: "电话号码",
       },
     },
   },

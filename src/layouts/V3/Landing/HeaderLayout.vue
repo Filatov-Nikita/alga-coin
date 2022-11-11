@@ -36,52 +36,8 @@
                 {{ t("dropdown.buttons.register") }}
               </button>
             </div>
-            <div class="select-lang">
-              <div
-                class="select-lang__head"
-                @click="activeSelectLang = !activeSelectLang"
-              >
-                <span>
-                  {{ selectLang }}
-                </span>
-              </div>
-              <div
-                class="select-lang__body"
-                :class="{ active: activeSelectLang }"
-              >
-                <div class="select-lang__body-wrapper">
-                  <div
-                    class="option"
-                    :class="locale === 'Русский' ? 'active' : ''"
-                    @click="newLocale('ru-RU')"
-                  >
-                    <span> RU </span>
-                  </div>
-                  <div
-                    class="option"
-                    :class="locale === 'English' ? 'active' : ''"
-                    @click="newLocale('en-US')"
-                  >
-                    <span> EN </span>
-                  </div>
-                  <div
-                    class="option"
-                    :class="locale === 'Deutsch' ? 'active' : ''"
-                    @click="newLocale('de')"
-                  >
-                    <span> DE </span>
-                  </div>
-                  <div
-                    class="option"
-                    :class="locale === '中国人' ? 'active' : ''"
-                    @click="newLocale('zh_CN')"
-                  >
-                    <span> 中国人 </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="local">
+            <Locale />
+            <!-- <div class="local">
               <button
                 @click="newLocale('ru-RU')"
                 :class="locale === 'Русский' ? 'active' : ''"
@@ -94,7 +50,7 @@
               >
                 <span>EN </span>
               </button>
-            </div>
+            </div> -->
             <div class="desk-n">
               <button class="burger" @click="dropDown = !dropDown">
                 <span></span><span></span><span></span>
@@ -163,7 +119,7 @@
 </template>
 
 <script>
-import useLocal from "src/composition/V3/useLocal";
+import Locale from "src/components/V3/LocaleButtons.vue";
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
@@ -208,9 +164,50 @@ const i18n = {
         text: "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives. <br> The underlying cutting edge technology along with a huge background of the core team in  trading makes ALGA the one-stop shop for investments into proven and efficient strategies facilitating entry to the crypto for everyone. These strategies based on index derivatives consisting of many assets selected in the most effective ratio allow to receive solid return on the allocated capital while minimizing risks. <br> The platform is designed by people for people with the only one goal - to ensure comfortable tracking of assets and transparent transactions in order to bring asset management experience to completely new level.",
       },
     },
+    "zh-CN": {
+      lk: "个人的",
+      "tokenomic-title": "代币经济学",
+      dropdown: {
+        buttons: {
+          register: "报名",
+          login: "授权",
+          profile: "轮廓",
+        },
+      },
+      header: {
+        title: "藻类",
+        subtitle: "指数 <br> 衍生品 <br> 平台",
+      },
+      about: {
+        title: "关于",
+        text: "ALGA是一个全新的CeFi平台，用于实施基于指数衍生品的不同投资策略。 <br> 底层的尖端技术以及交易核心团队的庞大背景使 ALGA 成为投资于成熟且有效的策略的一站式商店，从而促进每个人进入加密货币。 这些基于指数衍生品的策略由许多以最有效比率选择的资产组成，可以在将风险降至最低的同时，从分配的资本中获得可观的回报。 <br> 该平台是为人们设计的，只有一个目标——确保资产的舒适跟踪和透明的交易，从而将资产管理体验提升到全新的水平",
+      },
+    },
+    de: {
+      lk: "Persönlich",
+      "tokenomic-title": "Tokenomik",
+      dropdown: {
+        buttons: {
+          register: "Anmeldung",
+          login: "Genehmigung",
+          profile: "profil",
+        },
+      },
+      header: {
+        title: "Alge",
+        subtitle: "Index <br> Derivate <br> Plattform",
+      },
+      about: {
+        title: "Um",
+        text: "ALGA ist eine brandneue CeFi-Plattform zur Umsetzung verschiedener Anlagestrategien auf Basis von Indexderivaten. <br> Die zugrunde liegende Spitzentechnologie zusammen mit einem enormen Hintergrund des Kernteams im Handel macht ALGA zum One-Stop-Shop für Investitionen in bewährte und effiziente Strategien, die den Einstieg in die Krypto für jedermann erleichtern. Diese auf Indexderivaten basierenden Strategien, die aus vielen im effektivsten Verhältnis ausgewählten Vermögenswerten bestehen, ermöglichen es, eine solide Rendite auf das zugewiesene Kapital zu erzielen und gleichzeitig die Risiken zu minimieren. <br> Die Plattform wurde von Menschen für Menschen mit dem einzigen Ziel entwickelt – eine komfortable Verfolgung von Vermögenswerten und transparente Transaktionen zu gewährleisten, um die Vermögensverwaltungserfahrung auf ein völlig neues Niveau zu bringen.",
+      },
+    },
   },
 };
 export default {
+  components: {
+    Locale,
+  },
   setup() {
     const store = useStore();
     const dropDown = ref(false);
@@ -226,18 +223,14 @@ export default {
     //     }
     //   }
     // };
-    const { locale, newLocale, selectLang, activeSelectLang } = useLocal();
+
     const { t } = useI18n(i18n);
 
     return {
-      locale,
-      newLocale,
       t,
       // toggleDrop,
       dropDown,
       isAuth: computed(() => store.getters["auth/isAuth"]),
-      selectLang,
-      activeSelectLang,
     };
   },
 };

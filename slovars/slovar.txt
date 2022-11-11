@@ -16,9 +16,8 @@ messages: {
       about: {
         title: "关于我们",
         text: "ALGA是一个全新的CeFi平台，用于实施基于指数衍生品的不同投资策略。
-底层的尖端技术以及交易核心团队的巨大背景使ALGA成为投资成熟有效策略的一站式商店，方便每个人进入加密。这些基于由以最有效比率选择的许多资产组成的指数衍生品的策略允许在最大限度地降低风险的同时获得稳定的分配资本回报。
-该平台是由人们为只有一个目标的人设计的-确保资产的舒适跟踪和透明的交易，以便将资产管理经验提升到全新的水平
-,
+          底层的尖端技术以及交易核心团队的巨大背景使ALGA成为投资成熟有效策略的一站式商店，方便每个人进入加密。这些基于由以最有效比率选择的许多资产组成的指数衍生品的策略允许在最大限度地降低风险的同时获得稳定的分配资本回报。
+          该平台是由人们为只有一个目标的人设计的-确保资产的舒适跟踪和透明的交易，以便将资产管理经验提升到全新的水平,
       },
       indexD: {
         title: "指数衍生品",
@@ -216,7 +215,7 @@ messages: {
       },
     },
 
-    "en-US": {
+    "zh-CN": {
       dropdown: {
         buttons: {
           register: "Registration",
@@ -432,112 +431,64 @@ messages: {
 //история
 
 messages: {
-    "ru-RU": {
-      title: "История",
+  "zh-CN": {
+      title: "历史",
       nav: {
-        buy: "Заказы на покупку",
-        widthdrawal: "Заявки на вывод",
+        buy: "买",
+        widthdrawal: "退出",
       },
       table: {
-        completed: "Завершенный",
-        head: {
-          buy: ["Статус заказа", "Индекс", "Валюта", "Сумма", "Статус платежа"],
-          widthdrawal: ["Статус заказа", "Валюта", "Сумма", "Адрес"],
-        },
-      },
-    },
-    "en-US": {
-      title: "History",
-      nav: {
-        buy: "Buy",
-        widthdrawal: "Widthdrawal",
-      },
-      table: {
-        completed: "Completed",
+        completed: "完全的",
         head: {
           buy: [
-            "Status order",
-            "Index",
-            "Valute",
-            "Balance",
-            "Status",
-            "Payment status",
+            "状态顺序",
+            "指数",
+            "价值",
+            "平衡",
+            "地位",
+            "支付状态",
           ],
-          widthdrawal: ["Status order", "Valute", "Balance", "Address"],
+          widthdrawal: ["状态顺序", "价值", "平衡", "地址"],
         },
       },
-    },
-  },
+    },    
+},
 
 //диревативы
 
 messages: {
-    "en-US": {
-      buy: "Buy",
+    "zh-CN": {
+      buy: "买",
       indexderivatives: {
-        title: "Index Derivatives",
-        time: "from {from} to {to}",
+        title: "指数衍生品",
+        time: "从 {from} 至 {to}",
         items: [
-          "BTC main is the base index of ALGA INDEX DERIVATIVES PLATFORM. It is an index designed to track the world's largest crypto asset. You will gain access to a crypto asset with the security and convenience of a traditional investment vehicle, while lowering the logistical barriers to entry (access to exchanges, storage, and execution costs)",
-          "ETH main - ALGA INDEX DERIVATIVES PLATFORM base index. It is a capitalization-weighted index that tracks the performance of major financial crypto assets built on the Ethereum blockchain. You will gain access to a crypto asset with the security and convenience of a traditional investment vehicle, while lowering the logistical barriers to entry (access to exchanges, storage, and execution costs)",
-          "BTC combo - ALGA INDEX DERIVATIVES PLATFORM base index. it is a balanced index composed of the most valuable cryptoassets, weighted by market capitalization, time-tested and monitored for certain risks with monthly rebalancing. The index has a public methodology for its formation, which includes the rules of acceptability, identifying critical risks (storage, liquidity, execution costs, and others)",
-          "ETH combo - ALGA INDEX DERIVATIVES PLATFORM base index. It is a balanced index composed of the most valuable cryptoassets, weighted by market capitalization, time-tested and monitored for certain risks with monthly rebalancing. The index has a public methodology for its formation, which includes the rules of acceptability, identifying critical risks (storage, liquidity, execution costs, and others)",
-          "Stable index is a stable base index ALGA INDEX DERIVATIVES PLATFORM, consisting of 6 leading stablecoins in the cryptocurrency market, weighted by capitalization. The index is not subject to high volatility in the market, allowing you to keep your cryptocurrency savings for a certain period. Stable index is a smart and secure way to get diversified access to crypto assets with minimal fees",
+          "BTC main 是 ALGA INDEX DERIVATIVES PLATFORM 的基础指数。 它是一个旨在追踪世界上最大的加密资产的指数。 您将获得具有传统投资工具的安全性和便利性的加密资产访问权限，同时降低进入的后勤障碍（访问交换、存储和执行成本",
+          "ETH main - ALGA INDEX DERIVATIVES PLATFORM 基础指数。 它是一个资本加权指数，用于跟踪建立在以太坊区块链上的主要金融加密资产的表现。 您将获得具有传统投资工具的安全性和便利性的加密资产访问权限，同时降低进入的后勤障碍（访问交换、存储和执行成本",
+          "BTC 组合 - ALGA INDEX DERIVATIVES PLATFORM 基础指数。 它是一个平衡指数，由最有价值的加密资产组成，按市值加权，经过时间测试并通过每月重新平衡来监测某些风险。 该指数有一套公开的形成方法，包括可接受性规则、识别关键风险（存储、流动性、执行成本等",
+          "ETH 组合 - ALGA INDEX DERIVATIVES PLATFORM 基础指数。 它是一个平衡指数，由最有价值的加密资产组成，按市值加权，经过时间测试并通过每月重新平衡来监控某些风险。 该指数有一套公开的形成方法，包括可接受性规则、识别关键风险（存储、流动性、执行成本等",
+          "稳定指数是一个稳定的基础指数 ALGA INDEX DERIVATIVES PLATFORM，由加密货币市场中的 6 个领先的稳定币组成，按市值加权。 该指数不受市场高波动性的影响，让您可以在一定时期内保留您的加密货币储蓄。 稳定的索引是一种智能且安全的方式，以最低的费用获得对加密资产的多样化访问",
         ],
       },
       inside: {
-        title: "What's inside",
+        title: "里面有什么",
       },
       statistics: {
-        title: "Statistics",
-        profitText: "Profitability <br> for {numb} months",
-        selectProfit: "Last {numb} months",
+        title: "统计数据",
+        profitText: "盈利能力 <br> 为了 {numb} 月",
+        selectProfit: "最后的 {numb} 月",
       },
       popup: {
-        title: "Withdrawal Request",
-        titleBuy: "Deposite request",
-        text: "Available for withdrawal:",
+        title: "提款请求",
+        titleBuy: "存款申请",
+        text: "可提款:",
         amount: {
-          label: "Deposite sum, USDT",
+          label: "存款金额, USDT",
         },
         "wallet-number": {
-          label: "Wallet number",
+          label: "钱包号码",
         },
-        request: "Leave a request",
-      },
-    },
-    "ru-RU": {
-      buy: "Купить",
-      indexderivatives: {
-        title: "Индексные деривативы",
-        time: "с {from} по {to}",
-        items: [
-          "BTC main – базовый индекс ALGA INDEX DERIVATIVES PLATFORM. Это индекс, предназначенный для отслеживания крупнейшего в мире криптоактива. Вы получите доступ к криптоактиву с безопасностью и удобством традиционного инвестиционного инструмента, снижая при этом логистические барьеры для входа (доступ к биржам, хранение и затраты на исполнение)",
-          "ETH main - базовый индекс ALGA INDEX DERIVATIVES PLATFORM. Это индекс, взвешенный по капитализации, который отслеживает эффективность основных финансовых криптоактивов, построенных на блокчейне Ethereum. Вы получите доступ к криптоактиву с безопасностью и удобством традиционного инвестиционного инструмента, снижая при этом логистические барьеры для входа (доступ к биржам, хранение и затраты на исполнение)",
-          "BTC combo - базовый индекс ALGA INDEX DERIVATIVES PLATFORM. Это сбалансированный индекс, состоящий из наиболее ценных криптоактивов, взвешенных по рыночной капитализации, проверенных временем и отслеживаемых на наличие определенных рисков с ежемесячной ребалансировкой. Индекс имеет общедоступную методологию своего формирования, которая включает в себя правила приемлемости, выявления критических рисков (хранение, ликвидность, затраты на исполнение и другие)",
-          "ETH combo - базовый индекс ALGA INDEX DERIVATIVES PLATFORM. Это сбалансированный индекс, состоящий из наиболее ценных криптоактивов, взвешенных по рыночной капитализации, проверенных временем и отслеживаемых на наличие определенных рисков с ежемесячной ребалансировкой. Индекс имеет общедоступную методологию своего формирования, которая включает в себя правила приемлемости, выявления критических рисков (хранение, ликвидность, затраты на исполнение и другие)",
-          "Stable index – устойчивый базовый индекс ALGA INDEX DERIVATIVES PLATFORM, состоящий из 6 ведущих стейблкоинов на криптовалютном рынке, взвешенных по капитализации. Индекс не подвержен высокой волатильности на рынке, позволящий сохранить ваши криптовалютные сбережения на определенный срок. Stable index – умный и безопасный способ получить диверсифицированный доступ к криптоактивам с минимальными комиссионными издержками",
-        ],
-      },
-      inside: {
-        title: "Что внутри",
-      },
-      statistics: {
-        title: "Статистика",
-        profitText: "Доходность <br> за {numb} месяца",
-        selectProfit: "Последние {numb} месяца",
-      },
-      popup: {
-        title: "Запрос на вывод средств",
-        titleBuy: "Запрос на пополнение",
-        text: "Доступно для вывода:",
-        amount: {
-          label: "Введите сумму, в USDT",
-        },
-        "wallet-number": {
-          label: "Номер счета",
-        },
-        request: "К оплате",
+        request: "留下请求",
       },
     },
   },
@@ -545,80 +496,42 @@ messages: {
 //портфолио
 
 messages: {
-    "ru-RU": {
-      title: "Моё Портфолио",
+    "zh-CN": {
+      title: "我的投资组合",
       card: {
-        title: "Баланс",
+        title: "平衡",
       },
-      "index-title": "Мои Индексы",
-      "index-not": "У вас пока не было покупок",
-      "index-not-btn": "Выбрать индекс",
+      "index-title": "我的索引",
+      "index-not": "您还没有订单",
+      "index-not-btn": "选择索引",
       "index-table": {
         header: [
-          "Индекс",
-          "Дата закрытия",
-          "Баланс",
-          "Реализованный профит",
-          "Действие",
+          "指数",
+          "截止日期",
+          "平衡",
+          "实现利润",
+          "行动",
         ],
         body: {
-          date: "дней",
+          date: "天",
           action: {
-            buy: "Купить",
-            widthdrawal: "Вывод",
+            buy: "买",
+            widthdrawal: "宽度绘制",
           },
         },
       },
 
       popup: {
-        title: "Запрос на вывод средств",
-        titleBuy: "Запрос на пополнение",
-        text: "Доступно для вывода:",
+        title: "提款请求",
+        titleBuy: "补货请求",
+        text: "可提款:",
         amount: {
-          label: "Количество",
+          label: "提款金额",
         },
         "wallet-number": {
-          label: "Номер счета",
+          label: "钱包号码",
         },
-        request: "Оставить заявку",
-      },
-    },
-    "en-US": {
-      title: "My Prortfolio",
-      card: {
-        title: "Balance",
-      },
-      "index-title": "My Indexes",
-      "index-not": "You have not orders yet",
-      "index-not-btn": "Choose index",
-      "index-table": {
-        header: [
-          "Index",
-          "Closing date",
-          "Balance",
-          "Realizad profit",
-          "Ation",
-        ],
-        body: {
-          date: "days",
-          action: {
-            buy: "Buy",
-            widthdrawal: "Widthdraw",
-          },
-        },
-      },
-
-      popup: {
-        title: "Withdrawal Request",
-        titleBuy: "Replenishment request",
-        text: "Available for withdrawal:",
-        amount: {
-          label: "Withdrawal amount",
-        },
-        "wallet-number": {
-          label: "Wallet number",
-        },
-        request: "Leave a request",
+        request: "留下请求",
       },
     },
   },
@@ -626,28 +539,16 @@ messages: {
 //профиль
 
 messages: {
-    "ru-RU": {
-      title: "Профиль",
-      edit: "Изменить",
-      cancel: "Отменить",
-      "password-title": "Пароль",
-      "change-password": "Изменить пароль",
-      "change-phone": "Изменить телефон",
-      "phone-title": "Новый номер телефона",
+    "zh-CN": {
+      title: "轮廓",
+      edit: "编辑",
+      cancel: "取消",
+      "password-title": "密码",
+      "change-password": "更改密码",
+      "change-phone": "更换电话",
+      "phone-title": "新电话号码",
       phone: {
-        label: "Номер телефона",
-      },
-    },
-    "en-US": {
-      title: "",
-      edit: "Edit",
-      cancel: "Cancel",
-      "password-title": "Password",
-      "change-password": "Change Password",
-      "change-phone": "Change Phone",
-      "phone-title": "New Phone Number",
-      phone: {
-        label: "Phone number",
+        label: "电话号码",
       },
     },
   },
@@ -655,48 +556,29 @@ messages: {
 // поддержка
 
 messages: {
-    "ru-RU": {
-      title: "Поддержка",
+    "zh-CN": {
+      title: "支持",
       topic: {
-        label: "Тема",
+        label: "话题",
       },
       question: {
-        label: "Вопрос",
+        label: "问题",
       },
-      "file-text": "Прикрепить файл",
-      send: "Отправить",
+      "file-text": "附上文件",
+      send: "发送",
       "popup-text":
-        "Спасибо, ваша заявка принята. Мы обработаем её в течение суток",
-    },
-    "en-US": {
-      title: "Support",
-      topic: {
-        label: "Topic",
-      },
-      question: {
-        label: "Question",
-      },
-      "file-text": "Attach the file",
-      send: "Send",
-      "popup-text":
-        "Thank you, your application has been accepted. We will process within a day",
+        "谢谢，您的申请已被接受。 我们将在一天内处理",
     },
   },
 
 //токеномика
 
   messages: {
-    "ru-RU": {
-      main: "Главная",
-      tokenomics: "Токеномика",
-      total: "Общее количество",
-      price: "Цена токена",
-    },
-    "en-US": {
-      main: "Main",
-      tokenomics: "Tokenomics",
-      total: "Total supply",
-      price: "Token price",
+    "zh-CN": {
+      main: "主要的",
+      tokenomics: "代币经济学",
+      total: "总供应量",
+      price: "代币价格",
     },
   },
 
@@ -704,209 +586,108 @@ messages: {
 //глобальные
 
 export default {
-  term: "I have read (as) and agree with Alga Terms of Service",
-  passRequired: "Password must be in English and contain at least 6 characters",
+  termBefore: "我已阅读 (as) 和 ",
+  termAfter: "使用 Alga 服务条款",
+  "term-link": "同意",
+  serviceInfoFile: "/serviceInfoEng.pdf",
+  passRequired: "密码必须为英文且至少包含 6 个字符",
   errors: {
-    code: "You entered the wrong code in the previous step. Enter the code in this field and try again",
-    convert: "Failed to convert currency. Enter the value again",
+    code: "您在上一步中输入了错误的代码。 在此字段中输入代码，然后重试",
+    convert: "兑换货币失败。 再次输入值",
   },
   alerts: {
-    copy: "{msg} copied to the clipboard",
+    copy: "{msg} 复制到剪贴板",
   },
   actions: {
-    buy: "Buy",
-    send: "Send",
-    back: "Back",
-    logout: "Logout",
-    getCode: "Send the code",
-    toLK: "Login to your profile",
-    hasAccount: "Already have account? {login}",
-    setPass: "Set and Login",
+    buy: "买",
+    send: "发送",
+    back: "后退",
+    logout: "登出",
+    getCode: "发送代码",
+    toLK: "登录您的个人资料",
+    hasAccount: "已经有账号？ {login}",
+    setPass: "设置并登录",
   },
   buttons: {
-    close: "Close",
-    logIn: "Log in",
-    registr: "Sign up",
-    resetPass: "Forgot your password?",
+    close: "关",
+    logIn: "登录",
+    registr: "注册",
+    resetPass: "忘记密码了吗？",
   },
   inputs: {
-    cellphone: "Phone",
-    password: "Password",
-    newPass: "Repeat password",
-    oldPass: "Old password",
-    repeatPass: "Repeat password",
-    wrongCode: "Enter a correct code",
-    code: "SMS code",
-    // code: "",
-    wallet: "Wallet address",
-    walletReciever: "Recipient's wallet address",
+    cellphone: "电话",
+    password: "密码",
+    newPass: "重复输入密码",
+    oldPass: "旧密码",
+    repeatPass: "重复输入密码",
+    wrongCode: "输入正确的代码",
+    code: "短信代码",
+    wallet: "钱包地址",
+    walletReciever: "收款人的钱包地址",
     name: {
-      label: "Name",
-      placeholder: "Ivan",
+      label: "姓名",
+      placeholder: "姓名",
     },
   },
   lk: {
     menu: {
-      wallet: "Wallet",
-      history: "History",
-      output: "Output",
-      polls: "Polls",
+      wallet: "钱包",
+      history: "历史",
+      output: "输出",
+      polls: "民意调查",
     },
   },
   landing: {
     header: {
-      auth: "Sign in",
-      registr: "Sign up",
-      promoText: "Legal unconditional <br/> global assets",
-      lk: "Profile",
-      logout: "Logout",
+      auth: "登入",
+      registr: "注册",
+      promoText: "法律无条件 <br/> 全球资产",
+      lk: "轮廓",
+      logout: "登出",
     },
     footer: {
-      serviceInfo: "Terms of Service",
+      serviceInfo: "服务条款",
       serviceInfoFile: "/serviceInfoEng.pdf",
 
-      whyAlga: "Disclaimer ",
+      whyAlga: "免责声明",
       whyAlgaFile: "/disclaimerEng.pdf",
       roadmapFile: "/roadmapEng.pdf",
       whitePaper: "/whitePaperEng.pdf",
-      algaMarket: "Alga Market in development",
+      algaMarket: "开发中的海藻市场",
     },
     menu: {
-      about: "About token",
-      features: "Project Features",
-      owners: "Residents",
-      ecosystem: "Ecosystem",
-      projects: "Projects",
-      news: "News",
+      about: "关于令牌",
+      features: "项目特色",
+      owners: "居民",
+      ecosystem: "生态系统",
+      projects: "项目",
+      news: "消息",
     },
     about: {
-      header: "ABOUT TOKEN",
-      body: "AlgaCoin is a community-driven token with many future projects and partnerships aimed at improving the quality of life of community members through the creation of sustainable business projects",
-      bottom: "coins",
-      wallets: "wallets",
+      header: "关于代币",
+      body: "AlgaCoin 是一个社区驱动的代币，未来有许多项目和合作伙伴关系，旨在通过创建可持续的商业项目来提高社区成员的生活质量",
+      bottom: "硬币",
+      wallets: "钱包",
     },
   },
   globalErrors: {
-    timeout: "The request timed out. Repeat the request again",
-    401: "You must be logged in to perform an action",
-    403: "You do not have access to perform the action",
-    404: "The requested resource could not be found",
-    429: "You have made too many attempts. We have to wait a bit",
-    500: "Something went wrong on the server, maybe everything will be fixed soon. If the problem persists, write to us about it",
+    timeout: "请求超时。 再次重复请求",
+    401: "您必须登录才能执行操作",
+    403: "您无权执行该操作",
+    404: "找不到请求的资源",
+    429: "你做了太多的尝试。 我们得稍等片刻",
+    500: "服务器出了点问题，也许一切都会很快得到解决。 如果问题仍然存在，请写信给我们",
   },
-  days: '{n} day | {n} days',
-};
-
-export default {
-  term: "Я ознакомился(ась) и соглашаюсь с пользовательским соглашением Alga",
-  passRequired:
-    "Пароль должен быть на английском языке и содержать не менее 6-ти символов",
-  errors: {
-    code: "Вы ввели неверно код на предыдущем шаге. Введите код в это поле и повторите попытку",
-    convert:
-      "Не удалось конвертировать валюту. Попробуйте ввести значение еще раз",
-  },
-  alerts: {
-    copy: "{msg} скопирован в буфер обмена | {msg} скопирована в буфер обмена",
-  },
-  actions: {
-    buy: "Купить",
-    send: "Отправить",
-    back: "Назад",
-    logout: "Выйти",
-    getCode: "Отправить код",
-    toLK: "Вход в личный кабинет",
-    hasAccount: "Уже зарегистрированы? {login}",
-    setPass: "Установить и войти",
-  },
-  buttons: {
-    close: "Закрыть",
-    logIn: "Войти",
-    registr: "Зарегистрироваться",
-    resetPass: "Забыли пароль?",
-  },
-  inputs: {
-    cellphone: "Телефон",
-    password: "Пароль",
-    newPass: "Повторите пароль",
-    oldPass: "Старый пароль",
-    repeatPass: "Повторите пароль",
-    wrongCode: "Введите правильный код",
-    code: "Код из смс",
-    // code: "",
-    wallet: "Адрес кошелька",
-    walletReciever: "Адрес кошелька получателя",
-    name: {
-      label: "Имя",
-      placeholder: "Иван",
-    },
-  },
-  lk: {
-    menu: {
-      wallet: "Кошелек",
-      history: "История операций",
-      output: "Вывод",
-      polls: "Опросы",
-    },
-  },
-  landing: {
-    header: {
-      auth: "Авторизоваться",
-      registr: "Зарегистрироваться",
-      promoText: "Законные безусловные <br /> глобальные активы",
-      lk: "Личный кабинет",
-      logout: "Выйти",
-    },
-    footer: {
-      serviceInfo: "Пользовательское соглашение",
-      serviceInfoFile: "/serviceInfoRu.pdf",
-      whyAlga: "Почему Alga",
-      whyAlgaFile: "/disclaimerRu.pdf",
-      roadmapFile: "/roadmapRu.pdf",
-      whitePaper: "/whitePaperRu.pdf",
-      algaMarket: "Alga Market в разработке",
-    },
-    menu: {
-      about: "О токене",
-      features: "Фишки проекта",
-      owners: "Резиденты",
-      ecosystem: "Экосистема",
-      projects: "Проекты",
-      news: "Новости",
-    },
-    about: {
-      header: "О ТОКЕНЕ",
-      body: "AlgaCoin — это токен, управляемый сообществом со множеством будущих проектов и партнёрств, направленный на повышение уровня жизни участников сообщества путём создания экологичных бизнес-проектов",
-      bottom: "монет",
-      wallets: "кошельков",
-    },
-  },
-  globalErrors: {
-    timeout: "Время ожидания запроса истекло. Повторите запрос еще раз",
-    401: "Для совершения действия необходимо авторизоваться",
-    403: "Недостаточно прав для совершения действия",
-    404: "Не удалось найти запрашиваемый ресурс",
-    429: "Вы сделали слишком много попыток. Пожалуйста, немного подождите",
-    500: "На сервере пошло что-то не так, возможно скоро все исправят. Если проблема не исчезнет, напишите об этом нам",
-  },
-  days: '0 дней | {n} день | {n} дня | {n} дней',
+  days: '{n} 天 ',
 };
 
 
 для валидации 
 
-  Object.assign(ru.messages, {
-    password: "Пароль должен быть больше 6 знаков",
-    confirmed: "Пароли не совпадают",
-    walletAddress: "Адреса кошелька должен иметь 40 символов",
-    cellphone: "Номер телефона введен некорректно",
-    min: "Сумма должна превышать 100 USDT",
-  });
-
   Object.assign(en.messages, {
-    password: "Password must be more 6 characters",
-    confirmed: "Password mismatch",
-    walletAddress: "Wallet address must be 40 chars",
-    cellphone: "Phone number entered incorrectly",
-    min: "The sum must exceed 100 USDT",
+    password: "密码必须多于 6 个字符",
+    confirmed: "密码不匹配",
+    walletAddress: "钱包地址必须是 40 个字符",
+    cellphone: "电话号码输入错误",
+    min: "总金额必须超过 100 USDT",
   });

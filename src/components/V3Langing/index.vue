@@ -1881,7 +1881,7 @@ const i18n = {
         },
       },
     },
-    zh_CN: {
+    "zh-CN": {
       dropdown: {
         buttons: {
           register: "登记",

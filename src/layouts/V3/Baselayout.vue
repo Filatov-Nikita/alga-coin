@@ -217,6 +217,17 @@ const i18n = {
       "log-out": "Log out",
       profile: "Profile",
     },
+
+    de: {
+      nav: ["Indexderivate", "Mein Portfolio", "Verlauf", "Support"],
+      "log-out": "Ausloggen",
+      profile: "Profil",
+    },
+    "zh-CN": {
+      nav: ["指数衍生品", "我的投资组合", "历史", "支持"],
+      "log-out": "登出",
+      profile: "轮廓",
+    },
   },
 };
 export default {

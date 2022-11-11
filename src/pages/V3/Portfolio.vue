@@ -384,6 +384,38 @@ const i18n = {
         request: "Einen Antrag stellen",
       },
     },
+    "zh-CN": {
+      title: "我的投资组合",
+      card: {
+        title: "平衡",
+      },
+      "index-title": "我的索引",
+      "index-not": "您还没有订单",
+      "index-not-btn": "选择索引",
+      "index-table": {
+        header: ["指数", "截止日期", "平衡", "实现利润", "行动"],
+        body: {
+          date: "天",
+          action: {
+            buy: "买",
+            widthdrawal: "宽度绘制",
+          },
+        },
+      },
+
+      popup: {
+        title: "提款请求",
+        titleBuy: "补货请求",
+        text: "可提款:",
+        amount: {
+          label: "提款金额",
+        },
+        "wallet-number": {
+          label: "钱包号码",
+        },
+        request: "留下请求",
+      },
+    },
   },
 };
 const { t } = useI18n(i18n);

@@ -138,6 +138,18 @@ const i18n = {
       "popup-text":
         "Vielen Dank, Ihr Antrag wurde angenommen. Wir werden sie innerhalb von 24 Stunden bearbeiten.",
     },
+    "zh-CN": {
+      title: "支持",
+      topic: {
+        label: "话题",
+      },
+      question: {
+        label: "问题",
+      },
+      "file-text": "附上文件",
+      send: "发送",
+      "popup-text": "谢谢，您的申请已被接受。 我们将在一天内处理",
+    },
   },
 };
 const store = useStore();

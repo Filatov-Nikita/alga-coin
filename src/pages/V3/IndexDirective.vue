@@ -357,6 +357,40 @@ const i18n = {
         request: "Zu zahlen",
       },
     },
+    "zh-CN": {
+      buy: "买",
+      indexderivatives: {
+        title: "指数衍生品",
+        time: "从 {from} 至 {to}",
+        items: [
+          "BTC main 是 ALGA INDEX DERIVATIVES PLATFORM 的基础指数。 它是一个旨在追踪世界上最大的加密资产的指数。 您将获得具有传统投资工具的安全性和便利性的加密资产访问权限，同时降低进入的后勤障碍（访问交换、存储和执行成本",
+          "ETH main - ALGA INDEX DERIVATIVES PLATFORM 基础指数。 它是一个资本加权指数，用于跟踪建立在以太坊区块链上的主要金融加密资产的表现。 您将获得具有传统投资工具的安全性和便利性的加密资产访问权限，同时降低进入的后勤障碍（访问交换、存储和执行成本",
+          "BTC 组合 - ALGA INDEX DERIVATIVES PLATFORM 基础指数。 它是一个平衡指数，由最有价值的加密资产组成，按市值加权，经过时间测试并通过每月重新平衡来监测某些风险。 该指数有一套公开的形成方法，包括可接受性规则、识别关键风险（存储、流动性、执行成本等",
+          "ETH 组合 - ALGA INDEX DERIVATIVES PLATFORM 基础指数。 它是一个平衡指数，由最有价值的加密资产组成，按市值加权，经过时间测试并通过每月重新平衡来监控某些风险。 该指数有一套公开的形成方法，包括可接受性规则、识别关键风险（存储、流动性、执行成本等",
+          "稳定指数是一个稳定的基础指数 ALGA INDEX DERIVATIVES PLATFORM，由加密货币市场中的 6 个领先的稳定币组成，按市值加权。 该指数不受市场高波动性的影响，让您可以在一定时期内保留您的加密货币储蓄。 稳定的索引是一种智能且安全的方式，以最低的费用获得对加密资产的多样化访问",
+        ],
+      },
+      inside: {
+        title: "里面有什么",
+      },
+      statistics: {
+        title: "统计数据",
+        profitText: "盈利能力 <br> 为了 {numb} 月",
+        selectProfit: "最后的 {numb} 月",
+      },
+      popup: {
+        title: "提款请求",
+        titleBuy: "存款申请",
+        text: "可提款:",
+        amount: {
+          label: "存款金额, USDT",
+        },
+        "wallet-number": {
+          label: "钱包号码",
+        },
+        request: "留下请求",
+      },
+    },
   },
 };
 export default {

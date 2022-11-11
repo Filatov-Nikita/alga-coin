@@ -179,6 +179,18 @@
           >
             <span> RU </span>
           </button>
+          <button
+            @click="newLocale('de')"
+            :class="locale === 'Deutsch' ? 'active' : ''"
+          >
+            <span> DE </span>
+          </button>
+          <button
+            @click="newLocale('zh-CN')"
+            :class="locale === '中文' ? 'active' : ''"
+          >
+            <span> 中文 </span>
+          </button>
         </div>
         <p class="tw-text-center">
           © 2021-{{ new Date().getFullYear() }} ALGA. <br />
@@ -209,6 +221,22 @@ const i18n = {
       edit: " Edit",
       "log-out": "Log out",
       reserved: " All Rights Reserved ",
+    },
+    de: {
+      "menu-title": "Menü",
+      nav: ["Index-Derivate", "Mein Portfolio", "Verlauf", "Support"],
+      "profile-title": "Profil",
+      edit: " Bearbeiten",
+      "log-out": "Ausloggen",
+      reserved: " Alle Rechte vorbehalten ",
+    },
+    "zh-CN": {
+      "menu-title": "菜单",
+      nav: ["指数衍生品", "我的投资组合", "历史", "支持"],
+      "profile-title": "轮廓",
+      edit: " 编辑",
+      "log-out": "登出",
+      reserved: " 版权所有 ",
     },
   },
 };

@@ -130,6 +130,16 @@ const messages = {
     subtitle: "Using email and mobile phone",
     passHeader: "Set password",
   },
+  de: {
+    header: "Anmelden",
+    subtitle: "Mit E-Mail und Handy",
+    passHeader: "Passwort festlegen",
+  },
+  "zh-CN": {
+    header: "注册",
+    subtitle: "使用电子邮件和手机",
+    passHeader: "设置密码",
+  },
 };
 
 export default {

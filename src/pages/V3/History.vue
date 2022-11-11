@@ -204,6 +204,20 @@ const i18n = {
         },
       },
     },
+    "zh-CN": {
+      title: "历史",
+      nav: {
+        buy: "买",
+        widthdrawal: "退出",
+      },
+      table: {
+        completed: "完全的",
+        head: {
+          buy: ["状态顺序", "指数", "价值", "平衡", "地位", "支付状态"],
+          widthdrawal: ["状态顺序", "价值", "平衡", "地址"],
+        },
+      },
+    },
   },
 };
 const { t } = useI18n(i18n);
