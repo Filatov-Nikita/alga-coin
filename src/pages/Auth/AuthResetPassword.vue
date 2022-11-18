@@ -2,15 +2,15 @@
   <q-page class="tw-container tw-grid">
     <div class="app-auth">
       <AppStep name="input">
-        <h1 class="app-auth__h1 xl:tw--mx-12">{{ t('header') }}</h1>
-        <p class="app-auth__subtitle">{{ t('subtitle') }}</p>
+        <h1 class="app-auth__h1" v-html="t('header')"></h1>
+        <p class="app-auth__subtitle" v-html="t('subtitle')"></p>
         <Form class="app-auth__form" @submit="submit" v-slot="{ isSubmitting }">
           <AppInput
-            name="cellphone"
-            rules="required|cellphone"
-            type="tel"
-            :label="$t('inputs.cellphone')"
-            placeholder="(999) 999-99-99"
+            name="email"
+            rules="required|email"
+            type="email"
+            label="E-mail"
+            placeholder="ivanov@domain.ru"
           />
           <AppButton
             type="submit"
@@ -19,21 +19,23 @@
             :disabled="isSubmitting"
           />
         </Form>
-        <div class="app-auth__links tw-mt-6">
+        <div
+          class="app-auth__links tw-flex tw-flex-col tw-justify-center tw-gap-2 tw-mt-5"
+        >
           <AppLink class="app-auth__link" :to="{ name: 'auth.login' }">
-            {{ $t('actions.toLK') }}
+            {{ $t("actions.toLK") }}
           </AppLink>
           <AppLink class="app-auth__link" :to="{ name: 'auth.registr' }">
-            {{ $t('buttons.registr') }}
+            {{ $t("buttons.registr") }}
           </AppLink>
         </div>
       </AppStep>
       <AppStep name="verifing">
-        <FormVerify :cellphone="curCellphone" @entered="handleCode" />
+        <FormVerify :mail="mail" @entered="handleCode" />
       </AppStep>
       <AppStep name="password">
-        <h1 class="app-auth__h1 xl:tw--mx-12">{{ t('passHeader') }}</h1>
-        <p class="app-auth__subtitle">{{ $t('passRequired') }}</p>
+        <h1 class="app-auth__h1" v-html="t('passHeader')"></h1>
+        <p class="app-auth__subtitle">{{ $t("passRequired") }}</p>
         <Form
           class="app-auth__form"
           @submit="setPassword"
@@ -53,7 +55,7 @@
             :label="$t('inputs.repeatPass')"
             :placeholder="$t('inputs.repeatPass')"
           />
-          <AuthCodeVerification v-if="invalidCode" :cellphone="curCellphone" />
+          <AuthCodeVerification v-if="invalidCode" :cellphone="mail" />
           <AppButton
             type="submit"
             fullWidth
@@ -69,7 +71,7 @@
         >
           <template #login>
             <AppLink :to="{ name: 'auth.login' }">
-              {{ $t('buttons.logIn') }}
+              {{ $t("buttons.logIn") }}
             </AppLink>
           </template>
         </i18n-t>
@@ -79,47 +81,59 @@
 </template>
 
 <script>
-import useStep from 'src/composition/useStep';
-import useAuth from 'src/composition/useAuth';
-import FormVerify from 'src/components/FormVerify.vue';
-import AuthCodeVerification from 'src/components/AuthCodeVerification.vue';
-import { useI18n } from 'vue-i18n';
+import useStep from "src/composition/useStep";
+import useAuth from "src/composition/useAuth";
+import FormVerify from "src/components/FormVerify.vue";
+import AuthCodeVerification from "src/components/AuthCodeVerification.vue";
+import { useI18n } from "vue-i18n";
 
 const messages = {
-  'ru-RU': {
-    header: 'Восстановление доступа',
+  "ru-RU": {
+    header: "Восстановление <br/> доступа",
     subtitle:
-      'Воcстановите доступ в систему с помощью мобильного телефона и СМС-кода',
-    passHeader: 'Пароль сброшен. Установите новый пароль',
+      "Восстановить доступ к системе с помощью <br/> мобильного телефона и смс-кода",
+    passHeader: "Пароль сброшен. <br/> Установите новый пароль",
   },
-  'en-US': {
-    header: 'Access recovery',
-    subtitle: 'Restore access to the system using a mobile phone and SMS code',
-    passHeader: 'The password has been reset. Set a new password',
+  "en-US": {
+    header: "Restoring <br/> access",
+    subtitle:
+      "Restore access to the system using <br/> a mobile phone and an SMS code",
+    passHeader: "The password <br/> has been reset. <br/> Set a new password",
+  },
+  de: {
+    header: "<br/> Zugriff wird wiederhergestellt",
+    subtitle:
+      "Stellen Sie den Zugriff auf das System mit <br/> einem Mobiltelefon und einem SMS-Code wieder her",
+    passHeader:
+      "Das Passwort <br/> wurde zurückgesetzt. <br/> Legen Sie ein neues Passwort fest",
+  },
+  "zh-CN": {
+    header: "恢复<br/>访问",
+    subtitle: "使用<br/>手机和短信代码恢复对系统的访问",
+    passHeader: "密码<br/>已重置。 <br/> 设置新密码",
   },
 };
 
 export default {
   setup() {
     const { t } = useI18n({ messages });
-    const { changeStep, step } = useStep('input');
-    const { curCode, curCellphone, setPassword, getCode, invalidCode } =
-      useAuth();
+    const { changeStep, step } = useStep("input");
+    const { curCode, mail, setPassword, getCode, invalidCode } = useAuth();
 
-    const submit = async ({ cellphoneFull: cellphone }) => {
-      await getCode({ cellphone });
-      curCellphone.value = cellphone;
-      changeStep('verifing');
+    const submit = async ({ email }) => {
+      await getCode({ mail: email });
+      mail.value = email;
+      changeStep("verifing");
     };
 
     const handleCode = (value) => {
       curCode.value = value;
-      changeStep('password');
+      changeStep("password");
     };
 
     return {
       step,
-      curCellphone,
+      mail,
       invalidCode,
       t,
       submit,
@@ -135,5 +149,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

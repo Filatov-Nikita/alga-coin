@@ -1,13 +1,13 @@
 <template>
   <div>
+    <!-- :label="$t('inputs.code')" -->
     <AppInput
       name="verification_code"
-      :label="$t('inputs.code')"
       :placeholder="$t('inputs.wrongCode')"
       rules="required"
     />
     <div class="tw-text-invalid tw-text-xxs">{{ $t('errors.code') }}</div>
-    <AuthCodeRepeat :cellphone="cellphone" />
+    <AuthCodeRepeat :mail="mail" />
   </div>
 </template>
 <script>
@@ -15,7 +15,7 @@ import AuthCodeRepeat from './AuthCodeRepeat.vue';
 export default {
   components: { AuthCodeRepeat },
   props: {
-    cellphone: {
+    mail: {
       required: true,
       type: String,
     },

@@ -1,5 +1,11 @@
-
 @layer utilities {
+  .bg-color {
+    background-color: #000320;
+    background-size: cover;
+  }
+  .text-lette-s {
+    letter-spacing: 0.2em;
+  }
   .overlay {
     background: linear-gradient(52.21deg, #000b29 12.29%, #00173b 82.07%);
     opacity: 0.8;
@@ -36,6 +42,155 @@
     }
     .xl\:app-col-#{$i}-shift-l {
       @include col-shift-left-xl($i);
+    }
+  }
+
+  .local {
+    display: flex;
+    font-size: 16px;
+    line-height: 19px;
+
+    & > * {
+      width: 40px;
+      height: 40px;
+      color: #494d72;
+    }
+
+    & > .active {
+      position: relative;
+      color: #fff;
+
+      &::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        height: 40px;
+        width: 40px;
+        background-image: url(~/src/assets/icons/local-active.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        z-index: 0;
+      }
+
+      & > * {
+        position: relative;
+        z-index: 1;
+      }
+    }
+  }
+
+  .select-lang {
+    &__head {
+      @apply tw-relative tw-flex tw-items-center tw-justify-center;
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+      transition: all 0.3s ease-in;
+      &:hover {
+        @apply tw-text-primary;
+      }
+      & > span {
+        position: relative;
+        z-index: 1;
+      }
+      &::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url(~/src/assets/icons/local-active.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        z-index: 0;
+      }
+    }
+    &__body {
+      @apply tw-absolute tw-z-10 tw-text-center tw-mt-1 tw-overflow-hidden;
+      max-height: 0vh;
+      transition: all 0.3s ease-in;
+      &.active {
+        max-height: 100vh;
+      }
+      &-wrapper {
+        @apply tw-flex tw-flex-col tw-gap-1;
+
+        .option {
+          @apply tw-flex tw-items-center tw-justify-center;
+          cursor: pointer;
+          height: 40px;
+          width: 40px;
+          position: relative;
+          transition: all 0.3s ease-in;
+          &.active {
+            & > span {
+              @apply tw-text-primary;
+            }
+          }
+          &:hover {
+            @apply tw-text-blue-hover;
+          }
+          & > span {
+            position: relative;
+
+            z-index: 1;
+          }
+          &::before {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-image: url(~/src/assets/icons/local-active.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            z-index: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .mob-n {
+    display: none;
+
+    @media screen and (min-width: 1200px) {
+      display: block;
+    }
+  }
+
+  .desk-n {
+    @media screen and (min-width: 1200px) {
+      display: none;
+    }
+  }
+  .burger {
+    margin-left: 24px;
+    background: #101333;
+    border: 4px solid #333653;
+    box-shadow: 0px 155px 62px rgba(1, 3, 24, 0.01),
+      0px 87px 52px rgba(1, 3, 24, 0.05), 0px 39px 39px rgba(1, 3, 24, 0.09),
+      0px 10px 21px rgba(1, 3, 24, 0.1), 0px 0px 0px rgba(1, 3, 24, 0.1);
+    border-radius: 14px;
+    width: 50px;
+    height: 50px;
+    padding: 11px 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+
+    & > span {
+      background-color: #fff;
+      height: 3px;
+      width: 100%;
+      border-radius: 14px;
     }
   }
 }

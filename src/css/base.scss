@@ -1,5 +1,5 @@
 @layer base {
-  @import './spaces.scss';
+  @import "./spaces.scss";
 
   input {
     outline: none;
@@ -9,30 +9,49 @@
     @include scrollbar();
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
+    // @apply tw-font-stolzl tw-text-xs tw-text-white;
     @apply tw-font-stolzl tw-text-xs tw-text-white;
+    line-height: 130%;
   }
 
   %h {
     line-height: 1.4;
   }
 
-  h1, .h1 {
-    @extend %h;
+  p {
+    color: #9596a3;
+  }
+
+  h1,
+  .h1 {
+    line-height: 90%;
     @apply tw-text-xl;
   }
 
-  h2, .h2 {
-    @extend %h;
+  h2,
+  .h2 {
+    line-height: 110%;
     @apply tw-text-lg;
+
+    @media screen and (min-width: 1200px) {
+      @apply tw-text-md1;
+      line-height: 120%;
+    }
   }
 
-  h3, .h3 {
+  h3,
+  .h3 {
     @extend %h;
     @apply tw-text-md1;
   }
 
-  h4, .h4 {
+  h4,
+  .h4 {
     @extend %h;
     @apply tw-text-md2;
   }
@@ -47,8 +66,10 @@
     @apply tw-text-base;
   }
 
-  a, .app-link {
+  a,
+  .app-link {
     @apply tw-text-secondary tw-text-xxs xl:tw-text-xs;
+
     @include screen-xl {
       &:hover {
         @apply tw-text-blue-hover;
@@ -73,12 +94,28 @@
   }
 
   .app-page-bg {
-    background: theme('colors.dark-blue-cover');
+    background: theme("colors.dark-blue-cover");
+    
+    background-size: cover;
+    background-size: auto;
+    background-position: bottom;
 
     @include screen-xl {
-      background: theme('colors.dark-blue-cover') url(~assets/images/main-bg.jpg) no-repeat;
-      background-size: 100%;
+      background-size: cover;
       background-position: bottom;
+    }
+  }
+
+    .app-page-bg_auth {
+background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-repeat;
+    }
+
+  .app-page-bg_lk {
+    background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk-mob.svg) no-repeat;
+    background-position: center bottom;
+    @include screen-xl {
+      background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk.svg) no-repeat;
+          background-position: inherit;
     }
   }
 
@@ -91,11 +128,8 @@
   }
 
   .app-logo-2 {
-    width: 74px;
+    width: 164px;
 
-    @include screen-xl {
-      width: 136px;
-    }
   }
 
   .app-logo-i {

@@ -1,6 +1,6 @@
 <template>
   <teleport to="body" :disabled="!showMenu">
-    <q-header class="tw-pt-4-1 header" :class="{ 'header--open': showMenu }">
+    <q-header class="tw-pt-4-1 " :class="{ 'header--open': showMenu }">
       <div class="tw-container">
         <div class="tw-pt-safe">
           <div class="app-row app-gutter-col-x tw-items-center">
@@ -21,6 +21,7 @@
             <div class="tw-flex-grow"></div>
 
             <div class="app-row tw-items-center tw-space-x-4">
+              <AppLink :to="{name: 'polls'}">{{$t('lk.menu.polls')}}</AppLink>
               <LangToolbar
                 :currentLang="$i18n.locale"
                 @update:lang="onChangeLang"

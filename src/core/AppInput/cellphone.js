@@ -6,9 +6,9 @@ function onMousedown(e) {
   e.preventDefault();
 }
 
-const NUMBER_FLAG = { "+7": "ru", "+1": "ru", "+3": "ru" };
+const NUMBER_FLAG = { "+7": "ru" };
 const DEFAULT_PREFIX = { label: "+7", value: "+7" };
-const OPTION_VALUES = ["+7", "+1", "+3", "+7", "+1", "+3", "+7", "+1", "+3"];
+const OPTION_VALUES = ["+7"];
 
 export default function (props, _c) {
   const isCellphone = computed(() => {

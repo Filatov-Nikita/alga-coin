@@ -1,6 +1,8 @@
 import { Screen } from "quasar";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../tailwind.config.js";
+import smoothscroll from "smoothscroll-polyfill";
+smoothscroll.polyfill();
 const twConfig = resolveConfig(tailwindConfig);
 
 function setScreenSizes(twConfig) {
@@ -26,9 +28,9 @@ export default ({ app, router, store }) => {
 
   global.$app.links = {
     twitter: "#",
-    facebook: "#",
+    facebook: "https://www.facebook.com/groups/1068352950606267/",
     instagram: "#",
-    telegram: "#",
-    serviceInfo: "#",
+    telegram: "https://t.me/Algacoin",
+    serviceInfo: "/file.pdf",
   };
 };

@@ -1,5 +1,5 @@
 <template>
-  <AppTimer :seconds="5" v-slot="{ s, restart }" class="tw-text-center">
+  <AppTimer :seconds="60" v-slot="{ s, restart }" class="tw-text-center">
     <button
       type="button"
       @click="repeat(restart)"
@@ -18,7 +18,7 @@ import { useI18n } from 'vue-i18n';
 
 export default {
   props: {
-    cellphone: {
+    mail: {
       required: true,
       type: String,
     },
@@ -39,7 +39,7 @@ export default {
     const { getCode } = useAuth();
 
     const repeat = async (restart) => {
-      await getCode({ cellphone: props.cellphone });
+      await getCode({ mail: props.mail });
       restart();
     };
 

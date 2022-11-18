@@ -2,8 +2,8 @@
   <q-page class="tw-grid tw-container">
     <div class="app-auth">
       <AppStep name="registr">
-        <h1 class="app-auth__h1">{{ t('header') }}</h1>
-        <p class="app-auth__subtitle">{{ t('subtitle') }}</p>
+        <h1 class="app-auth__h1">{{ t("header") }}</h1>
+        <p class="app-auth__subtitle">{{ t("subtitle") }}</p>
         <Form
           @submit="createUser"
           class="app-auth__form"
@@ -23,11 +23,10 @@
             placeholder="ivanov@domain.ru"
           />
           <AppInput
-            rules="required"
-            type="tel"
+            rules="required|cellphone"
             name="cellphone"
             :label="$t('inputs.cellphone')"
-            placeholder="(999) 999 99 99"
+            placeholder="+123456789012345"
           />
 
           <AppCheckbox
@@ -36,13 +35,17 @@
             class="tw-text-left tw-mt-6"
             labelClass="tw-text-xxs"
           >
-            <i18n-t scope="global" keypath="term">
-              <template #link>
-                <AppLink :to="$app.links.serviceInfo">
-                  {{ $t('landing.footer.serviceInfo', 0) }}
-                </AppLink>
-              </template>
-            </i18n-t>
+            <div class="tw-text-xxs">
+              {{ $t("termBefore") }}
+              <AppLink
+                :to="$t('serviceInfoFile')"
+                class="term-link tw-text-xxs"
+              >
+                <!-- <i18n-t scope="global" keypath="term" > </i18n-t> -->
+                {{ $t("term-link") }}
+              </AppLink>
+              {{ $t("termAfter") }}
+            </div>
           </AppCheckbox>
           <AppButton
             :label="$t('buttons.registr')"
@@ -59,17 +62,17 @@
         >
           <template #login>
             <AppLink :to="{ name: 'auth.login' }">
-              {{ $t('buttons.logIn') }}
+              {{ $t("buttons.logIn") }}
             </AppLink>
           </template>
         </i18n-t>
       </AppStep>
       <AppStep name="verifing">
-        <FormVerify :cellphone="curCellphone" @entered="handleCode" />
+        <FormVerify :mail="mail" @entered="handleCode" />
       </AppStep>
       <AppStep name="password">
-        <h1 class="app-auth__h1">{{ t('passHeader') }}</h1>
-        <p class="app-auth__subtitle">{{ $t('passRequired') }}</p>
+        <h1 class="app-auth__h1">{{ t("passHeader") }}</h1>
+        <p class="app-auth__subtitle">{{ $t("passRequired") }}</p>
         <Form
           v-slot="{ isSubmitting }"
           class="app-auth__form"
@@ -89,18 +92,7 @@
             :placeholder="$t('inputs.password')"
             rules="required|confirmed:@password"
           />
-          <div v-if="invalidCode">
-            <AppInput
-              name="verification_code"
-              :label="$t('inputs.code')"
-              :placeholder="$t('inputs.wrongCode')"
-              rules="required"
-            />
-            <div class="tw-text-invalid tw-text-xxs">
-              {{ $t('errors.code') }}
-            </div>
-          </div>
-          <AuthCodeVerification v-if="invalidCode" :cellphone="curCellphone" />
+          <AuthCodeVerification v-if="invalidCode" :mail="mail" />
           <AppButton
             :label="$t('actions.setPass')"
             fullWidth
@@ -109,9 +101,9 @@
           />
         </Form>
         <div class="app-auth__links tw-mt-6">
-          {{ $t('actions.hasAccount') }}
+          {{ $t("actions.hasAccount") }}
           <AppLink :to="{ name: 'auth.login' }">
-            {{ $t('buttons.logIn') }}
+            {{ $t("buttons.logIn") }}
           </AppLink>
         </div>
       </AppStep>
@@ -120,23 +112,33 @@
 </template>
 
 <script>
-import useStep from 'src/composition/useStep';
-import FormVerify from 'src/components/FormVerify.vue';
-import useAuth from 'src/composition/useAuth';
-import { useStore } from 'vuex';
-import AuthCodeVerification from 'src/components/AuthCodeVerification.vue';
-import { useI18n } from 'vue-i18n';
-
+import useStep from "src/composition/useStep";
+import FormVerify from "src/components/FormVerify.vue";
+import useAuth from "src/composition/useAuth";
+import { useStore } from "vuex";
+import AuthCodeVerification from "src/components/AuthCodeVerification.vue";
+import { useI18n } from "vue-i18n";
+import { AppAlert } from "src/plugins/app-alert";
 const messages = {
-  'ru-RU': {
-    header: 'Зарегистрируйтесь в экосистеме Alga',
-    subtitle: 'с помощью эл. почты и мобильного телефона',
-    passHeader: 'Установите пароль',
+  "ru-RU": {
+    header: "Зарегистрируйтесь",
+    subtitle: "Используя эл. почту и мобильный телефон",
+    passHeader: "Установите пароль",
   },
-  'en-US': {
-    header: 'Sign up in Alga ecosystem',
-    subtitle: 'with e-mail and cellphone',
-    passHeader: 'Set password',
+  "en-US": {
+    header: "Sign up",
+    subtitle: "Using email and mobile phone",
+    passHeader: "Set password",
+  },
+  de: {
+    header: "Anmelden",
+    subtitle: "Mit E-Mail und Handy",
+    passHeader: "Passwort festlegen",
+  },
+  "zh-CN": {
+    header: "注册",
+    subtitle: "使用电子邮件和手机",
+    passHeader: "设置密码",
   },
 };
 
@@ -144,27 +146,28 @@ export default {
   setup() {
     const store = useStore();
     const { t } = useI18n({ messages });
-    const { changeStep, step } = useStep('registr');
-    const { setPassword, invalidCode, curCode, curCellphone, getCode } =
-      useAuth();
+    const { changeStep, step } = useStep("registr");
+    const { setPassword, invalidCode, curCode, mail, getCode } = useAuth();
 
-    const registr = async (
-      { cellphoneFull: cellphone, name, email },
-      { setErrors }
-    ) => {
+    const registr = async ({ cellphone, name, email }, { setErrors }) => {
       try {
-        const data = await store.dispatch('auth/registr', {
-          cellphone,
+        const data = await store.dispatch("auth/registr", {
+          cellphone: `+${cellphone.replace("+", "")}`,
           name,
           email,
         });
 
-        curCellphone.value = data.cellphone;
+        mail.value = data.email;
       } catch (e) {
         if (!e.response) throw e;
         if (e.response.status === 422) {
+          AppAlert({
+            message: () => errors.password[0],
+            type: "negative",
+          });
           const { errors } = await e.response.json();
           setErrors(errors);
+          throw { 422: true };
         } else throw e;
       }
     };
@@ -172,23 +175,25 @@ export default {
     const createUser = async (...args) => {
       try {
         await registr(...args);
-        changeStep('verifing');
-        await getCode({ cellphone: args[0].cellphoneFull });
+        changeStep("verifing");
+        // consolog.log(...args)
+        // await getCode({ mail: args[0].email });
       } catch (e) {
+        if (422 in e) return;
         throw e;
       }
     };
 
     const handleCode = (value) => {
       curCode.value = value;
-      changeStep('password');
+      changeStep("password");
     };
 
     return {
       t,
       step,
       invalidCode,
-      curCellphone,
+      mail,
       handleCode,
       changeStep,
       createUser,
@@ -201,3 +206,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.term-link {
+  color: #bec3ff;
+}
+</style>

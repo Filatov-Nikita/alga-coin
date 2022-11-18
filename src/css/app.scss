@@ -1,12 +1,37 @@
 // app global css in SCSS form
+.bg-arrow-brand {
+  background-color: #333653;
+}
+
+.text-arrow-brand {
+  color: #bec3ff;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import './mixins.scss';
-@import './utilities.scss';
-@import './font-styles/stolzl-font.scss';
-@import './base.scss';
-@import './auth.scss';
-@import './wallet.scss';
-@import './landing.scss';
+@import "./mixins.scss";
+@import "./utilities.scss";
+@import "./font-styles/stolzl-font.scss";
+@import "./font-styles/ubuntu-font.scss";
+@import "./base.scss";
+@import "./auth.scss";
+@import "./wallet.scss";
+@import "./landing.scss";
+@import "./invest-landing.scss";
+@import "./v3/ui.scss";
+
+.q-carousel__next-arrow--horizontal {
+  top: -16px;
+  right: 40px;
+}
+.q-carousel__prev-arrow--horizontal {
+  top: 16px;
+  left: 40px;
+}
+
+.q-carousel__slide,
+.q-carousel .q-carousel--padding {
+  padding: 0;
+}

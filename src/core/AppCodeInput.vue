@@ -1,6 +1,6 @@
 <script>
-import { useField } from 'vee-validate';
-import { defineComponent, h } from 'vue';
+import { useField } from "vee-validate";
+import { defineComponent, h } from "vue";
 
 const KEYCODES = {
   backspace: 8,
@@ -11,10 +11,10 @@ const KEYCODES = {
 };
 
 export default defineComponent({
-  name: 'AppCodeInput',
+  name: "AppCodeInput",
   props: {
     length: {
-      default: 6,
+      default: 4,
       type: [Number, String],
     },
     label: {
@@ -24,8 +24,8 @@ export default defineComponent({
   },
   setup(props) {
     const { errorMessage, setErrors, handleChange } = useField(
-      'code',
-      'required',
+      "code",
+      "required",
       {
         label: props.label,
         validateOnValueUpdate: false,
@@ -54,7 +54,7 @@ export default defineComponent({
         const values = [];
 
         for (let i = 0; i < length; i++) {
-          values.push('');
+          values.push("");
         }
 
         this.values = values;
@@ -64,11 +64,11 @@ export default defineComponent({
     code(val) {
       this.handleChange(val);
       if (val.length === this.values.length) {
-        this.$emit('update:code', val);
+        this.$emit("update:code", val);
       }
     },
   },
-  emits: ['update:code'],
+  emits: ["update:code"],
   methods: {
     parseLength(length) {
       length = parseInt(length);
@@ -84,7 +84,7 @@ export default defineComponent({
   },
   computed: {
     code() {
-      return this.values.join('');
+      return this.values.join("");
     },
   },
   render() {
@@ -94,16 +94,16 @@ export default defineComponent({
 
     const createErrorMessage = () => {
       return h(
-        'div',
-        { class: 'app-code-input__error-message' },
+        "div",
+        { class: "app-code-input__error-message" },
         this.errorMessage
       );
     };
 
     const createLabel = () => {
       return h(
-        'label',
-        { class: 'app-code-input__label', for: id },
+        "label",
+        { class: "app-code-input__label", for: id },
         this.label
       );
     };
@@ -111,25 +111,25 @@ export default defineComponent({
     const createInput = (id, value, dataIndex, onInputCB) => {
       const inputCnf = {
         id,
-        'data-index': dataIndex,
+        "data-index": dataIndex,
         class: [
-          'app-code-input__field',
-          { 'app-code-input__field--invalid': !!this.errorMessage },
+          "app-code-input__field",
+          { "app-code-input__field--invalid": !!this.errorMessage },
         ],
-        type: 'tel',
-        autocomplete: 'one-time-code',
+        type: "tel",
+        autocomplete: "one-time-code",
       };
 
-      return h('input', {
+      return h("input", {
         ref: this.setRefInput,
         value,
         ...inputCnf,
         onInput: [
           (e) => {
-            let value = e.target.value.replace(/[^\d]/gi, '');
+            let value = e.target.value.replace(/[^\d]/gi, "");
 
             const onPaste = (value) => {
-              const values = value.substring(0, this.values.length).split('');
+              const values = value.substring(0, this.values.length).split("");
               this.values = values;
             };
 
@@ -146,7 +146,7 @@ export default defineComponent({
             const next = this.inputs[nextIndex];
 
             // берем первый элемент - цифру
-            [value = ''] = value;
+            [value = ""] = value;
 
             // запрещаем обновлять поле, так как если поле было 1, затем стало 12, value будет 1 и vDom не обновит поле, а при этом в самом инпуте будет 12
             e.target.value = value;
@@ -174,7 +174,7 @@ export default defineComponent({
               e.preventDefault();
 
               const vals = [...this.values];
-              vals[index] = '';
+              vals[index] = "";
               this.values = vals;
 
               if (prev) {
@@ -215,7 +215,7 @@ export default defineComponent({
       );
     }
 
-    return h('div', { class: 'app-code-input' }, [
+    return h("div", { class: "app-code-input" }, [
       createLabel(),
       ...inputs,
       this.errorMessage ? createErrorMessage() : null,
@@ -229,14 +229,15 @@ export default defineComponent({
 
 .app-code-input {
   @apply tw-flex tw-flex-wrap;
+  justify-content: center;
 
   &__field {
     width: 40px;
     height: 40px;
-    @apply tw-rounded-base tw-bg-dark-blue tw-text-sm tw-text-center;
+    @apply tw-rounded-base tw-bg-dark-gray tw-text-sm tw-text-center;
 
     &--invalid {
-      outline: 2px solid theme('colors.invalid') !important;
+      outline: 2px solid theme("colors.invalid") !important;
     }
 
     @include screen-xl {
@@ -254,7 +255,7 @@ export default defineComponent({
     }
 
     &:focus {
-      outline: 2px solid theme('colors.blue-hover');
+      outline: 2px solid theme("colors.green");
     }
 
     // отмена стилей автокомплита

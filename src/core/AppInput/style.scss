@@ -1,6 +1,6 @@
 %field {
   min-height: 50px;
-  @apply tw-rounded-base tw-bg-dark-blue;
+  @apply tw-rounded-base tw-bg-dark-gray;
 }
 
 .app-input {
@@ -51,11 +51,14 @@
 
   &__field {
     @extend %field;
-    border: 2px solid theme('colors.dark-blue');
+    border: 2px solid theme("colors.dark-gray");
 
     &--standart {
       padding: 0 21px;
       @apply tw-w-full;
+      &-valute {
+        @apply tw-pr-15;
+      }
     }
 
     &::placeholder {
@@ -63,15 +66,15 @@
     }
 
     &:focus {
-      border-color: theme('colors.blue-hover');
+      border-color: theme("colors.blue-hover");
     }
 
     &--valid {
-      border-color: theme('colors.valid') !important;
+      border-color: theme("colors.valid") !important;
     }
 
     &--invalid {
-      border-color: theme('colors.invalid') !important;
+      border-color: theme("colors.invalid") !important;
     }
 
     &--has-prepend {
@@ -114,7 +117,7 @@
   flex-basis: 111px;
   margin-right: 10px;
   transition: background-color 0.1s;
-  border: 2px solid theme('colors.dark-blue');
+  border: 2px solid theme("colors.dark-blue");
   @apply tw-relative tw-flex-shrink-0;
 
   &__wrapper {
@@ -167,7 +170,7 @@
     @apply tw-flex tw-text-xxs tw-items-center;
 
     & + & {
-      border-top: 1px solid theme('colors.dark-blue');
+      border-top: 1px solid theme("colors.dark-blue");
     }
 
     &:last-child {
@@ -186,5 +189,17 @@
   &__flag {
     width: 24px;
     margin-right: 10px;
+  }
+}
+
+.app-inut__disabled {
+  opacity: 0.6;
+  & > .app-select__wrapper {
+    &:active {
+      background: none;
+    }
+    &:hover {
+      background: none;
+    }
   }
 }

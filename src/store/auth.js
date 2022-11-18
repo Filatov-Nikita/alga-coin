@@ -18,11 +18,11 @@ export default {
     },
   },
   actions: {
-    async login({ commit }, { cellphone, password }) {
+    async login({ commit }, { mail, password }) {
       const {
         data: { token, expires_in },
       } = await AuthAPI.login({
-        cellphone,
+        email: mail,
         password,
       });
 
@@ -42,9 +42,18 @@ export default {
       await AuthAPI.setPassword(data);
       return true;
     },
-    async getVerifingCode(_c, { cellphone }) {
-      await AuthAPI.getVerifingCode({ cellphone });
+    async getVerifingCode(_c, { mail }) {
+      console.log(mail);
+      await AuthAPI.getVerifingCode({ mail });
       return true;
+    },
+
+    async setNewPassword(_c, data) {
+      await AuthAPI.setNewPassword(data);
+    },
+
+    async editPhone(_c, data) {
+      await AuthAPI.setNewPhone(data);
     },
   },
 };

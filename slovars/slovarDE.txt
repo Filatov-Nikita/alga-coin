@@ -1,0 +1,908 @@
+//главная
+
+messages: {
+    "ru-RU": {
+      dropdown: {
+        buttons: {
+          register: "Registrieren",
+          login: "Anmelden",
+          profile: "Profil",
+        },
+      },
+      header: {
+        title: "Alga",
+        subtitle: "Index- <br> Derivate- <br> Plattform",
+      },
+      about: {
+        title: "Über uns",
+        text: "ALGA ist eine brandneue CeFi-Platform für die Umsetzung verschiedener Anlagestrategien auf Basis von Indexderivaten. <br> Die zugrundeliegende Spitzentechnologie zusammen mit dem umfangreichen Hintergrund des Kernteams im Handel macht ALGA zum One-Stop-Shop für Investitionen in bewährte und effiziente Strategien, die den Einstieg in die Kryptowährung für jedermann erleichtern. Diese auf Indexderivaten basierenden Strategien, die aus vielen, im effektivsten Verhältnis ausgewählten Vermögenswerten bestehen, ermöglichen es, eine solide Rendite auf das zugewiesene Kapital zu erzielen und gleichzeitig die Risiken zu minimieren. <br> Die Plattform wurde von Menschen für Menschen mit dem einzigen Ziel entwickelt, eine bequeme Verfolgung von Vermögenswerten und transparente Transaktionen zu gewährleisten, um die Erfahrung der Vermögensverwaltung auf ein völlig neues Niveau zu bringen.",
+      },
+      indexD: {
+        title: "Derivates",
+        card: {
+          profitability: {
+            1: "Rentabilität <br/> für {numb} Monate",
+            2: "Rentabilität <br/> für {numb} Monate",
+            3: "Rentabilität <br/> für {numb} Monate",
+            4: "Rentabilität <br/> für {numb} Monate",
+            5: "Rentabilität <br/> für {numb} Monate",
+            6: "Rentabilität <br/> für {numb} Monate",
+            7: "Rentabilität <br/> für {numb} Monate",
+            8: "Rentabilität <br/> für {numb} Monate",
+            9: "Rentabilität <br/> für {numb} Monate",
+            10: "Rentabilität <br/> für {numb} Monate",
+          },
+        },
+      },
+      roadmap: {
+        title: "Straßenkarte",
+        stages: {
+          1: {
+            title: "Phase 1",
+            subtitle: "Januar - März 2022",
+            items: [
+              "Entwicklung des Konzepts und des Markenbuchs des Projekts",
+              "Entwicklung der Plattformarchitektur",
+              "Erstellung der Webseite und Inhalte (Design, Layout, mobile Anpassung, Entwicklung des Kerns des Benutzerkontos)",
+            ],
+          },
+          2: {
+            title: "Phase 2",
+            subtitle: "März - September 2022",
+            items: [
+              "Entwicklung der Plattform MVP",
+              "Entwicklung des Marketingplans",
+              "Erstellung und Inhalt der sozialen Netzwerke (Facebook, Instagram, Telegram, Reddit)",
+              "Start der ersten Marketingkampagne",
+            ],
+          },
+          3: {
+            title: "Phase 3",
+            subtitle: "September - November 2022",
+            items: [
+              "Gründung des Unternehmens und Beschaffung der rechtlichen Dokumente",
+              "Beginn der Mittelbeschaffung",
+              "Einrichtung von Büros: Dubai, Moskau, Ufa, Kasan",
+              "MVP-Tests und QA",
+              "Abschluss des Sicherheitsaudits der Plattform",
+            ],
+          },
+          4: {
+            title: "Phase 4",
+            subtitle: "November 2022 - Januar 2023",
+            items: [
+              "Start der globalen Marketingkampagne",
+              "Durchführung des IEO an der CEX",
+              "CEX-Notierung",
+              "Einführung der Plattform MVP",
+            ],
+          },
+          5: {
+            title: "Phase 5",
+            subtitle: "Dezember 2022 - November 2023",
+            items: [
+              "Aktualisierung der Plattformfunktionalität",
+              "Start des Alga-Advisors-Indexprogramms",
+              "Entwicklung einer mobilen App",
+            ],
+          },
+          6: {
+            title: "Phase 6",
+            subtitle: "November 2022 - Februar 2023",
+            items: [
+              "Notierung an anderen zentralisierten Börsen",
+              "Entwicklung einer eigenen Indexbörse",
+              "Erhöhung der Anzahl der Indizes auf 15",
+              "Partnerschaftsvereinbarungen mit soliden Hedge-Fonds",
+            ],
+          },
+        },
+      },
+      team: {
+        title: "Das Team",
+        peoples: {
+          1: {
+            name: "Ural",
+            lastName: "Karazbaev",
+            bio: "Gründer von ALGA Ecosystem, Unternehmer, Gründer des Investmentclubs Museum of Finance, Mitbegründer von TC Gorod, Forestprom, D.S.R. Ufa.",
+          },
+          2: {
+            name: "Danat",
+            lastName: "Latypov",
+            bio: "Entwickler, PhD in Wirtschaftswissenschaften, Mathematiker. Leiter des Entwicklungsteams. Spezialisiert auf die Entwicklung von Hochlastsystemen und kommerziellen Blockchain-Projekten seit 2017",
+          },
+          3: {
+            name: "Rast",
+            lastName: "Pentagon",
+            bio: "Gründer und Handelsdirektor von Fakel Cryptocurrency Fund in der GUS, Leiter des Bildungsprogramms, qualifizierter Händler mit mehr als 8 Jahren Erfahrung.",
+          },
+          4: {
+            name: "Ivan",
+            lastName: "Beliy",
+            bio: "Gründer und CEO von Fakel Cryptocurrency Fund in der GUS, Leiter des Bildungsprogramms, qualifizierter Händler und Vermarkter mit mehr als 10 Jahren Erfahrung.",
+          },
+          5: {
+            name: "Elena",
+            lastName: "Shakhanova",
+            bio: "Geschäftsfrau, Gründerin und CEO der digitalen Branding-Agentur YES IDEA, Art Direktorin von russischen und internationalen Projekten",
+          },
+        },
+      },
+      backers: {
+        title: "Förderer & Partner",
+      },
+      faq: {
+        title: "Häufig gestellte Fragen",
+        items: {
+          1: {
+            title: "Was ist Alga Ecosystem?",
+            text: `
+              Alga Ecosystem ist ein brandneues Tool für den einfachen Einstieg in die Welt der Kryptowährungen und smarten Investitionen. Das Ökosystem wird zunächst aus drei Hauptprodukten bestehen:
+              <br>
+              - Indexderivate-Plattform Alga (AID)
+              <br>
+              - Bildungsplattform Alga (AE)
+              <br>
+              - Das soziale Netzwerk Alga Indexview (AI)
+            `,
+          },
+          2: {
+            title: "Was ist die Indexderivate-Plattform Alga?",
+            text: `
+              Es handelt sich um eine CeFi-Plattform, die es Ihnen ermöglicht, über Index-Derivate in Kryptowährungen zu investieren. Das Team hat modernste Technologie und persönliches Handels-Know-how kombiniert, um ein Umfeld zu schaffen, in dem die Gelder der Nutzer sicher angelegt werden können und eine ausgewogene Rendite auf das zugewiesene Kapital durch Indizes erzielt wird. AID ermöglicht Einzelpersonen oder Institutionen die Schaffung, Verwaltung und Investition in innovative Anlageinstrumente
+            `,
+          },
+          3: {
+            title: "Was ist ein Index?",
+            text: `
+              Ein Index ist ein Derivat, bei dem es sich um ein vollständig besichertes Portfolio von Vermögenswerten handelt, das es Personen oder Organisationen ermöglichen kann, ihr eigenes Kapital und das anderer in einem sicheren Umfeld zu verwalten.
+            `,
+          },
+          4: {
+            title: "Welche Arten von Indexes sind auf der Plattform verfügbar??",
+            text: `
+              Derzeit gibt es 5 Indizes auf der AID-Plattform:
+              <br>
+              - BTC MAIN ALGA INDEX;
+              <br>
+              - ETH MAIN ALGA INDEX;
+              <br>
+              - BTC COMBO ALGA INDEX;
+              <br>
+              - ETH COMBO ALGA INDEX;
+              <br>
+              - STABLE ALGA INDEX.
+              <br>
+              Neue Indizes werden mit der Entwicklung der Plattform hinzugefügt
+            `,
+          },
+          5: {
+            title: "Was ist ein Alga-Token und wozu dient er?",
+            text: `
+              Der Alga-Token ist ein nativer Ökosystem-Token. Alga-Besitzer erhalten eine Reihe von Vorteilen, wie z.B. die Möglichkeit, DAOs zu stapeln und sich an ihnen zu beteiligen sowie eigene Indizes zu erstellen. Darüber hinaus bieten Alga-Tokens einen Rabatt auf Bildungsprogramme und verschiedene Anpassungsfunktionen in Alga Indexview
+            `,
+          },
+          6: {
+            title: "Ist die Tätigkeit Ihrer Plattform legal?",
+            text: `
+            Ja, das geistige Eigentum von Alga Ecosystem ist Eigentum einer in Dubai, VAE, eingetragenen juristischen Person, die eine Lizenz für den Handel mit digitalen Vermögenswerten besitzt.
+            `,
+          },
+        },
+      },
+      "card-big": {
+        signin: {
+          titleReg: "Registrieren",
+          titleSign: "Mein Konto",
+          text: "Senden Sie uns eine Nachricht, wenn Sie Fragen haben. Ein Mitarbeiter wird sich so schnell wie möglich mit Ihnen in Verbindung setzen.",
+          createButtonReg: "Registrieren",
+          createButtonSign: "Mein Konto",
+        },
+        anyquestion: {
+          title: "Noch Fragen?",
+          text: "Senden Sie uns eine Nachricht, wenn Sie Fragen haben. Ein Mitarbeiter wird sich so schnell wie möglich mit Ihnen in Verbindung setzen.",
+          contacrusButton: "Kontaktieren Sie uns",
+          joinButton: "Werden Sie Mitglied der Community",
+        },
+      },
+      other: {
+        button: {
+          buy: "Kaufen",
+        },
+      },
+    },
+
+    "en-US": {
+      dropdown: {
+        buttons: {
+          register: "Registration",
+          login: "Authorization",
+          profile: "profile",
+        },
+      },
+      header: {
+        title: "Alga",
+        subtitle: "Index <br> Derivatives <br> Platform",
+      },
+      about: {
+        title: "About",
+        text: "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives. <br> The underlying cutting edge technology along with a huge background of the core team in  trading makes ALGA the one-stop shop for investments into proven and efficient strategies facilitating entry to the crypto for everyone. These strategies based on index derivatives consisting of many assets selected in the most effective ratio allow to receive solid return on the allocated capital while minimizing risks. <br> The platform is designed by people for people with the only one goal - to ensure comfortable tracking of assets and transparent transactions in order to bring asset management experience to completely new level",
+      },
+      indexD: {
+        title: "Index Derivatives",
+        card: {
+          profitability: {
+            1: "Profitability <br/> for {numb} months",
+            2: "Profitability <br/> for {numb} months",
+            3: "Profitability <br/> for {numb} months",
+            4: "Profitability <br/> for {numb} months",
+            5: "Profitability <br/> for {numb} months",
+            6: "Profitability <br/> for {numb} months",
+            7: "Profitability <br/> for {numb} months",
+            8: "Profitability <br/> for {numb} months",
+            9: "Profitability <br/> for {numb} months",
+            10: "Profitability <br/> for {numb} months",
+          },
+        },
+      },
+      roadmap: {
+        title: "Roadmap",
+        stages: {
+          1: {
+            title: "Stage 1",
+            subtitle: "January-March, 2022",
+            items: [
+              "Development of the concept and brand book of the project",
+              "Platform architecture development",
+              "Website creation and content (design, layout, mobile adaptation, development of the user account core)",
+            ],
+          },
+          2: {
+            title: "Stage 2",
+            subtitle: "March-May, 2022",
+            items: [
+              "Development of platform MVP",
+              "Development of the marketing plan",
+              "Creation and content of socials (Facebook, Instagram, Telegram, Reddit)",
+              "Start of the preliminary marketing campaign",
+            ],
+          },
+          3: {
+            title: "Stage 3",
+            subtitle: "May-July, 2022",
+            items: [
+              "Company establishment and obtaining of legal documents",
+              "Start of the fundraise",
+              "Offices establishment: Dubai, Moscow, Ufa, Kazan",
+              "MVP testing and QA",
+              "Platform security audit completion",
+            ],
+          },
+          4: {
+            title: "Stage 4",
+            subtitle: "July-September, 2022",
+            items: [
+              "Start of the global marketing campaign",
+              "Conduction of IEO on CEX",
+              "CEX listing",
+              "Platform MVP launch",
+            ],
+          },
+          5: {
+            title: "Stage 5",
+            subtitle: "September-November, 2022",
+            items: [
+              "Platform functionality update",
+              "Launch of the Alga Advisors indexes program",
+              "Mobile app development",
+            ],
+          },
+          6: {
+            title: "Stage 6",
+            subtitle: "November 2022 - February 2023",
+            items: [
+              "Listing on other Centralized exchanges",
+              "Development of the own index exchange",
+              "Increasing number of indexes to 15",
+              "Partnership agreements with solid hedge-funds",
+            ],
+          },
+        },
+      },
+      team: {
+        title: "Team",
+        peoples: {
+          1: {
+            name: "Ural",
+            lastName: "Karazbaev",
+            bio: "Founder of ALGA Ecosystem, entrepreneur, founder of Museum of Finance investment club, co-founder of TC Gorod, Forestprom, D.S.R. Ufa",
+          },
+          2: {
+            name: "Danat",
+            lastName: "Latypov",
+            bio: "Developer, PhD in economics, mathematician. Head of development team. Specialized in development of high-load systems and commercial blockchain projects from 2017",
+          },
+          3: {
+            name: "Rustem",
+            lastName: "Sadreev",
+            bio: "Founder and trading director of Fakel cryptocurrency fund in CIS, head of educational program, qualified trader with more than 8 years experience",
+          },
+          4: {
+            name: "Ivan",
+            lastName: "Beliy",
+            bio: "Founder and CEO of Fakel cryptocurrency fund in CIS, head of educational program, qualified trader and marketer with more than 10 years experience",
+          },
+          5: {
+            name: "Elena",
+            lastName: "Shakhanova",
+            bio: "Businesswoman, founder and CEO of YES IDEA digital branding agency, art director of Russian and international projects",
+          },
+        },
+      },
+      backers: {
+        title: "Backers & Partners",
+      },
+      faq: {
+        title: "FAQ",
+        items: {
+          1: {
+            title: "What is the Alga Ecosystem?",
+            text: `
+              Alga Ecosystem is the brand new tool for both comfortable entrance to the crypto world and smart investments. At the early stage the Ecosystem contains three main products:
+              <br>
+              -Alga Index Derivatives platform (AID)
+              <br>
+              -Alga Education platform (AE)
+              <br>
+              -Alga Indexview social network (AI)
+            `,
+          },
+          2: {
+            title: "What is the Alga Index Derivatives platform?",
+            text: `
+              It is a CeFi platform that allows you to invest in cryptocurrencies through index derivatives.
+              <br>
+              Founders combine advanced technology and personal trading experience to create an environment for safe investment of users’ funds and balanced returns on allocated capital with the help of indexes. AID empowers individuals or institutions to create, manage and invest in innovative on-chain investment tools
+            `,
+          },
+          3: {
+            title: "What is index?",
+            text: `
+              Index is a derivative that represents a fully collateralized portfolio of assets that can enable people or entities to manage their wealth & the wealth of others within a safe environment
+            `,
+          },
+          4: {
+            title: "What kind of indexes are represented at AIDT?",
+            text: `
+              Currently we have 5 indexes:
+              <br>
+              - BTC MAIN ALGA INDEX;
+              <br>
+              - ETH MAIN ALGA INDEX;
+              <br>
+              - BTC COMBO ALGA INDEX;
+              <br>
+              - ETH COMBO ALGA INDEX;
+              <br>
+              - STABLE ALGA INDEX.
+              <br>
+              With the development of the platform it will be more
+            `,
+          },
+          5: {
+            title: "What is an Alga token and what are its use cases?",
+            text: `
+              Alga token is native token of the Alga Ecosystem. Holders of Alga will have several benefits, such as: possibility of staking and DAO participation, creation of own indexes. Discounts for Educational programs and different customization features at Alga Indexview
+            `,
+          },
+          6: {
+            title: "Is the operation of Alga Ecosystem legal?",
+            text: `Yes, Alga Ecosystem works under the registered legal entity in Dubai (UAE). Entity is licensed to work with digital assets`,
+          },
+        },
+      },
+      "card-big": {
+        signin: {
+          titleReg: "Registration",
+          titleSign: "Personal",
+          text: "For all questions, write to us and the operator will contact you as soon as possible",
+          createButtonReg: "Registration",
+          createButtonSign: "Personal",
+        },
+        anyquestion: {
+          title: "Any questions?",
+          text: "For all questions, write to us and the operator will contact you as soon as possible",
+          contacrusButton: "Contast us",
+          joinButton: "Join our community",
+        },
+      },
+      other: {
+        button: {
+          buy: "Buy",
+        },
+      },
+    },
+  },
+
+
+//история
+
+messages: {
+    "ru-RU": {
+      title: "Verlauf",
+      nav: {
+        buy: "Bestellungen",
+        widthdrawal: "Anträge auf Rückzug",
+      },
+      table: {
+        completed: "Fertig",
+        head: {
+          buy: ["Status der Bestellung", "Index", "Währung", "Betrag", "Zahlungsstatus"],
+          widthdrawal: ["Status der Bestellung", "Währung", "Betrag", "Adresse"],
+        },
+      },
+    },
+    "en-US": {
+      title: "History",
+      nav: {
+        buy: "Buy",
+        widthdrawal: "Widthdrawal",
+      },
+      table: {
+        completed: "Completed",
+        head: {
+          buy: [
+            "Status order",
+            "Index",
+            "Valute",
+            "Balance",
+            "Status",
+            "Payment status",
+          ],
+          widthdrawal: ["Status order", "Valute", "Balance", "Address"],
+        },
+      },
+    },
+  },
+
+//диревативы
+
+messages: {
+    "en-US": {
+      buy: "Buy",
+      indexderivatives: {
+        title: "Index Derivatives",
+        time: "from {from} to {to}",
+        items: [
+          "BTC main is the base index of ALGA INDEX DERIVATIVES PLATFORM. It is an index designed to track the world's largest crypto asset. You will gain access to a crypto asset with the security and convenience of a traditional investment vehicle, while lowering the logistical barriers to entry (access to exchanges, storage, and execution costs)",
+          "ETH main - ALGA INDEX DERIVATIVES PLATFORM base index. It is a capitalization-weighted index that tracks the performance of major financial crypto assets built on the Ethereum blockchain. You will gain access to a crypto asset with the security and convenience of a traditional investment vehicle, while lowering the logistical barriers to entry (access to exchanges, storage, and execution costs)",
+          "BTC combo - ALGA INDEX DERIVATIVES PLATFORM base index. it is a balanced index composed of the most valuable cryptoassets, weighted by market capitalization, time-tested and monitored for certain risks with monthly rebalancing. The index has a public methodology for its formation, which includes the rules of acceptability, identifying critical risks (storage, liquidity, execution costs, and others)",
+          "ETH combo - ALGA INDEX DERIVATIVES PLATFORM base index. It is a balanced index composed of the most valuable cryptoassets, weighted by market capitalization, time-tested and monitored for certain risks with monthly rebalancing. The index has a public methodology for its formation, which includes the rules of acceptability, identifying critical risks (storage, liquidity, execution costs, and others)",
+          "Stable index is a stable base index ALGA INDEX DERIVATIVES PLATFORM, consisting of 6 leading stablecoins in the cryptocurrency market, weighted by capitalization. The index is not subject to high volatility in the market, allowing you to keep your cryptocurrency savings for a certain period. Stable index is a smart and secure way to get diversified access to crypto assets with minimal fees",
+        ],
+      },
+      inside: {
+        title: "What's inside",
+      },
+      statistics: {
+        title: "Statistics",
+        profitText: "Profitability <br> for {numb} months",
+        selectProfit: "Last {numb} months",
+      },
+      popup: {
+        title: "Withdrawal Request",
+        titleBuy: "Deposite request",
+        text: "Available for withdrawal:",
+        amount: {
+          label: "Deposite sum, USDT",
+        },
+        "wallet-number": {
+          label: "Wallet number",
+        },
+        request: "Leave a request",
+      },
+    },
+    "ru-RU": {
+      buy: "Kaufen",
+      indexderivatives: {
+        title: "Index Derivates",
+        time: "von {from} bis {to}",
+        items: [
+          "BTC main ist der Basisindex von ALGA INDEX DERIVATIVES PLATFORM. Es handelt sich um einen Index, der das weltweit größte Krypto-Asset abbildet. Sie erhalten Zugang zu Krypto-Vermögenswerten mit der Sicherheit und dem Komfort eines traditionellen Anlageinstruments und reduzieren gleichzeitig die logistischen Zugangsbarrieren (Zugang zu Börsen, Lagerungs- und Ausführungskosten)",
+          "ETH main ist der Basisindex der ALGA INDEX DERIVATIVES PLATFORM. Es handelt sich um einen kapitalisierungsgewichteten Index, der die Wertentwicklung der wichtigsten finanziellen Krypto-Assets abbildet, die auf der Ethereum-Blockchain basieren. Sie erhalten Zugang zu Krypto-Assets mit der Sicherheit und Bequemlichkeit eines traditionellen Anlageinstruments und reduzieren gleichzeitig die logistischen Zugangsbarrieren (Zugang zu Börsen, Lagerungs- und Ausführungskosten)",
+          "Die BTC-Kombination ist der zugrunde liegende Index ALGA INDEX DERIVATIVES PLATFORM. Es handelt sich um einen ausgewogenen Index, der sich aus den wertvollsten Krypto-Assets zusammensetzt, die nach ihrer Marktkapitalisierung gewichtet sind, sich bewährt haben und auf bestimmte Risiken hin überwacht und monatlich neu gewichtet werden. Der Index verfügt über eine öffentlich zugängliche Methodik für seine Bildung, die Zulassungsregeln, die Identifizierung kritischer Risiken (Lagerung, Liquidität, Ausführungskosten und andere) umfasst",
+          "ETH combo ist der zugrunde liegende Index ALGA INDEX DERIVATIVES PLATFORM. Es handelt sich um einen ausgewogenen Index, der sich aus den wertvollsten Krypto-Assets zusammensetzt, die nach ihrer Marktkapitalisierung gewichtet sind, sich bewährt haben und auf bestimmte Risiken hin überwacht und monatlich neu gewichtet werden. Der Index verfügt über eine öffentlich zugängliche Methodik für seine Bildung, die Zulassungsregeln, die Identifizierung kritischer Risiken (Lagerung, Liquidität, Ausführungskosten und andere) umfasst",
+          "Stable Index ist ein stabiler Benchmark-Index ALGA INDEX DERIVATIVES PLATFORM, der sich aus den 6 wichtigsten Kryptowährungs-Steiblocoins zusammensetzt, gewichtet nach Kapitalisierung. Der Index unterliegt keiner hohen Marktvolatilität, so dass Sie Ihre Ersparnisse in Kryptowährungen für einen bestimmten Zeitraum behalten können. Ein stabiler Index ist ein intelligenter und sicherer Weg, um einen diversifizierten Zugang zu Krypto-Assets mit minimalen Gebühren zu erhalten",
+        ],
+      },
+      inside: {
+        title: "Was gibt es drin",
+      },
+      statistics: {
+        title: "Statistiken",
+        profitText: "Rendite <br> für {numb} Monate",
+        selectProfit: "Die letzten {numb} Monate",
+      },
+      popup: {
+        title: "Antrag auf Auszahlung",
+        titleBuy: "Antrag auf Aufladung",
+        text: "Verfügbar zur Auszahlung:",
+        amount: {
+          label: "Geben Sie den Betrag in USDT ein",
+        },
+        "wallet-number": {
+          label: "Kontonummer",
+        },
+        request: "Zu zahlen",
+      },
+    },
+  },
+
+//портфолио
+
+messages: {
+    "ru-RU": {
+      title: "Mein Portfolio",
+      card: {
+        title: "Saldo",
+      },
+      "index-title": "Meine Indexe",
+      "index-not": "Sie haben noch keine Käufe getätigt",
+      "index-not-btn": "Index auswählen",
+      "index-table": {
+        header: [
+          "Index",
+          "Abschlussdatum",
+          "Saldo",
+          "Realisierter Gewinn",
+          "Aktion",
+        ],
+        body: {
+          date: "Tage",
+          action: {
+            buy: "Kaufen",
+            widthdrawal: "Auszahlung",
+          },
+        },
+      },
+
+      popup: {
+        title: "Antrag auf Auszahlung",
+        titleBuy: "ntrag auf Aufladung",
+        text: "Verfügbar zur Auszahlung:",
+        amount: {
+          label: "Anzahl",
+        },
+        "wallet-number": {
+          label: "Kontonummer",
+        },
+        request: "Einen Antrag stellen",
+      },
+    },
+    "en-US": {
+      title: "My Prortfolio",
+      card: {
+        title: "Balance",
+      },
+      "index-title": "My Indexes",
+      "index-not": "You have not orders yet",
+      "index-not-btn": "Choose index",
+      "index-table": {
+        header: [
+          "Index",
+          "Closing date",
+          "Balance",
+          "Realizad profit",
+          "Ation",
+        ],
+        body: {
+          date: "days",
+          action: {
+            buy: "Buy",
+            widthdrawal: "Widthdraw",
+          },
+        },
+      },
+
+      popup: {
+        title: "Withdrawal Request",
+        titleBuy: "Replenishment request",
+        text: "Available for withdrawal:",
+        amount: {
+          label: "Withdrawal amount",
+        },
+        "wallet-number": {
+          label: "Wallet number",
+        },
+        request: "Leave a request",
+      },
+    },
+  },
+
+//профиль
+
+messages: {
+    "ru-RU": {
+      title: "Konto",
+      edit: "Ändern",
+      cancel: "Abbrechen",
+      "password-title": "Passwort,
+      "change-password": "Passwort ändern",
+      "change-phone": "Handynummer ändern",
+      "phone-title": "Neue Telefonnnumer",
+      phone: {
+        label: "Telefonnummer",
+      },
+    },
+    "en-US": {
+      title: "",
+      edit: "Edit",
+      cancel: "Cancel",
+      "password-title": "Password",
+      "change-password": "Change Password",
+      "change-phone": "Change Phone",
+      "phone-title": "New Phone Number",
+      phone: {
+        label: "Phone number",
+      },
+    },
+  },
+
+// поддержка
+
+messages: {
+    "ru-RU": {
+      title: "Support",
+      topic: {
+        label: "Thema",
+      },
+      question: {
+        label: "Frage",
+      },
+      "file-text": "Dateianhang",
+      send: "Senden",
+      "popup-text":
+        "Vielen Dank, Ihr Antrag wurde angenommen. Wir werden sie innerhalb von 24 Stunden bearbeiten.",
+    },
+    "en-US": {
+      title: "Support",
+      topic: {
+        label: "Topic",
+      },
+      question: {
+        label: "Question",
+      },
+      "file-text": "Attach the file",
+      send: "Send",
+      "popup-text":
+        "Thank you, your application has been accepted. We will process within a day",
+    },
+  },
+
+//токеномика
+
+  messages: {
+    "ru-RU": {
+      main: "Startseite",
+      tokenomics: "Тokenomik",
+      total: "Gesamtzahl",
+      price: "Der Preis des Tokens",
+    },
+    "en-US": {
+      main: "Main",
+      tokenomics: "Tokenomics",
+      total: "Total supply",
+      price: "Token price",
+    },
+  },
+
+
+//глобальные
+
+export default {
+  term: "I have read (as) and agree with Alga Terms of Service",
+  passRequired: "Password must be in English and contain at least 6 characters",
+  errors: {
+    code: "You entered the wrong code in the previous step. Enter the code in this field and try again",
+    convert: "Failed to convert currency. Enter the value again",
+  },
+  alerts: {
+    copy: "{msg} copied to the clipboard",
+  },
+  actions: {
+    buy: "Buy",
+    send: "Send",
+    back: "Back",
+    logout: "Logout",
+    getCode: "Send the code",
+    toLK: "Login to your profile",
+    hasAccount: "Already have account? {login}",
+    setPass: "Set and Login",
+  },
+  buttons: {
+    close: "Close",
+    logIn: "Log in",
+    registr: "Sign up",
+    resetPass: "Forgot your password?",
+  },
+  inputs: {
+    cellphone: "Phone",
+    password: "Password",
+    newPass: "Repeat password",
+    oldPass: "Old password",
+    repeatPass: "Repeat password",
+    wrongCode: "Enter a correct code",
+    code: "SMS code",
+    // code: "",
+    wallet: "Wallet address",
+    walletReciever: "Recipient's wallet address",
+    name: {
+      label: "Name",
+      placeholder: "Ivan",
+    },
+  },
+  lk: {
+    menu: {
+      wallet: "Wallet",
+      history: "History",
+      output: "Output",
+      polls: "Polls",
+    },
+  },
+  landing: {
+    header: {
+      auth: "Sign in",
+      registr: "Sign up",
+      promoText: "Legal unconditional <br/> global assets",
+      lk: "Profile",
+      logout: "Logout",
+    },
+    footer: {
+      serviceInfo: "Terms of Service",
+      serviceInfoFile: "/serviceInfoEng.pdf",
+
+      whyAlga: "Disclaimer ",
+      whyAlgaFile: "/disclaimerEng.pdf",
+      roadmapFile: "/roadmapEng.pdf",
+      whitePaper: "/whitePaperEng.pdf",
+      algaMarket: "Alga Market in development",
+    },
+    menu: {
+      about: "About token",
+      features: "Project Features",
+      owners: "Residents",
+      ecosystem: "Ecosystem",
+      projects: "Projects",
+      news: "News",
+    },
+    about: {
+      header: "ABOUT TOKEN",
+      body: "AlgaCoin is a community-driven token with many future projects and partnerships aimed at improving the quality of life of community members through the creation of sustainable business projects",
+      bottom: "coins",
+      wallets: "wallets",
+    },
+  },
+  globalErrors: {
+    timeout: "The request timed out. Repeat the request again",
+    401: "You must be logged in to perform an action",
+    403: "You do not have access to perform the action",
+    404: "The requested resource could not be found",
+    429: "You have made too many attempts. We have to wait a bit",
+    500: "Something went wrong on the server, maybe everything will be fixed soon. If the problem persists, write to us about it",
+  },
+  days: '{n} day | {n} days',
+};
+
+export default {
+  term: "Ich habe die Alga-Nutzungsvereinbarung gelesen und stimme ihr zu.",
+  passRequired:
+    "Das Passwort muss in englischer Sprache sein und mindestens 6 Zeichen enthalten.",
+  errors: {
+    code: "Sie haben im vorherigen Schritt einen falschen Code eingegeben. Geben Sie den Code in dieses Feld ein und versuchen Sie es erneut",
+    convert:
+      "Die Umrechnung der Währung ist fehlgeschlagen. Versuchen Sie, den Wert erneut einzugeben",
+  },
+  alerts: {
+    copy: "{msg} in Zwischenablage kopiert | {msg} in Zwischenablage kopiert",
+  },
+  actions: {
+    buy: "Kaufen",
+    send: "Senden",
+    back: "Zurück",
+    logout: "Ausloggen",
+    getCode: "Code senden,
+    toLK: "Mein Konto",
+    hasAccount: "Sie haben bereits ein Konto? {login}",
+    setPass: "Festlegen und anmelden",
+  },
+  buttons: {
+    close: "Schließen",
+    logIn: "Anmelden",
+    registr: "Registrieren",
+    resetPass: "Haben Sie Ihr Passwort vergessen?",
+  },
+  inputs: {
+    cellphone: "Handynummer",
+    password: "Passwort",
+    newPass: "Passwort wiederholen",
+    oldPass: "Altes Passwort",
+    repeatPass: "Passwort wiederholen",
+    wrongCode: "Bitte einen korrekten Code eingeben",
+    code: "SMS-Code",
+    // code: "",
+    wallet: "Walletadresse",
+    walletReciever: "Walletadresse des Empfängers",
+    name: {
+      label: "Name",
+      placeholder: "Max",
+    },
+  },
+  lk: {
+    menu: {
+      wallet: "Wallet",
+      history: "Operationenverlauf",
+      output: "Ausgabe",
+      polls: "Umfragen",
+    },
+  },
+  landing: {
+    header: {
+      auth: "Anmelden",
+      registr: "Registrieren",
+      promoText: "Legitimes unbedingtes <br /> Globalvermögen",
+      lk: "Konto",
+      logout: "Ausloggen",
+    },
+    footer: {
+      serviceInfo: "Nutzungsbedingungen",
+      serviceInfoFile: "/serviceInfoRu.pdf",
+      whyAlga: "Warum Alga",
+      whyAlgaFile: "/disclaimerRu.pdf",
+      roadmapFile: "/roadmapRu.pdf",
+      whitePaper: "/whitePaperRu.pdf",
+      algaMarket: "Alga Market in Bearbeitung",
+    },
+    menu: {
+      about: "Über das Token",
+      features: "Merkmale des Projekts",
+      owners: "Besitzer",
+      ecosystem: "Ökosystem",
+      projects: "Projekte",
+      news: "Nachrichten",
+    },
+    about: {
+      header: "ÜBER TOKEN",
+      body: "AlgaCoin ist ein gemeinschaftsgetriebener Token mit vielen zukünftigen Projekten und Partnerschaften, die darauf abzielen, den Lebensunterhalt von Gemeinschaftsmitgliedern durch die Schaffung ökologischer Geschäftsprojekte zu verbessern",
+      bottom: "Kryptowährungen",
+      wallets: "Wallets",
+    },
+  },
+  globalErrors: {
+    timeout: "Die Zeitüberschreitung für die Abfrage ist verstrichen. Wiederholen Sie die Anfrage noch einmal",
+    401: "Sie müssen eingeloggt sein, um die Aktion durchführen zu können",
+    403: "Unzureichende Rechte, um eine Aktion durchzuführen",
+    404: "Der Webserver konnte die angeforderte Ressource nicht finden",
+    429: "Sie haben zu viele Anfragen unternommen. Bitte warten Sie noch ein wenig",
+    500: "Auf dem Server ist etwas schief gelaufen, es wird bald behoben. Wenn das Problem weiterhin besteht, informieren Sie uns",
+  },
+  days: '0 Tage | {n} Tag | {n} Tag | {n} Tage',
+};
+
+
+для валидации 
+
+  Object.assign(ru.messages, {
+    password: "Das Passwort muss mehr als 6 Zeichen lang sein",
+    confirmed: "Passwörter stimmen nicht überein",
+    walletAddress: "Die Adresse der Wallets muss 40 Zeichen lang sein.",
+    cellphone: "Falsch eingegebene Handynummer",
+    min: "Der Betrag muss mehr als 100 USDT betragen.",
+  });
+
+  Object.assign(en.messages, {
+    password: "Password must be more 6 characters",
+    confirmed: "Password mismatch",
+    walletAddress: "Wallet address must be 40 chars",
+    cellphone: "Phone number entered incorrectly",
+    min: "The sum must exceed 100 USDT",
+  });

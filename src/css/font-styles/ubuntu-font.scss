@@ -1,0 +1,49 @@
+@mixin Ubuntu {
+  $path: "~assets/fonts/Ubuntu";
+
+  @font-face {
+    font-family: "Ubuntu";
+    src: url(#{$path}/Ubuntu-Light.eot);
+    src: local("Ubuntu Light"), local("Ubuntu-Light"),
+      url(#{$path}/Ubuntu-Light.eot?#iefix) format("embedded-opentype"),
+      url(#{$path}/Ubuntu-Light.woff) format("woff"),
+      url(#{$path}/Ubuntu-Light.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Ubuntu";
+    src: url(#{$path}/Ubuntu-Regular.eot);
+    src: local("Ubuntu Regular"), local("Ubuntu-Regular"),
+      url(#{$path}/Ubuntu-Regular.eot?#iefix) format("embedded-opentype"),
+      url(#{$path}/Ubuntu-Regular.woff) format("woff"),
+      url(#{$path}/Ubuntu-Regular.ttf) format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Ubuntu";
+    src: url(#{$path}/Ubuntu-Bold.eot);
+    src: local("Ubuntu Bold"), local("Ubuntu-Bold"),
+      url(#{$path}/Ubuntu-Bold.eot?#iefix) format("embedded-opentype"),
+      url(#{$path}/Ubuntu-Bold.woff) format("woff"),
+      url(#{$path}/Ubuntu-Bold.ttf) format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Ubuntu";
+    src: url(#{$path}/Ubuntu-Medium.eot);
+    src: local("Ubuntu Medium"), local("Ubuntu-Medium"),
+      url(#{$path}/Ubuntu-Medium.eot?#iefix) format("embedded-opentype"),
+      url(#{$path}/Ubuntu-Medium.woff) format("woff"),
+      url(#{$path}/Ubuntu-Medium.ttf) format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+}
+
+@include Ubuntu();

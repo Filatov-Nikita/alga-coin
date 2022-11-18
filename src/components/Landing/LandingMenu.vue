@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import { inject, computed } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { inject, computed } from "vue";
+import { useI18n } from "vue-i18n";
 
 export default {
   props: {
@@ -29,15 +29,15 @@ export default {
       type: Number,
     },
   },
-  emits: ['to'],
+  emits: ["to"],
   setup(_props, { emit }) {
-    const theme = inject('theme');
-    const themes = inject('themes');
+    const theme = inject("theme");
+    const themes = inject("themes");
     const { t } = useI18n();
     const list = computed(() => getItems(t));
 
     const to = (index) => {
-      emit('to', index);
+      emit("to", index);
     };
 
     return {
@@ -72,31 +72,31 @@ export default {
 function getItems(t) {
   return [
     {
-      label: t('landing.menu.about'),
-      to: { name: 'home', query: { section: 'advantages' } },
+      label: t("landing.menu.about"),
+      to: { name: "home", query: { section: "advantages" } },
     },
     {
-      label: t('landing.menu.features'),
-      to: { name: 'home', query: { section: 'features' } },
+      label: t("landing.menu.features"),
+      to: { name: "home", query: { section: "features" } },
+    },
+    // {
+    //   label: t('landing.menu.owners'),
+    //   to: { name: 'home', query: { section: 'owners' } },
+    // },
+    {
+      label: t("landing.menu.ecosystem"),
+      to: { name: "home", query: { section: "eco-start" } },
+      children: [{ section: "ecosystem" }],
     },
     {
-      label: t('landing.menu.owners'),
-      to: { name: 'home', query: { section: 'owners' } },
+      label: t("landing.menu.projects"),
+      to: { name: "home", query: { section: "projects" } },
+      children: ["projects.show"],
     },
     {
-      label: t('landing.menu.ecosystem'),
-      to: { name: 'home', query: { section: 'ecosystem' } },
-      children: [{ section: 'eco-start' }],
-    },
-    {
-      label: t('landing.menu.projects'),
-      to: { name: 'home', query: { section: 'projects' } },
-      children: ['projects.show'],
-    },
-    {
-      label: t('landing.menu.news'),
-      to: { name: 'home', query: { section: 'news' } },
-      children: ['articles.show'],
+      label: t("landing.menu.news"),
+      to: { name: "home", query: { section: "news" } },
+      children: ["articles.show"],
     },
   ];
 }

@@ -1,0 +1,85 @@
+.button__gradient {
+  background: linear-gradient(
+    315.39deg,
+    #f64f59 2.16%,
+    #c471ed 49.55%,
+    #12c2e9 100%
+  );
+
+  border-width: 1px;
+  border-radius: 12px;
+  border-style: none;
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "";
+    width: calc(100% - 1px * 2);
+    height: calc(100% - 1px * 2);
+    background: #111645;
+    top: 1px;
+    left: 1px;
+    border-radius: 12px;
+  }
+}
+
+.text__gradient {
+  // display: inline;
+  -webkit-box-decoration-break: clone;
+  background: linear-gradient(
+    315.39deg,
+    #f64f59 2.16%,
+    #c471ed 49.55%,
+    #12c2e9 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: white;
+}
+.text__gradient-purple {
+  background: linear-gradient(22.91deg, #58a1ea 29.78%, #a280ec 53.18%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #58a1ea;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 40px;
+}
+.card__mini {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.03);
+  /* glass_big */
+
+  box-shadow: inset 0px 0px 68px rgba(255, 255, 255, 0.05),
+    inset 0px 4px 4px rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(86px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__round {
+  border-radius: 14px;
+  padding: 30px;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
+}
+.card__round_gradient {
+  background: linear-gradient(
+    74.66deg,
+    rgba(198, 151, 61, 0.05) 12.32%,
+    rgba(255, 255, 255, 0) 94.42%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.numb {
+  &__big {
+    &__disable {
+    }
+  }
+}

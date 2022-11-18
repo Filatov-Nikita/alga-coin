@@ -1,15 +1,15 @@
 <script>
-import { h, defineComponent, resolveComponent } from 'vue';
+import { h, defineComponent, resolveComponent } from "vue";
 
 export default defineComponent({
-  name: 'AppButton',
+  name: "AppButton",
   props: {
     label: {
       default: undefined,
       type: String,
     },
     color: {
-      default: 'blue',
+      default: "blue",
       type: String,
     },
     fullWidth: {
@@ -31,7 +31,7 @@ export default defineComponent({
       type: String,
     },
     design: {
-      default: 'standart',
+      default: "standart",
       type: String,
     },
     textClass: {
@@ -42,12 +42,12 @@ export default defineComponent({
     },
   },
   render() {
-    const RouterLink = resolveComponent('router-link');
+    const RouterLink = resolveComponent("router-link");
 
     const createIcon = () => {
-      const InlineSvg = resolveComponent('InlineSvg');
+      const InlineSvg = resolveComponent("InlineSvg");
       return h(InlineSvg, {
-        class: { 'app-button__icon': this.design !== 'round' },
+        class: { "app-button__icon": this.design !== "round" },
         src: this.icon,
         ...this.iconStg,
       });
@@ -57,8 +57,8 @@ export default defineComponent({
 
     if (this.$slots.prepend) {
       prepend = h(
-        'div',
-        { class: { 'app-button__icon': this.design !== 'round' } },
+        "div",
+        { class: { "app-button__icon": this.design !== "round" } },
         this.$slots.prepend()
       );
     } else if (this.icon) {
@@ -68,16 +68,16 @@ export default defineComponent({
     const isLink = this.to !== undefined;
     const children = [
       prepend,
-      h('div', this.$slots.default ? this.$slots.default() : this.label),
+      h("div", this.$slots.default ? this.$slots.default() : this.label),
     ];
 
     return h(
-      isLink ? RouterLink : 'button',
+      isLink ? RouterLink : "button",
       {
         class: [
           `app-button app-button--${this.design}`,
           this.classes,
-          { 'app-button--full-width': this.fullWidth },
+          { "app-button--full-width": this.fullWidth },
         ],
         ...(isLink ? { to: this.to } : {}),
       },
@@ -87,11 +87,11 @@ export default defineComponent({
   computed: {
     classes() {
       return `
-        ${this.textClass || 'tw-text-base'}
+        ${this.textClass || "tw-text-base"}
         ${
-          this.size && this.design === 'round'
+          this.size && this.design === "round"
             ? `app-button--round-${this.size}`
-            : ''
+            : ""
         }
       `;
     },
@@ -110,9 +110,9 @@ export default defineComponent({
   }
 
   &--standart {
-    border-radius: 8px;
+    border-radius: 14px;
     padding: 21px 16px;
-    @apply tw-bg-blue;
+    @apply tw-bg-green;
 
     @include screen-xl {
       &:hover {

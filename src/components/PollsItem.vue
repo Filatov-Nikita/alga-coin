@@ -1,60 +1,47 @@
 <template>
   <article
     class="
-      tw-rounded-base tw-bg-dark
-      app-col-6
-      tw-px-7-1 tw-py-12 tw-opacity-50
+      tw-rounded-base
+      app-col-18
+      xl:app-col-6
+      tw-py-7 tw-px-4
+      xl:tw-px-7-1 xl:tw-py-12
+      tw-relative tw-flex tw-flex-col tw-items-start
     "
+    :class="[
+      item.is_voted ? 'tw-bg-deep-dark' : 'tw-bg-dark',
+      { 'tw-opacity-50': finished },
+    ]"
   >
+    <InlineSvg
+      v-if="item.is_voted"
+      class="tw-absolute tw-right-5 tw-top-5"
+      :src="require('assets/icons/alert-success.svg')"
+      width="24px"
+      height="24px"
+      fill="#208B3A"
+    />
     <div class="tw-text-xxs tw-text-secondary tw-mb-3-1">
-      ДО {{ item.till }}
+      ДО {{ $localDate(item.finish_at) }}
     </div>
-    <h2 class="tw-text-sm tw-mb-4-1">{{ item.title }}</h2>
-    <p class="tw-text-xs tw-mb-6">
-      {{ item.text }}
+    <h2 class="tw-text-xs xl:tw-text-sm tw-mb-4-1">{{ item.name }}</h2>
+    <p class="tw-text-xxs xl:tw-text-xs tw-mb-6">
+      {{ item.title }}
     </p>
     <AppButton
-      @click="modal = !modal"
+      v-if="!finished"
       design="flat"
+      class="tw-mt-auto"
       :icon="require('assets/images/landing/landing-arrow.svg')"
       :iconStg="{ width: '43px', height: '12px' }"
+      @click="modal = !modal"
     />
     <AppModal
       v-model="modal"
-      contentClass="tw-w-1/2 tw-mx-auto"
+      contentClass="tw-w-full xl:tw-w-1/2 tw-mx-auto"
       design="max-height"
     >
-      <q-img
-        class="tw-w-full tw-rounded-t-base"
-        height="320px"
-        src="https://images.unsplash.com/photo-1598128558393-70ff21433be0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=978&q=80"
-      />
-      <div class="tw-py-16 tw-px-24">
-        <div class="tw-text-md2 tw-mb-9">
-          {{ item.tilte }}
-        </div>
-
-        <slot name="variants" :variants="item.variants" />
-
-        <section>
-          <div
-            class="
-              app-row app-gutter-col-x
-              tw-justify-between
-              tw-items-center
-              tw-mb-6
-              tw-text-xxs
-              tw-tracking-smallest
-            "
-          >
-            <h3 class="tw-text-secondary tw-uppercase tw-text-xxs">Описание</h3>
-            <p class="tw-text-primary tw-uppercase">
-              АКУТАЛЕН ДО {{ item.till }}
-            </p>
-          </div>
-          <p>{{item.description}}</p>
-        </section>
-      </div>
+      <slot :showing="modal" :close="close" />
     </AppModal>
   </article>
 </template>
@@ -66,6 +53,10 @@ export default {
       required: true,
       type: Object,
     },
+    finished: {
+      default: false,
+      type: Boolean,
+    },
   },
   data() {
     return {
@@ -73,8 +64,8 @@ export default {
     };
   },
   methods: {
-    update(val, updateWin) {
-      updateWin({ label: 'Нет' });
+    close() {
+      this.modal = false;
     },
   },
 };

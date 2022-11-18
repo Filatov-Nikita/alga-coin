@@ -1,20 +1,24 @@
 .app-auth {
-  max-width: 397px;
+  max-width: 380px;
+  @include screen-xl {
+    margin-left: 100px;
+  }
   @apply tw-m-auto tw-w-full tw-py-6;
 
   &__h1 {
-    @apply tw-text-sm xl:tw-text-md1 tw-text-center tw-mb-2;
+    @apply tw-text-sm xl:tw-text-md1  tw-mb-2;
   }
 
-  &__subtitle {
-    @apply tw-text-xxs xl:tw-text-xs tw-text-center xl:tw-mb-6 tw-mb-4-1;
+  &__subtitle { 
+    
+    @apply tw-text-xxs xl:tw-text-xs  xl:tw-mb-6 tw-mb-4-1;
   }
 
   &__form {
     max-width: 340px;
+    
     @include space-y(18px);
-    @apply tw-mx-auto;
-
+    @apply tw-mr-auto tw-ml-0;
 
     & > button {
       @apply tw-mt-6;
@@ -35,10 +39,12 @@
 
   &__links {
     @apply tw-text-center tw-text-xxs xl:tw-text-xs;
-    @include space-y(8px);
+    max-width: 340px;
+    // @include space-y(8px);
   }
 
   &__link {
-    @apply tw-block tw-w-full;
+    // @apply tw-block tw-w-full;
+    @apply tw-text-green;
   }
 }

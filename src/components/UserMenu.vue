@@ -65,6 +65,7 @@ export default {
   }
 
   &__btn {
+    word-break: break-all;
     padding: 10px 30px 10px 23px;
     @apply tw-flex tw-items-center tw-bg-dark tw-rounded-base tw-w-full;
 

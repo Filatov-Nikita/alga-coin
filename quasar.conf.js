@@ -46,12 +46,12 @@ module.exports = configure(function (ctx) {
 
       //'roboto-font', // optional, you are not bound to it
       "material-icons", // optional, you are not bound to it
+      "material-icons-round",
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: "hash", // available values: 'hash', 'history'
-
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
@@ -103,12 +103,27 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ["Notify", "Loading"],
+      plugins: ["Notify", "Loading", "Meta"],
     },
 
-    // animations: 'all', // --- includes all animations
+    animations: "all", // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: ["fadeIn", "fadeOut"],
+    animations: [
+      "zoomIn",
+      "zoomOut",
+      "fadeIn",
+      "fadeOut",
+      "fadeOutRight",
+      "fadeInRight",
+      "fadeOutLeft",
+      "fadeInLeft",
+      "slideInDown",
+      "slideOutUp",
+      "slideInLeft",
+      "slideInRight",
+      "slideOutLeft",
+      "slideOutRight",
+    ],
 
     // https://v2.quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
@@ -145,13 +160,14 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `alga coin`,
-        short_name: `alga coin`,
-        description: `This is a wallet`,
+        name: `Alga Ecosystem - Financial Derivatives Platform`,
+        short_name: `Alga Ecosystem`,
+        description: `Alga is a new kind of investing. Our goal is to form a completely new “entry point” into the market to make cryptocurrencies even more democratic financial tool.`,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
         theme_color: "#027be3",
+        url: "https://alga.finance/",
         icons: [
           {
             src: "icons/icon-128x128.png",

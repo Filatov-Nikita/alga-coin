@@ -12,6 +12,5 @@ export default function (name, rules, opts, onInput = undefined) {
     field.errorMessage,
     onInput
   );
-
   return { field, validationListeners };
 }

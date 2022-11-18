@@ -3,8 +3,20 @@ import { markAuth } from "./utilities/auth";
 const routes = [
   {
     path: "/",
-    component: () => import("pages/Landing.vue"),
-    name: "home",
+    component: () => import("layouts/V3/Landing/BaseLayout.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("pages/Landing.vue"),
+        name: "home",
+      },
+
+      {
+        path: "/tokenomics",
+        component: () => import("pages/V3/Tokenomics.vue"),
+        name: "tokenomics",
+      },
+    ],
   },
   {
     path: "/",
@@ -35,7 +47,18 @@ const routes = [
       },
     ],
   },
-
+  {
+    path: "/",
+    component: () => import("layouts/V3/Baselayout.vue"),
+    children: [
+      {
+        path: "index-directive",
+        component: () => import("pages/V3/IndexDirective.vue"),
+        name: "index-directive",
+        props: true,
+      },
+    ],
+  },
   // {
   //   path: "",
   //   component: () => import("layouts/GuestLayout.vue"),
@@ -52,24 +75,28 @@ const routes = [
           component: () => import("pages/Wallet.vue"),
           name: "wallet",
         },
-
+        {
+          path: "profile2",
+          component: () => import("pages/Profile.vue"),
+          name: "profile2",
+        },
         {
           path: "/output",
           component: () => import("pages/Output.vue"),
           name: "output",
         },
 
-        {
-          path: "history",
-          component: () => import("pages/History.vue"),
-          name: "history",
-        },
+        // {
+        //   path: "history",
+        //   component: () => import("pages/History.vue"),
+        //   name: "history",
+        // },
 
-        {
-          path: "/profile",
-          component: () => import("pages/Profile.vue"),
-          name: "profile",
-        },
+        // {
+        //   path: "/profile2",
+        //   component: () => import("pages/Profile.vue"),
+        //   name: "profile2",
+        // },
 
         {
           path: "/polls",
@@ -92,6 +119,45 @@ const routes = [
         path: "/components",
         component: () => import("pages/DebugComponents.vue"),
       },
+    ],
+  },
+
+  {
+    path: "/lk",
+    component: () => import("layouts/V3/Baselayout.vue"),
+    children: [
+      ...markAuth(
+        {
+          path: "profile",
+          component: () => import("pages/V3/Profile.vue"),
+          name: "profile",
+        },
+        {
+          path: "index-directive",
+          component: () => import("pages/V3/IndexDirective.vue"),
+          name: "index-directive",
+        },
+        {
+          path: "history",
+          component: () => import("pages/V3/History.vue"),
+          name: "history",
+        },
+        {
+          path: "portfolio",
+          component: () => import("pages/V3/Portfolio.vue"),
+          name: "portfolio",
+        },
+        {
+          path: "support",
+          component: () => import("pages/V3/Support.vue"),
+          name: "support",
+        }
+        //  {
+        //   path: "index-directive2",
+        //   component: () => import("pages/V3/IndexDirective.vue"),
+        //   name: "index-directive",
+        // },
+      ),
     ],
   },
 

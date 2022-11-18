@@ -4,7 +4,7 @@
       <slot />
     </div>
 
-    <div class="xl:tw-flex xl:tw-justify-between xl:tw-pr-5">
+    <div class="xl:tw-flex xl:tw-justify-between xl:tw-pr-5 tw-items-center">
       <div v-if="$q.screen.xl" class="tw-flex">
         <AppButton
           class="tw-rotate-180 tw-transform"
@@ -21,17 +21,28 @@
           @click="next"
           design="flat"
           :icon="require('assets/images/landing/landing-arrow.svg')"
-          :iconStg="{ width: '60px', height: '18px', fill: themes[theme] }"
+          :iconStg="{
+            width: '60px',
+            height: '18px',
+            fill: isNavDefault ? themes.default : themes[theme],
+          }"
         />
       </div>
       <div class="app-carousel__control tw-px-4">
         <button
           :style="{
-            '--theme-color': colorsDotsByTheme[theme],
-            '--theme-color-active': themes[theme],
+            '--theme-color': isNavDefault
+              ? colorsDotsByTheme.default
+              : colorsDotsByTheme[theme],
+            '--theme-color-active': isNavDefault
+              ? themes.default
+              : themes[theme],
           }"
-          class="app-carousel__dot tw-mt-6"
-          :class="{ 'app-carousel__dot--active': slide === slideName }"
+          class="app-carousel__dot"
+          :class="{
+            'app-carousel__dot--active': slide === slideName,
+            'tw-mt-6': $q.screen.lt.xl,
+          }"
           v-for="slideName in slideList"
           :key="slideName"
           @click="changeSlide(slideName)"
@@ -42,12 +53,12 @@
 </template>
 
 <script>
-import { provide, ref, computed, inject, watchEffect, watch } from 'vue';
+import { provide, ref, computed, inject, watchEffect, watch } from "vue";
 
 export default {
   props: {
     height: {
-      default: '300px',
+      default: "300px",
       type: String,
     },
     theme: {},
@@ -55,28 +66,32 @@ export default {
       default: undefined,
       type: String,
     },
+    isNavDefault: {
+      type: Boolean,
+      default: false,
+    },
   },
-  emit: ['update:modelValue'],
+  emit: ["update:modelValue"],
   setup(props, { emit }) {
-    const themes = inject('themes');
-    const theme = inject('theme');
+    const themes = inject("themes");
+    const theme = inject("theme");
 
     const colorsDotsByTheme = {
-      default: '#005BAA',
-      orange: '#913417',
-      purple: '#6F1C47',
-      red: '#6C080F',
-      darkGreen: '#033A1E',
-      lightGreen: '#0D6438',
-      yellow: '#F79226',
-      indigo: '#1F2377',
-      biruze: '#063443',
-      darkBlue: '#0E3267',
-      blue: '#043267',
+      default: "#005BAA",
+      orange: "#913417",
+      purple: "#6F1C47",
+      red: "#6C080F",
+      darkGreen: "#033A1E",
+      lightGreen: "#0D6438",
+      yellow: "#F79226",
+      indigo: "#1F2377",
+      biruze: "#063443",
+      darkBlue: "#0E3267",
+      blue: "#043267",
     };
 
     const slides = ref(new Set());
-    const slide = ref('');
+    const slide = ref("");
 
     watchEffect(() => {
       if (props.modelValue) {
@@ -85,14 +100,14 @@ export default {
     });
 
     watch(slide, (val) => {
-      emit('update:modelValue', val);
+      emit("update:modelValue", val);
     });
 
-    provide('slides', slides);
-    provide('slide', slide);
-    provide('registrSlide', (name) => {
+    provide("slides", slides);
+    provide("slide", slide);
+    provide("registrSlide", (name) => {
       slides.value.add(name);
-      if (slide.value === '') slide.value = name;
+      if (slide.value === "") slide.value = name;
     });
 
     const changeSlide = (name) => {
@@ -133,16 +148,16 @@ export default {
     };
 
     const handleSwipe = (evt) => {
-      if (evt.direction === 'right') {
+      if (evt.direction === "right") {
         prev();
       } else {
         next();
       }
     };
 
-    provide('unregistrSlide', (name) => {
+    provide("unregistrSlide", (name) => {
       if (slides.value.has(name)) slides.value.delete(name);
-      slide.value = slideList.value[0] || '';
+      slide.value = slideList.value[0] || "";
     });
 
     return {
@@ -182,5 +197,8 @@ export default {
       background: var(--theme-color-active);
     }
   }
+}
+.arrows-carousel {
+  transform: translateX(-18px);
 }
 </style>

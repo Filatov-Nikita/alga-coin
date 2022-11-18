@@ -1,6 +1,6 @@
 <script>
-import { h } from 'vue';
-import { useField, Field } from 'vee-validate';
+import { h } from "vue";
+import { useField, Field } from "vee-validate";
 
 export default {
   props: {
@@ -17,8 +17,8 @@ export default {
       type: String,
     },
     labelClass: {
-      default: '',
-      type: String
+      default: "",
+      type: String,
     },
     ...{ rules: Field.props.rules },
   },
@@ -33,36 +33,38 @@ export default {
 
     return { innerValue, errorMessage };
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   render() {
     const {
       _: { uid: id },
     } = this;
 
-    return h('div', [
-      h('div', { class: 'app-checkbox' }, [
-        h('label', { class: `app-checkbox__label ${this.labelClass}`, for: id }, [
-          this.$slots.default ? this.$slots.default() : this.label || '',
-        ]),
-        h('div', {
+    return h("div", [
+      h("div", { class: "app-checkbox" }, [
+        h(
+          "label",
+          { class: `app-checkbox__label ${this.labelClass}`, for: id },
+          [this.$slots.default ? this.$slots.default() : this.label || ""]
+        ),
+        h("div", {
           id,
-          role: 'checkbox',
+          role: "checkbox",
           class: [
-            'app-checkbox__field',
+            "app-checkbox__field",
             {
-              'app-checkbox__field--active': this.innerValue,
-              'app-checkbox__field--invalid': !!this.errorMessage,
+              "app-checkbox__field--active": this.innerValue,
+              "app-checkbox__field--invalid": !!this.errorMessage,
             },
           ],
           onClick: () => {
             this.innerValue = !this.innerValue;
-            this.$emit('update:modelValue', this.innerValue);
+            this.$emit("update:modelValue", this.innerValue);
           },
         }),
       ]),
 
       this.errorMessage
-        ? h('div', { class: 'app-checkbox__error-message' }, this.errorMessage)
+        ? h("div", { class: "app-checkbox__error-message" }, this.errorMessage)
         : null,
     ]);
   },
@@ -78,9 +80,9 @@ export default {
   }
 
   &__field {
-    width: 20px;
-    height: 20px;
-    border: 2px solid theme('colors.blue');
+    width: 16px;
+    height: 16px;
+    border: 2px solid theme("colors.green");
     border-radius: 4px;
     cursor: pointer;
     position: relative;
@@ -88,7 +90,7 @@ export default {
     flex-shrink: 0;
 
     &--invalid {
-      border-color: theme('colors.invalid');
+      border-color: theme("colors.invalid");
     }
 
     &--active {
