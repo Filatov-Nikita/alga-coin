@@ -1474,7 +1474,7 @@ const i18n = {
       },
       about: {
         title: "About",
-        text: "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives. <br> The underlying cutting edge technology along with a huge background of the core team in  trading makes ALGA the one-stop shop for investments into proven and efficient strategies facilitating entry to the crypto for everyone. These strategies based on index derivatives consisting of many assets selected in the most effective ratio allow to receive solid return on the allocated capital while minimizing risks. <br> The platform is designed by people for people with the only one goal - to ensure comfortable tracking of assets and transparent transactions in order to bring asset management experience to completely new level",
+        text: "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives. <br> The underlying cutting edge technology along with a huge background of the core team in  trading makes ALGA the one-stop shop for investments into proven and efficient strategies facilitating entry to the crypto for everyone. These strategies based on index derivatives consisting of many assets selected with the most efficient ratio allow to receive solid return on the allocated capital while minimizing risks. <br> The platform is designed by the people for the people with only one goal - to ensure comfortable tracking of assets and transparent transactions in order to bring asset management experience to a completely new level",
       },
       indexD: {
         title: "Index Derivatives",
@@ -1512,7 +1512,7 @@ const i18n = {
               "Development of platform MVP",
               "Development of the marketing plan",
               "Creation and content of socials (Facebook, Instagram, Telegram, Reddit)",
-              "Start of the preliminary marketing campaign",
+              "Launch the preliminary marketing campaign",
             ],
           },
           3: {
@@ -1520,7 +1520,7 @@ const i18n = {
             subtitle: "September-November, 2022",
             items: [
               "Company establishment and obtaining of legal documents",
-              "Start of the fundraise",
+              "Launch the fundraising campaign",
               "Offices establishment: Dubai, Moscow, Ufa, Kazan",
               "MVP testing and QA",
               "Platform security audit completion",
@@ -1531,7 +1531,7 @@ const i18n = {
             subtitle: "November 2022-January 2023",
             items: [
               "Start of the global marketing campaign",
-              "Conduction of IEO on CEX",
+              "Perform IEO on CEX",
               "CEX listing",
               "Platform MVP launch",
             ],
@@ -1653,13 +1653,13 @@ const i18n = {
         signin: {
           titleReg: "Registration",
           titleSign: "Personal",
-          text: "For all questions, write to us and the operator will contact you as soon as possible",
+          text: "If you have any questions, please contact us at , and an operator will get back with you as soon as possible",
           createButtonReg: "Registration",
           createButtonSign: "Personal",
         },
         anyquestion: {
           title: "Any questions?",
-          text: "For all questions, write to us and the operator will contact you as soon as possible",
+          text: "If you have any questions, please contact us at , and an operator will get back with you as soon as possible",
           contacrusButton: "Contast us",
           joinButton: "Join our community",
         },

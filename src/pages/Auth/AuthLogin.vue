@@ -55,7 +55,7 @@ const i18n = {
     },
     "en-US": {
       header: "Sign in",
-      subtitle: "Access to your account",
+      subtitle: "Access  your account",
       wrongLogin: "wrong login or password",
     },
     de: {

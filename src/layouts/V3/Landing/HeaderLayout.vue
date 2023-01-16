@@ -161,7 +161,7 @@ const i18n = {
       },
       about: {
         title: "About",
-        text: "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives. <br> The underlying cutting edge technology along with a huge background of the core team in  trading makes ALGA the one-stop shop for investments into proven and efficient strategies facilitating entry to the crypto for everyone. These strategies based on index derivatives consisting of many assets selected in the most effective ratio allow to receive solid return on the allocated capital while minimizing risks. <br> The platform is designed by people for people with the only one goal - to ensure comfortable tracking of assets and transparent transactions in order to bring asset management experience to completely new level.",
+        text: "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives. <br> The underlying cutting edge technology along with a huge background of the core team in  trading makes ALGA the one-stop shop for investments into proven and efficient strategies facilitating entry to the crypto for everyone. These strategies based on index derivatives consisting of many assets selected with the most efficient ratio allow to receive solid return on the allocated capital while minimizing risks. <br> The platform is designed by the people for the people with only one goal - to ensure comfortable tracking of assets and transparent transactions in order to bring asset management experience to a completely new level.",
       },
     },
     "zh-CN": {

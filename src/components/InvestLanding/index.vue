@@ -1076,7 +1076,7 @@ const i18n = {
       },
       question: {
         title: "Any questions?",
-        text: "For all questions, write to us and the operator will contact you as soon as possible",
+        text: "If you have any questions, please contact us at , and an operator will get back with you as soon as possible",
         button: "GET INFO",
       },
     },
