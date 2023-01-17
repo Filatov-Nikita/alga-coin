@@ -10,6 +10,11 @@ const routes = [
         component: () => import("pages/Landing.vue"),
         name: "home",
       },
+      {
+        path: "/about",
+        component: () => import("pages/About.vue"),
+        name: "about",
+      },
 
       {
         path: "/tokenomics",

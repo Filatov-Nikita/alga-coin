@@ -95,7 +95,7 @@
 
   .app-page-bg {
     background: theme("colors.dark-blue-cover");
-    
+
     background-size: cover;
     background-size: auto;
     background-position: bottom;
@@ -106,16 +106,23 @@
     }
   }
 
-    .app-page-bg_auth {
-background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-repeat;
-    }
+  .app-page-bg--dark {
+    background: #0b0e11;
+  }
+
+  .app-page-bg_auth {
+    background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg)
+      no-repeat;
+  }
 
   .app-page-bg_lk {
-    background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk-mob.svg) no-repeat;
+    background: theme("colors.dark-blue-cover")
+      url(~assets/images/bg-lk-mob.svg) no-repeat;
     background-position: center bottom;
     @include screen-xl {
-      background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk.svg) no-repeat;
-          background-position: inherit;
+      background: theme("colors.dark-blue-cover") url(~assets/images/bg-lk.svg)
+        no-repeat;
+      background-position: inherit;
     }
   }
 
@@ -129,7 +136,6 @@ background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg) no-r
 
   .app-logo-2 {
     width: 164px;
-
   }
 
   .app-logo-i {

@@ -3,13 +3,12 @@
     :view="$q.screen.xl ? 'hHh lpR fFf' : 'hhh lpR fFf'"
     class="bg-color tw-relative tw-z-10"
   > -->
-  <V3LangingRedisign />
+  <V3AboutRedisign />
   <!-- </q-layout> -->
 </template>
 
 <script>
-import V3Langing from "src/components/V3Langing/index";
-import V3LangingRedisign from "src/components/V3LangingRedisign/index";
+import V3AboutRedisign from "src/components/V3AboutRedisign/index";
 import InvestLanding from "src/components/InvestLanding";
 import LandingSectionAdvantages from "src/components/Landing/LandingSectionAdvantages.vue";
 import LandingSectionFeatures from "src/components/Landing/LandingSectionFeatures.vue";
@@ -146,8 +145,7 @@ export default {
     LandingSectionDesctopEcosystem,
     LandngSectionMobileFooter,
     InvestLanding,
-    V3Langing,
-    V3LangingRedisign,
+    V3AboutRedisign,
   },
 };
 </script>

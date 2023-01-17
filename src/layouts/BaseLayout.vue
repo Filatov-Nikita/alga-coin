@@ -1,6 +1,6 @@
 <template>
   <q-layout
-    class="app-page-bg"
+    class="app-page-bg_auth"
     :view="$q.screen.xl ? 'lhh lpR fff' : 'lhh lpR fFf'"
   >
     <HeaderBase />
@@ -12,7 +12,9 @@
         <div class="tw-container">
           <div class="header-desktop">
             <span> Alga© {{ $fullYear }} </span>
-            <AppLink to="#" target="_blank">{{$t('landing.footer.serviceInfo')}}</AppLink>
+            <AppLink to="#" target="_blank">{{
+              $t("landing.footer.serviceInfo")
+            }}</AppLink>
           </div>
         </div>
       </div>
@@ -22,8 +24,8 @@
 </template>
 
 <script>
-import TheBottomMenu from 'src/components/TheBottomMenu.vue';
-import HeaderBase from './HeaderBase.vue';
+import TheBottomMenu from "src/components/TheBottomMenu.vue";
+import HeaderBase from "./HeaderBase.vue";
 
 export default {
   components: {

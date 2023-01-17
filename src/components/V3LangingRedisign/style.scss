@@ -1,5 +1,63 @@
+header {
+  height: 100vh;
+
+  background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 20.83%),
+    url(./img/header.png) center no-repeat;
+  background-size: cover;
+  .header__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 19px 0;
+  }
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    &__title {
+      font-weight: 500;
+      font-size: 62px;
+      line-height: 90%;
+      /* or 86px */
+      text-transform: uppercase;
+      margin-bottom: 25px;
+
+      /* Main Gradient */
+
+      background: linear-gradient(0deg, #07ae31, #07ae31);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+    &__derivative {
+      display: flex;
+      gap: 9px;
+      min-width: 129px;
+      flex-basis: 129px;
+      min-height: 60px;
+      background: rgba(11, 14, 17, 0.66);
+      border-radius: 9.00881px;
+      padding: 11px 6px;
+      .buy {
+        font-size: 6px;
+        line-height: 8px;
+        &-arrow {
+          height: 6px;
+        }
+      }
+    }
+  }
+}
+
 .section {
-  margin-top: 5rem;
+  margin-top: 5.625rem;
+}
+
+.title {
+  font-size: 2.75rem;
+  line-height: 120%;
 }
 
 .card-big {
@@ -12,25 +70,25 @@
 
   background: #141734;
   z-index: 1;
-  &::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: url("src/assets/icons/touch.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 155%;
-    border-radius: 24px;
-    mix-blend-mode: luminosity;
-    z-index: 0;
-    @media screen and (min-width: 1200px) {
-      background-size: 110%;
-    }
-  }
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 100%;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   background: url("src/assets/icons/touch.svg");
+  //   background-repeat: no-repeat;
+  //   background-position: center;
+  //   background-size: 155%;
+  //   border-radius: 24px;
+  //   mix-blend-mode: luminosity;
+  //   z-index: 0;
+  //   @media screen and (min-width: 1200px) {
+  //     background-size: 110%;
+  //   }
+  // }
   button {
     position: relative;
   }
@@ -86,16 +144,69 @@
   position: relative;
 }
 .button {
-  background: linear-gradient(180deg, #4ad66d 0%, #04ac2e 100%);
-  padding-right: 22.05px;
-  padding-left: 22.05px;
-  border-radius: 12px;
-  min-height: 60px;
-  padding: 20px;
+  border-radius: 10px;
+
+  padding: 18px;
   font-size: 1rem;
   color: #fff;
   position: relative;
-  line-height: 19px;
+  font-size: 14.5131px;
+
+  line-height: 130%;
+  transition: all 0.3s ease;
+  &_xs {
+    min-height: 41px;
+    padding: 11px;
+  }
+  &_base {
+    min-height: 54px;
+  }
+  &_lg {
+    min-height: 60px;
+  }
+  &_green {
+    background: #07ae31;
+    &:hover,
+    &:active {
+      background: #088b29;
+      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+  &_minw {
+    &-md {
+      min-width: 169px;
+    }
+    &-base {
+      min-width: 207px;
+    }
+  }
+  &_border-white {
+    border: 1.04072px solid #ffffff;
+  }
+  &__login {
+    min-width: 104px;
+  }
+  &_border-green {
+    outline: 1.26px solid #07ae31;
+  }
+  &_tranparent {
+    background: transparent;
+  }
+  &
+  // &_minw {
+  //   &-xs {
+  //     min-width: 104px;
+  //   }
+  //   &-md {
+  //     min-width: 169px;
+  //   }
+  //   &-base {
+  //     min-width: 217px;
+  //   }
+  // }
+
+  &-border {
+  }
 }
 
 .circle {
@@ -116,14 +227,31 @@
 }
 
 .card {
-  border-radius: 24px;
+  border-radius: 7.80016px;
   padding: 20px 25px;
 
   backdrop-filter: blur(30.4091px);
+  &_border {
+    border: 1.04002px solid #575656;
+  }
   &__border-line {
     background: rgba(20, 23, 52, 0.112);
     box-shadow: inset 1.86559px -1.86559px 1.86559px rgba(40, 48, 121, 0.424),
       inset -1.86559px 1.86559px 1.86559px rgba(255, 255, 255, 0.424);
+  }
+}
+
+.card-derivative {
+  .tokens {
+    color: #bec3ff;
+    white-space: nowrap;
+  }
+
+  .buy {
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #494d72;
   }
 }
 
@@ -351,36 +479,36 @@ footer {
       display: none;
     }
   }
-  &_1 {
-    &::before {
-      background-image: url(./icons/stage-icon-1.svg);
-    }
-  }
-  &_2 {
-    &::before {
-      background-image: url(./icons/stage-icon-2.svg);
-    }
-  }
-  &_3 {
-    &::before {
-      background-image: url(./icons/stage-icon-6.svg);
-    }
-  }
-  &_4 {
-    &::before {
-      background-image: url(./icons/stage-icon-4.svg);
-    }
-  }
-  &_5 {
-    &::before {
-      background-image: url(./icons/stage-icon-5.svg);
-    }
-  }
-  &_6 {
-    &::before {
-      background-image: url(./icons/stage-icon-6.svg);
-    }
-  }
+  // &_1 {
+  //   &::before {
+  //     background-image: url(./icons/stage-icon-1.svg);
+  //   }
+  // }
+  // &_2 {
+  //   &::before {
+  //     background-image: url(./icons/stage-icon-2.svg);
+  //   }
+  // }
+  // &_3 {
+  //   &::before {
+  //     background-image: url(./icons/stage-icon-6.svg);
+  //   }
+  // }
+  // &_4 {
+  //   &::before {
+  //     background-image: url(./icons/stage-icon-4.svg);
+  //   }
+  // }
+  // &_5 {
+  //   &::before {
+  //     background-image: url(./icons/stage-icon-5.svg);
+  //   }
+  // }
+  // &_6 {
+  //   &::before {
+  //     background-image: url(./icons/stage-icon-6.svg);
+  //   }
+  // }
   &-wrapper {
     position: relative;
     .button-arrow {
