@@ -70,7 +70,10 @@ header {
 }
 
 .section {
-  margin-top: 5.625rem;
+  margin-top: 2rem;
+  @media screen and (min-width: 1200px) {
+    margin-top: 5.625rem;
+  }
 }
 
 .title {
@@ -400,9 +403,15 @@ footer {
 }
 .roadmap__list {
   display: flex;
+  flex-wrap: wrap;
+  @media screen and (min-width: 1200px) {
+    flex-wrap: nowrap;
+  }
   &:last-child {
-    border-top: 1px solid #575656;
-    justify-content: flex-end;
+    @media screen and (min-width: 1200px) {
+      border-top: 1px solid #575656;
+      justify-content: flex-end;
+    }
   }
 }
 .roadmap__item {
@@ -410,20 +419,24 @@ footer {
   padding: 22px;
   overflow: hidden;
   position: relative;
-  width: 283px;
-
+  width: 100%;
   @media screen and (min-width: 1200px) {
+    width: 283px;
     // padding: 40px 60px;
   }
   &:nth-child(1) {
-    border-right: 1px solid #575656;
-    border-left: 1px solid #575656;
+    @media screen and (min-width: 1200px) {
+      border-right: 1px solid #575656;
+      border-left: 1px solid #575656;
+    }
   }
   &:nth-child(2) {
   }
   &:nth-child(3) {
-    border-right: 1px solid #575656;
-    border-left: 1px solid #575656;
+    @media screen and (min-width: 1200px) {
+      border-right: 1px solid #575656;
+      border-left: 1px solid #575656;
+    }
   }
 
   .item {
@@ -462,21 +475,6 @@ footer {
     &__list {
       font-size: 13.291px;
       line-height: 130%;
-    }
-  }
-  &::before {
-    transition: all 0.9s ease;
-    mix-blend-mode: darken;
-    width: 280px;
-    height: 280px;
-    right: -80px;
-    bottom: -80px;
-    position: absolute;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: inherit;
-    @media screen and (min-width: 1200px) {
-      display: none;
     }
   }
   // &_1 {
@@ -554,9 +552,8 @@ footer {
       position: relative;
       padding-left: 15px;
       &:last-child {
-        margin-bottom: 60px;
         @media screen and (min-width: 1200px) {
-          margin-bottom: 0;
+          margin-bottom: 60px;
         }
       }
       &::after {
@@ -589,6 +586,11 @@ footer {
     }
   }
 }
-.q-carousel__prev-arrow--horizontal {
-  left: 0 !important;
+
+.tokenomics {
+  &__card {
+    padding: 30px 32px 39px;
+    border-radius: 7.80016px;
+    border: 1.04002px solid #575656;
+  }
 }

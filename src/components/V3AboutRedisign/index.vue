@@ -10,29 +10,279 @@
             class="tw-cursor-pointer"
             @click="$router.push({ name: 'home' })"
           />
-          <div class="tw-flex tw-gap-10">
-            <button>Index Derivatives</button>
-            <button>My portfolio</button>
-            <button>History</button>
-            <button>Support</button>
-          </div>
-          <div>
-            <button class="button button_xs button_border-white button__login">
-              Login
+
+          <div class="tw-hidden xl:tw-flex xl:tw-gap-10">
+            <button @click="$router.push({ name: 'index-directive' })">
+              {{ t("header.nav[0]") }}
             </button>
+            <a
+              class="tw-text-white hover:tw-text-white"
+              href="https://t.me/algafinancechat"
+              target="_blank"
+              >{{ t("header.nav[1]") }}</a
+            >
+          </div>
+          <div class="tw-flex tw-items-center tw-gap-4">
+            <button
+              v-if="isAuth"
+              class="button button_xs button_border-white button__login"
+              @click="$router.push({ name: 'index-directive' })"
+            >
+              {{ t("lk") }}
+            </button>
+            <button
+              v-else
+              class="button button_xs button_border-white button__login"
+              @click="$router.push({ name: 'auth.login' })"
+            >
+              {{ t("dropdown.buttons.login") }}
+            </button>
+            <div class="mob-n">
+              <Locale />
+            </div>
+            <div class="desk-n">
+              <button class="burger" @click="dropDown = !dropDown">
+                <span></span><span></span><span></span>
+              </button>
+            </div>
           </div>
         </div>
         <div class="header-content">
           <div class="header-content__top">
-            <h2 class="header-content__top-title">About us</h2>
+            <h2 class="header-content__top-title">{{ t("header.title") }}</h2>
             <p class="header-content__top-text">
-              ALGA is a brand new CeFi platform for the implementation of
-              different investment strategies based on index derivatives.
+              {{ t("header.subtitle") }}
             </p>
           </div>
           <div class="header-content__bottom">
-            <h2 class="title">{{ t("team.title") }}</h2>
-            <div class="xl:tw-mt-10 tw-relative">
+            <h2 class="title tw-mb-4">{{ t("team.title") }}</h2>
+            <div class="xl:tw-hidden xl:tw-mt-10 tw-relative">
+              <q-carousel
+                v-model="slideTeam"
+                transition-prev="scale"
+                transition-next="scale"
+                swipeable
+                animated
+                navigation
+                padding
+                class="bg-transparent tw-mb-7.5 test"
+                height="100%"
+              >
+                <template
+                  v-slot:navigation-icon="{ index, active, btnProps, onClick }"
+                >
+                  <button
+                    class="slide-paginate active"
+                    v-if="active"
+                    @click="onClick"
+                  >
+                    {{ index + 1 }}
+                  </button>
+                  <button class="slide-paginate" v-else @click="onClick">
+                    {{ index + 1 }}
+                  </button>
+                </template>
+                <q-carousel-slide name="1" class="tw-flex tw-gap-5 tw-mb-15">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/karazbaev.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.1.name") }} <br />
+                        {{ t("team.peoples.1.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.1.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+                <q-carousel-slide name="2" class="tw-flex tw-gap-5 tw-mb-15">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/sadreev.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.2.name") }} <br />
+                        {{ t("team.peoples.2.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.2.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+                <q-carousel-slide name="3" class="tw-flex tw-gap-5 tw-mb-15">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/latypov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.3.name") }} <br />
+                        {{ t("team.peoples.3.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.3.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+                <q-carousel-slide name="4" class="tw-flex tw-gap-5 tw-mb-15">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/sharipov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.4.name") }} <br />
+                        {{ t("team.peoples.4.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.4.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+                <q-carousel-slide name="5" class="tw-flex tw-gap-5 tw-mb-15">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/razyapov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.5.name") }} <br />
+                        {{ t("team.peoples.5.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.5.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+                <q-carousel-slide name="6" class="tw-flex tw-gap-5 tw-mb-15">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/yunusov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.6.name") }} <br />
+                        {{ t("team.peoples.6.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.6.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+                <q-carousel-slide name="7" class="tw-flex tw-gap-5 tw-mb-15">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/karimov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.7.name") }} <br />
+                        {{ t("team.peoples.7.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.7.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+                <q-carousel-slide name="8" class="tw-flex tw-gap-5 tw-mb-15">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/tabakov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.8.name") }} <br />
+                        {{ t("team.peoples.8.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.8.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+                <q-carousel-slide name="9" class="tw-flex tw-gap-5 tw-mb-15">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/lobastov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.9.name") }} <br />
+                        {{ t("team.peoples.9.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.9.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+              </q-carousel>
+            </div>
+            <div class="tw-hidden xl:tw-block xl:tw-mt-10 tw-relative">
               <q-carousel
                 v-model="slideTeam"
                 transition-prev="scale"
@@ -44,10 +294,6 @@
                 height="100%"
                 ref="carousel_star"
               >
-                <!-- control-type="regular"
-                  arrows
-                control-color="arrow-brand"
-                control-text-color="arrow-brand" -->
                 <q-carousel-slide name="1" class="tw-flex tw-gap-5">
                   <div class="star">
                     <div class="star__avatar">
@@ -75,18 +321,18 @@
                       <div class="star-avatar__wrapper">
                         <img
                           class="star-avatar__img"
-                          src="./img/karazbaev.png"
+                          src="./img/sadreev.png"
                           alt=""
                         />
                       </div>
                     </div>
                     <div class="star__content">
                       <h4 class="star__content-title">
-                        {{ t("team.peoples.1.name") }} <br />
-                        {{ t("team.peoples.1.lastName") }}
+                        {{ t("team.peoples.2.name") }} <br />
+                        {{ t("team.peoples.2.lastName") }}
                       </h4>
                       <p class="star__content-text">
-                        {{ t("team.peoples.1.bio") }}
+                        {{ t("team.peoples.2.bio") }}
                       </p>
                     </div>
                   </div>
@@ -96,18 +342,18 @@
                       <div class="star-avatar__wrapper">
                         <img
                           class="star-avatar__img"
-                          src="./img/karazbaev.png"
+                          src="./img/latypov.png"
                           alt=""
                         />
                       </div>
                     </div>
                     <div class="star__content">
                       <h4 class="star__content-title">
-                        {{ t("team.peoples.1.name") }} <br />
-                        {{ t("team.peoples.1.lastName") }}
+                        {{ t("team.peoples.3.name") }} <br />
+                        {{ t("team.peoples.3.lastName") }}
                       </h4>
                       <p class="star__content-text">
-                        {{ t("team.peoples.1.bio") }}
+                        {{ t("team.peoples.3.bio") }}
                       </p>
                     </div>
                   </div>
@@ -118,18 +364,18 @@
                       <div class="star-avatar__wrapper">
                         <img
                           class="star-avatar__img"
-                          src="./img/karazbaev.png"
+                          src="./img/sharipov.png"
                           alt=""
                         />
                       </div>
                     </div>
                     <div class="star__content">
                       <h4 class="star__content-title">
-                        {{ t("team.peoples.1.name") }} <br />
-                        {{ t("team.peoples.1.lastName") }}
+                        {{ t("team.peoples.4.name") }} <br />
+                        {{ t("team.peoples.4.lastName") }}
                       </h4>
                       <p class="star__content-text">
-                        {{ t("team.peoples.1.bio") }}
+                        {{ t("team.peoples.4.bio") }}
                       </p>
                     </div>
                   </div>
@@ -139,18 +385,18 @@
                       <div class="star-avatar__wrapper">
                         <img
                           class="star-avatar__img"
-                          src="./img/karazbaev.png"
+                          src="./img/razyapov.png"
                           alt=""
                         />
                       </div>
                     </div>
                     <div class="star__content">
                       <h4 class="star__content-title">
-                        {{ t("team.peoples.1.name") }} <br />
-                        {{ t("team.peoples.1.lastName") }}
+                        {{ t("team.peoples.5.name") }} <br />
+                        {{ t("team.peoples.5.lastName") }}
                       </h4>
                       <p class="star__content-text">
-                        {{ t("team.peoples.1.bio") }}
+                        {{ t("team.peoples.5.bio") }}
                       </p>
                     </div>
                   </div>
@@ -160,18 +406,82 @@
                       <div class="star-avatar__wrapper">
                         <img
                           class="star-avatar__img"
-                          src="./img/karazbaev.png"
+                          src="./img/yunusov.png"
                           alt=""
                         />
                       </div>
                     </div>
                     <div class="star__content">
                       <h4 class="star__content-title">
-                        {{ t("team.peoples.1.name") }} <br />
-                        {{ t("team.peoples.1.lastName") }}
+                        {{ t("team.peoples.6.name") }} <br />
+                        {{ t("team.peoples.6.lastName") }}
                       </h4>
                       <p class="star__content-text">
-                        {{ t("team.peoples.1.bio") }}
+                        {{ t("team.peoples.6.bio") }}
+                      </p>
+                    </div>
+                  </div>
+                </q-carousel-slide>
+                <q-carousel-slide name="3" class="tw-flex tw-gap-5">
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/karimov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.7.name") }} <br />
+                        {{ t("team.peoples.7.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.7.bio") }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/tabakov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.8.name") }} <br />
+                        {{ t("team.peoples.8.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.8.bio") }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="star">
+                    <div class="star__avatar">
+                      <div class="star-avatar__wrapper">
+                        <img
+                          class="star-avatar__img"
+                          src="./img/lobastov.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="star__content">
+                      <h4 class="star__content-title">
+                        {{ t("team.peoples.9.name") }} <br />
+                        {{ t("team.peoples.9.lastName") }}
+                      </h4>
+                      <p class="star__content-text">
+                        {{ t("team.peoples.9.bio") }}
                       </p>
                     </div>
                   </div>
@@ -197,7 +507,7 @@
     </header>
     <section class="section roadmap">
       <div class="tw-container">
-        <h2 class="title tw-mb-14">{{ t("roadmap.title") }}</h2>
+        <h2 class="title tw-mb-4 xl:tw-mb-14">{{ t("roadmap.title") }}</h2>
         <div class="roadmap__list">
           <div class="roadmap__item item">
             <div class="tw-flex">
@@ -211,11 +521,7 @@
                 </h5>
               </div>
             </div>
-            <ul
-              class="roadmap__item-list"
-              :class="roadmap == '1' ? 'active' : ''"
-              id="roadmap-1"
-            >
+            <ul class="roadmap__item-list" id="roadmap-1">
               <li>
                 {{ t("roadmap.stages.1.items.0") }}
               </li>
@@ -229,435 +535,212 @@
           </div>
           <div class="roadmap__item item">
             <div class="tw-flex">
-              <img src="./icons/stage-1.png" alt="" class="item__icon" />
+              <img src="./icons/stage-2.png" alt="" class="item__icon" />
               <div>
                 <h2 class="item__title">
-                  {{ t("roadmap.stages.1.title") }}
-                </h2>
-                <h5 class="item__subtitle">
-                  {{ t("roadmap.stages.1.subtitle") }}
-                </h5>
-              </div>
-            </div>
-            <ul
-              class="roadmap__item-list"
-              :class="roadmap == '1' ? 'active' : ''"
-              id="roadmap-1"
-            >
-              <li>
-                {{ t("roadmap.stages.1.items.0") }}
-              </li>
-              <li>
-                {{ t("roadmap.stages.1.items.1") }}
-              </li>
-              <li>
-                {{ t("roadmap.stages.1.items.2") }}
-              </li>
-            </ul>
-          </div>
-          <div class="roadmap__item item">
-            <div class="tw-flex">
-              <img src="./icons/stage-1.png" alt="" class="item__icon" />
-              <div>
-                <h2 class="item__title">
-                  {{ t("roadmap.stages.1.title") }}
-                </h2>
-                <h5 class="item__subtitle">
-                  {{ t("roadmap.stages.1.subtitle") }}
-                </h5>
-              </div>
-            </div>
-            <ul
-              class="roadmap__item-list"
-              :class="roadmap == '1' ? 'active' : ''"
-              id="roadmap-1"
-            >
-              <li>
-                {{ t("roadmap.stages.1.items.0") }}
-              </li>
-              <li>
-                {{ t("roadmap.stages.1.items.1") }}
-              </li>
-              <li>
-                {{ t("roadmap.stages.1.items.2") }}
-              </li>
-            </ul>
-          </div>
-          <!-- <div
-            class="card card__border-line roadmap__item roadmap__item_1"
-            :class="roadmap == '1' ? 'active' : ''"
-            @click="toggleRoadmap('1')"
-          >
-            <div class="roadmap__item-wrapper">
-              <div
-                class="roadmap__item-header"
-                :class="roadmap == '1' ? 'active' : ''"
-              >
-                <img src="./icons/icon-1.svg" alt="" />
-                <h2>
-                  {{ t("roadmap.stages.1.title") }}
-                </h2>
-                <h5>{{ t("roadmap.stages.1.subtitle") }}</h5>
-              </div>
-              <ul
-                class="roadmap__item-list"
-                :class="roadmap == '1' ? 'active' : ''"
-                id="roadmap-1"
-              >
-                <li>
-                  {{ t("roadmap.stages.1.items.0") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.1.items.1") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.1.items.2") }}
-                </li>
-              </ul>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="roadmap == '1' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-          </div>
-          <div
-            class="card card__border-line roadmap__item roadmap__item_2"
-            :class="roadmap == '2' ? 'active' : ''"
-            @click="toggleRoadmap('2')"
-          >
-            <div class="roadmap__item-wrapper">
-              <div
-                class="roadmap__item-header"
-                :class="roadmap == '2' ? 'active' : ''"
-              >
-                <img src="./icons/icon-2.svg" alt="" />
-                <h2>
                   {{ t("roadmap.stages.2.title") }}
                 </h2>
-                <h5>{{ t("roadmap.stages.2.subtitle") }}</h5>
+                <h5 class="item__subtitle">
+                  {{ t("roadmap.stages.2.subtitle") }}
+                </h5>
               </div>
-              <ul
-                class="roadmap__item-list"
-                :class="roadmap == '2' ? 'active' : ''"
-                id="roadmap-2"
-              >
-                <li>
-                  {{ t("roadmap.stages.2.items.0") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.2.items.1") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.2.items.2") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.2.items.3") }}
-                </li>
-              </ul>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="roadmap == '2' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
             </div>
+            <ul class="roadmap__item-list">
+              <li>
+                {{ t("roadmap.stages.2.items.0") }}
+              </li>
+              <li>
+                {{ t("roadmap.stages.2.items.1") }}
+              </li>
+              <li>
+                {{ t("roadmap.stages.2.items.2") }}
+              </li>
+              <li>
+                {{ t("roadmap.stages.2.items.3") }}
+              </li>
+            </ul>
           </div>
-          <div
-            class="card card__border-line roadmap__item roadmap__item_3"
-            :class="roadmap == '3' ? 'active' : ''"
-            @click="toggleRoadmap('3')"
-          >
-            <div class="roadmap__item-wrapper">
-              <div
-                class="roadmap__item-header"
-                :class="roadmap == '3' ? 'active' : ''"
-              >
-                <img src="./icons/icon-3.svg" alt="" />
-                <h2>
+          <div class="roadmap__item item">
+            <div class="tw-flex">
+              <img src="./icons/stage-2.png" alt="" class="item__icon" />
+              <div>
+                <h2 class="item__title">
                   {{ t("roadmap.stages.3.title") }}
                 </h2>
-                <h5>{{ t("roadmap.stages.3.subtitle") }}</h5>
+                <h5 class="item__subtitle">
+                  {{ t("roadmap.stages.3.subtitle") }}
+                </h5>
               </div>
-              <ul
-                class="roadmap__item-list"
-                :class="roadmap == '3' ? 'active' : ''"
-                id="roadmap-3"
-              >
-                <li>
-                  {{ t("roadmap.stages.3.items.0") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.3.items.1") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.3.items.2") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.3.items.3") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.3.items.4") }}
-                </li>
-              </ul>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="roadmap == '3' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
             </div>
+            <ul class="roadmap__item-list">
+              <li>
+                {{ t("roadmap.stages.3.items.0") }}
+              </li>
+              <li>
+                {{ t("roadmap.stages.3.items.1") }}
+              </li>
+              <li>
+                {{ t("roadmap.stages.3.items.2") }}
+              </li>
+              <li>
+                {{ t("roadmap.stages.3.items.3") }}
+              </li>
+            </ul>
           </div>
-          <div
-            class="card card__border-line roadmap__item roadmap__item_4"
-            :class="roadmap == '4' ? 'active' : ''"
-            @click="toggleRoadmap('4')"
-          >
-            <div class="roadmap__item-wrapper">
-              <div
-                class="roadmap__item-header"
-                :class="roadmap == '4' ? 'active' : ''"
-              >
-                <img src="./icons/icon-4.svg" alt="" />
-                <h2>
-                  {{ t("roadmap.stages.4.title") }}
-                </h2>
-                <h5>{{ t("roadmap.stages.4.subtitle") }}</h5>
-              </div>
-              <ul
-                class="roadmap__item-list"
-                :class="roadmap == '4' ? 'active' : ''"
-                id="roadmap-4"
-              >
-                <li>
-                  {{ t("roadmap.stages.4.items.0") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.4.items.1") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.4.items.2") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.4.items.3") }}
-                </li>
-              </ul>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="roadmap == '4' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-          </div>
-          <div
-            class="card card__border-line roadmap__item roadmap__item_5"
-            :class="roadmap == '5' ? 'active' : ''"
-            @click="toggleRoadmap('5')"
-          >
-            <div class="roadmap__item-wrapper">
-              <div
-                class="roadmap__item-header"
-                :class="roadmap == '5' ? 'active' : ''"
-              >
-                <img src="./icons/icon-5.svg" alt="" />
-                <h2>
-                  {{ t("roadmap.stages.5.title") }}
-                </h2>
-                <h5>{{ t("roadmap.stages.5.subtitle") }}</h5>
-              </div>
-              <ul
-                class="roadmap__item-list"
-                :class="roadmap == '5' ? 'active' : ''"
-                id="roadmap-5"
-              >
-                <li>
-                  {{ t("roadmap.stages.5.items.0") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.5.items.1") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.5.items.2") }}
-                </li>
-              </ul>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="roadmap == '5' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-          </div>
-          <div
-            class="card card__border-line roadmap__item roadmap__item_6"
-            :class="roadmap == '6' ? 'active' : ''"
-            @click="toggleRoadmap('6')"
-          >
-            <div class="roadmap__item-wrapper">
-              <div
-                class="roadmap__item-header"
-                :class="roadmap == '6' ? 'active' : ''"
-              >
-                <img src="./icons/icon-6.svg" alt="" />
-                <h2>
-                  {{ t("roadmap.stages.6.title") }}
-                </h2>
-                <h5>{{ t("roadmap.stages.6.subtitle") }}</h5>
-              </div>
-              <ul
-                class="roadmap__item-list"
-                :class="roadmap == '6' ? 'active' : ''"
-                id="roadmap-6"
-              >
-                <li>
-                  {{ t("roadmap.stages.6.items.0") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.6.items.1") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.6.items.2") }}
-                </li>
-                <li>
-                  {{ t("roadmap.stages.6.items.3") }}
-                </li>
-              </ul>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="roadmap == '6' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-          </div> -->
         </div>
         <div class="roadmap__list">
           <div class="roadmap__item item">
             <div class="tw-flex">
-              <img src="./icons/stage-1.png" alt="" class="item__icon" />
+              <img src="./icons/stage-4.png" alt="" class="item__icon" />
               <div>
                 <h2 class="item__title">
-                  {{ t("roadmap.stages.1.title") }}
+                  {{ t("roadmap.stages.4.title") }}
                 </h2>
                 <h5 class="item__subtitle">
-                  {{ t("roadmap.stages.1.subtitle") }}
+                  {{ t("roadmap.stages.4.subtitle") }}
                 </h5>
               </div>
             </div>
-            <ul
-              class="roadmap__item-list"
-              :class="roadmap == '1' ? 'active' : ''"
-              id="roadmap-1"
-            >
+            <ul class="roadmap__item-list">
               <li>
-                {{ t("roadmap.stages.1.items.0") }}
+                {{ t("roadmap.stages.4.items.0") }}
               </li>
               <li>
-                {{ t("roadmap.stages.1.items.1") }}
+                {{ t("roadmap.stages.4.items.1") }}
               </li>
               <li>
-                {{ t("roadmap.stages.1.items.2") }}
+                {{ t("roadmap.stages.4.items.2") }}
+              </li>
+              <li>
+                {{ t("roadmap.stages.4.items.3") }}
               </li>
             </ul>
           </div>
           <div class="roadmap__item item">
             <div class="tw-flex">
-              <img src="./icons/stage-1.png" alt="" class="item__icon" />
+              <img src="./icons/stage-5.png" alt="" class="item__icon" />
               <div>
                 <h2 class="item__title">
-                  {{ t("roadmap.stages.1.title") }}
+                  {{ t("roadmap.stages.5.title") }}
                 </h2>
                 <h5 class="item__subtitle">
-                  {{ t("roadmap.stages.1.subtitle") }}
+                  {{ t("roadmap.stages.5.subtitle") }}
                 </h5>
               </div>
             </div>
-            <ul
-              class="roadmap__item-list"
-              :class="roadmap == '1' ? 'active' : ''"
-              id="roadmap-1"
-            >
+            <ul class="roadmap__item-list">
               <li>
-                {{ t("roadmap.stages.1.items.0") }}
+                {{ t("roadmap.stages.5.items.0") }}
               </li>
               <li>
-                {{ t("roadmap.stages.1.items.1") }}
+                {{ t("roadmap.stages.5.items.1") }}
               </li>
               <li>
-                {{ t("roadmap.stages.1.items.2") }}
+                {{ t("roadmap.stages.5.items.2") }}
               </li>
             </ul>
           </div>
           <div class="roadmap__item item">
             <div class="tw-flex">
-              <img src="./icons/stage-1.png" alt="" class="item__icon" />
+              <img src="./icons/stage-6.png" alt="" class="item__icon" />
               <div>
                 <h2 class="item__title">
-                  {{ t("roadmap.stages.1.title") }}
+                  {{ t("roadmap.stages.6.title") }}
                 </h2>
                 <h5 class="item__subtitle">
-                  {{ t("roadmap.stages.1.subtitle") }}
+                  {{ t("roadmap.stages.6.subtitle") }}
                 </h5>
               </div>
             </div>
-            <ul
-              class="roadmap__item-list"
-              :class="roadmap == '1' ? 'active' : ''"
-              id="roadmap-1"
-            >
+            <ul class="roadmap__item-list">
               <li>
-                {{ t("roadmap.stages.1.items.0") }}
+                {{ t("roadmap.stages.6.items.0") }}
               </li>
               <li>
-                {{ t("roadmap.stages.1.items.1") }}
+                {{ t("roadmap.stages.6.items.1") }}
               </li>
               <li>
-                {{ t("roadmap.stages.1.items.2") }}
+                {{ t("roadmap.stages.6.items.2") }}
+              </li>
+              <li>
+                {{ t("roadmap.stages.6.items.3") }}
               </li>
             </ul>
           </div>
         </div>
       </div>
     </section>
+    <section class="section tokenomics">
+      <div class="tw-container">
+        <h2 class="title title tw-mb-4 xl:tw-mb-14">
+          {{ t("tokenomics.title") }}
+        </h2>
+        <div class="tokenomics__card">
+          <Tokenomics />
+        </div>
+      </div>
+    </section>
+    <Teleport to="body">
+      <transition
+        appear
+        mode="out-in"
+        enter-active-class="animated slideInLeft"
+        leave-active-class="animated slideOutLeft"
+      >
+        <div class="dropdown tw-h-full" v-if="dropDown">
+          <div class="tw-container tw-h-full">
+            <div
+              class="dropdown__wrapper tw-flex tw-justify-between tw-gap-1 tw-h-full"
+            >
+              <div class="dropdown__top tw-flex tw-justify-between tw-w-full">
+                <img
+                  :src="require('assets/images/logo-v3.svg')"
+                  alt="logo"
+                  class="tw-cursor-pointer"
+                  @click="
+                    () => {
+                      $router.push({ name: 'home' });
+                      dropDown = !dropDown;
+                    }
+                  "
+                />
+
+                <div class="tw-flex">
+                  <q-btn
+                    flat
+                    round
+                    icon="close"
+                    @click="dropDown = !dropDown"
+                  />
+                </div>
+              </div>
+              <div class="dropdown__middle">
+                <button @click="$router.push({ name: 'index-directive' })">
+                  {{ t("header.nav[0]") }}
+                </button>
+                <a
+                  class="tw-text-white hover:tw-text-white"
+                  href="https://t.me/algafinancechat"
+                  target="_blank"
+                  >{{ t("header.nav[1]") }}</a
+                >
+              </div>
+              <div class="dropdown__bottom">
+                <Locale />
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </Teleport>
   </div>
 </template>
 <script>
 import { ref, computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
-
+import Tokenomics from "../V3/Tokenomics.vue";
+import Locale from "src/components/V3/LocaleButtonsRedisign.vue";
 import MiniAreaChart from "src/components/V3/MiniAreaChart.vue";
 import MarkIcon from "src/components/V3/MarkIcon.vue";
 const i18n = {
@@ -671,36 +754,21 @@ const i18n = {
         },
       },
       header: {
-        title: "Алга",
-        subtitle: "Платформа <br> Индексных <br> Деривативов",
+        title: "О нас",
+        subtitle:
+          "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов.",
+        nav: ["Индексные деривативы", "Поддержка"],
       },
       about: {
         title: "О нас",
         text: "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов. <br> Лежащая в основе передовая технология, наряду с огромным опытом основной команды в области торговли, делает ALGA универсальным сервисом для инвестиций в проверенные и эффективные стратегии, облегчающие вход в криптовалюту для всех. Эти стратегии, основанные на индексных деривативах, состоящих из множества активов, подобранных в наиболее эффективном соотношении, позволяют получать солидный доход на вложенный капитал при минимизации рисков. <br> Платформа создана людьми для людей с единственной целью - обеспечить комфортное отслеживание активов и прозрачность транзакций, чтобы вывести опыт управления активами на совершенно новый уровень",
-      },
-      indexD: {
-        title: "Деривативы",
-        card: {
-          profitability: {
-            1: "Прибыльность <br/> за {numb} месяцa",
-            2: "Прибыльность <br/> за {numb} месяцa",
-            3: "Прибыльность <br/> за {numb} месяцa",
-            4: "Прибыльность <br/> за {numb} месяцa",
-            5: "Прибыльность <br/> за {numb} месяцa",
-            6: "Прибыльность <br/> за {numb} месяцa",
-            7: "Прибыльность <br/> за {numb} месяцa",
-            8: "Прибыльность <br/> за {numb} месяцa",
-            9: "Прибыльность <br/> за {numb} месяцa",
-            10: "Прибыльность <br/> за {numb} месяцa",
-          },
-        },
       },
       roadmap: {
         title: "Дорожная карта",
         stages: {
           1: {
             title: "Этап 1",
-            subtitle: "январь - март 2022",
+            subtitle: "Март - Июнь 2022",
             items: [
               "Разработка концепции и брендбука проекта",
               "Разработка архитектуры платформы",
@@ -709,7 +777,7 @@ const i18n = {
           },
           2: {
             title: "Этап 2",
-            subtitle: "март - сентябрь 2022",
+            subtitle: "Июнь - Сентябрь 2022",
             items: [
               "Разработка платформы MVP",
               "Разработка маркетингового плана",
@@ -719,20 +787,19 @@ const i18n = {
           },
           3: {
             title: "Этап 3",
-            subtitle: "сентябрь - ноябрь 2022",
+            subtitle: "Сентябрь - Январь 2023",
             items: [
               "Создание компании и получение юридических документов",
               "Начало сбора средств",
               "Открытие офисов: Дубай, Москва, Уфа, Казань",
               "Тестирование MVP и QA",
-              "Завершение аудита безопасности платформы",
             ],
           },
           4: {
             title: "Этап 4",
-            subtitle: "ноябрь 2022 - январь 2023",
+            subtitle: "Январь - Апрель 2023",
             items: [
-              "Старт глобальной маркетинговой кампании",
+              "Запуск глобальной маркетинговой кампании",
               "Проведение IEO на CEX",
               "Листинг CEX",
               "Запуск платформы MVP",
@@ -740,7 +807,7 @@ const i18n = {
           },
           5: {
             title: "Этап 5",
-            subtitle: "декабрь 2022 - февраль 2023",
+            subtitle: "Апрель - Июль 2023",
             items: [
               "Обновление функционала платформы",
               "Запуск программы индексов Alga Advisors",
@@ -749,7 +816,7 @@ const i18n = {
           },
           6: {
             title: "Этап 6",
-            subtitle: "ноябрь 2022 - февраль 2023",
+            subtitle: "Июль - Октябрь 2023",
             items: [
               "Листинг на других централизованных биржах",
               "Разработка собственной индексной биржи",
@@ -767,89 +834,50 @@ const i18n = {
             lastName: "Каразбаев",
             bio: "Основатель ALGA Ecosystem, предприниматель, основатель инвестиционного клуба «Музей финансов», соучредитель ТЦ «Город», «Форестпром», Д.С.Р. Уфа",
           },
+          3: {
+            name: "Раст",
+            lastName: "Садреев",
+            bio: "Основатель ALGA Ecosystem и торговый директор криптовалютного фонда Fakel в СНГ, основатель консалтинговой компании Take Profit, международный спикер, квалифицированный трейдер с опытом работы более 8 лет",
+          },
           2: {
             name: "Данат",
             lastName: "Латыпов",
             bio: "Разработчик, кандидат экономических наук, математик. Руководитель группы разработки. Специализируется на разработке высоконагруженных систем и коммерческих блокчейн-проектов с 2017 года",
           },
-          3: {
-            name: "Раст",
-            lastName: "Пентагон",
-            bio: "Основатель ALGA Ecosystem и торговый директор криптовалютного фонда Fakel в СНГ, основатель консалтинговой компании Take Profit, международный спикер, квалифицированный трейдер с опытом работы более 8 лет",
-          },
           4: {
-            name: "Иван",
-            lastName: "Белый",
-            bio: "Основатель и генеральный директор криптовалютного фонда Fakel в СНГ, руководитель образовательной программы, квалифицированный трейдер и маркетолог с опытом работы более 10 лет",
+            name: "Ильяс",
+            lastName: "Шарипов",
+            bio: "Генеральный директор Telegram-канала Crypto Student Преподаватель Take Profit Academy Автор статей на Tradingview",
           },
           5: {
-            name: "Елена",
-            lastName: "Шаханова",
-            bio: "Бизнесвумен, основатель и генеральный директор агентства цифрового брендинга YES IDEA, арт-директор российских и международных проектов",
-          },
-        },
-      },
-      backers: {
-        title: "Спонсоры & Партнеры",
-      },
-      faq: {
-        title: "FAQ",
-        items: {
-          1: {
-            title: "Что такое Alga Ecosystem?",
-            text: `
-              Alga Ecosystem — это совершенно новый инструмент для удобного входа в мир криптовалюты и разумных инвестиций. На начальном этапе экосистема будет состоять из трех основных продуктов:
-              <br>
-              - Платформа индексных деривативов Alga (AID)
-              <br>
-              - Образовательная платформа Alga (AE)
-              <br>
-              - Социальная сеть Alga Indexview (AI)
-            `,
-          },
-          2: {
-            title: "Что такое Платформа индексных деривативов Alga?",
-            text: `
-              Это CeFi платформа, которая позволяет вам инвестировать в криптовалюты через индексные деривативы. Команда объединила передовые технологии и личный торговый опыт, чтобы создать среду безопасного инвестирования средств пользователей и получения сбалансированной доходности на аллокированный капитал с помощью индексов. AID дает возможность отдельным лицам или учреждениям создавать, управлять и вкладывать в инновационные инвестиционные инструменты
-            `,
-          },
-          3: {
-            title: "Что такое индекс?",
-            text: `
-              Индекс — это дериватив, который представляет собой полностью обеспеченный портфель активов, который может позволить людям или организациям управлять своим капиталом и капиталом других в безопасной среде
-            `,
-          },
-          4: {
-            title: "Какие виды индексов есть на платформе?",
-            text: `
-              В настоящий момент на платформе AID представлено 5 индексов:
-              <br>
-              - BTC MAIN ALGA INDEX;
-              <br>
-              - ETH MAIN ALGA INDEX;
-              <br>
-              - BTC COMBO ALGA INDEX;
-              <br>
-              - ETH COMBO ALGA INDEX;
-              <br>
-              - STABLE ALGA INDEX.
-              <br>
-              С развитием платформы будут добавляться новые индексы
-            `,
-          },
-          5: {
-            title: "Что такое Alga Token и для чего он нужен?",
-            text: `
-              Токен Alga является нативным токеном экосистемы. Владельцы Alga получат ряд преимуществ, таких как возможность стейкинга и участия в DAO, создания собственных индексов. Кроме того, за токены Alga можно будет получить скидку на образовательные программы и различные функции кастомизации в Alga Indexview
-            `,
+            name: "Айнур",
+            lastName: "Разяпов",
+            bio: "Трейдер хедж-фонда Факел, преподаватель академии тейк-профита, автор телеграм-канала Roe Boy",
           },
           6: {
-            title: "Законна ли деятельность вашей платформы?",
-            text: `
-            Да, интеллектуальная собственность Alga Ecosystem принадлежит юридическому лицу, официально оформленному в г. Дубай (ОАЭ), которое имеет лицензию на работу с цифровыми активами
-            `,
+            name: "Артур",
+            lastName: "Юнусов",
+            bio: "Финансовый блогер, частный инвестор и трейдер, автор каналов с аудиторией более 30 тысяч",
+          },
+          7: {
+            name: "Тагир",
+            lastName: "Каримов",
+            bio: "Трейдер хедж-фонда Факел, преподаватель Take Profit Academy",
+          },
+          8: {
+            name: "Никита",
+            lastName: "Табаков",
+            bio: "Основатель криптовалютного фонда Fakel, майнер, инвестор",
+          },
+          9: {
+            name: "Иван",
+            lastName: "Лобастов",
+            bio: "ТО Фонд Факел, технический директор Take Profit Consulting, веб-разработчик",
           },
         },
+      },
+      tokenomics: {
+        title: "Токеномика",
       },
       "card-big": {
         signin: {
@@ -882,36 +910,22 @@ const i18n = {
         },
       },
       header: {
-        title: "Alga",
-        subtitle: "Index <br> Derivatives <br> Platform",
+        title: "About us",
+        subtitle:
+          "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives.",
+        nav: ["Index Derivatives", "Support"],
       },
       about: {
         title: "About",
         text: "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives. <br> The underlying cutting edge technology along with a huge background of the core team in  trading makes ALGA the one-stop shop for investments into proven and efficient strategies facilitating entry to the crypto for everyone. These strategies based on index derivatives consisting of many assets selected with the most efficient ratio allow to receive solid return on the allocated capital while minimizing risks. <br> The platform is designed by the people for the people with only one goal - to ensure comfortable tracking of assets and transparent transactions in order to bring asset management experience to a completely new level",
       },
-      indexD: {
-        title: "Index Derivatives",
-        card: {
-          profitability: {
-            1: "Profitability <br/> for {numb} months",
-            2: "Profitability <br/> for {numb} months",
-            3: "Profitability <br/> for {numb} months",
-            4: "Profitability <br/> for {numb} months",
-            5: "Profitability <br/> for {numb} months",
-            6: "Profitability <br/> for {numb} months",
-            7: "Profitability <br/> for {numb} months",
-            8: "Profitability <br/> for {numb} months",
-            9: "Profitability <br/> for {numb} months",
-            10: "Profitability <br/> for {numb} months",
-          },
-        },
-      },
+
       roadmap: {
         title: "Roadmap",
         stages: {
           1: {
             title: "Stage 1",
-            subtitle: "January-March, 2022",
+            subtitle: "March-June, 2022",
             items: [
               "Development of the concept and brand book of the project",
               "Platform architecture development",
@@ -920,7 +934,7 @@ const i18n = {
           },
           2: {
             title: "Stage 2",
-            subtitle: "March-September, 2022",
+            subtitle: "June-September, 2022",
             items: [
               "Development of platform MVP",
               "Development of the marketing plan",
@@ -930,20 +944,19 @@ const i18n = {
           },
           3: {
             title: "Stage 3",
-            subtitle: "September-November, 2022",
+            subtitle: "September - Junuary 2023",
             items: [
               "Company establishment and obtaining of legal documents",
               "Launch the fundraising campaign",
               "Offices establishment: Dubai, Moscow, Ufa, Kazan",
               "MVP testing and QA",
-              "Platform security audit completion",
             ],
           },
           4: {
             title: "Stage 4",
-            subtitle: "November 2022-January 2023",
+            subtitle: "Junuary - April 2023",
             items: [
-              "Start of the global marketing campaign",
+              "Launch of the global marketing compaigh",
               "Perform IEO on CEX",
               "CEX listing",
               "Platform MVP launch",
@@ -951,16 +964,16 @@ const i18n = {
           },
           5: {
             title: "Stage 5",
-            subtitle: "December 2022 - February 2023",
+            subtitle: "April  - Jule 2023",
             items: [
               "Platform functionality update",
-              "Launch of the Alga Advisors indexes program",
+              "Launch of the Alga Advisors indexes",
               "Mobile app development",
             ],
           },
           6: {
             title: "Stage 6",
-            subtitle: "November 2022 - February 2023",
+            subtitle: "Jule - Oktober 2023",
             items: [
               "Listing on other Centralized exchanges",
               "Development of the own index exchange",
@@ -979,88 +992,49 @@ const i18n = {
             bio: "Founder of ALGA Ecosystem, entrepreneur, founder of Museum of Finance investment club, co-founder of TC Gorod, Forestprom, D.S.R. Ufa",
           },
           2: {
-            name: "Danat",
-            lastName: "Latypov",
-            bio: "Developer, PhD in economics, mathematician. Head of development team. Specialized in development of high-load systems and commercial blockchain projects from 2017",
-          },
-          3: {
             name: "Rustem",
             lastName: "Sadreev",
             bio: "Founder and trading director of Fakel cryptocurrency fund in CIS, head of educational program, qualified trader with more than 8 years experience",
           },
-          4: {
-            name: "Ivan",
-            lastName: "Beliy",
-            bio: "Founder and CEO of Fakel cryptocurrency fund in CIS, head of educational program, qualified trader and marketer with more than 10 years experience",
-          },
-          5: {
-            name: "Elena",
-            lastName: "Shakhanova",
-            bio: "Businessman, founder and CEO of YES IDEA digital branding agency, art director of Russian and international projects",
-          },
-        },
-      },
-      backers: {
-        title: "Backers & Partners",
-      },
-      faq: {
-        title: "FAQ",
-        items: {
-          1: {
-            title: "What is the Alga Ecosystem?",
-            text: `
-              Alga Ecosystem is the brand new tool for both comfortable entrance to the crypto world and smart investments. At the early stage the Ecosystem contains three main products:
-              <br>
-              -Alga Index Derivatives platform (AID)
-              <br>
-              -Alga Education platform (AE)
-              <br>
-              -Alga Indexview social network (AI)
-            `,
-          },
-          2: {
-            title: "What is the Alga Index Derivatives platform?",
-            text: `
-              It is a CeFi platform that allows you to invest in cryptocurrencies through index derivatives.
-              <br>
-              Founders combine advanced technology and personal trading experience to create an environment for safe investment of users’ funds and balanced returns on allocated capital with the help of indexes. AID empowers individuals or institutions to create, manage and invest in innovative on-chain investment tools
-            `,
-          },
           3: {
-            title: "What is index?",
-            text: `
-              Index is a derivative that represents a fully collateralized portfolio of assets that can enable people or entities to manage their wealth & the wealth of others within a safe environment
-            `,
+            name: "Danat",
+            lastName: "Latypov",
+            bio: "Developer, PhD in economics, mathematician. Head of development team. Specialized in development of high-load systems and commercial blockchain projects from 2017",
           },
           4: {
-            title: "What kind of indexes are represented at AIDT?",
-            text: `
-              Currently we have 5 indexes:
-              <br>
-              - BTC MAIN ALGA INDEX;
-              <br>
-              - ETH MAIN ALGA INDEX;
-              <br>
-              - BTC COMBO ALGA INDEX;
-              <br>
-              - ETH COMBO ALGA INDEX;
-              <br>
-              - STABLE ALGA INDEX.
-              <br>
-              With the development of the platform it will be more
-            `,
+            name: "Ilyas",
+            lastName: "Sharipov",
+            bio: "СEO of the Crypto Student Telegram Channel Teacher Take Profit Academy Author of articles on Tradingview",
           },
           5: {
-            title: "What is an Alga token and what are its use cases?",
-            text: `
-              Alga token is native token of the Alga Ecosystem. Holders of Alga will have several benefits, such as: possibility of staking and DAO participation, creation of own indexes. Discounts for Educational programs and different customization features at Alga Indexview
-            `,
+            name: "Ainur",
+            lastName: "Razyapov",
+            bio: "Trader of the hedge fund Fakel, teacher Take profit academy, the author of the telegram channel Roe Boy",
           },
           6: {
-            title: "Is the operation of Alga Ecosystem legal?",
-            text: `Yes, Alga Ecosystem works under the registered legal entity in Dubai (UAE). Entity is licensed to work with digital assets`,
+            name: "Arthur",
+            lastName: "Yunusov",
+            bio: "Financial blogger, private investor and trader, author of channels with an audience of more than 30 thousand",
+          },
+          7: {
+            name: "Tagir",
+            lastName: "Karimov",
+            bio: "Trader of the hedge fund Fakel, teacher Take Profit Academy",
+          },
+          8: {
+            name: "Nikita",
+            lastName: "Tabakov",
+            bio: "Founder of the Fakel cryptocurrency fund, miner, investor",
+          },
+          9: {
+            name: "Ivan",
+            lastName: "Lobastov",
+            bio: "TO Fund Fakel, CTO Take Profit Consulting, web developer",
           },
         },
+      },
+      tokenomics: {
+        title: "Tokenomics",
       },
       "card-big": {
         signin: {
@@ -1504,8 +1478,10 @@ const i18n = {
 };
 export default {
   components: {
+    Tokenomics,
     MiniAreaChart,
     MarkIcon,
+    Locale,
   },
   setup() {
     const $i18n = useI18n();

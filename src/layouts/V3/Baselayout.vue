@@ -16,7 +16,7 @@
             @click="$router.push({ name: 'home' })"
           />
 
-          <div class="desk-n tw-flex tw-items-center">
+          <div class="desk-n tw-flex tw-items-center tw-gap-4">
             <Locale />
             <div>
               <button class="burger" @click="dropDown = !dropDown">
@@ -159,6 +159,7 @@
               </span>
             </li>
           </router-link>
+
           <router-link
             :to="{ name: 'support' }"
             custom
@@ -208,23 +209,35 @@ import Locale from "src/components/V3/LocaleButtons.vue";
 const i18n = {
   messages: {
     "ru-RU": {
-      nav: ["Деривативы", "Портфолио", "История", "Поддержка"],
+      nav: ["Деривативы", "Портфолио", "История", "Поддержка", "Рефералы"],
       "log-out": "Выйти",
       profile: "Профиль",
     },
     "en-US": {
-      nav: ["Index Derivatives", "My Portfolio", "History", "Support"],
+      nav: [
+        "Index Derivatives",
+        "My Portfolio",
+        "History",
+        "Support",
+        "Referrals",
+      ],
       "log-out": "Log out",
       profile: "Profile",
     },
 
     de: {
-      nav: ["Indexderivate", "Mein Portfolio", "Verlauf", "Support"],
+      nav: [
+        "Indexderivate",
+        "Mein Portfolio",
+        "Verlauf",
+        "Support",
+        "Empfehlungen",
+      ],
       "log-out": "Ausloggen",
       profile: "Profil",
     },
     "zh-CN": {
-      nav: ["指数衍生品", "我的投资组合", "历史", "支持"],
+      nav: ["指数衍生品", "我的投资组合", "历史", "支持", "轉介"],
       "log-out": "登出",
       profile: "轮廓",
     },

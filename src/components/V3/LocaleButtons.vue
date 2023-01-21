@@ -24,7 +24,7 @@
         >
           <span> EN </span>
         </div>
-        <div
+        <!-- <div
           class="option"
           :class="locale === 'Deutsch' ? 'active' : ''"
           @click="newLocale('de')"
@@ -37,7 +37,7 @@
           @click="newLocale('zh-CN')"
         >
           <span> 中文 </span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

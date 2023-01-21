@@ -10,34 +10,76 @@
             class="tw-cursor-pointer"
             @click="$router.push({ name: 'home' })"
           />
-          <div class="tw-flex tw-gap-10">
-            <button>Index Derivatives</button>
-            <button>Support</button>
-          </div>
-          <div>
-            <button class="button button_xs button_border-white button__login">
-              Login
+
+          <div class="tw-hidden xl:tw-flex xl:tw-gap-10">
+            <button @click="$router.push({ name: 'about' })">
+              {{ t("header.nav[0]") }}
             </button>
+            <a
+              class="tw-text-white hover:tw-text-white"
+              href="https://t.me/algafinancechat"
+              target="_blank"
+              >{{ t("header.nav[1]") }}</a
+            >
+          </div>
+          <div class="tw-flex tw-items-center tw-gap-4">
+            <button
+              v-if="isAuth"
+              class="button button_xs button_border-white button__login"
+              @click="$router.push({ name: 'index-directive' })"
+            >
+              {{ t("lk") }}
+            </button>
+            <button
+              v-else
+              class="button button_xs button_border-white button__login"
+              @click="$router.push({ name: 'auth.login' })"
+            >
+              {{ t("dropdown.buttons.login") }}
+            </button>
+            <div class="mob-n">
+              <Locale />
+            </div>
+            <div class="desk-n">
+              <button class="burger" @click="dropDown = !dropDown">
+                <span></span><span></span><span></span>
+              </button>
+            </div>
           </div>
         </div>
+
         <div class="header-content">
-          <h2 class="header-content__title">ALGA</h2>
-          <div class="tw-text-md1 tw-leading-none tw-mb-10">
-            Index <br />
-            Derivatives <br />
-            Platform
-          </div>
-          <div class="tw-mb-10">
+          <h2 class="header-content__title">{{ t("header.title") }}</h2>
+          <div
+            class="tw-text-md2 xl:tw-text-md1 tw-leading-none tw-mb-4 xl:tw-mb-10"
+            v-html="t('header.subtitle')"
+          ></div>
+          <div v-if="isAuth" class="tw-mb-5 xl:tw-mb-10">
             <button
-              class="button button_base button_border-green button_minw-md tw-mr-6"
+              class="button button_base button_green button_minw-base"
+              @click="$router.push({ name: 'index-directive' })"
             >
-              Login in
-            </button>
-            <button class="button button_base button_green button_minw-base">
-              Create an account
+              {{ t("lk") }}
             </button>
           </div>
-          <div class="tw-flex tw-gap-4">
+          <div
+            v-else
+            class="tw-flex tw-flex-col xl:tw-flex-row tw-gap-6 tw-mb-5 xl:tw-mb-10"
+          >
+            <button
+              class="button button_base button_border-green button_minw-md"
+              @click="$router.push({ name: 'auth.login' })"
+            >
+              {{ t("dropdown.buttons.login") }}
+            </button>
+            <button
+              class="button button_base button_green button_minw-base"
+              @click="$router.push({ name: 'auth.registr' })"
+            >
+              {{ t("dropdown.buttons.register") }}
+            </button>
+          </div>
+          <div class="tw-flex tw-gap-4 tw-flex-wrap">
             <div
               class="header-content__derivative"
               v-for="derivative in derivatives.slice(0, 3)"
@@ -89,7 +131,7 @@
     </header>
     <section class="section index-directive">
       <div class="tw-container">
-        <h2 class="title tw-mb-14">{{ t("indexD.title") }}</h2>
+        <h2 class="title xl:tw-mb-14">{{ t("indexD.title") }}</h2>
         <!-- cards -->
         <div class="mob-n">
           <div class="index-directive__cards tw-mt-10">
@@ -144,7 +186,7 @@
           </div>
         </div>
         <div class="desk-n">
-          <div class="index-directive__cards tw-mt-10">
+          <div class="index-directive__cards">
             <!-- card -->
             <q-carousel
               v-model="slideIndex"
@@ -231,9 +273,7 @@
       <div class="tw-container">
         <h2 class="title tw-mb-7.5">{{ t("backers.title") }}</h2>
         <p class="tw-mb-7">
-          Partnership with ALGA will give you access to a new audience, as well
-          as open up new prospects for the development of your company in the
-          actively developing segment of the crypto market
+          {{ t("backers.text") }}
         </p>
         <div class="tw-flex tw-mt-10 tw-gap-2.25 tw-flex-wrap xl:tw-gap-6.25">
           <div class="card-partner">
@@ -249,1022 +289,53 @@
         </div>
       </div>
     </section>
-    <section class="section roadmap">
+    <section class="section backers-partner">
       <div class="tw-container">
-        <div class="tw-relative">
-          <img class="section-icon tw-right-0" src="./img/section-road.png" />
-        </div>
-        <h2>{{ t("roadmap.title") }}</h2>
-        <div class="mob-n">
-          <div class="tw-flex tw-gap-5 tw--mx-15 tw-mt-10">
-            <q-carousel
-              transition-prev="scale"
-              transition-next="scale"
-              v-model="slideRoud"
-              swipeable
-              animated
-              navigation
-              padding
-              height="calc(150% + 100px)"
-              class="bg-transparent"
-              ref="carousel"
-              arrows
-              control-type="regular"
-              control-color="arrow-brand"
-              control-text-color="arrow-brand"
+        <div class="tw-flex tw-gap-8">
+          <div class="tw-grid xl:tw-block">
+            <h2 class="title tw-mb-7.5">{{ t("about.title") }}</h2>
+            <!-- <p class="tw-mb-10" v-html="t('about.text')"></p> -->
+            <p>
+              {{ t("about.subtitle") }}
+            </p>
+            <br />
+            <p class="tw-mb-7.5" v-html="t('about.text')"></p>
+            <button
+              class="button button_base button_green button_minw-md"
+              @click="$router.push({ name: 'about' })"
             >
-              <template v-slot:navigation-icon="{ index, active, onClick }">
-                <button
-                  class="slide-paginate active"
-                  v-if="active"
-                  @click="onClick"
-                >
-                  {{ index + 1 }}
-                </button>
-                <button class="slide-paginate" v-else @click="onClick">
-                  {{ index + 1 }}
-                </button>
-              </template>
-
-              <q-carousel-slide
-                name="1"
-                class="column no-wrap flex-center tw-pt-20"
-              >
-                <div class="tw-flex tw-gap-5">
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
-                    <div class="roadmap__item-wrapper">
-                      <div class="roadmap__item-header">
-                        <img src="./icons/icon-1.svg" alt="" />
-                        <div>
-                          <h2>{{ t("roadmap.stages.1.title") }}</h2>
-                          <h5 class="tw-mt-2.5">
-                            {{ t("roadmap.stages.1.subtitle") }}
-                          </h5>
-                        </div>
-                      </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
-                        <li>
-                          {{ t("roadmap.stages.1.items.0") }}
-                        </li>
-                        <li>{{ t("roadmap.stages.1.items.1") }}</li>
-                        <li>
-                          {{ t("roadmap.stages.1.items.2") }}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
-                    <div class="roadmap__item-wrapper">
-                      <div class="roadmap__item-header">
-                        <img src="./icons/icon-2.svg" alt="" />
-                        <div>
-                          <h2>{{ t("roadmap.stages.2.title") }}</h2>
-                          <h5 class="tw-mt-2.5">
-                            {{ t("roadmap.stages.2.subtitle") }}
-                          </h5>
-                        </div>
-                      </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
-                        <li>
-                          {{ t("roadmap.stages.2.items.0") }}
-                        </li>
-                        <li>{{ t("roadmap.stages.2.items.1") }}</li>
-                        <li>
-                          {{ t("roadmap.stages.2.items.2") }}
-                        </li>
-                        <li>
-                          {{ t("roadmap.stages.2.items.3") }}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </q-carousel-slide>
-              <q-carousel-slide
-                name="2"
-                class="column no-wrap flex-center tw-pt-20"
-              >
-                <div class="tw-flex tw-gap-5">
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
-                    <div class="roadmap__item-wrapper">
-                      <div
-                        class="roadmap__item-header"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                      >
-                        <img src="./icons/icon-3.svg" alt="" />
-                        <div>
-                          <h2>{{ t("roadmap.stages.3.title") }}</h2>
-                          <h5 class="tw-mt-2.5">
-                            {{ t("roadmap.stages.3.subtitle") }}
-                          </h5>
-                        </div>
-                      </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
-                        <li>
-                          {{ t("roadmap.stages.3.items.0") }}
-                        </li>
-                        <li>{{ t("roadmap.stages.3.items.1") }}</li>
-                        <li>
-                          {{ t("roadmap.stages.3.items.2") }}
-                        </li>
-                        <li>
-                          {{ t("roadmap.stages.3.items.3") }}
-                        </li>
-                        <li>
-                          {{ t("roadmap.stages.3.items.4") }}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
-                    <div class="roadmap__item-wrapper">
-                      <div class="roadmap__item-header">
-                        <img src="./icons/icon-4.svg" alt="" />
-                        <div>
-                          <h2>{{ t("roadmap.stages.4.title") }}</h2>
-                          <h5 class="tw-mt-2.5">
-                            {{ t("roadmap.stages.4.subtitle") }}
-                          </h5>
-                        </div>
-                      </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
-                        <li>
-                          {{ t("roadmap.stages.4.items.0") }}
-                        </li>
-                        <li>{{ t("roadmap.stages.4.items.1") }}</li>
-                        <li>
-                          {{ t("roadmap.stages.4.items.2") }}
-                        </li>
-                        <li>
-                          {{ t("roadmap.stages.4.items.3") }}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </q-carousel-slide>
-              <q-carousel-slide
-                name="3"
-                class="column no-wrap flex-center tw-pt-20"
-              >
-                <div class="tw-flex tw-gap-5">
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
-                    <div class="roadmap__item-wrapper">
-                      <div class="roadmap__item-header">
-                        <img src="./icons/icon-5.svg" alt="" />
-                        <div>
-                          <h2>{{ t("roadmap.stages.5.title") }}</h2>
-                          <h5 class="tw-mt-2.5">
-                            {{ t("roadmap.stages.5.subtitle") }}
-                          </h5>
-                        </div>
-                      </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
-                        <li>
-                          {{ t("roadmap.stages.5.items.0") }}
-                        </li>
-                        <li>{{ t("roadmap.stages.5.items.1") }}</li>
-                        <li>
-                          {{ t("roadmap.stages.5.items.2") }}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div
-                    class="card card__border-line roadmap__item roadmap__item-desk tw-w-1/2"
-                  >
-                    <div class="roadmap__item-wrapper">
-                      <div class="roadmap__item-header">
-                        <img src="./icons/icon-6.svg" alt="" />
-                        <div>
-                          <h2>{{ t("roadmap.stages.6.title") }}</h2>
-                          <h5 class="tw-mt-2.5">
-                            {{ t("roadmap.stages.6.subtitle") }}
-                          </h5>
-                        </div>
-                      </div>
-                      <ul
-                        class="roadmap__item-list"
-                        :class="roadmap == 'test' ? 'active' : ''"
-                        id="roadmap-test"
-                      >
-                        <li>
-                          {{ t("roadmap.stages.6.items.0") }}
-                        </li>
-                        <li>{{ t("roadmap.stages.6.items.1") }}</li>
-                        <li>
-                          {{ t("roadmap.stages.6.items.2") }}
-                        </li>
-                        <li>
-                          {{ t("roadmap.stages.6.items.3") }}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </q-carousel-slide>
-
-              <!-- <template v-slot:control> </template> -->
-            </q-carousel>
+              {{ t("about.button") }}
+            </button>
+          </div>
+          <div class="tw-hidden xl:tw-block tw-w-1/2 tw-flex-shrink-0">
+            <img :src="require('assets/images/AA_2redisign.png')" alt="" />
           </div>
         </div>
-        <div class="desk-n">
-          <div class="tw-mt-10 tw-flex tw-flex-col tw-gap-5">
-            <div
-              class="card card__border-line roadmap__item roadmap__item_1"
-              :class="roadmap == '1' ? 'active' : ''"
-              @click="toggleRoadmap('1')"
-            >
-              <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '1' ? 'active' : ''"
-                >
-                  <img src="./icons/icon-1.svg" alt="" />
-                  <h2>
-                    {{ t("roadmap.stages.1.title") }}
-                  </h2>
-                  <h5>{{ t("roadmap.stages.1.subtitle") }}</h5>
-                </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '1' ? 'active' : ''"
-                  id="roadmap-1"
-                >
-                  <li>
-                    {{ t("roadmap.stages.1.items.0") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.1.items.1") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.1.items.2") }}
-                  </li>
-                </ul>
-                <button
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '1' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
-                  </q-icon>
-                </button>
-              </div>
-            </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_2"
-              :class="roadmap == '2' ? 'active' : ''"
-              @click="toggleRoadmap('2')"
-            >
-              <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '2' ? 'active' : ''"
-                >
-                  <img src="./icons/icon-2.svg" alt="" />
-                  <h2>
-                    {{ t("roadmap.stages.2.title") }}
-                  </h2>
-                  <h5>{{ t("roadmap.stages.2.subtitle") }}</h5>
-                </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '2' ? 'active' : ''"
-                  id="roadmap-2"
-                >
-                  <li>
-                    {{ t("roadmap.stages.2.items.0") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.2.items.1") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.2.items.2") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.2.items.3") }}
-                  </li>
-                </ul>
-                <button
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '2' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
-                  </q-icon>
-                </button>
-              </div>
-            </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_3"
-              :class="roadmap == '3' ? 'active' : ''"
-              @click="toggleRoadmap('3')"
-            >
-              <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '3' ? 'active' : ''"
-                >
-                  <img src="./icons/icon-3.svg" alt="" />
-                  <h2>
-                    {{ t("roadmap.stages.3.title") }}
-                  </h2>
-                  <h5>{{ t("roadmap.stages.3.subtitle") }}</h5>
-                </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '3' ? 'active' : ''"
-                  id="roadmap-3"
-                >
-                  <li>
-                    {{ t("roadmap.stages.3.items.0") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.3.items.1") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.3.items.2") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.3.items.3") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.3.items.4") }}
-                  </li>
-                </ul>
-                <button
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '3' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
-                  </q-icon>
-                </button>
-              </div>
-            </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_4"
-              :class="roadmap == '4' ? 'active' : ''"
-              @click="toggleRoadmap('4')"
-            >
-              <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '4' ? 'active' : ''"
-                >
-                  <img src="./icons/icon-4.svg" alt="" />
-                  <h2>
-                    {{ t("roadmap.stages.4.title") }}
-                  </h2>
-                  <h5>{{ t("roadmap.stages.4.subtitle") }}</h5>
-                </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '4' ? 'active' : ''"
-                  id="roadmap-4"
-                >
-                  <li>
-                    {{ t("roadmap.stages.4.items.0") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.4.items.1") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.4.items.2") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.4.items.3") }}
-                  </li>
-                </ul>
-                <button
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '4' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
-                  </q-icon>
-                </button>
-              </div>
-            </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_5"
-              :class="roadmap == '5' ? 'active' : ''"
-              @click="toggleRoadmap('5')"
-            >
-              <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '5' ? 'active' : ''"
-                >
-                  <img src="./icons/icon-5.svg" alt="" />
-                  <h2>
-                    {{ t("roadmap.stages.5.title") }}
-                  </h2>
-                  <h5>{{ t("roadmap.stages.5.subtitle") }}</h5>
-                </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '5' ? 'active' : ''"
-                  id="roadmap-5"
-                >
-                  <li>
-                    {{ t("roadmap.stages.5.items.0") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.5.items.1") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.5.items.2") }}
-                  </li>
-                </ul>
-                <button
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '5' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
-                  </q-icon>
-                </button>
-              </div>
-            </div>
-            <div
-              class="card card__border-line roadmap__item roadmap__item_6"
-              :class="roadmap == '6' ? 'active' : ''"
-              @click="toggleRoadmap('6')"
-            >
-              <div class="roadmap__item-wrapper">
-                <div
-                  class="roadmap__item-header"
-                  :class="roadmap == '6' ? 'active' : ''"
-                >
-                  <img src="./icons/icon-6.svg" alt="" />
-                  <h2>
-                    {{ t("roadmap.stages.6.title") }}
-                  </h2>
-                  <h5>{{ t("roadmap.stages.6.subtitle") }}</h5>
-                </div>
-                <ul
-                  class="roadmap__item-list"
-                  :class="roadmap == '6' ? 'active' : ''"
-                  id="roadmap-6"
-                >
-                  <li>
-                    {{ t("roadmap.stages.6.items.0") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.6.items.1") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.6.items.2") }}
-                  </li>
-                  <li>
-                    {{ t("roadmap.stages.6.items.3") }}
-                  </li>
-                </ul>
-                <button
-                  class="pie pie-arrow button-arrow"
-                  :class="roadmap == '6' ? 'active' : ''"
-                >
-                  <q-icon
-                    name="r_keyboard_arrow_down"
-                    size="35px"
-                    class="arrow-icon"
-                  >
-                  </q-icon>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section team">
-      <div class="tw-container">
-        <h2>{{ t("team.title") }}</h2>
-        <div class="xl:tw-mt-10">
-          <div>
-            <div class="desk-n">
-              <q-carousel
-                v-model="slideTeam"
-                transition-prev="scale"
-                transition-next="scale"
-                swipeable
-                animated
-                navigation
-                padding
-                height="calc(150% + 100px)"
-                class="bg-transparent"
-              >
-                <template
-                  v-slot:navigation-icon="{ index, active, btnProps, onClick }"
-                >
-                  <button
-                    class="slide-paginate active"
-                    v-if="active"
-                    @click="onClick"
-                  >
-                    {{ index + 1 }}
-                  </button>
-                  <button class="slide-paginate" v-else @click="onClick">
-                    {{ index + 1 }}
-                  </button>
-                </template>
-
-                <q-carousel-slide
-                  name="1"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
-                  <div class="card card__border-line star star-card--desk">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/karazbaev.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4>
-                      {{ t("team.peoples.1.name") }} <br />
-                      {{ t("team.peoples.1.lastName") }}
-                    </h4>
-                    <p class="tw-mt-5">
-                      {{ t("team.peoples.1.bio") }}
-                    </p>
-                  </div>
-                </q-carousel-slide>
-                <q-carousel-slide
-                  name="2"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
-                  <div class="card card__border-line star star-card--desk">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/latypov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4>
-                      {{ t("team.peoples.2.name") }} <br />
-                      {{ t("team.peoples.2.lastName") }}
-                    </h4>
-                    <p class="tw-mt-5">
-                      {{ t("team.peoples.2.bio") }}
-                    </p>
-                  </div>
-                </q-carousel-slide>
-
-                <q-carousel-slide
-                  name="3"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
-                  <div class="card card__border-line star star-card--desk">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/sadreev.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4>
-                      {{ t("team.peoples.3.name") }} <br />
-                      {{ t("team.peoples.3.lastName") }}
-                    </h4>
-                    <p class="tw-mt-5">
-                      {{ t("team.peoples.3.bio") }}
-                    </p>
-                  </div>
-                </q-carousel-slide>
-
-                <q-carousel-slide
-                  name="4"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
-                  <div class="card card__border-line star star-card--desk">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/beliy.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4>
-                      {{ t("team.peoples.4.name") }} <br />
-                      {{ t("team.peoples.4.lastName") }}
-                    </h4>
-                    <p class="tw-mt-5">
-                      {{ t("team.peoples.4.bio") }}
-                    </p>
-                  </div>
-                </q-carousel-slide>
-
-                <q-carousel-slide
-                  name="5"
-                  class="column no-wrap flex-center tw-pt-20"
-                >
-                  <div class="card card__border-line star star-card--desk">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/shakhanova.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4>
-                      {{ t("team.peoples.5.name") }} <br />
-                      {{ t("team.peoples.5.lastName") }}
-                    </h4>
-                    <p class="tw-mt-5">
-                      {{ t("team.peoples.5.bio") }}
-                    </p>
-                  </div>
-                </q-carousel-slide>
-              </q-carousel>
-            </div>
-            <div class="mob-n">
-              <div class="tw-grid tw-grid-cols-6 tw-gap-y-7.5 tw-gap-x-16">
-                <div class="tw-col-span-2">
-                  <div class="star star-card--mob">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/karazbaev.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4 class="tw-mt-5">
-                      {{ t("team.peoples.1.name") }}
-                      {{ t("team.peoples.1.lastName") }}
-                    </h4>
-                    <p class="tw-mt-2.5">
-                      {{ t("team.peoples.1.bio") }}
-                    </p>
-                  </div>
-                </div>
-                <div class="tw-col-span-2">
-                  <div class="star star-card--mob">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/latypov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4 class="tw-mt-5">
-                      {{ t("team.peoples.2.name") }}
-                      {{ t("team.peoples.2.lastName") }}
-                    </h4>
-                    <p class="tw-mt-2.5">
-                      {{ t("team.peoples.2.bio") }}
-                    </p>
-                  </div>
-                </div>
-                <div class="tw-col-span-2">
-                  <div class="star star-card--mob">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/sadreev.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4 class="tw-mt-5">
-                      {{ t("team.peoples.3.name") }}
-                      {{ t("team.peoples.3.lastName") }}
-                    </h4>
-                    <p class="tw-mt-2.5">
-                      {{ t("team.peoples.3.bio") }}
-                    </p>
-                  </div>
-                </div>
-                <div class="tw-col-span-3 tw-justify-self-end">
-                  <div class="star star-card--mob">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/beliy.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4 class="tw-mt-5">
-                      {{ t("team.peoples.4.name") }}
-                      {{ t("team.peoples.4.lastName") }}
-                    </h4>
-                    <p class="tw-mt-2.5">
-                      {{ t("team.peoples.4.bio") }}
-                    </p>
-                  </div>
-                </div>
-                <div class="tw-col-span-2">
-                  <div class="star star-card--mob">
-                    <div class="star-avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__bg"
-                          src="./icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="star-avatar__img"
-                          src="./img/shakhanova.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <h4 class="tw-mt-5">
-                      {{ t("team.peoples.5.name") }}
-                      {{ t("team.peoples.5.lastName") }}
-                    </h4>
-                    <p class="tw-mt-2.5">
-                      {{ t("team.peoples.5.bio") }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section faq tw-mb-10 xl:tw-mb-20">
-      <div class="tw-container">
-        <div class="tw-relative">
+        <div class="card-big tw-mt-16 xl:tw-mt-10">
           <img
-            class="section-icon tw-right-0 desk-n"
-            src="./img/section-faq.png"
+            :src="require('assets/icons/telegram-round.svg')"
+            alt="plus"
+            class="top-icon"
           />
-        </div>
-        <h2>{{ t("faq.title") }}</h2>
-        <div class="accardion tw-mt-10">
-          <div class="accardion-item" @click="toggle('test')">
-            <div class="card card__border-line accardion-item__card">
-              <h4 v-html="t('faq.items.1.title')"></h4>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="accardion == 'test' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-            <p
-              class="accardion-item__text"
-              :class="accardion == 'test' ? 'active' : ''"
-              id="accordion-test"
-              v-html="t('faq.items.1.text')"
-            ></p>
-          </div>
-
-          <div class="accardion-item" @click="toggle('2')">
-            <div class="card card__border-line accardion-item__card">
-              <h4 v-html="t('faq.items.2.title')"></h4>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="accardion == '2' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-            <p
-              class="accardion-item__text"
-              :class="accardion == '2' ? 'active' : ''"
-              id="accordion-2"
-              v-html="t('faq.items.2.text')"
-            ></p>
-          </div>
-
-          <div class="accardion-item" @click="toggle('3')">
-            <div class="card card__border-line accardion-item__card">
-              <h4 v-html="t('faq.items.3.title')"></h4>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="accardion == '3' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-            <p
-              class="accardion-item__text"
-              :class="accardion == '3' ? 'active' : ''"
-              id="accordion-3"
-              v-html="t('faq.items.3.text')"
-            ></p>
-          </div>
-
-          <div class="accardion-item" @click="toggle('4')">
-            <div class="card card__border-line accardion-item__card">
-              <h4 v-html="t('faq.items.4.title')"></h4>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="accardion == '4' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-            <p
-              class="accardion-item__text"
-              :class="accardion == '4' ? 'active' : ''"
-              id="accordion-4"
-              v-html="t('faq.items.4.text')"
-            ></p>
-          </div>
-
-          <div class="accardion-item" @click="toggle('5')">
-            <div class="card card__border-line accardion-item__card">
-              <h4 v-html="t('faq.items.5.title')"></h4>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="accardion == '5' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-            <p
-              class="accardion-item__text"
-              :class="accardion == '5' ? 'active' : ''"
-              id="accordion-5"
-              v-html="t('faq.items.5.text')"
-            ></p>
-          </div>
-
-          <div class="accardion-item" @click="toggle('6')">
-            <div class="card card__border-line accardion-item__card">
-              <h4 v-html="t('faq.items.6.title')"></h4>
-              <button
-                class="pie pie-arrow button-arrow"
-                :class="accardion == '6' ? 'active' : ''"
-              >
-                <q-icon
-                  name="r_keyboard_arrow_down"
-                  size="35px"
-                  class="arrow-icon"
-                >
-                </q-icon>
-              </button>
-            </div>
-            <p
-              class="accardion-item__text"
-              :class="accardion == '6' ? 'active' : ''"
-              id="accordion-6"
-              v-html="t('faq.items.6.text')"
-            ></p>
-          </div>
-        </div>
-        <div class="card-big tw-mt-15 xl:tw-mt-20">
-          <img src="./img/telegram-round.png" alt="plus" class="top-icon" />
           <div class="card-big__left">
             <h2>{{ t("card-big.anyquestion.title") }}</h2>
             <p class="tw-mt-5">
               {{ t("card-big.anyquestion.text") }}
             </p>
           </div>
-          <a class="button" href="https://t.me/algafinancechat" target="blank">
-            {{ t("card-big.anyquestion.contacrusButton") }}
-          </a>
+
           <div
             class="tw-flex tw-flex-col tw-mt-7.5 tw-gap-5 xl:tw-mt-0 xl:tw-flex-row xl:tw-gap-3"
           >
             <a
-              class="button"
+              class="button button_base button_green"
               href="https://t.me/algafinancechat"
               target="blank"
             >
               {{ t("card-big.anyquestion.contacrusButton") }}
             </a>
             <a
-              class="button-black"
+              class="button button_base button_black button_minw-base"
               href="https://t.me/algafinancechat"
               target="blank"
             >
@@ -1275,17 +346,67 @@
       </div>
     </section>
   </div>
+  <Teleport to="body">
+    <transition
+      appear
+      mode="out-in"
+      enter-active-class="animated slideInLeft"
+      leave-active-class="animated slideOutLeft"
+    >
+      <div class="dropdown tw-h-full" v-if="dropDown">
+        <div class="tw-container tw-h-full">
+          <div
+            class="dropdown__wrapper tw-flex tw-justify-between tw-gap-1 tw-h-full"
+          >
+            <div class="dropdown__top tw-flex tw-justify-between tw-w-full">
+              <img
+                :src="require('assets/images/logo-v3.svg')"
+                alt="logo"
+                class="tw-cursor-pointer"
+                @click="
+                  () => {
+                    $router.push({ name: 'home' });
+                    dropDown = !dropDown;
+                  }
+                "
+              />
+
+              <div class="tw-flex">
+                <q-btn flat round icon="close" @click="dropDown = !dropDown" />
+              </div>
+            </div>
+            <div class="dropdown__middle">
+              <button @click="$router.push({ name: 'about' })">
+                {{ t("header.nav[0]") }}
+              </button>
+              <a
+                class="tw-text-white hover:tw-text-white"
+                href="https://t.me/algafinancechat"
+                target="_blank"
+                >{{ t("header.nav[1]") }}</a
+              >
+            </div>
+            <div class="dropdown__bottom">
+              <Locale />
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </Teleport>
 </template>
 <script>
 import { ref, computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
 
+import Locale from "src/components/V3/LocaleButtonsRedisign.vue";
 import MiniAreaChart from "src/components/V3/MiniAreaChart.vue";
 import MarkIcon from "src/components/V3/MarkIcon.vue";
 const i18n = {
   messages: {
     "ru-RU": {
+      lk: "Личный кабинет",
       dropdown: {
         buttons: {
           register: "Регистрация",
@@ -1296,10 +417,25 @@ const i18n = {
       header: {
         title: "Алга",
         subtitle: "Платформа <br> Индексных <br> Деривативов",
+        nav: ["О нас", "Поддержка"],
       },
       about: {
         title: "О нас",
-        text: "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов. <br> Лежащая в основе передовая технология, наряду с огромным опытом основной команды в области торговли, делает ALGA универсальным сервисом для инвестиций в проверенные и эффективные стратегии, облегчающие вход в криптовалюту для всех. Эти стратегии, основанные на индексных деривативах, состоящих из множества активов, подобранных в наиболее эффективном соотношении, позволяют получать солидный доход на вложенный капитал при минимизации рисков. <br> Платформа создана людьми для людей с единственной целью - обеспечить комфортное отслеживание активов и прозрачность транзакций, чтобы вывести опыт управления активами на совершенно новый уровень",
+        subtitle:
+          "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов.",
+        text: `Базовая передовая технология наряду с огромным
+               опыт основной команды в торговле делает ALGA одношаговым
+               поиск инвестиций в проверенные и эффективные стратегии
+               облегчение входа в криптовалюту для всех. <br /><br />
+               Эти стратегии, основанные на индексных производных, состоящих из многих
+               активы, подобранные с использованием наиболее эффективного соотношения, позволяют получать солидные
+               рентабельность вложенного капитала при минимизации рисков.
+               <br /><br />
+               Платформа разработана людьми для людей с только
+               одна цель - обеспечить комфортное отслеживание активов и
+               прозрачные сделки, чтобы обеспечить управление активами
+               опыт на совершенно новый уровень.`,
+        button: "О нас",
       },
       indexD: {
         title: "Деривативы",
@@ -1318,102 +454,9 @@ const i18n = {
           },
         },
       },
-      roadmap: {
-        title: "Дорожная карта",
-        stages: {
-          1: {
-            title: "Этап 1",
-            subtitle: "январь - март 2022",
-            items: [
-              "Разработка концепции и брендбука проекта",
-              "Разработка архитектуры платформы",
-              "Создание и наполнение сайта (дизайн, верстка, мобильная адаптация, разработка ядра учетной записи пользователя)",
-            ],
-          },
-          2: {
-            title: "Этап 2",
-            subtitle: "март - сентябрь 2022",
-            items: [
-              "Разработка платформы MVP",
-              "Разработка маркетингового плана",
-              "Создание и наполнение соцсетей (Facebook, Instagram, Telegram, Reddit)",
-              "Старт предварительной маркетинговой кампании",
-            ],
-          },
-          3: {
-            title: "Этап 3",
-            subtitle: "сентябрь - ноябрь 2022",
-            items: [
-              "Создание компании и получение юридических документов",
-              "Начало сбора средств",
-              "Открытие офисов: Дубай, Москва, Уфа, Казань",
-              "Тестирование MVP и QA",
-              "Завершение аудита безопасности платформы",
-            ],
-          },
-          4: {
-            title: "Этап 4",
-            subtitle: "ноябрь 2022 - январь 2023",
-            items: [
-              "Старт глобальной маркетинговой кампании",
-              "Проведение IEO на CEX",
-              "Листинг CEX",
-              "Запуск платформы MVP",
-            ],
-          },
-          5: {
-            title: "Этап 5",
-            subtitle: "декабрь 2022 - февраль 2023",
-            items: [
-              "Обновление функционала платформы",
-              "Запуск программы индексов Alga Advisors",
-              "Разработка мобильных приложений",
-            ],
-          },
-          6: {
-            title: "Этап 6",
-            subtitle: "ноябрь 2022 - февраль 2023",
-            items: [
-              "Листинг на других централизованных биржах",
-              "Разработка собственной индексной биржи",
-              "Увеличение количества индексов до 15",
-              "Партнерские соглашения с солидными хедж-фондами",
-            ],
-          },
-        },
-      },
-      team: {
-        title: "Команда",
-        peoples: {
-          1: {
-            name: "Урал",
-            lastName: "Каразбаев",
-            bio: "Основатель ALGA Ecosystem, предприниматель, основатель инвестиционного клуба «Музей финансов», соучредитель ТЦ «Город», «Форестпром», Д.С.Р. Уфа",
-          },
-          2: {
-            name: "Данат",
-            lastName: "Латыпов",
-            bio: "Разработчик, кандидат экономических наук, математик. Руководитель группы разработки. Специализируется на разработке высоконагруженных систем и коммерческих блокчейн-проектов с 2017 года",
-          },
-          3: {
-            name: "Раст",
-            lastName: "Пентагон",
-            bio: "Основатель ALGA Ecosystem и торговый директор криптовалютного фонда Fakel в СНГ, основатель консалтинговой компании Take Profit, международный спикер, квалифицированный трейдер с опытом работы более 8 лет",
-          },
-          4: {
-            name: "Иван",
-            lastName: "Белый",
-            bio: "Основатель и генеральный директор криптовалютного фонда Fakel в СНГ, руководитель образовательной программы, квалифицированный трейдер и маркетолог с опытом работы более 10 лет",
-          },
-          5: {
-            name: "Елена",
-            lastName: "Шаханова",
-            bio: "Бизнесвумен, основатель и генеральный директор агентства цифрового брендинга YES IDEA, арт-директор российских и международных проектов",
-          },
-        },
-      },
       backers: {
         title: "Спонсоры & Партнеры",
+        text: "Партнерство с ALGA даст вам доступ к новой аудитории, а также откроет новые перспективы для развития вашей компании в активно развивающемся сегменте крипторынка.",
       },
       faq: {
         title: "FAQ",
@@ -1495,8 +538,8 @@ const i18n = {
         },
       },
     },
-
     "en-US": {
+      lk: "Personal",
       dropdown: {
         buttons: {
           register: "Registration",
@@ -1507,10 +550,25 @@ const i18n = {
       header: {
         title: "Alga",
         subtitle: "Index <br> Derivatives <br> Platform",
+        nav: ["About as", "Support"],
       },
       about: {
         title: "About",
-        text: "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives. <br> The underlying cutting edge technology along with a huge background of the core team in  trading makes ALGA the one-stop shop for investments into proven and efficient strategies facilitating entry to the crypto for everyone. These strategies based on index derivatives consisting of many assets selected with the most efficient ratio allow to receive solid return on the allocated capital while minimizing risks. <br> The platform is designed by the people for the people with only one goal - to ensure comfortable tracking of assets and transparent transactions in order to bring asset management experience to a completely new level",
+        subttitle:
+          "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives.",
+        text: `The underlying cutting edge technology along with a huge
+              background of the core team in trading makes ALGA the one-step
+              shop for investments into proven and efficient strategies
+              facilitating entry to the crypto for everyone. <br /><br />
+              These strategies based on index derivatives consisting of many
+              assets selected using most efficient ratio allow to receive solid
+              return on the allocated capital while minimizing risks.
+              <br /><br />
+              The platform is designed by the people for the people with only
+              one goal - to ensure comfortable tracking of assets and
+              transparent transactions in order to bring asset management
+              experience to a completely new level.`,
+        button: "About as",
       },
       indexD: {
         title: "Index Derivatives",
@@ -1529,161 +587,9 @@ const i18n = {
           },
         },
       },
-      roadmap: {
-        title: "Roadmap",
-        stages: {
-          1: {
-            title: "Stage 1",
-            subtitle: "January-March, 2022",
-            items: [
-              "Development of the concept and brand book of the project",
-              "Platform architecture development",
-              "Website creation and content (design, layout, mobile adaptation, development of the user account core)",
-            ],
-          },
-          2: {
-            title: "Stage 2",
-            subtitle: "March-September, 2022",
-            items: [
-              "Development of platform MVP",
-              "Development of the marketing plan",
-              "Creation and content of socials (Facebook, Instagram, Telegram, Reddit)",
-              "Launch the preliminary marketing campaign",
-            ],
-          },
-          3: {
-            title: "Stage 3",
-            subtitle: "September-November, 2022",
-            items: [
-              "Company establishment and obtaining of legal documents",
-              "Launch the fundraising campaign",
-              "Offices establishment: Dubai, Moscow, Ufa, Kazan",
-              "MVP testing and QA",
-              "Platform security audit completion",
-            ],
-          },
-          4: {
-            title: "Stage 4",
-            subtitle: "November 2022-January 2023",
-            items: [
-              "Start of the global marketing campaign",
-              "Perform IEO on CEX",
-              "CEX listing",
-              "Platform MVP launch",
-            ],
-          },
-          5: {
-            title: "Stage 5",
-            subtitle: "December 2022 - February 2023",
-            items: [
-              "Platform functionality update",
-              "Launch of the Alga Advisors indexes program",
-              "Mobile app development",
-            ],
-          },
-          6: {
-            title: "Stage 6",
-            subtitle: "November 2022 - February 2023",
-            items: [
-              "Listing on other Centralized exchanges",
-              "Development of the own index exchange",
-              "Increasing number of indexes to 15",
-              "Partnership agreements with solid hedge-funds",
-            ],
-          },
-        },
-      },
-      team: {
-        title: "Team",
-        peoples: {
-          1: {
-            name: "Ural",
-            lastName: "Karazbaev",
-            bio: "Founder of ALGA Ecosystem, entrepreneur, founder of Museum of Finance investment club, co-founder of TC Gorod, Forestprom, D.S.R. Ufa",
-          },
-          2: {
-            name: "Danat",
-            lastName: "Latypov",
-            bio: "Developer, PhD in economics, mathematician. Head of development team. Specialized in development of high-load systems and commercial blockchain projects from 2017",
-          },
-          3: {
-            name: "Rustem",
-            lastName: "Sadreev",
-            bio: "Founder and trading director of Fakel cryptocurrency fund in CIS, head of educational program, qualified trader with more than 8 years experience",
-          },
-          4: {
-            name: "Ivan",
-            lastName: "Beliy",
-            bio: "Founder and CEO of Fakel cryptocurrency fund in CIS, head of educational program, qualified trader and marketer with more than 10 years experience",
-          },
-          5: {
-            name: "Elena",
-            lastName: "Shakhanova",
-            bio: "Businessman, founder and CEO of YES IDEA digital branding agency, art director of Russian and international projects",
-          },
-        },
-      },
       backers: {
         title: "Backers & Partners",
-      },
-      faq: {
-        title: "FAQ",
-        items: {
-          1: {
-            title: "What is the Alga Ecosystem?",
-            text: `
-              Alga Ecosystem is the brand new tool for both comfortable entrance to the crypto world and smart investments. At the early stage the Ecosystem contains three main products:
-              <br>
-              -Alga Index Derivatives platform (AID)
-              <br>
-              -Alga Education platform (AE)
-              <br>
-              -Alga Indexview social network (AI)
-            `,
-          },
-          2: {
-            title: "What is the Alga Index Derivatives platform?",
-            text: `
-              It is a CeFi platform that allows you to invest in cryptocurrencies through index derivatives.
-              <br>
-              Founders combine advanced technology and personal trading experience to create an environment for safe investment of users’ funds and balanced returns on allocated capital with the help of indexes. AID empowers individuals or institutions to create, manage and invest in innovative on-chain investment tools
-            `,
-          },
-          3: {
-            title: "What is index?",
-            text: `
-              Index is a derivative that represents a fully collateralized portfolio of assets that can enable people or entities to manage their wealth & the wealth of others within a safe environment
-            `,
-          },
-          4: {
-            title: "What kind of indexes are represented at AIDT?",
-            text: `
-              Currently we have 5 indexes:
-              <br>
-              - BTC MAIN ALGA INDEX;
-              <br>
-              - ETH MAIN ALGA INDEX;
-              <br>
-              - BTC COMBO ALGA INDEX;
-              <br>
-              - ETH COMBO ALGA INDEX;
-              <br>
-              - STABLE ALGA INDEX.
-              <br>
-              With the development of the platform it will be more
-            `,
-          },
-          5: {
-            title: "What is an Alga token and what are its use cases?",
-            text: `
-              Alga token is native token of the Alga Ecosystem. Holders of Alga will have several benefits, such as: possibility of staking and DAO participation, creation of own indexes. Discounts for Educational programs and different customization features at Alga Indexview
-            `,
-          },
-          6: {
-            title: "Is the operation of Alga Ecosystem legal?",
-            text: `Yes, Alga Ecosystem works under the registered legal entity in Dubai (UAE). Entity is licensed to work with digital assets`,
-          },
-        },
+        text: "Partnership with ALGA will give you access to a new audience, as well as open up new prospects for the development of your company in the actively developing segment of the crypto market",
       },
       "card-big": {
         signin: {
@@ -1717,10 +623,25 @@ const i18n = {
       header: {
         title: "Alga",
         subtitle: "Index- <br> Derivate- <br> Plattform",
+        nav: ["Etwa so", "Unterstützen"],
       },
       about: {
         title: "Über uns",
-        text: "ALGA ist eine brandneue CeFi-Platform für die Umsetzung verschiedener Anlagestrategien auf Basis von Indexderivaten. <br> Die zugrundeliegende Spitzentechnologie zusammen mit dem umfangreichen Hintergrund des Kernteams im Handel macht ALGA zum One-Stop-Shop für Investitionen in bewährte und effiziente Strategien, die den Einstieg in die Kryptowährung für jedermann erleichtern. Diese auf Indexderivaten basierenden Strategien, die aus vielen, im effektivsten Verhältnis ausgewählten Vermögenswerten bestehen, ermöglichen es, eine solide Rendite auf das zugewiesene Kapital zu erzielen und gleichzeitig die Risiken zu minimieren. <br> Die Plattform wurde von Menschen für Menschen mit dem einzigen Ziel entwickelt, eine bequeme Verfolgung von Vermögenswerten und transparente Transaktionen zu gewährleisten, um die Erfahrung der Vermögensverwaltung auf ein völlig neues Niveau zu bringen.",
+        subtitle:
+          "ALGA ist eine brandneue CeFi-Plattform zur Umsetzung verschiedener Anlagestrategien auf Basis von Indexderivaten.",
+        text: `Die zugrunde liegende Spitzentechnologie zusammen mit einem riesigen
+               Hintergrund des Kernteams im Trading macht ALGA zum One-Step
+               Kaufen Sie nach Investitionen in bewährte und effiziente Strategien
+               Erleichterung des Zugangs zur Krypto für alle. <br /><br />
+               Diese Strategien basieren auf Indexderivaten, die aus vielen bestehen
+               Vermögenswerte, die nach dem effizientesten Verhältnis ausgewählt wurden, ermöglichen es, solide zu erhalten
+               Rendite auf das eingesetzte Kapital bei gleichzeitiger Risikominimierung.
+               <br /><br />
+               Die Plattform ist nur von Menschen für Menschen konzipiert
+               ein Ziel - eine komfortable Verfolgung von Vermögenswerten zu gewährleisten und
+               transparente Transaktionen, um Vermögensverwaltung zu bringen
+               auf einem völlig neuen Level erleben.`,
+        button: "Etwa so",
       },
       indexD: {
         title: "Derivates",
@@ -1835,6 +756,7 @@ const i18n = {
       },
       backers: {
         title: "Förderer & Partner",
+        text: "Die Partnerschaft mit ALGA verschafft Ihnen Zugang zu einem neuen Publikum und eröffnet Ihnen neue Perspektiven für die Entwicklung Ihres Unternehmens im sich aktiv entwickelnden Segment des Kryptomarktes",
       },
       faq: {
         title: "Häufig gestellte Fragen",
@@ -1928,10 +850,25 @@ const i18n = {
       header: {
         title: "Alga",
         subtitle: "指数 <br> 衍生品 <br> 平台",
+        nav: ["大約作為", "支持"],
       },
       about: {
         title: "关于我们",
-        text: "ALGA是一个全新的CeFi平台，用于实施基于指数衍生品的不同投资策略。底层的尖端技术以及交易核心团队的巨大背景使ALGA成为投资成熟有效策略的一站式商店，方便每个人进入加密。这些基于由以最有效比率选择的许多资产组成的指数衍生品的策略允许在最大限度地降低风险的同时获得稳定的分配资本回报。该平台是由人们为只有一个目标的人设计的-确保资产的舒适跟踪和透明的交易，以便将资产管理经验提升到全新的水平",
+        subtitle:
+          "ALGA是一個全新的CeFi平台，用於實施基於指數衍生品的不同投資策略。",
+        text: `底層的尖端技術以及巨大的
+               交易核心團隊背景，讓ALGA一步到位
+               購買經過驗證且有效的策略的投資
+               促進每個人進入加密貨幣。 <br /><br />
+               這些基於指數衍生品的策略由許多
+               使用最有效比率選擇的資產允許接收固體
+               分配資本的回報，同時將風險降至最低。
+               <br /><br />
+               該平台是由人們為只有
+               一個目標 - 確保輕鬆跟踪資產和
+               透明交易以帶來資產管理
+               體驗到一個全新的水平。`,
+        button: "大約作為",
       },
       indexD: {
         title: "指数衍生品",
@@ -2042,6 +979,7 @@ const i18n = {
       },
       backers: {
         title: "支持者和合作伙伴",
+        text: "與 ALGA 合作將使您接觸到新的受眾，並為您的公司在加密市場的積極發展領域開闢新的發展前景",
       },
       faq: {
         title: "FAQ",
@@ -2129,6 +1067,7 @@ export default {
   components: {
     MiniAreaChart,
     MarkIcon,
+    Locale,
   },
   setup() {
     const $i18n = useI18n();
