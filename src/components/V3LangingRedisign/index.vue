@@ -399,7 +399,7 @@
 import { ref, computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
-
+import useChart from "src/composition/useChart.js";
 import Locale from "src/components/V3/LocaleButtonsRedisign.vue";
 import MiniAreaChart from "src/components/V3/MiniAreaChart.vue";
 import MarkIcon from "src/components/V3/MarkIcon.vue";
@@ -1072,6 +1072,7 @@ export default {
   setup() {
     const $i18n = useI18n();
     const store = useStore();
+    const { charts, getChart } = useChart();
     const locale = computed(() => {
       if ($i18n.locale.value === "en-US" || $i18n.locale.value === "en")
         return "English";
@@ -1136,26 +1137,6 @@ export default {
     const roadMap = store.getters["landing/footer"](t)[1].to;
 
     const derivatives = computed(() => store.getters["landing/derivatives"]);
-    const charts = ref(null);
-    onMounted(async () => {
-      await store.dispatch("landing/getDerivatives").then((resolve) => {
-        const requests = resolve.map((derivative) =>
-          store.dispatch("landing/getChartDerivative", derivative.id)
-        );
-
-        Promise.all(requests).then((responses) => {
-          charts.value = responses;
-        });
-      });
-    });
-
-    const getChart = (id) => {
-      if (charts.value) {
-        return charts.value.find(
-          (chart) => chart["index_derivative_id"] === id
-        );
-      }
-    };
 
     const getChartData = (id) => {
       return getChart(id)?.chart.map((item) => [

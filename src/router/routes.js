@@ -129,7 +129,7 @@ const routes = [
 
   {
     path: "/lk",
-    component: () => import("layouts/V3/Baselayout.vue"),
+    component: () => import("layouts/V4/Baselayout.vue"),
     children: [
       ...markAuth(
         {
@@ -139,7 +139,7 @@ const routes = [
         },
         {
           path: "index-directive",
-          component: () => import("pages/V3/IndexDirective.vue"),
+          component: () => import("pages/V4/IndexDirective.vue"),
           name: "index-directive",
         },
         {
