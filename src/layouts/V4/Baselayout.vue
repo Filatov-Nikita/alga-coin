@@ -1,13 +1,13 @@
 <template>
   <q-layout
     style="min-height: 100vh"
-    class="app-page-bg app-page-bg_lk"
+    class="app-page-bg app-page-bg--dark"
     view="hhh lpr lFf"
   >
     <!-- <HeaderBase /> -->
 
-    <q-header class="tw-py-3-1" :class="{ 'tw-bg-dark-blue-3': !$q.screen.xl }">
-      <div class="tw-container tw-px-7.5">
+    <q-header class="tw-py-3-1">
+      <div class="tw-container">
         <div class="tw-flex tw-justify-between tw-items-center">
           <img
             :src="require('assets/images/logo-v3.svg')"
@@ -139,8 +139,8 @@
       </div>
     </q-header>
 
-    <q-page-container class="tw-container xl:tw-px-7.5 tw-grid content">
-      <router-view class="tw-pt-15 xl:tw-pt-0 xl:tw-pb-10" />
+    <q-page-container class="tw-grid content">
+      <router-view class="" />
     </q-page-container>
     <q-footer v-if="!$q.screen.xl" class="tw-pt-5 tw-pb-2.5 app-page-bg">
       <div class="tw-container">

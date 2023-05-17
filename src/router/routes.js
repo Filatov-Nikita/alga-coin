@@ -149,7 +149,7 @@ const routes = [
         },
         {
           path: "portfolio",
-          component: () => import("pages/V3/Portfolio.vue"),
+          component: () => import("pages/V4/Portfolio.vue"),
           name: "portfolio",
         },
         {

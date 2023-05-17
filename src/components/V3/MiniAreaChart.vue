@@ -52,14 +52,14 @@ export default {
           enabled: false,
         },
       },
-      series: [
-        {
-          name: "значение",
-          data: this.values,
-        },
-      ],
+
       selection: "one_year",
     };
+  },
+  computed: {
+    series() {
+      return [{ name: "значение", data: this.values }];
+    },
   },
 
   created() {

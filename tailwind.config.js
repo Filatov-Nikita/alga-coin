@@ -3,11 +3,12 @@ module.exports = {
   purge: {
     content: ["./src/**/*.vue"],
   },
-  darkMode: false, // or 'media' or 'class'
+  // darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       borderRadius: {
         base: "8px",
+        lg2: "10px",
       },
       spacing: {
         "2-1": "0.625rem",
@@ -52,6 +53,9 @@ module.exports = {
       "text-gray-dark-50": "#6F7186",
       "purple-dark": "#9596A3",
       "purple-light": "#BEC3FF",
+      "gray-border": "#1D1D1D",
+      black: "#000000",
+      title: "#575656",
     },
     fontFamily: {
       stolzl: "Stolzl",
@@ -79,7 +83,7 @@ module.exports = {
       sm: "100%",
       padding: {
         DEFAULT: "15px",
-        xl: "130px",
+        xl: "60px",
         sm: "15px",
       },
     },
