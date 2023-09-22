@@ -16,19 +16,19 @@
 </template>
 
 <script>
-import { useField, useForm } from 'vee-validate';
+import { useField, useForm } from "vee-validate";
 
 export default {
   setup() {
     const scheme = {
-      inp1: 'required',
-      inp2: 'required',
+      inp1: "required",
+      inp2: "required",
     };
 
     const form = useForm({
       validationSchema: scheme,
       initialErrors: {
-        inp1: 'err 1',
+        inp1: "err 1",
       },
       initialDirty: {
         inp2: true,
@@ -38,8 +38,8 @@ export default {
       },
     });
 
-    const inp1 = useField('inp1', '', { label: 'поле 1' });
-    const inp2 = useField('inp2', '', { label: 'поле 2' });
+    const inp1 = useField("inp1", "", { label: "поле 1" });
+    const inp2 = useField("inp2", "", { label: "поле 2" });
 
     form.values;
     form.errors;
@@ -52,10 +52,7 @@ export default {
     form.submitCount;
     form.isSubmitting;
 
-    console.log(form.errors);
-
     const handleSubmit = form.handleSubmit((values, actions) => {
-      console.log(values, actions);
       return new Promise((res, rej) => {
         setTimeout(() => {
           if (Math.random() < 0.5) {

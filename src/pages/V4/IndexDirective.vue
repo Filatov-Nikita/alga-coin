@@ -5,40 +5,46 @@
   >
     <div>
       <h4 class="tw-px-9 tw-py-8">Derivatives:</h4>
-      <button
-        class="item-chart"
-        v-for="derivative in derivatives"
-        :key="derivative.id"
-        :class="{ active: slide === derivative.id }"
-        @click="slide = derivative.id"
-      >
-        <div class="tw-flex tw-flex-col tw-justify-between">
-          <h4 class="tw-text-sm">{{ derivative.name }}</h4>
-          <div class="tw-flex tw-gap-x-2.5">
-            <MarkIcon
-              class="tw-w-4 tw-h-4"
-              :mark="getChart(derivative.id)?.profitability"
-            />
-            <h4 class="tw-text-base">
-              {{ getChart(derivative.id)?.profitability }}%
-            </h4>
+      <template v-if="charts.length > 0">
+        <button
+          class="item-chart"
+          v-for="derivative in derivatives"
+          :key="derivative.id"
+          :class="{ active: slide === derivative.id }"
+          @click="slide = derivative.id"
+        >
+          <div class="tw-flex tw-flex-col tw-justify-between tw-h-full">
+            <h4 class="tw-text-sm tw-text-left">{{ derivative.name }}</h4>
+            <div class="tw-flex tw-gap-x-2.5">
+              <MarkIcon
+                class="tw-w-4 tw-h-4"
+                :mark="getChart(derivative.id).profitability"
+              />
+              <h4 class="tw-text-base">
+                {{ getChart(derivative.id)?.profitability }}%
+              </h4>
+            </div>
           </div>
-        </div>
 
-        <div v-if="getChart(derivative.id)">
-          <div>
-            <MiniAreaChart :values="getChartData(derivative.id)" />
+          <div v-if="getChart(derivative.id)" class="tw-justify-self-end">
+            <div>
+              <MiniAreaChart
+                :values="getChartData(derivative.id)"
+                width="68"
+                height="34"
+              />
 
-            <button
-              @click="stage2"
-              class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
-            >
-              <span class="tw-text-xxs-1">{{ t("buy") }}</span>
-              <img src="~assets/icons/button-arrow.svg" alt="" />
-            </button>
+              <button
+                @click="stage2"
+                class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
+              >
+                <span class="tw-text-xxs-1">{{ t("buy") }}</span>
+                <img src="~assets/icons/button-arrow.svg" alt="" />
+              </button>
+            </div>
           </div>
-        </div>
-      </button>
+        </button>
+      </template>
     </div>
     <div
       class="tw-flex tw-flex-col tw-relative tw-px-15 tw-pt-6.25 tw-border-l tw-border-gray-border"
@@ -54,11 +60,10 @@
         swipeable
         animated
         v-model="slide"
-        ч
         ref="carousel"
         class="bg-transparent"
         height="100%"
-        padding="false"
+        :padding="false"
       >
         <q-carousel-slide
           v-for="derivative in derivatives"
@@ -124,12 +129,17 @@
           </div>
 
           <div>
-            <h4 class="tw-mb-5">
-              {{ t("inside.title") }}
-            </h4>
             <div class="inside tw-mb-10">
-              <div class=" ">
-                <ul class="coinlist">
+              <div class="table">
+                <div class="table-head tw-mb-5">
+                  <h4 class="">
+                    {{ t("inside.title") }}
+                  </h4>
+                  <span> cost </span>
+                  <span> alteration </span>
+                  <span> table </span>
+                </div>
+                <ul class="table-body coinlist">
                   <li
                     class="item tw-flex tw-justify-between tw-items-center"
                     v-for="currency in derivative['currency_shares']"
@@ -145,6 +155,8 @@
                       <span>{{ currency.name }}</span>
                     </div>
                     <span>{{ currency["percent_share"] }}%</span>
+                    <span>{{ currency["percent_share"] }}%</span>
+                    <MiniAreaChart :values="getChartData(derivative.id)" />
                   </li>
                 </ul>
               </div>
@@ -217,6 +229,7 @@
                 id="amount"
                 type="number"
                 name="amount"
+                label=""
                 inputClass="app-input__field--standart-valute"
               >
                 <template #append>
@@ -468,7 +481,7 @@ export default {
   display: grid;
   grid-template-columns: 257px 1fr;
   .item-chart {
-    @apply tw-flex tw-justify-between tw-px-9 tw-py-3.5 tw-w-full;
+    @apply tw-grid tw-grid-cols-2  tw-px-9 tw-py-3.5 tw-w-full;
     &:hover,
     &.active {
       background: #171d26;
@@ -503,6 +516,37 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  width: 100%;
+  & .table {
+    width: 100%;
+    &-head {
+      padding: 10px 77px 10px 18px;
+      display: grid;
+      grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+      & *:first-child {
+        margin-left: -18px;
+      }
+      & *:not(:first-child) {
+        justify-self: center;
+      }
+    }
+    &-body {
+      @apply tw-border tw-border-gray-border;
+
+      .item {
+        padding: 10px 77px 10px 18px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+        &:not(:last-child) {
+          @apply tw-border-b tw-border-gray-border;
+        }
+        & *:not(:first-child) {
+          justify-self: center;
+        }
+      }
+    }
+  }
   @include screen-xl {
     flex-direction: row;
     gap: 110px;
@@ -538,9 +582,6 @@ export default {
 }
 
 .coinlist {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
   .item {
     @include screen-xl {
       width: 318px;

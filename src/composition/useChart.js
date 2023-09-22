@@ -21,12 +21,19 @@ export default function () {
   onMounted(async () => {
     try {
       $q.loading.show();
-      await store.dispatch("landing/getDerivatives").then((resolve) => {
-        const requests = resolve.map((derivative) =>
-          store.dispatch("landing/getChartDerivative", derivative.id)
-        );
+      await store.dispatch("landing/getDerivatives").then(async (resolve) => {
+        $q.loading.show();
 
+        const requests = await resolve.map(async (derivative) => {
+          $q.loading.show();
+          return await store.dispatch(
+            "landing/getChartDerivative",
+            derivative.id
+          );
+        });
+        console.log(requests);
         Promise.all(requests).then((responses) => {
+          console.log(responses);
           charts.value = responses;
         });
       });

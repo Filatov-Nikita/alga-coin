@@ -5,7 +5,9 @@ export function getDerivatives() {
 }
 
 export function getChartDerivative(id, duration_in_days = 120) {
-  return MainApi.mainKy(`landing/index-derivatives/${id}/value-chart?duration_in_days=${duration_in_days}`).json();
+  return MainApi.mainKy(
+    `landing/index-derivatives/${id}/value-chart?duration_in_days=${duration_in_days}`
+  ).json();
 }
 
 export function newsList(searchParams = {}) {

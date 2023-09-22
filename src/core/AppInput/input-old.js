@@ -2,7 +2,7 @@ import { useField } from "vee-validate";
 import { computed, watch, toRefs } from "vue";
 
 export default function (props, { emit, attrs }) {
-  const { errors ,value, errorMessage, handleChange, resetField } = useField(
+  const { errors, value, errorMessage, handleChange, resetField } = useField(
     props.name || props.label,
     props.rules,
     {
@@ -19,10 +19,8 @@ export default function (props, { emit, attrs }) {
       resetField({ value: newVal });
     }
   });
-  
-  watch(errors, (val)=>{
-    console.log(val);
-  })
+
+  watch(errors, (val) => {});
   const validationListeners = computed(() => {
     const handler = (e, shouldValidate = true) => {
       if (attrs.onInput) {

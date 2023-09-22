@@ -1,6 +1,6 @@
 <template>
   <q-page
-    class="tw-flex tw-flex-col tw-relative tw-overflow-hidden tw-container"
+    class="tw-flex tw-flex-col tw-relative tw-overflow-hidden tw-container "
   >
     <div class="tw-flex tw-justify-between tw-mb-14">
       <h2 class="tw-mb-15">{{ t("title") }}</h2>
@@ -299,8 +299,8 @@
             <div></div>
           </div>
           <div class="table-body">
-            <div class="item">
-              <div class="tw-flex tw-items-center">
+            <div class="item active">
+              <div class="tw-flex tw-items-center tw-gap-2">
                 <svg
                   width="12"
                   height="11"
@@ -314,7 +314,12 @@
                     stroke="#9596A3"
                   />
                 </svg>
-
+                <img
+                  src="https://admin.alga.finance/storage/coin_images/XabMDJBIimLL7LfDOPZdv2KjX0vpc66EhUwHesJB.svg"
+                  alt=""
+                  width="16"
+                  height="16"
+                />
                 <span> BTC main </span>
               </div>
               <div>$97.500</div>
@@ -344,7 +349,7 @@
               </button>
             </div>
             <div class="item">
-              <div class="tw-flex tw-items-center">
+              <div class="tw-flex tw-items-center tw-gap-2">
                 <svg
                   width="12"
                   height="11"
@@ -358,7 +363,12 @@
                     stroke="#9596A3"
                   />
                 </svg>
-
+                <img
+                  src="https://admin.alga.finance/storage/coin_images/XabMDJBIimLL7LfDOPZdv2KjX0vpc66EhUwHesJB.svg"
+                  alt=""
+                  width="16"
+                  height="16"
+                />
                 <span> BTC main </span>
               </div>
               <div>$97.500</div>
@@ -391,49 +401,72 @@
         </div>
       </div>
       <div class="tw-w-1/2">
-        <div class="chart-card tw-mb-8">
+        <div class="chart-card tw-mb-8" v-if="charts.length > 0">
           <div class="btns btns_sm">
-            <button
+            <!-- <button
               class="tw-px-4 tw-h-full"
               :class="{ active: activeChart === 1 }"
-              @click="activeChart = 1"
+              @click="newTime(2) activeChart = 1"
             >
               H
-            </button>
+            </button> -->
             <button
               class="tw-px-4 tw-h-full"
               :class="{ active: activeChart === 2 }"
-              @click="activeChart = 2"
+              @click="newTime(2, 2)"
             >
               D
             </button>
             <button
               class="tw-px-4 tw-h-full"
               :class="{ active: activeChart === 3 }"
-              @click="activeChart = 3"
+              @click="newTime(3, 7)"
             >
               W
             </button>
             <button
               class="tw-px-4 tw-h-full"
               :class="{ active: activeChart === 4 }"
-              @click="activeChart = 4"
+              @click="newTime(4, 30)"
             >
               M
             </button>
             <button
               class="tw-px-4 tw-h-full"
               :class="{ active: activeChart === 5 }"
-              @click="activeChart = 5"
+              @click="newTime(5, 120)"
             >
               Y
             </button>
           </div>
+          <AreaChart
+            :valSeries="getChartData(1)"
+            class="tw-order-2 xl:tw-order-1"
+          />
         </div>
         <div class="swap-card">
-          <div class="tw-mb-5">
-            <span> Swap </span>
-            <span> BTC main </span>
+          <div class="tw-mb-5 tw-flex tw-justify-between tw-items-center">
+            <span class="tw-text-md2 tw-font-medium"> Swap </span>
+            <span class="tw-flex tw-items-center tw-gap-2">
+              <img
+                src="https://admin.alga.finance/storage/coin_images/7rQbWbecOrwZdODcQ1w2who2iLSPonLCRt68AuvU.svg"
+                alt=""
+              />
+              BTC main
+              <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L4.8 4.8L8.6 1"
+                  stroke="#D9D9D9"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
           </div>
           <div class="tw-flex tw-justify-end tw-mb-4">
             <button class="tw-bg-title tw-rounded-lg tw-h-8 tw-px-4">
@@ -445,8 +478,14 @@
               <span class="tw-text-text-gray"> From </span>
             </div>
             <div class="field-select">
-              <input type="text" />
+              <input type="text" placeholder="0.00" />
               <div class="select">
+                <img
+                  src="https://admin.alga.finance/storage/coin_images/7rQbWbecOrwZdODcQ1w2who2iLSPonLCRt68AuvU.svg"
+                  alt=""
+                  width="16"
+                  height="16"
+                />
                 <span> LTC </span>
                 <svg
                   width="10"
@@ -474,8 +513,14 @@
               <span class="tw-text-text-gray"> To (estimated) </span>
             </div>
             <div class="field-select">
-              <input type="text" />
+              <input type="text" placeholder="0.00" />
               <div class="select">
+                <img
+                  src="https://admin.alga.finance/storage/coin_images/7rQbWbecOrwZdODcQ1w2who2iLSPonLCRt68AuvU.svg"
+                  alt=""
+                  width="16"
+                  height="16"
+                />
                 <span> LTC </span>
                 <svg
                   width="10"
@@ -496,7 +541,7 @@
 
           <div class="tw-flex tw-justify-end tw-mt-10">
             <button
-              class="tw-bg-title tw-rounded-lg tw-px-12 tw-h-14 tw-flex tw-items-center tw-justify-center tw-gap-2"
+              class="tw-bg-title-light tw-rounded-xl tw-px-12 tw-h-12 tw-opacity-40 tw-flex tw-items-center tw-justify-center tw-gap-2"
             >
               <svg
                 width="14"
@@ -505,8 +550,8 @@
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M2.84615 11.3333L1 7.3333H13" stroke="#5E6062" />
-                <path d="M11.1538 0.666626L13 4.66663H1" stroke="#5E6062" />
+                <path d="M2.84615 11.3333L1 7.3333H13" stroke="#fff" />
+                <path d="M11.1538 0.666626L13 4.66663H1" stroke="#fff" />
               </svg>
               <span> Swap </span>
             </button>
@@ -524,8 +569,9 @@ import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import useBuyWidthdrawalPopup from "src/composition/V3/useBuyWidthdrawalPopup";
 import MarkIcon from "src/components/V3/MarkIcon.vue";
+import AreaChart from "src/components/V3/AreaChart.vue";
 import BtnsAnimate from "src/components/BtnsAnimate.vue";
-
+import useChart from "src/composition/useChart.js";
 const i18n = {
   messages: {
     "ru-RU": {
@@ -681,8 +727,14 @@ const $q = useQuasar();
 const store = useStore();
 const { popup, isPopup, popupContent, buy, widthdrawal, popupAction } =
   useBuyWidthdrawalPopup();
-
-const activeIndex = ref(null);
+const { charts, getChart } = useChart();
+const getChartData = (id) => {
+  return getChart(id)?.chart.map((item) => [
+    +item.timestamp * 1000,
+    +item.value,
+  ]);
+};
+const activeIndex = ref(2);
 const amountPopup = computed(() => {
   console.log(indexList.value);
   console.log(popupContent.value.id);
@@ -699,6 +751,14 @@ const choiseIndex = (index) => {
 
 const indexList = computed(() => store.getters["profile/getPorfolioList"]);
 const balance = computed(() => store.getters["profile/getBalance"]);
+const newTime = async (active, time) => {
+  activeChart.value = active;
+  const chartItem = await store.dispatch("landing/getChartDerivativeNewTime", {
+    id: 1,
+    time,
+  });
+  charts.value[0] = chartItem;
+};
 onMounted(async () => {
   try {
     $q.loading.show();
@@ -713,7 +773,7 @@ onMounted(async () => {
   }
 });
 
-const activeChart = ref(1);
+const activeChart = ref(5);
 </script>
 
 <style lang="scss" scoped>

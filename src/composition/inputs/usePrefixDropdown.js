@@ -3,7 +3,7 @@ import { useField } from "vee-validate";
 
 const NUMBER_FLAG = { "+7": "ru" };
 const OPTION_VALUES = ["+7"];
-const DEFAULT_PREFIX = '+7';
+const DEFAULT_PREFIX = "+7";
 
 function createSelect(ctx) {
   const { selectShow, fieldPrefix, errorMessage, disabled } = ctx;
@@ -30,11 +30,16 @@ function createSelect(ctx) {
     "div",
     {
       role: "select",
-      class: ["app-select", { "app-input__field--invalid": !!errorMessage.value, "app-inut__disabled": disabled }],
+      class: [
+        "app-select",
+        {
+          "app-input__field--invalid": !!errorMessage.value,
+          "app-inut__disabled": disabled,
+        },
+      ],
       onClick: (e) => {
-        console.log(disabled)
         if (e.target.closest(".app-dropdown")) return;
-        if(!disabled)selectShow.value = !selectShow.value;
+        if (!disabled) selectShow.value = !selectShow.value;
       },
     },
     [selectBtnChlildren, dropDown ? dropDown : null]
@@ -78,6 +83,7 @@ export default function ({ errorMessage }, disabled) {
 
   return {
     fieldPrefix,
-    createSelect: () => createSelect({ selectShow, fieldPrefix, errorMessage, disabled }),
+    createSelect: () =>
+      createSelect({ selectShow, fieldPrefix, errorMessage, disabled }),
   };
 }

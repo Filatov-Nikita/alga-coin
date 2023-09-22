@@ -10,7 +10,6 @@ import de from "@vee-validate/i18n/dist/locale/de.json";
 import zh from "@vee-validate/i18n/dist/locale/zh_CN.json";
 
 export default ({ app }) => {
-  console.log(messages);
   let curLocale;
   if (window.localStorage.getItem("locale") === null) {
     // curLocale = Quasar.lang.getLocale();
@@ -21,9 +20,6 @@ export default ({ app }) => {
     curLocale = window.localStorage.getItem("locale");
   }
   function customRule(choice, choicesLength, orgRule) {
-    console.log(choice);
-    console.log(choicesLength);
-    console.log(orgRule);
     if (choice === 0) {
       return 0;
     }

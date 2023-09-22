@@ -128,5 +128,9 @@ export default {
       const { data } = await landingAPI.getChartDerivative(id);
       return data;
     },
+    async getChartDerivativeNewTime({ commit }, { id, time }) {
+      const { data } = await landingAPI.getChartDerivative(id, time);
+      return data;
+    },
   },
 };

@@ -56,6 +56,7 @@ module.exports = {
       "gray-border": "#1D1D1D",
       black: "#000000",
       title: "#575656",
+      "title-light": "#5F6368",
     },
     fontFamily: {
       stolzl: "Stolzl",

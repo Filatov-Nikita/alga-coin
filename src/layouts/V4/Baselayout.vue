@@ -16,9 +16,7 @@
             @click="$router.push({ name: 'home' })"
           />
 
-          <ul
-            class="nav-links tw-flex tw-gap-8 tw-flex-grow tw-px-24 tw-justify-between"
-          >
+          <ul class="nav-links tw-flex tw-gap-8 tw-flex-grow tw-px-24">
             <router-link
               :to="{ name: 'index-directive' }"
               custom
@@ -45,7 +43,7 @@
                 <span class="item__text"> {{ t("nav[1]") }} </span>
               </li>
             </router-link>
-            <router-link
+            <!-- <router-link
               :to="{ name: 'history' }"
               custom
               v-slot="{ isExactActive, navigate }"
@@ -70,9 +68,9 @@
               >
                 <span class="item__text"> {{ t("nav[3]") }} </span>
               </li>
-            </router-link>
+            </router-link> -->
           </ul>
-          <div class="tw-mb-4">
+          <div>
             <div
               class="tw-text-xxs tw-text-text-gray tw-mb-5 tw-mt-6 tw-uppercase"
             >
@@ -80,7 +78,10 @@
             </div>
             <div class="profile tw-flex tw-flex-col tw-justify-center">
               <div class="tw-flex tw-items-center tw-gap-5 tw-mb-5">
-                <img :src="require('assets/icons/avatar.svg')" alt="avatar" />
+                <img
+                  :src="require('assets/icons/avatar-green.svg')"
+                  alt="avatar"
+                />
                 <div class="tw-flex tw-flex-col">
                   <span class="profile__name tw-text-xs">{{
                     $store.getters["profile/fio"]
@@ -288,6 +289,7 @@ const i18n = {
       nav: ["Деривативы", "Портфолио", "История", "Поддержка", "Рефералы"],
       "log-out": "Выйти",
       profile: "Профиль",
+      edit: "Редактировать",
     },
     "en-US": {
       nav: [
@@ -297,8 +299,10 @@ const i18n = {
         "Support",
         "Referrals",
       ],
+
       "log-out": "Log out",
       profile: "Profile",
+      edit: " Edit",
     },
 
     de: {
@@ -311,11 +315,13 @@ const i18n = {
       ],
       "log-out": "Ausloggen",
       profile: "Profil",
+      edit: " Bearbeiten",
     },
     "zh-CN": {
       nav: ["指数衍生品", "我的投资组合", "历史", "支持", "轉介"],
       "log-out": "登出",
       profile: "轮廓",
+      edit: " 编辑",
     },
   },
 };

@@ -106,7 +106,6 @@ export default defineComponent({
     };
 
     watch(field.errors, (val) => {
-      console.log(val);
       emit("isError", !val[0] ? true : false);
     });
     useModel(field.value, modelValueRef, modelValueEmit, changeVal);

@@ -21,7 +21,6 @@ export default function () {
     }
   };
   const popupAction = async (value, { resetForm }) => {
-    console.log(value);
     if (popupContent.value.popup_name === "widthdrawal") {
       try {
         await store.dispatch("profile/widthdrawalIndex", {
@@ -47,12 +46,10 @@ export default function () {
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
           window.location.href = data.payment_url;
         } else {
+          var newWin = window.open(data.payment_url, "_blank");
 
-          var newWin = window.open(data.payment_url, "_blank");             
-
-          if(!newWin || newWin.closed || typeof newWin.closed=='undefined') 
-          { 
-              window.location.href = data.payment_url;
+          if (!newWin || newWin.closed || typeof newWin.closed == "undefined") {
+            window.location.href = data.payment_url;
           }
 
           router.push({ name: "history" });
@@ -108,18 +105,13 @@ export default function () {
       popup.value.style.display = "block";
       setTimeout(() => {
         const popupHeight = popup.value.offsetHeight;
-        console.log(pageHeight - windowHeight < popupHeight);
+
         popup.value.style.top =
           positionY -
           currentElem.getBoundingClientRect().height -
           popupHeight +
           "px";
       }, 0);
-      // if (pageHeight - windowHeight < popupHeight) {
-      // } else {
-      //   popup.value.style.top = positionY + "px";
-      //   console.log(popup.value.style.top);
-      // }
     }
   };
   const buy = (e, id) => {

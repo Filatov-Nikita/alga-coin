@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="toolbar tw-flex tw-gap-2">
+    <!-- <div class="toolbar tw-flex tw-gap-2">
       <button
         id="one_month"
         @click="updateData('one_month')"
@@ -33,7 +33,7 @@
         Y
       </button>
       {{ selection }}
-    </div>
+    </div> -->
     <apexchart
       type="area"
       height="230"
@@ -129,18 +129,7 @@ export default {
     },
   },
   mounted() {
-    // if (this.$refs.chart)
-    //   this.$refs.chart.zoomX(
-    //     new Date("28 Jan 2013").getTime(),
-    //     new Date("27 Feb 2013").getTime()
-    //     dayjs().format().getTime(),
-    //     dayjs().add(7, "day").format().getTime()
-    //   );
     dayjs.extend(utc);
-    // console.log(dayjs().add(-7, "day").format());
-    // console.log(dayjs.utc().add(7, "day").format());
-    console.log(dayjs().year());
-    console.log(dayjs.utc(dayjs(`${dayjs().year()}-01-01`, "YYYY-MM-DD")));
   },
   methods: {
     updateData: function (timeline) {
@@ -182,12 +171,12 @@ export default {
       }
     },
   },
-  // watch: {
-  //     valSeries(val){
-  //         this.series[0].data = val
-  //         console.log(val)
-  //     }
-  // },
+  watch: {
+    valSeries(val) {
+      this.series[0].data = val;
+      console.log(val);
+    },
+  },
 };
 </script>
 

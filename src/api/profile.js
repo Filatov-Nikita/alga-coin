@@ -44,13 +44,11 @@ export function listHistoryWidthdrawal() {
   return MainApi.swot("b2c/portfolio/withdrawals").json();
 }
 
-
 export function listPortfolio() {
   return MainApi.swot("b2c/portfolio/grouped-purchased-orders").json();
 }
 
 export function widthdrawalIndex(obj) {
-  console.log(obj);
   return MainApi.swot
     .post("b2c/portfolio/withdrawals", { json: { ...obj } })
     .json();
@@ -64,7 +62,6 @@ export function createOrder({ amount, inder_id }) {
     .json();
 }
 
-
-export function balanceProfile(){
-  return MainApi.swot('b2c/portfolio/balance').json()
+export function balanceProfile() {
+  return MainApi.swot("b2c/portfolio/balance").json();
 }

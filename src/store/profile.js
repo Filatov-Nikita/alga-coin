@@ -3,11 +3,8 @@ import * as ProfileAPI from "src/api/profile";
 const formatingFullDate = (date) => {
   const newDate = new Date(date);
   const year = newDate.getFullYear();
-  const m = String(newDate.getMonth() + 1) 
-  const month =
-    m.length == 1
-      ? "0" + m
-      : m;
+  const m = String(newDate.getMonth() + 1);
+  const month = m.length == 1 ? "0" + m : m;
   const day =
     String(newDate.getDate()).length == 1
       ? "0" + newDate.getDate()
@@ -29,16 +26,10 @@ const formatingFullDate = (date) => {
 
 const formatingDate = (date) => {
   const newDate = new Date(date);
-  const month = String(newDate.getMonth()+1);
-  const d = String(newDate.getDate())
-  return `${
-    d.length == 1
-      ? "0" + d
-      : d
-  }.${
-    month.length == 1
-      ? "0" + month
-      : month
+  const month = String(newDate.getMonth() + 1);
+  const d = String(newDate.getDate());
+  return `${d.length == 1 ? "0" + d : d}.${
+    month.length == 1 ? "0" + month : month
   }.${newDate.getFullYear()} `;
 };
 export default {
@@ -49,7 +40,7 @@ export default {
     buyList: null,
     widthdrawalList: null,
     porfolioList: null,
-    balance: null
+    balance: null,
   },
   getters: {
     name(state) {
@@ -73,12 +64,10 @@ export default {
     getBuyList(state) {
       if (state.buyList !== null) {
         const list = state.buyList.map((item) => {
-          
-          item.status
+          item.status;
           return {
             ...item,
             created_at: formatingFullDate(item["created_at"]),
-            
           };
         });
         return list;
@@ -100,18 +89,20 @@ export default {
     },
     getPorfolioList(state) {
       if (state.porfolioList !== null) {
-        
-
-
         const list = state.porfolioList.map((item) => {
-          
-          const inder = {...item.inder,closing_at:formatingDate(item.inder.closing_at), opening_at:formatingDate(item.inder.opening_at)}
-          const orders = item.orders.map(order=>{return {...order, created_at: formatingDate(order.created_at)}})
-          
+          const inder = {
+            ...item.inder,
+            closing_at: formatingDate(item.inder.closing_at),
+            opening_at: formatingDate(item.inder.opening_at),
+          };
+          const orders = item.orders.map((order) => {
+            return { ...order, created_at: formatingDate(order.created_at) };
+          });
+
           return {
             ...item,
             inder,
-            orders
+            orders,
           };
         });
         return list;
@@ -119,30 +110,30 @@ export default {
       return null;
     },
 
+    //     closing_at:"2022-12-11T19:00:00Z"
+    // closing_in_days:41
+    // id:1
+    // image:Object
+    // name:"BTC main"
+    // opening_at:"2022-08-11T19:00:00Z
 
-//     closing_at:"2022-12-11T19:00:00Z"
-// closing_in_days:41
-// id:1
-// image:Object
-// name:"BTC main"
-// opening_at:"2022-08-11T19:00:00Z
+    // closing_at:"01.11.2022 "
+    // closing_in_days:41
+    // id:1
+    // image:Object
+    // name:"BTC main"
+    // opening_at:"05.07.2022 "
 
-// closing_at:"01.11.2022 "
-// closing_in_days:41
-// id:1
-// image:Object
-// name:"BTC main"
-// opening_at:"05.07.2022 "
-
-    getBalance(state){
-      if(state.balance === null) return {
-        actual_balance: 0,
-        relative_profit: null,
-        is_profit_positive: false,
-        coin: null
-      };
+    getBalance(state) {
+      if (state.balance === null)
+        return {
+          actual_balance: 0,
+          relative_profit: null,
+          is_profit_positive: false,
+          coin: null,
+        };
       return state.balance;
-    }
+    },
   },
   mutations: {
     setProfile(state, payload) {
@@ -167,7 +158,7 @@ export default {
 
     setBalance(state, data) {
       state.balance = data;
-    }
+    },
   },
   actions: {
     async show({ commit }) {
@@ -215,10 +206,9 @@ export default {
       return data;
     },
     async getBalanceProfile(_c) {
-      const {data} = await ProfileAPI.balanceProfile();
-      console.log(data)
-      _c.commit('setBalance', data)
-    }
+      const { data } = await ProfileAPI.balanceProfile();
+      console.log(data);
+      _c.commit("setBalance", data);
+    },
   },
-
 };
