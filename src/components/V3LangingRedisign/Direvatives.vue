@@ -1,270 +1,163 @@
-<!-- <template src="./index.html"></template> -->
 <template>
-  <div>
-    <header class="">
-      <div class="tw-container tw-h-full">
-        <div class="header__top">
-          <img
-            :src="require('assets/images/logo-v3.svg')"
-            alt="logo"
-            class="tw-cursor-pointer"
-            @click="$router.push({ name: 'home' })"
-          />
-
-          <div class="tw-hidden xl:tw-flex xl:tw-gap-10">
-            <button @click="$router.push({ name: 'about' })">
-              {{ t("header.nav[0]") }}
-            </button>
-            <a
-              class="tw-text-white hover:tw-text-white"
-              href="https://t.me/algafinancechat"
-              target="_blank"
-              >{{ t("header.nav[1]") }}</a
-            >
-          </div>
-          <div class="tw-flex tw-items-center tw-gap-4">
-            <button
-              v-if="isAuth"
-              class="button button_xs button_border-white button__login"
-              @click="$router.push({ name: 'index-directive' })"
-            >
-              {{ t("lk") }}
-            </button>
-            <button
-              v-else
-              class="button button_xs button_border-white button__login"
-              @click="$router.push({ name: 'auth.login' })"
-            >
-              {{ t("dropdown.buttons.login") }}
-            </button>
-            <div class="mob-n">
-              <Locale />
-            </div>
-            <div class="desk-n">
-              <button class="burger" @click="dropDown = !dropDown">
-                <span></span><span></span><span></span>
-              </button>
-            </div>
-          </div>
+<section class="section index-directive">
+      <div class="tw-container">
+        <h2 class="title xl:tw-mb-14">{{ t("indexD.title") }}</h2>
+        <!-- cards -->
+        <div class=" tw-flex xl:tw-gap-5 tw-gap-3 tw-mt-5">
+          <base-button
+                  v-for="item in typesDirevative"
+                  class="button button__dense "
+                  :design="typeDirevative === item ? 'green': 'border'"
+                  @click="selectTypeDirevatives(item)"
+                >
+                {{ item }}
+                </base-button>
         </div>
-
-        <div class="header-content">
-          <h2 class="header-content__title">{{ t("header.title") }}</h2>
-          <div
-            class="tw-text-md2 xl:tw-text-md1 tw-leading-none tw-mb-4 xl:tw-mb-10"
-            v-html="t('header.subtitle')"
-          ></div>
-          <div v-if="isAuth" class="tw-mb-5 xl:tw-mb-10">
-            <button
-              class="button button_base button_green button_minw-base"
-              @click="$router.push({ name: 'index-directive' })"
-            >
-              {{ t("lk") }}
-            </button>
-          </div>
-          <div
-            v-else
-            class="tw-flex tw-flex-col xl:tw-flex-row tw-gap-6 tw-mb-5 xl:tw-mb-10"
-          >
-            <button
-              class="button button_base button_border-green button_minw-md"
-              @click="$router.push({ name: 'auth.login' })"
-            >
-              {{ t("dropdown.buttons.login") }}
-            </button>
-            <button
-              class="button button_base button_green button_minw-base"
-              @click="$router.push({ name: 'auth.registr' })"
-            >
-              {{ t("dropdown.buttons.register") }}
-            </button>
-          </div>
-          <div class="tw-flex tw-gap-4 tw-flex-wrap">
+        <div class="mob-n">
+          <div class="index-directive__cards tw-mt-10">
             <div
-              class="header-content__derivative"
-              v-for="derivative in derivatives.slice(0, 3)"
+              class="card card_border card-derivative"
+              v-for="derivative in derivatives"
               :key="derivative.id"
             >
-              <div class="tw-flex tw-flex-col tw-justify-between">
-                <span v-if="derivative?.name">
-                  {{ derivative.name }}
-                </span>
-                <div
-                  class="tw-flex tw-gap-x-1 tw-items-center"
-                  v-if="getChart(derivative.id)?.profitability"
-                >
-                  <MarkIcon
-                    class="tw-h-2.5"
-                    :mark="getChart(derivative.id)?.profitability"
-                  />
-                  <span class="tw-text-xxs-1"
-                    >{{ getChart(derivative.id)?.profitability }}%</span
-                  >
+              <div class="tw-flex tw-gap-3.5 tw-items-center">
+                <div class="circle tw-flex-shrink-0">
+                  <img :src="derivative.image.url" alt="" />
                 </div>
+                <h4>{{ derivative.name }}</h4>
               </div>
+              <p class="tw-mt-2.5 tokens">
+                <template
+                  v-for="currency in derivative.currency_shares"
+                  :key="derivative.id + '_' + currency.id"
+                >
+                  {{ currency.code }} &nbsp;
+                </template>
+              </p>
+              <!-- index_derivative_id: -->
               <div
-                class="tw-flex tw-flex-col tw-justify-between"
+                class="tw-mt-5 tw-flex tw-justify-between"
                 v-if="getChart(derivative.id)"
               >
-                <MiniAreaChart
-                  :values="getChartData(derivative.id)"
-                  width="43"
-                  height="22"
-                />
+                <div>
+                  <p
+                    class="tw-text-white"
+                    v-html="t('indexD.card.profitability.1', { numb: '4' })"
+                  ></p>
+                  <div class="tw-flex tw-gap-x-2.5">
+                    <MarkIcon :mark="getChart(derivative.id)?.profitability" />
+                    <h4>{{ getChart(derivative.id)?.profitability }}%</h4>
+                  </div>
+                </div>
+                <div>
+                  <MiniAreaChart :values="getChartData(derivative.id)" />
 
-                <button
-                  @click="stage2"
-                  class="tw-flex tw-gap-1.5 tw-items-center tw-mb-1"
-                >
-                  <span class="buy">{{ t("other.button.buy") }}</span>
-                  <img
-                    class="buy-arrow"
-                    src="./icons/button-arrow.svg"
-                    alt=""
-                  />
-                </button>
+                  <button
+                    @click="stage2"
+                    class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
+                  >
+                    <span class="buy">{{ t("other.button.buy") }}</span>
+                    <img src="./icons/button-arrow.svg" alt="" />
+                  </button>
+                </div>
               </div>
             </div>
+            <!-- card -->
           </div>
         </div>
-      </div>
-    </header>
-    <Direvatives/>
-    <section class="section backers-partner">
-      <div class="tw-container">
-        <h2 class="title tw-mb-7.5">{{ t("backers.title") }}</h2>
-        <p class="tw-mb-7">
-          {{ t("backers.text") }}
-        </p>
-        <div class="tw-flex tw-mt-10 tw-gap-2.25 tw-flex-wrap xl:tw-gap-6.25">
-          <div class="card-partner">
-            <a href="#">
-              <img src="./img/satoshi.png" alt="" />
-            </a>
-          </div>
-          <div class="card-partner">
-            <a href="#">
-              <img src="./img/terracrypto.png" alt="" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section backers-partner">
-      <div class="tw-container">
-        <div class="tw-flex tw-gap-8">
-          <div class="tw-grid xl:tw-block">
-            <h2 class="title tw-mb-7.5">{{ t("about.title") }}</h2>
-            <!-- <p class="tw-mb-10" v-html="t('about.text')"></p> -->
-            <p>
-              {{ t("about.subtitle") }}
-            </p>
-            <br />
-            <p class="tw-mb-7.5" v-html="t('about.text')"></p>
-            <button
-              class="button button_base button_green button_minw-md"
-              @click="$router.push({ name: 'about' })"
+        <div class="desk-n">
+          <div class="index-directive__cards">
+            <!-- card -->
+            
+            <q-carousel
+              v-model="slideIndex"
+              transition-prev="scale"
+              transition-next="scale"
+              swipeable
+              animated
+              navigation
+              padding
+              class="bg-transparent"
             >
-              {{ t("about.button") }}
-            </button>
-          </div>
-          <div class="tw-hidden xl:tw-block tw-w-1/2 tw-flex-shrink-0">
-            <img :src="require('assets/images/AA_2redisign.png')" alt="" />
-          </div>
-        </div>
-        <div class="card-big tw-mt-16 xl:tw-mt-10">
-          <img
-            :src="require('assets/icons/telegram-round.svg')"
-            alt="plus"
-            class="top-icon"
-          />
-          <div class="card-big__left">
-            <h2>{{ t("card-big.anyquestion.title") }}</h2>
-            <p class="tw-mt-5">
-              {{ t("card-big.anyquestion.text") }}
-            </p>
-          </div>
-
-          <div
-            class="tw-flex tw-flex-col tw-mt-7.5 tw-gap-5 xl:tw-mt-0 xl:tw-flex-row xl:tw-gap-3"
-          >
-            <a
-              class="button button_base button_green"
-              href="https://t.me/algafinancechat"
-              target="blank"
-            >
-              {{ t("card-big.anyquestion.contacrusButton") }}
-            </a>
-            <a
-              class="button button_base button_black button_minw-base"
-              href="https://t.me/algafinancechat"
-              target="blank"
-            >
-              {{ t("card-big.anyquestion.joinButton") }}
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-  <Teleport to="body">
-    <transition
-      appear
-      mode="out-in"
-      enter-active-class="animated slideInLeft"
-      leave-active-class="animated slideOutLeft"
-    >
-      <div class="dropdown tw-h-full" v-if="dropDown">
-        <div class="tw-container tw-h-full">
-          <div
-            class="dropdown__wrapper tw-flex tw-justify-between tw-gap-1 tw-h-full"
-          >
-            <div class="dropdown__top tw-flex tw-justify-between tw-w-full">
-              <img
-                :src="require('assets/images/logo-v3.svg')"
-                alt="logo"
-                class="tw-cursor-pointer"
-                @click="
-                  () => {
-                    $router.push({ name: 'home' });
-                    dropDown = !dropDown;
-                  }
-                "
-              />
-
-              <div class="tw-flex">
-                <q-btn flat round icon="close" @click="dropDown = !dropDown" />
-              </div>
-            </div>
-            <div class="dropdown__middle">
-              <button @click="$router.push({ name: 'about' })">
-                {{ t("header.nav[0]") }}
-              </button>
-              <a
-                class="tw-text-white hover:tw-text-white"
-                href="https://t.me/algafinancechat"
-                target="_blank"
-                >{{ t("header.nav[1]") }}</a
+              <template
+                v-slot:navigation-icon="{ index, active, btnProps, onClick }"
               >
-            </div>
-            <div class="dropdown__bottom">
-              <Locale />
-            </div>
+                <button
+                  class="slide-paginate active"
+                  v-if="active"
+                  @click="onClick"
+                >
+                  {{ index + 1 }}
+                </button>
+                <button class="slide-paginate" v-else @click="onClick">
+                  {{ index + 1 }}
+                </button>
+              </template>
+
+              <q-carousel-slide
+                v-for="derivative in derivatives"
+                :key="derivative.id"
+                :name="derivative.id"
+                class="column no-wrap flex-center"
+              >
+                <div class="card card_border card-derivative">
+                  <div class="tw-flex tw-gap-3.5 tw-items-center">
+                    <div class="circle tw-flex-shrink-0">
+                      <img src="./img/index-icon_1.png" alt="" />
+                    </div>
+                    <h4>{{ derivative.name }}</h4>
+                  </div>
+                  <p class="tw-mt-2.5 tokens">
+                    <template
+                      v-for="currency in derivative.currency_shares"
+                      :key="derivative.id + '_' + currency.id"
+                    >
+                      {{ currency.code }} &nbsp;
+                    </template>
+                  </p>
+                  <div
+                    class="tw-mt-5 tw-flex tw-justify-between"
+                    v-if="getChart(derivative.id)"
+                  >
+                    <div>
+                      <p
+                        class="tw-text-white"
+                        v-html="t('indexD.card.profitability.1', { numb: '4' })"
+                      ></p>
+                      <div class="tw-flex tw-gap-x-2.5">
+                        <MarkIcon
+                          :mark="getChart(derivative.id)?.profitability"
+                        />
+                        <h4>{{ getChart(derivative.id)?.profitability }}%</h4>
+                      </div>
+                    </div>
+                    <div>
+                      <MiniAreaChart :values="getChartData(derivative.id)" />
+
+                      <button
+                        @click="stage2"
+                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
+                      >
+                        <span class="buy">{{ t("other.button.buy") }}</span>
+                        <img src="./icons/button-arrow.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </q-carousel-slide>
+            </q-carousel>
           </div>
         </div>
       </div>
-    </transition>
-  </Teleport>
+    </section>
 </template>
-<script>
-import { ref, computed, onMounted } from "vue";
-import { useI18n } from "vue-i18n";
+<script >
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import useChart from "src/composition/useChart.js";
-import Locale from "src/components/V3/LocaleButtonsRedisign.vue";
+import { useI18n } from "vue-i18n";
 import MiniAreaChart from "src/components/V3/MiniAreaChart.vue";
 import MarkIcon from "src/components/V3/MarkIcon.vue";
-import Direvatives from "./Direvatives.vue"
 const i18n = {
   messages: {
     "ru-RU": {
@@ -928,122 +821,36 @@ const i18n = {
 export default {
   components: {
     MiniAreaChart,
-    MarkIcon,
-    Locale,
-    Direvatives
+    MarkIcon
   },
-  setup() {
+  setup(){
     const $i18n = useI18n();
-    const store = useStore();
-    const { charts, getChart } = useChart();
-    const locale = computed(() => {
-      if ($i18n.locale.value === "en-US" || $i18n.locale.value === "en")
-        return "English";
-      if ($i18n.locale.value === "ru-RU" || $i18n.locale.value === "ru")
-        return "Русский";
-      return null;
-    });
     const { t } = useI18n(i18n);
-    const newLocale = (lang) => {
-      window.app.setLocale(lang, true);
-    };
-    const accardion = ref("");
-    const roadmap = ref("");
-    const dropDown = ref(false);
-    const test = ref(null);
-    const toggle = (elName) => {
-      const element = document.querySelector(`#accordion-${elName}`);
-      const elements = document.querySelectorAll(".accardion-item__text");
-      const oldEl = accardion.value;
-      // accardion.value + ":" + elName
-      if (element) {
-        if (element.style.maxHeight) element.style.maxHeight = null;
-        else {
-          element.style.maxHeight = element.scrollHeight + "px";
-        }
-        if (accardion.value === elName) accardion.value = "";
-        else {
-          accardion.value = elName;
-        }
-      }
-      if (oldEl && oldEl !== elName) {
-        document.querySelector(`#accordion-${oldEl}`).style.maxHeight = null;
-      }
-    };
-    const toggleRoadmap = (elName) => {
-      const element = document.querySelector(`#roadmap-${elName}`);
-
-      if (element) {
-        if (element.style.maxHeight) element.style.maxHeight = null;
-        else {
-          element.style.maxHeight = element.scrollHeight + "px";
-        }
-        if (roadmap.value === elName) roadmap.value = "";
-        else {
-          roadmap.value = elName;
-        }
-      }
-    };
-    const toggleDrop = () => {
-      const element = document.querySelector("#dropdown");
-      if (element) {
-        if (element.style.maxHeight) {
-          element.style.maxHeight = null;
-          dropDown.value = false;
-        } else {
-          dropDown.value = true;
-          element.style.maxHeight = element.scrollHeight + "px";
-        }
-      }
-    };
-    const whitePaper = store.getters["landing/footer"](t)[0].to;
-    const roadMap = store.getters["landing/footer"](t)[1].to;
-
+    const store = useStore();
     const derivatives = computed(() => store.getters["landing/derivatives"]);
-
+    const { charts, getChart } = useChart();
+    const typeDirevative = ref('ALGA')
+    const typesDirevative = ['ALGA', 'Market', 'Influencer']
     const getChartData = (id) => {
-      return getChart(id)?.chart.map((item) => [
-        +item.timestamp * 1000,
-        +item.value,
-      ]);
-    };
-    return {
-      locale,
-      newLocale,
-      t,
-      whitePaper,
-      roadMap,
-      toggleDrop,
-      dropDown,
-      roadmap,
-      toggleRoadmap,
-      test,
-      accardion,
-      toggle,
-      slideIndex: ref(1),
-      slideRoud: ref("1"),
-      slideTeam: ref("1"),
-      lorem:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.",
-
-      derivatives,
-      charts,
-      getChart,
-      getChartData,
-      isAuth: computed(() => store.getters["auth/isAuth"]),
-    };
-  },
-  methods: {
-    stage1() {
-      ym(90160255, "reachGoal", "stage1");
-      this.$router.push({ name: "auth.registr" });
-    },
-    stage2() {
-      ym(90160255, "reachGoal", "stage 2");
-      this.$router.push({ name: "index-directive" });
-    },
-  },
-};
+        return getChart(id)?.chart.map((item) => [
+          +item.timestamp * 1000,
+          +item.value,
+        ]);
+      };
+    const selectTypeDirevatives = (type)=>{
+      typeDirevative.value= type
+    }
+      return {
+        derivatives,
+        getChart,
+        getChartData,
+        t,
+        typeDirevative,
+        typesDirevative,
+        selectTypeDirevatives,
+        slideIndex: ref(1),
+      }
+  }
+}
 </script>
-
 <style src="./style.scss" lang="scss" scoped></style>

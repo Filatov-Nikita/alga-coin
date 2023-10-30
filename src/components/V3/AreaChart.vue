@@ -174,7 +174,6 @@ export default {
   watch: {
     valSeries(val) {
       this.series[0].data = val;
-      console.log(val);
     },
   },
 };

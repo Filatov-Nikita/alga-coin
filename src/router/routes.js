@@ -70,62 +70,62 @@ const routes = [
   //   children: [],
   // },
 
-  {
-    path: "/lk",
-    component: () => import("layouts/BaseLayout.vue"),
-    children: [
-      ...markAuth(
-        {
-          path: "",
-          component: () => import("pages/Wallet.vue"),
-          name: "wallet",
-        },
-        {
-          path: "profile2",
-          component: () => import("pages/Profile.vue"),
-          name: "profile2",
-        },
-        {
-          path: "/output",
-          component: () => import("pages/Output.vue"),
-          name: "output",
-        },
+  // {
+  //   path: "/lk",
+  //   component: () => import("layouts/BaseLayout.vue"),
+  //   children: [
+  //     ...markAuth(
+  //       {
+  //         path: "",
+  //         component: () => import("pages/Wallet.vue"),
+  //         name: "wallet",
+  //       },
+  //       {
+  //         path: "profile2",
+  //         component: () => import("pages/Profile.vue"),
+  //         name: "profile2",
+  //       },
+  //       {
+  //         path: "/output",
+  //         component: () => import("pages/Output.vue"),
+  //         name: "output",
+  //       },
 
-        // {
-        //   path: "history",
-        //   component: () => import("pages/History.vue"),
-        //   name: "history",
-        // },
+  //       // {
+  //       //   path: "history",
+  //       //   component: () => import("pages/History.vue"),
+  //       //   name: "history",
+  //       // },
 
-        // {
-        //   path: "/profile2",
-        //   component: () => import("pages/Profile.vue"),
-        //   name: "profile2",
-        // },
+  //       // {
+  //       //   path: "/profile2",
+  //       //   component: () => import("pages/Profile.vue"),
+  //       //   name: "profile2",
+  //       // },
 
-        {
-          path: "/polls",
-          component: () => import("pages/Polls.vue"),
-          name: "polls",
-        }
-      ),
+  //       {
+  //         path: "/polls",
+  //         component: () => import("pages/Polls.vue"),
+  //         name: "polls",
+  //       }
+  //     ),
 
-      {
-        path: "/vee-valid",
-        component: () => import("pages/VeeValid.vue"),
-      },
+  //     {
+  //       path: "/vee-valid",
+  //       component: () => import("pages/VeeValid.vue"),
+  //     },
 
-      {
-        path: "/vee-valid-form",
-        component: () => import("pages/VeeValidForm.vue"),
-      },
+  //     {
+  //       path: "/vee-valid-form",
+  //       component: () => import("pages/VeeValidForm.vue"),
+  //     },
 
-      {
-        path: "/components",
-        component: () => import("pages/DebugComponents.vue"),
-      },
-    ],
-  },
+  //     {
+  //       path: "/components",
+  //       component: () => import("pages/DebugComponents.vue"),
+  //     },
+  //   ],
+  // },
 
   {
     path: "/lk",
@@ -134,7 +134,7 @@ const routes = [
       ...markAuth(
         {
           path: "profile",
-          component: () => import("pages/V3/Profile.vue"),
+          component: () => import("pages/V4/Profile.vue"),
           name: "profile",
         },
         {
@@ -156,7 +156,17 @@ const routes = [
           path: "support",
           component: () => import("pages/V3/Support.vue"),
           name: "support",
-        }
+        },
+        {
+          path: "messages",
+          component: () => import("pages/V4/Messages.vue"),
+          name: "messages",
+        },
+        {
+          path: "trading",
+          component: () => import("pages/V4/Trading.vue"),
+          name: "trading",
+        },
         //  {
         //   path: "index-directive2",
         //   component: () => import("pages/V3/IndexDirective.vue"),

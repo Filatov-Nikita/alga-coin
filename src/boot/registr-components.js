@@ -51,6 +51,10 @@ export default ({ app }) => {
     require("src/core/V3/BaseSelect.vue").default
   );
   app.component(
+    'base-select2',
+    require("src/core/BaseSelect2.vue").default
+  );
+  app.component(
     'base-button',
     require("src/core/V3/BaseButton.vue").default
   )

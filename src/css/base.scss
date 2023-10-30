@@ -111,8 +111,33 @@
   }
 
   .app-page-bg_auth {
-    background: theme("colors.dark-blue-cover") url(~assets/images/auth-bg.svg)
-      no-repeat;
+    background: radial-gradient(50% 50% at 50% 50%, #000 0%, #000 100%) ;
+    background-size: cover;
+    background-size: auto;
+    background-position: bottom;
+    position: relative;
+    @include screen-xl {
+      background-size: cover;
+      background-position: bottom;
+      &::after {
+        content: '';
+        position: absolute;
+        background: url("src/assets/images/AA_1.png") center no-repeat;
+        background-size: contain;
+        width: 650px;
+        height: 595px;
+        bottom: 0;
+        right: 0;
+      }
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url("src/assets/icons/touch.svg") center no-repeat;
+      background-size: cover;
+    }
   }
 
   .app-page-bg_lk {

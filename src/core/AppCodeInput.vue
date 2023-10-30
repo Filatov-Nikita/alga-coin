@@ -234,7 +234,8 @@ export default defineComponent({
   &__field {
     width: 40px;
     height: 40px;
-    @apply tw-rounded-base tw-bg-dark-gray tw-text-sm tw-text-center;
+    @apply tw-rounded-base  tw-text-sm tw-text-center;
+    background: #232323;
 
     &--invalid {
       outline: 2px solid theme("colors.invalid") !important;

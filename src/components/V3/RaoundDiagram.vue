@@ -46,7 +46,7 @@
         {{ caption }}
       </text> -->
 
-      <!-- <text
+      <text
         v-if="isText"
         class="text"
         text-anchor="middle"
@@ -55,7 +55,7 @@
         :y="chartData[index].textY"
       >
         {{ value }}{{ textBefore }}
-      </text> -->
+      </text>
     </g>
     <slot name="image"></slot>
   </svg>
@@ -136,6 +136,7 @@ export default {
     },
     calculateChartData() {
       this.sortedValues.forEach((dataVal, index) => {
+        console.log(this.angleOffset);
         const { x, y } = this.calculateTextCoords(dataVal, this.angleOffset);
         // start at -90deg so that the largest segment is perpendicular to top
         const data = {
@@ -235,8 +236,10 @@ export default {
       return circumference - strokeDiff;
     },
     calculateTextCoords(dataVal, angleOffset) {
+      console.log(dataVal);
       const angle = (this.dataPercentage(dataVal) * 360) / 2 + angleOffset;
       const radians = this.degreesToRadians(angle);
+      console.log(angle );
       const textCoords = {
         x: this.radius * Math.cos(radians) + this.cx,
         y: this.radius * Math.sin(radians) + this.cy,

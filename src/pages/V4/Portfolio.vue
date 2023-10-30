@@ -1,10 +1,10 @@
 <template>
   <q-page
-    class="tw-flex tw-flex-col tw-relative tw-overflow-hidden tw-container "
+    class="tw-flex tw-flex-col tw-relative tw-overflow-hidden tw-container tw-pb-20 "
   >
-    <div class="tw-flex tw-justify-between tw-mb-14">
-      <h2 class="tw-mb-15">{{ t("title") }}</h2>
-      <div class="tw-flex tw-gap-14">
+    <div class="xl:tw-flex tw-justify-between tw-mb-14">
+      <h2 class=" tw-mb-3 xl:tw-mb-0">{{ t("title") }}</h2>
+      <div class=" tw-flex-wrap tw-justify-center tw-flex tw-gap-3 xl:tw-gap-14">
         <div>
           <div
             class="tw-text-xxs-1 tw-text-gray tw-flex tw-items-center tw-justify-end tw-gap-1.5 tw-mb-4"
@@ -99,9 +99,9 @@
         </div>
       </div>
     </div>
-    <div class="tw-flex tw-gap-6.25">
-      <div class="tw-w-1/2">
-        <div class="tw-flex tw-justify-between tw-mb-7.5">
+    <div class=" tw-grid xl:tw-flex tw-gap-6.25">
+      <div class="xl:tw-w-1/2">
+        <!-- <div class="tw-flex tw-justify-between tw-mb-7.5">
           <div class="btns">
             <button class="tw-px-9 tw-h-full tw-bg-green tw-rounded-lg2">
               Exchanges
@@ -125,7 +125,7 @@
               />
             </svg>
           </div>
-        </div>
+        </div> -->
 
         <div class="total-card tw-mb-8">
           <button class="filter">
@@ -300,107 +300,121 @@
           </div>
           <div class="table-body">
             <div class="item active">
-              <div class="tw-flex tw-items-center tw-gap-2">
-                <svg
-                  width="12"
-                  height="11"
-                  viewBox="0 0 12 11"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="tw-mb-0.5 tw-mr-2"
-                >
-                  <path
-                    d="M10.2722 4.00054L10.2722 4.00053L7.42495 3.58676L7.16482 3.54895L7.04849 3.31324L5.77519 0.733244C5.77519 0.733237 5.77518 0.73323 5.77518 0.733224C5.66761 0.51531 5.56067 0.5 5.53651 0.5C5.51235 0.5 5.40541 0.515311 5.29787 0.73322L4.0246 3.31321L3.90827 3.54893L3.64814 3.58674L0.800874 4.00051L0.800826 4.00052C0.560554 4.03541 0.512821 4.13227 0.50529 4.15538L10.2722 4.00054ZM10.2722 4.00054C10.5127 4.03546 10.5603 4.13242 10.5677 4.15541L10.5677 4.15547C10.5752 4.17844 10.5937 4.28487 10.4197 4.45446L10.4197 4.45447L8.35944 6.46268L8.1712 6.64617L8.21564 6.90526L8.70208 9.74098C8.72303 9.86313 8.71223 9.93805 8.70126 9.97843C8.69028 10.0188 8.67471 10.0409 8.6656 10.0517L8.66556 10.0517C8.64743 10.0732 8.61656 10.0943 8.55582 10.0943H8.55578C8.50491 10.0943 8.42552 10.0792 8.31585 10.0216L8.08318 10.4641L8.31584 10.0215L5.76918 8.68271L5.53651 8.56038L5.30384 8.68271L2.75717 10.0216L2.75708 10.0216C2.64761 10.0792 2.56822 10.0943 2.51729 10.0943C2.45662 10.0943 2.42571 10.0733 2.40754 10.0517L2.40752 10.0517C2.39841 10.0409 2.38284 10.0188 2.37186 9.97844C2.36089 9.93807 2.35009 9.86316 2.37103 9.74103C2.37103 9.74102 2.37103 9.74101 2.37103 9.741L2.85741 6.90523L2.90184 6.64614M10.2722 4.00054L2.90184 6.64614M2.90184 6.64614L2.7136 6.46266M2.90184 6.64614L2.7136 6.46266M2.7136 6.46266L0.653338 4.45445C0.653331 4.45444 0.653323 4.45443 0.653316 4.45443M2.7136 6.46266L0.653316 4.45443M0.653316 4.45443C0.479468 4.28494 0.497788 4.17854 0.505274 4.15542L0.653316 4.45443Z"
-                    stroke="#9596A3"
+              <div class=" item__head">
+
+                <div class="tw-flex tw-items-center tw-gap-2">
+                  <svg
+                    width="12"
+                    height="11"
+                    viewBox="0 0 12 11"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="tw-mb-0.5 tw-mr-2"
+                  >
+                    <path
+                      d="M10.2722 4.00054L10.2722 4.00053L7.42495 3.58676L7.16482 3.54895L7.04849 3.31324L5.77519 0.733244C5.77519 0.733237 5.77518 0.73323 5.77518 0.733224C5.66761 0.51531 5.56067 0.5 5.53651 0.5C5.51235 0.5 5.40541 0.515311 5.29787 0.73322L4.0246 3.31321L3.90827 3.54893L3.64814 3.58674L0.800874 4.00051L0.800826 4.00052C0.560554 4.03541 0.512821 4.13227 0.50529 4.15538L10.2722 4.00054ZM10.2722 4.00054C10.5127 4.03546 10.5603 4.13242 10.5677 4.15541L10.5677 4.15547C10.5752 4.17844 10.5937 4.28487 10.4197 4.45446L10.4197 4.45447L8.35944 6.46268L8.1712 6.64617L8.21564 6.90526L8.70208 9.74098C8.72303 9.86313 8.71223 9.93805 8.70126 9.97843C8.69028 10.0188 8.67471 10.0409 8.6656 10.0517L8.66556 10.0517C8.64743 10.0732 8.61656 10.0943 8.55582 10.0943H8.55578C8.50491 10.0943 8.42552 10.0792 8.31585 10.0216L8.08318 10.4641L8.31584 10.0215L5.76918 8.68271L5.53651 8.56038L5.30384 8.68271L2.75717 10.0216L2.75708 10.0216C2.64761 10.0792 2.56822 10.0943 2.51729 10.0943C2.45662 10.0943 2.42571 10.0733 2.40754 10.0517L2.40752 10.0517C2.39841 10.0409 2.38284 10.0188 2.37186 9.97844C2.36089 9.93807 2.35009 9.86316 2.37103 9.74103C2.37103 9.74102 2.37103 9.74101 2.37103 9.741L2.85741 6.90523L2.90184 6.64614M10.2722 4.00054L2.90184 6.64614M2.90184 6.64614L2.7136 6.46266M2.90184 6.64614L2.7136 6.46266M2.7136 6.46266L0.653338 4.45445C0.653331 4.45444 0.653323 4.45443 0.653316 4.45443M2.7136 6.46266L0.653316 4.45443M0.653316 4.45443C0.479468 4.28494 0.497788 4.17854 0.505274 4.15542L0.653316 4.45443Z"
+                      stroke="#9596A3"
+                    />
+                  </svg>
+                  <img
+                    src="https://admin.alga.finance/storage/coin_images/XabMDJBIimLL7LfDOPZdv2KjX0vpc66EhUwHesJB.svg"
+                    alt=""
+                    width="16"
+                    height="16"
                   />
-                </svg>
-                <img
-                  src="https://admin.alga.finance/storage/coin_images/XabMDJBIimLL7LfDOPZdv2KjX0vpc66EhUwHesJB.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                />
-                <span> BTC main </span>
+                  <span> BTC main </span>
+                </div>
+                <div>$97.500</div>
+                <div class="tw-text-green">+3.5%</div>
+                <div>33%</div>
+                <button class="tw-place-self-center">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 19 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.7002 8L9.5002 11.8L13.3002 8"
+                      stroke="#D9D9D9"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="9.5"
+                      cy="9.5"
+                      r="9.25"
+                      stroke="#9596A3"
+                      stroke-width="0.5"
+                    />
+                  </svg>
+                </button>
               </div>
-              <div>$97.500</div>
-              <div class="tw-text-green">+3.5%</div>
-              <div>33%</div>
-              <button class="tw-place-self-center">
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 19 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5.7002 8L9.5002 11.8L13.3002 8"
-                    stroke="#D9D9D9"
-                    stroke-linecap="round"
-                  />
-                  <circle
-                    cx="9.5"
-                    cy="9.5"
-                    r="9.25"
-                    stroke="#9596A3"
-                    stroke-width="0.5"
-                  />
-                </svg>
-              </button>
+              <div class="item__body">
+                <div class=" tw-mb-2">
+                  from 12.08.2020 to 12.12.2020
+                </div>
+                <div>
+                  Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates
+                </div>
+              </div>
             </div>
             <div class="item">
-              <div class="tw-flex tw-items-center tw-gap-2">
-                <svg
-                  width="12"
-                  height="11"
-                  viewBox="0 0 12 11"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="tw-mb-0.5 tw-mr-2"
-                >
-                  <path
-                    d="M10.2722 4.00054L10.2722 4.00053L7.42495 3.58676L7.16482 3.54895L7.04849 3.31324L5.77519 0.733244C5.77519 0.733237 5.77518 0.73323 5.77518 0.733224C5.66761 0.51531 5.56067 0.5 5.53651 0.5C5.51235 0.5 5.40541 0.515311 5.29787 0.73322L4.0246 3.31321L3.90827 3.54893L3.64814 3.58674L0.800874 4.00051L0.800826 4.00052C0.560554 4.03541 0.512821 4.13227 0.50529 4.15538L10.2722 4.00054ZM10.2722 4.00054C10.5127 4.03546 10.5603 4.13242 10.5677 4.15541L10.5677 4.15547C10.5752 4.17844 10.5937 4.28487 10.4197 4.45446L10.4197 4.45447L8.35944 6.46268L8.1712 6.64617L8.21564 6.90526L8.70208 9.74098C8.72303 9.86313 8.71223 9.93805 8.70126 9.97843C8.69028 10.0188 8.67471 10.0409 8.6656 10.0517L8.66556 10.0517C8.64743 10.0732 8.61656 10.0943 8.55582 10.0943H8.55578C8.50491 10.0943 8.42552 10.0792 8.31585 10.0216L8.08318 10.4641L8.31584 10.0215L5.76918 8.68271L5.53651 8.56038L5.30384 8.68271L2.75717 10.0216L2.75708 10.0216C2.64761 10.0792 2.56822 10.0943 2.51729 10.0943C2.45662 10.0943 2.42571 10.0733 2.40754 10.0517L2.40752 10.0517C2.39841 10.0409 2.38284 10.0188 2.37186 9.97844C2.36089 9.93807 2.35009 9.86316 2.37103 9.74103C2.37103 9.74102 2.37103 9.74101 2.37103 9.741L2.85741 6.90523L2.90184 6.64614M10.2722 4.00054L2.90184 6.64614M2.90184 6.64614L2.7136 6.46266M2.90184 6.64614L2.7136 6.46266M2.7136 6.46266L0.653338 4.45445C0.653331 4.45444 0.653323 4.45443 0.653316 4.45443M2.7136 6.46266L0.653316 4.45443M0.653316 4.45443C0.479468 4.28494 0.497788 4.17854 0.505274 4.15542L0.653316 4.45443Z"
-                    stroke="#9596A3"
+              <div class=" item__head">
+
+                <div class="tw-flex tw-items-center tw-gap-2">
+                  <svg
+                    width="12"
+                    height="11"
+                    viewBox="0 0 12 11"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="tw-mb-0.5 tw-mr-2"
+                  >
+                    <path
+                      d="M10.2722 4.00054L10.2722 4.00053L7.42495 3.58676L7.16482 3.54895L7.04849 3.31324L5.77519 0.733244C5.77519 0.733237 5.77518 0.73323 5.77518 0.733224C5.66761 0.51531 5.56067 0.5 5.53651 0.5C5.51235 0.5 5.40541 0.515311 5.29787 0.73322L4.0246 3.31321L3.90827 3.54893L3.64814 3.58674L0.800874 4.00051L0.800826 4.00052C0.560554 4.03541 0.512821 4.13227 0.50529 4.15538L10.2722 4.00054ZM10.2722 4.00054C10.5127 4.03546 10.5603 4.13242 10.5677 4.15541L10.5677 4.15547C10.5752 4.17844 10.5937 4.28487 10.4197 4.45446L10.4197 4.45447L8.35944 6.46268L8.1712 6.64617L8.21564 6.90526L8.70208 9.74098C8.72303 9.86313 8.71223 9.93805 8.70126 9.97843C8.69028 10.0188 8.67471 10.0409 8.6656 10.0517L8.66556 10.0517C8.64743 10.0732 8.61656 10.0943 8.55582 10.0943H8.55578C8.50491 10.0943 8.42552 10.0792 8.31585 10.0216L8.08318 10.4641L8.31584 10.0215L5.76918 8.68271L5.53651 8.56038L5.30384 8.68271L2.75717 10.0216L2.75708 10.0216C2.64761 10.0792 2.56822 10.0943 2.51729 10.0943C2.45662 10.0943 2.42571 10.0733 2.40754 10.0517L2.40752 10.0517C2.39841 10.0409 2.38284 10.0188 2.37186 9.97844C2.36089 9.93807 2.35009 9.86316 2.37103 9.74103C2.37103 9.74102 2.37103 9.74101 2.37103 9.741L2.85741 6.90523L2.90184 6.64614M10.2722 4.00054L2.90184 6.64614M2.90184 6.64614L2.7136 6.46266M2.90184 6.64614L2.7136 6.46266M2.7136 6.46266L0.653338 4.45445C0.653331 4.45444 0.653323 4.45443 0.653316 4.45443M2.7136 6.46266L0.653316 4.45443M0.653316 4.45443C0.479468 4.28494 0.497788 4.17854 0.505274 4.15542L0.653316 4.45443Z"
+                      stroke="#9596A3"
+                    />
+                  </svg>
+                  <img
+                    src="https://admin.alga.finance/storage/coin_images/XabMDJBIimLL7LfDOPZdv2KjX0vpc66EhUwHesJB.svg"
+                    alt=""
+                    width="16"
+                    height="16"
                   />
-                </svg>
-                <img
-                  src="https://admin.alga.finance/storage/coin_images/XabMDJBIimLL7LfDOPZdv2KjX0vpc66EhUwHesJB.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                />
-                <span> BTC main </span>
+                  <span> BTC main </span>
+                </div>
+                <div>$97.500</div>
+                <div class="tw-text-green">+3.5%</div>
+                <div>33%</div>
+                <button class="tw-place-self-center">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 19 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.7002 8L9.5002 11.8L13.3002 8"
+                      stroke="#D9D9D9"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="9.5"
+                      cy="9.5"
+                      r="9.25"
+                      stroke="#9596A3"
+                      stroke-width="0.5"
+                    />
+                  </svg>
+                </button>
               </div>
-              <div>$97.500</div>
-              <div class="tw-text-green">+3.5%</div>
-              <div>33%</div>
-              <button class="tw-place-self-center">
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 19 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5.7002 8L9.5002 11.8L13.3002 8"
-                    stroke="#D9D9D9"
-                    stroke-linecap="round"
-                  />
-                  <circle
-                    cx="9.5"
-                    cy="9.5"
-                    r="9.25"
-                    stroke="#9596A3"
-                    stroke-width="0.5"
-                  />
-                </svg>
-              </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="tw-w-1/2">
+      <div class="xl:tw-w-1/2">
         <div class="chart-card tw-mb-8" v-if="charts.length > 0">
           <div class="btns btns_sm">
             <!-- <button
@@ -447,28 +461,9 @@
         <div class="swap-card">
           <div class="tw-mb-5 tw-flex tw-justify-between tw-items-center">
             <span class="tw-text-md2 tw-font-medium"> Swap </span>
-            <span class="tw-flex tw-items-center tw-gap-2">
-              <img
-                src="https://admin.alga.finance/storage/coin_images/7rQbWbecOrwZdODcQ1w2who2iLSPonLCRt68AuvU.svg"
-                alt=""
-              />
-              BTC main
-              <svg
-                width="10"
-                height="6"
-                viewBox="0 0 10 6"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 1L4.8 4.8L8.6 1"
-                  stroke="#D9D9D9"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </span>
+            
           </div>
-          <div class="tw-flex tw-justify-end tw-mb-4">
+          <div class="tw-flex tw-justify-end tw-mb-1.5">
             <button class="tw-bg-title tw-rounded-lg tw-h-8 tw-px-4">
               Max
             </button>
@@ -880,16 +875,15 @@ const activeChart = ref(5);
     grid-template-columns: 1fr 0.4fr 0.4fr 0.4fr 0.2fr;
     padding: 0 27px 0 16px;
     gap: 10px;
+    .icon {
+      @apply tw-transition-transform tw-duration-300 tw-ease-out;
+    }
   }
   &-body {
     display: grid;
     gap: 15px;
     .item {
-      @apply tw-text-xxs;
-      display: grid;
-      grid-template-columns: 1fr 0.4fr 0.4fr 0.4fr 0.2fr;
       padding: 14px 27px 14px 16px;
-      gap: 10px;
       border: 1.04002px solid #575656;
       filter: drop-shadow(0px 155.373px 62.149px rgba(1, 3, 24, 0.01))
         drop-shadow(0px 87.2091px 52.125px rgba(1, 3, 24, 0.05))
@@ -897,6 +891,19 @@ const activeChart = ref(5);
         drop-shadow(0px 10.024px 21.0505px rgba(1, 3, 24, 0.1))
         drop-shadow(0px 0px 0px rgba(1, 3, 24, 0.1));
       border-radius: 7.80016px;
+      &__head {
+        @apply tw-text-xxs;
+        display: grid;
+        grid-template-columns: 1fr 0.4fr 0.4fr 0.4fr 0.2fr;
+        gap: 10px;
+
+      }
+      &__body {
+        @apply tw-text-xxs;
+        padding-left: 52px;
+        color: #A5A5A5;
+        margin-top: 20px;
+      }
       &.active,
       &:hover {
         background: rgba(255, 255, 255, 0.08);

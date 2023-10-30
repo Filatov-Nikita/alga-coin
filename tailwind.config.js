@@ -6,6 +6,10 @@ module.exports = {
   // darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      
+      gridTemplateRows: {
+        '1_auto': "1fr auto"
+      },
       borderRadius: {
         base: "8px",
         lg2: "10px",

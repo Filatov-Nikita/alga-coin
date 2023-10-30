@@ -1,6 +1,7 @@
 %field {
   min-height: 50px;
-  @apply tw-rounded-base tw-bg-dark-gray;
+  @apply tw-rounded-base ;
+  background: #232323;
 }
 
 .app-input {
@@ -51,7 +52,7 @@
 
   &__field {
     @extend %field;
-    border: 2px solid theme("colors.dark-gray");
+    border: 2px solid #232323;
 
     &--standart {
       padding: 0 21px;
@@ -62,7 +63,7 @@
     }
 
     &::placeholder {
-      @apply tw-text-primary;
+      @apply tw-text-white;
     }
 
     &:focus {

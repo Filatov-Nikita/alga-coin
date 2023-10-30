@@ -3,51 +3,78 @@
   <div
     class="tw-container tw-px-0 content-page tw-border-t tw-border-gray-border"
   >
-    <div>
-      <h4 class="tw-px-9 tw-py-8">Derivatives:</h4>
-      <template v-if="charts.length > 0">
-        <button
-          class="item-chart"
-          v-for="derivative in derivatives"
-          :key="derivative.id"
-          :class="{ active: slide === derivative.id }"
-          @click="slide = derivative.id"
-        >
-          <div class="tw-flex tw-flex-col tw-justify-between tw-h-full">
-            <h4 class="tw-text-sm tw-text-left">{{ derivative.name }}</h4>
-            <div class="tw-flex tw-gap-x-2.5">
-              <MarkIcon
-                class="tw-w-4 tw-h-4"
-                :mark="getChart(derivative.id).profitability"
-              />
-              <h4 class="tw-text-base">
-                {{ getChart(derivative.id)?.profitability }}%
-              </h4>
+    <div class=" tw-hidden xl:tw-grid xl:tw-content-between tw-grid-rows-1_auto">
+      <div class=" tw-overflow-auto">
+        
+        <h4 class="tw-px-9 tw-py-8" @click="openList('alga')">{{typeDirevative}}Derivatives:</h4>
+        <div class=" tw-grid tw-gap-6">
+
+          <div v-for="item in typesDirevative" class=" accordion" :class="{active:typeDirevative === item }" @click="selectTypeDirevatives(item)" >
+            <button class=" accordion__head">
+              <span>
+    
+                {{item}}
+              </span>
+              <svg class="icon" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1.10638L6 5.89362L11 1.10638" stroke="white" stroke-width="0.967046" stroke-linecap="round"/>
+              </svg>
+    
+            </button>
+            
+            <div v-if="charts.length > 0" class="accordion__body">
+              <div class="child">
+    
+                <button
+                  class="item-chart"
+                  v-for="derivative in derivatives"
+                  :key="derivative.id"
+                  :class="{ active: slide === derivative.id }"
+                  @click="slide = derivative.id"
+                >
+                  <div class="tw-flex tw-flex-col tw-justify-between tw-h-full">
+                    <h4 class="tw-text-sm tw-text-left">{{ derivative.name }}</h4>
+                    <div class="tw-flex tw-gap-x-2.5">
+                      <MarkIcon
+                        class="tw-w-4 tw-h-4"
+                        :mark="getChart(derivative.id).profitability"
+                      />
+                      <h4 class="tw-text-base">
+                        {{ getChart(derivative.id)?.profitability }}%
+                      </h4>
+                    </div>
+                  </div>
+        
+                  <div v-if="getChart(derivative.id)" class="tw-justify-self-end">
+                    <div>
+                      <!-- <MiniAreaChart
+                        :values="getChartData(derivative.id)"
+                        width="68"
+                        height="34"
+                      /> -->
+        
+                      <button
+                        @click="stage2"
+                        class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
+                      >
+                        <span class="tw-text-xxs-1">{{ t("buy") }}</span>
+                        <img src="~assets/icons/button-arrow.svg" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div v-if="getChart(derivative.id)" class="tw-justify-self-end">
-            <div>
-              <MiniAreaChart
-                :values="getChartData(derivative.id)"
-                width="68"
-                height="34"
-              />
-
-              <button
-                @click="stage2"
-                class="tw-mt-2 tw-flex tw-gap-1.5 tw-items-center"
-              >
-                <span class="tw-text-xxs-1">{{ t("buy") }}</span>
-                <img src="~assets/icons/button-arrow.svg" alt="" />
-              </button>
-            </div>
-          </div>
-        </button>
-      </template>
+      </div>
+      <div class=" tw-text-xxs tw-text-title tw-text-center">
+        © 2021-2022 ALGA. <br>
+        All Rights Reserved
+      </div>
     </div>
     <div
-      class="tw-flex tw-flex-col tw-relative tw-px-15 tw-pt-6.25 tw-border-l tw-border-gray-border"
+      class="tw-flex tw-flex-col tw-relative tw-px-4 xl:tw-px-15 tw-pt-6.25 tw-border-l tw-border-gray-border"
     >
       <div
         class="item tw-flex tw-justify-between tw-items-center tw-mb-6 xl:tw-mb-10"
@@ -56,6 +83,16 @@
           {{ t("indexderivatives.title") }}
         </h2>
       </div>
+      <div class=" tw-flex xl:tw-hidden xl:tw-gap-5 tw-gap-3 tw-mb-5">
+          <base-button
+                  v-for="item in typesDirevative"
+                  class="button button__dense "
+                  :design="typeDirevative === item ? 'green': 'border'"
+                  @click="selectTypeDirevatives(item)"
+                >
+                {{ item }}
+                </base-button>
+        </div>
       <q-carousel
         swipeable
         animated
@@ -71,9 +108,9 @@
           :name="derivative.id"
         >
           <div
-            class="tw-mb-7.5 xl:tw-mb-10 index-directive tw-flex tw-items-center tw-gap-8"
+            class="tw-mb-7.5 xl:tw-mb-10 index-directive tw-grid xl:tw-flex tw-items-center tw-gap-8"
           >
-            <div style="width: 170px">
+            <div style="width: 170px" class=" tw-justify-items-center">
               <RoundDiagram
                 class="inside__round"
                 :values="roundDiagramData(derivative['currency_shares'])"
@@ -135,9 +172,12 @@
                   <h4 class="">
                     {{ t("inside.title") }}
                   </h4>
-                  <span> cost </span>
-                  <span> alteration </span>
-                  <span> table </span>
+                  <div class=" head-items">
+                    <span></span>
+                    <span> cost </span>
+                    <span> alteration </span>
+                    <span> table </span>
+                  </div>
                 </div>
                 <ul class="table-body coinlist">
                   <li
@@ -257,7 +297,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import RoundDiagram from "src/components/V3/RaoundDiagram.vue";
 import AreaChart from "src/components/V3/AreaChart.vue";
 import MarkIcon from "src/components/V3/MarkIcon.vue";
@@ -448,7 +488,19 @@ export default {
         +item.value,
       ]);
     };
+    const targetList = ref('')
+    const openList = (target)=>{
 
+      if( targetList.value === target) return targetList.value = ''
+      targetList.value = target
+      
+    }
+    const selectTypeDirevatives = (type)=>{
+      typeDirevative.value= type
+    }
+    watch(targetList, (val)=>console.log(val))
+    const typeDirevative = ref('ALGA')
+    const typesDirevative = ['ALGA', 'Market', 'Influencer']
     return {
       slide: ref(1),
       t,
@@ -463,6 +515,12 @@ export default {
       buy,
       isPopup,
       charts,
+
+      openList,
+      targetList,
+      typeDirevative,
+      typesDirevative,
+      selectTypeDirevatives
     };
   },
   methods: {
@@ -477,9 +535,41 @@ export default {
 
 <style lang="scss" scoped>
 //$
+.accordion {
+  &__head {
+    @apply tw-flex tw-items-center tw-justify-between  tw-px-9 tw-py-3.5 tw-w-full;
+    background: #262D34;
+  }
+  &__body {
+    @apply tw-grid  tw-overflow-hidden tw-my-0;
+    @apply tw-transition-all tw-duration-300 tw-ease-out;
+    grid-template-rows: 0fr;
+    .child {
+      @apply tw-min-h-0;
+    }
+  }
+  .icon {
+    @apply  tw-transition-transform tw-duration-300 tw-ease-out;
+  }
+  &.active &__head {
+    background: #0A8F2D;
+  }
+  &.active .icon {
+    @apply tw-transform tw-rotate-180;
+  }
+  &.active &__body {
+    grid-template-rows: 1fr;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+}
 .content-page {
-  display: grid;
-  grid-template-columns: 257px 1fr;
+  @screen xl {
+
+    display: grid;
+    grid-template-columns: 257px 1fr;
+  }
+  
   .item-chart {
     @apply tw-grid tw-grid-cols-2  tw-px-9 tw-py-3.5 tw-w-full;
     &:hover,
@@ -520,9 +610,24 @@ export default {
   & .table {
     width: 100%;
     &-head {
-      padding: 10px 77px 10px 18px;
-      display: grid;
-      grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+      padding: 10px 18px 10px 18px;
+      @screen xl {
+        padding: 10px 77px 10px 18px;
+        display: flex;
+        gap: 0;
+        align-items:center;
+      }
+      
+      .head-items {
+        display: grid;
+        grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+        margin-top: 10px;
+        @screen xl {
+          margin-top: 0px;
+          flex-grow:1;
+          grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr;
+        }
+      }
       & *:first-child {
         margin-left: -18px;
       }
@@ -534,7 +639,11 @@ export default {
       @apply tw-border tw-border-gray-border;
 
       .item {
-        padding: 10px 77px 10px 18px;
+        padding: 10px 18px 10px 18px;
+        @screen xl {
+
+          padding: 10px 77px 10px 18px;
+        }
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;

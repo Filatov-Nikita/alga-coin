@@ -3,6 +3,7 @@
     class="app-page-bg_auth"
     :view="$q.screen.xl ? 'lhh lpR fff' : 'lhh lpR fFf'"
   >
+    
     <HeaderBase />
     <q-page-container>
       <router-view />

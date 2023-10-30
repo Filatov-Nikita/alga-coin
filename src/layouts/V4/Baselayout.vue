@@ -15,87 +15,104 @@
             class="tw-cursor-pointer"
             @click="$router.push({ name: 'home' })"
           />
+          
 
-          <ul class="nav-links tw-flex tw-gap-8 tw-flex-grow tw-px-24">
-            <router-link
-              :to="{ name: 'index-directive' }"
-              custom
-              v-slot="{ isExactActive, navigate }"
-            >
-              <li
-                class="nav-links__item item tw-flex tw-items-center tw-gap-5"
-                :class="{ active: isExactActive }"
-                @click="navigate"
+            <ul class="nav-links tw-hidden xl:tw-flex tw-gap-8 tw-flex-grow tw-px-24">
+              <router-link
+                :to="{ name: 'index-directive' }"
+                custom
+                v-slot="{ isExactActive, navigate }"
               >
-                <span class="item__text"> {{ t("nav[0]") }} </span>
-              </li>
-            </router-link>
-            <router-link
-              :to="{ name: 'portfolio' }"
-              custom
-              v-slot="{ isExactActive, navigate }"
-            >
-              <li
-                class="nav-links__item item tw-flex tw-items-center tw-gap-5"
-                :class="{ active: isExactActive }"
-                @click="navigate"
+                <li
+                  class="nav-links__item item tw-flex tw-items-center tw-gap-5"
+                  :class="{ active: isExactActive }"
+                  @click="navigate"
+                >
+                  <span class="item__text"> {{ t("nav[0]") }} </span>
+                </li>
+              </router-link>
+              <router-link
+                :to="{ name: 'portfolio' }"
+                custom
+                v-slot="{ isExactActive, navigate }"
               >
-                <span class="item__text"> {{ t("nav[1]") }} </span>
-              </li>
-            </router-link>
-            <!-- <router-link
-              :to="{ name: 'history' }"
-              custom
-              v-slot="{ isExactActive, navigate }"
-            >
-              <li
-                class="nav-links__item item tw-flex tw-items-center tw-gap-5"
-                :class="{ active: isExactActive }"
-                @click="navigate"
+                <li
+                  class="nav-links__item item tw-flex tw-items-center tw-gap-5"
+                  :class="{ active: isExactActive }"
+                  @click="navigate"
+                >
+                  <span class="item__text"> {{ t("nav[1]") }} </span>
+                </li>
+              </router-link>
+              <router-link
+                :to="{ name: 'messages' }"
+                custom
+                v-slot="{ isExactActive, navigate }"
               >
-                <span class="item__text"> {{ t("nav[2]") }} </span>
-              </li>
-            </router-link>
-            <router-link
-              :to="{ name: 'support' }"
-              custom
-              v-slot="{ isExactActive, navigate }"
-            >
-              <li
-                class="nav-links__item item tw-flex tw-items-center tw-gap-5"
-                :class="{ active: isExactActive }"
-                @click="navigate"
+                <li
+                  class="nav-links__item item tw-flex tw-items-center tw-gap-5"
+                  :class="{ active: isExactActive }"
+                  @click="navigate"
+                >
+                  <span class="item__text"> {{ t("nav[2]") }} </span>
+                </li>
+              </router-link>
+  
+              
+              <!-- <router-link
+                :to="{ name: 'history' }"
+                custom
+                v-slot="{ isExactActive, navigate }"
               >
-                <span class="item__text"> {{ t("nav[3]") }} </span>
-              </li>
-            </router-link> -->
-          </ul>
-          <div>
-            <div
-              class="tw-text-xxs tw-text-text-gray tw-mb-5 tw-mt-6 tw-uppercase"
-            >
-              {{ t("profile") }}
-            </div>
-            <div class="profile tw-flex tw-flex-col tw-justify-center">
-              <div class="tw-flex tw-items-center tw-gap-5 tw-mb-5">
-                <img
-                  :src="require('assets/icons/avatar-green.svg')"
-                  alt="avatar"
-                />
-                <div class="tw-flex tw-flex-col">
-                  <span class="profile__name tw-text-xs">{{
-                    $store.getters["profile/fio"]
-                  }}</span>
-                  <router-link
-                    :to="{ name: 'profile' }"
-                    class="tw-text-purple-light tw-text-xxs tw-underline"
-                  >
-                    <span>{{ t("edit") }}</span>
-                  </router-link>
+                <li
+                  class="nav-links__item item tw-flex tw-items-center tw-gap-5"
+                  :class="{ active: isExactActive }"
+                  @click="navigate"
+                >
+                  <span class="item__text"> {{ t("nav[2]") }} </span>
+                </li>
+              </router-link>
+              <router-link
+                :to="{ name: 'support' }"
+                custom
+                v-slot="{ isExactActive, navigate }"
+              >
+                <li
+                  class="nav-links__item item tw-flex tw-items-center tw-gap-5"
+                  :class="{ active: isExactActive }"
+                  @click="navigate"
+                >
+                  <span class="item__text"> {{ t("nav[3]") }} </span>
+                </li>
+              </router-link> -->
+            </ul>
+            <div class="mob-n">
+              <div
+                class="tw-text-xxs tw-text-text-gray tw-mb-5 tw-mt-6 tw-uppercase"
+              >
+                {{ t("profile") }}
+              </div>
+              <div class="profile tw-flex tw-flex-col tw-justify-center">
+                <div class="tw-flex tw-items-center tw-gap-5 tw-mb-5">
+                  <img
+                    :src="require('assets/icons/avatar-green.svg')"
+                    alt="avatar"
+                  />
+                  <div class="tw-flex tw-flex-col">
+                    <span class="profile__name tw-text-xs">{{
+                      $store.getters["profile/fio"]
+                    }}</span>
+                    <router-link
+                      :to="{ name: 'profile' }"
+                      class="tw-text-purple-light tw-text-xxs tw-underline"
+                    >
+                      <span>{{ t("edit") }}</span>
+                    </router-link>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          
           <div class="desk-n tw-flex tw-items-center tw-gap-4">
             <Locale />
             <div>
@@ -145,7 +162,7 @@
     </q-page-container>
     <q-footer v-if="!$q.screen.xl" class="tw-pt-5 tw-pb-2.5 app-page-bg">
       <div class="tw-container">
-        <ul class="tw-flex tw-justify-between">
+        <ul class="tw-flex tw-justify-around">
           <router-link
             :to="{ name: 'index-directive' }"
             custom
@@ -206,7 +223,7 @@
             </li>
           </router-link>
           <router-link
-            :to="{ name: 'history' }"
+            :to="{ name: 'messages' }"
             custom
             v-slot="{ isExactActive, navigate }"
           >
@@ -236,40 +253,6 @@
               </span>
             </li>
           </router-link>
-
-          <router-link
-            :to="{ name: 'support' }"
-            custom
-            v-slot="{ isExactActive, navigate }"
-          >
-            <li
-              class="nav-links__item item tw-flex tw-flex-col tw-items-center"
-              @click="navigate"
-              :class="{ active: isExactActive }"
-            >
-              <svg
-                width="40"
-                height="40"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="item__icon"
-              >
-                <path
-                  d="M10 1C5.0374 1 1 5.0374 1 10V13.7287C1 14.6503 1.8073 15.4 2.8 15.4H3.7C3.93869 15.4 4.16761 15.3052 4.3364 15.1364C4.50518 14.9676 4.6 14.7387 4.6 14.5V9.8713C4.6 9.63261 4.50518 9.40369 4.3364 9.2349C4.16761 9.06612 3.93869 8.9713 3.7 8.9713H2.8828C3.3832 5.4883 6.3802 2.8 10 2.8C13.6198 2.8 16.6168 5.4883 17.1172 8.9713H16.3C16.0613 8.9713 15.8324 9.06612 15.6636 9.2349C15.4948 9.40369 15.4 9.63261 15.4 9.8713V15.4C15.4 16.3927 14.5927 17.2 13.6 17.2H11.8V16.3H8.2V19H13.6C15.5854 19 17.2 17.3854 17.2 15.4C18.1927 15.4 19 14.6503 19 13.7287V10C19 5.0374 14.9626 1 10 1Z"
-                  fill="#363B72"
-                />
-              </svg>
-
-              <span
-                class="item__text tw-text-xxs-1"
-                :class="{ active: isExactActive }"
-                @click="navigate"
-              >
-                {{ t("nav[3]") }}
-              </span>
-            </li>
-          </router-link>
         </ul>
       </div>
     </q-footer>
@@ -286,7 +269,10 @@ import Locale from "src/components/V3/LocaleButtons.vue";
 const i18n = {
   messages: {
     "ru-RU": {
-      nav: ["Деривативы", "Портфолио", "История", "Поддержка", "Рефералы"],
+      nav: ["Деривативы", "Портфолио",
+      'Сообщения'
+      //  "История", "Поддержка", "Рефералы"
+      ],
       "log-out": "Выйти",
       profile: "Профиль",
       edit: "Редактировать",
@@ -295,9 +281,10 @@ const i18n = {
       nav: [
         "Index Derivatives",
         "My Portfolio",
-        "History",
-        "Support",
-        "Referrals",
+        "Messages"
+        // "History",
+        // "Support",
+        // "Referrals",
       ],
 
       "log-out": "Log out",
@@ -309,16 +296,20 @@ const i18n = {
       nav: [
         "Indexderivate",
         "Mein Portfolio",
-        "Verlauf",
-        "Support",
-        "Empfehlungen",
+        "Mitteilungen"
+        // "Verlauf",
+        // "Support",
+        // "Empfehlungen",
       ],
       "log-out": "Ausloggen",
       profile: "Profil",
       edit: " Bearbeiten",
     },
     "zh-CN": {
-      nav: ["指数衍生品", "我的投资组合", "历史", "支持", "轉介"],
+      nav: ["指数衍生品", "我的投资组合", 
+      '留言'
+      // "历史", "支持", "轉介"
+      ],
       "log-out": "登出",
       profile: "轮廓",
       edit: " 编辑",
