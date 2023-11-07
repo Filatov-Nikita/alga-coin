@@ -10,7 +10,7 @@
         >
           <div
             v-if="currentLinks"
-            class="card card__border-line tw-absolute tw-w-full tw-z-50 tw-flex tw-justify-center tw-gap-8"
+            class="card card__border-line tw-blur-sm tw-absolute tw-w-full tw-z-50 tw-flex tw-justify-center tw-gap-8"
           >
             <a
               v-for="(link, index) in currentLinks"
@@ -43,7 +43,7 @@
         </div>
         <div class="tw-flex tw-gap-2.5">
           <a
-            href="https://instagram.com/algaecosystem?igshid=NmZiMzY2Mjc="
+            href="instagram.com/AlgaEcoSystem"
             class="tw-cursor-pointer pie pie-link"
             target="_blank"
           >

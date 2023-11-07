@@ -284,19 +284,14 @@ const i18n = {
       about: {
         title: "О нас",
         subtitle:
-          "ALGA — это совершенно новая платформа CeFi для реализации различных инвестиционных стратегий на основе индексных деривативов.",
-        text: `Базовая передовая технология наряду с огромным
-               опыт основной команды в торговле делает ALGA одношаговым
-               поиск инвестиций в проверенные и эффективные стратегии
-               облегчение входа в криптовалюту для всех. <br /><br />
-               Эти стратегии, основанные на индексных производных, состоящих из многих
-               активы, подобранные с использованием наиболее эффективного соотношения, позволяют получать солидные
-               рентабельность вложенного капитала при минимизации рисков.
-               <br /><br />
-               Платформа разработана людьми для людей с только
-               одна цель - обеспечить комфортное отслеживание активов и
-               прозрачные сделки, чтобы обеспечить управление активами
-               опыт на совершенно новый уровень.`,
+          "ALGA представляет собой продвинутую CeFi платформу, обеспечивающую инвесторам эффективные решения для преодоления ряда проблем: сложности понимания рыночных тенденций, нестабильности рынка, недостатка знаний и опыта в инвестировании, отсутствия навыков управления и риска. Эта платформа также устраняет проблему инвестирования значительных сумм венчурного капитала в криптовалюты без учета связанных с ними рисков.",
+        text: `
+
+Платформа ALGA решает ключевые проблемы криптовалютного рынка, такие как безопасность активов, управление рисками и стратегии долгосрочного инвестирования.
+<br /><br />
+Наш подход заключается в интеграции и создании продвинутых индексов путем включения стабилизирующих активов, таких как стейблкоины, а также в дополнении индексов активами, увеличивающими волатильность, для расширения возможностей инвестирования.
+
+`,
         button: "О нас",
       },
       indexD: {
@@ -412,25 +407,18 @@ const i18n = {
       header: {
         title: "Alga",
         subtitle: "Index <br> Derivatives <br> Platform",
-        nav: ["About as", "Support"],
+        nav: ["About us", "Support"],
       },
       about: {
         title: "About",
-        subttitle:
-          "ALGA is a brand new CeFi platform for the implementation of different investment strategies based on index derivatives.",
-        text: `The underlying cutting edge technology along with a huge
-              background of the core team in trading makes ALGA the one-step
-              shop for investments into proven and efficient strategies
-              facilitating entry to the crypto for everyone. <br /><br />
-              These strategies based on index derivatives consisting of many
-              assets selected using most efficient ratio allow to receive solid
-              return on the allocated capital while minimizing risks.
-              <br /><br />
-              The platform is designed by the people for the people with only
-              one goal - to ensure comfortable tracking of assets and
-              transparent transactions in order to bring asset management
-              experience to a completely new level.`,
-        button: "About as",
+        subtitle:
+          "ALGA is an advanced CeFi platform that provides investors with effective solutions to overcome a range of problems: difficulties in understanding market trends, market instability, a lack of knowledge and experience in investing, and a lack of management and risk skills. This platform also addresses the issue of investing significant amounts of venture capital into cryptocurrencies without considering the associated risks.",
+        text: `
+
+The ALGA platform solves key problems of the cryptocurrency market, such as asset security, risk management, and long-term investment strategies.
+<br/><br/>
+Our approach involves the integration and creation of advanced indices by including stabilizing assets, such as stablecoins, as well as augmenting indices with assets that increase volatility, to expand investment opportunities.`,
+        button: "About us",
       },
       indexD: {
         title: "Index Derivatives",

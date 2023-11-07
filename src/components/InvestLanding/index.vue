@@ -665,7 +665,7 @@
             height="48"
           />
           <div class="footer__paper">
-            <span>© 2021-2022 ALGA</span>
+            <span>© 2021-2023 ALGA</span>
             <a href="/whitePaperEng.pdf">White paper</a>
           </div>
           <div class="footer__socals">
@@ -687,7 +687,7 @@
           </div>
         </div>
         <div class="footer__bottom">
-          <span>© 2021-2022 ALGA</span>
+          <span>© 2021-2023 ALGA</span>
           <a href="/whitePaperEng.pdf">White paper</a>
         </div>
       </div>

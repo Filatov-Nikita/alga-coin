@@ -2,10 +2,10 @@ import * as landingAPI from "src/api/landing";
 
 const formatingDate = (date) => {
   const newDate = new Date(date);
-  return `${newDate.getDate()}.${
-    String(newDate.getMonth()).length == 1
-      ? "0" + newDate.getMonth()
-      : newDate.getMonth()
+  
+  const m = String(newDate.getMonth() + 1);
+  const month = m.length == 1 ? "0" + m : m;
+  return `${newDate.getDate()}.${month
   }.${newDate.getFullYear()} `;
 };
 export default {
@@ -128,8 +128,9 @@ export default {
       const { data } = await landingAPI.getChartDerivative(id);
       return data;
     },
-    async getChartDerivativeNewTime({ commit }, { id, time }) {
-      const { data } = await landingAPI.getChartDerivative(id, time);
+    async getChartDerivativeNewTime({ commit }, obj) {
+      console.log(obj)
+      const { data } = await landingAPI.getChartDerivative(id);
       return data;
     },
   },

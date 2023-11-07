@@ -4,7 +4,7 @@ export function getDerivatives() {
   return MainApi.mainKy("landing/index-derivatives").json();
 }
 
-export function getChartDerivative(id, duration_in_days = 120) {
+export function getChartDerivative(id, duration_in_days = 30) {
   return MainApi.mainKy(
     `landing/index-derivatives/${id}/value-chart?duration_in_days=${duration_in_days}`
   ).json();

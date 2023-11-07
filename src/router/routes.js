@@ -144,13 +144,18 @@ const routes = [
         },
         {
           path: "history",
-          component: () => import("pages/V3/History.vue"),
+          component: () => import("pages/V4/History.vue"),
           name: "history",
         },
         {
           path: "portfolio",
           component: () => import("pages/V4/Portfolio.vue"),
           name: "portfolio",
+        },
+        {
+          path: "portfolio2",
+          component: () => import("pages/V4/Portfolio2.vue"),
+          name: "portfolio2",
         },
         {
           path: "support",

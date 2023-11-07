@@ -10,7 +10,7 @@
         >
           <div
             v-if="currentLinks"
-            class="card card__border-line tw-absolute tw-w-full tw-z-50 tw-flex tw-justify-center tw-gap-8"
+            class="card   tw-blur-lg tw-bg-dark tw-absolute tw-w-full tw-z-50 tw-flex tw-justify-center tw-gap-8"
           >
             <a
               v-for="(link, index) in currentLinks"
@@ -93,7 +93,7 @@
               <span @click="$router.push({ name: 'about' })">{{
                 t("company.list[1]")
               }}</span>
-              <a href="#">{{ t("company.list[2]") }}</a>
+              
             </div>
           </div>
           <div>
@@ -101,8 +101,6 @@
             <div class="links tw-flex tw-flex-col tw-gap-3.5">
               <a href="#"> 🇺🇸 English </a>
               <a href="#"> 🇷🇺 Russian </a>
-              <a href="#"> 🇩🇪 German </a>
-              <a href="#"> 🇨🇳 Chinese </a>
             </div>
           </div>
         </div>
@@ -250,7 +248,7 @@
               </svg>
             </div>
 
-            <a href="" target="_blank">
+            <a href="twitter.com/AlgaEcoSystem" target="_blank">
               <svg
                 width="29"
                 height="29"
@@ -397,7 +395,7 @@ const i18n = {
       },
       company: {
         title: "Company",
-        list: ["Home", "About us", "Token"],
+        list: ["Home", "About us"],
       },
       ourCommunities: {
         title: "Our communities",
@@ -414,13 +412,13 @@ const links = ref([
     name: "telegram",
     icon: "telegram",
     title: t("links.telegram[0]"),
-    href: "https://t.me/algafinance",
+    href: "https://t.me/algafinance_int",
   },
   {
     name: "telegram",
     icon: "telegram",
     title: t("links.telegram[1]"),
-    href: "https://t.me/algafinancechat",
+    href: "https://t.me/algafinance",
   },
 ]);
 const linkName = ref("");

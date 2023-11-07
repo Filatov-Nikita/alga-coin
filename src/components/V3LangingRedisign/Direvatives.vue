@@ -24,9 +24,9 @@
                 <div class="circle tw-flex-shrink-0">
                   <img :src="derivative.image.url" alt="" />
                 </div>
-                <h4>{{ derivative.name }}</h4>
+                <h4 class=" tw-text-sm">{{ derivative.name }}</h4>
               </div>
-              <p class="tw-mt-2.5 tokens">
+              <p class="tw-mt-2.5 tokens tw-overflow-auto">
                 <template
                   v-for="currency in derivative.currency_shares"
                   :key="derivative.id + '_' + currency.id"
@@ -105,9 +105,9 @@
                     <div class="circle tw-flex-shrink-0">
                       <img src="./img/index-icon_1.png" alt="" />
                     </div>
-                    <h4>{{ derivative.name }}</h4>
+                    <h4 class=" tw-text-sm">{{ derivative.name }}</h4>
                   </div>
-                  <p class="tw-mt-2.5 tokens">
+                  <p class="tw-mt-2.5 tokens tw-overflow-auto">
                     <template
                       v-for="currency in derivative.currency_shares"
                       :key="derivative.id + '_' + currency.id"
@@ -305,7 +305,7 @@ const i18n = {
       header: {
         title: "Alga",
         subtitle: "Index <br> Derivatives <br> Platform",
-        nav: ["About as", "Support"],
+        nav: ["About us", "Support"],
       },
       about: {
         title: "About",
@@ -323,7 +323,7 @@ const i18n = {
               one goal - to ensure comfortable tracking of assets and
               transparent transactions in order to bring asset management
               experience to a completely new level.`,
-        button: "About as",
+        button: "About us",
       },
       indexD: {
         title: "Index Derivatives",
@@ -827,10 +827,14 @@ export default {
     const $i18n = useI18n();
     const { t } = useI18n(i18n);
     const store = useStore();
-    const derivatives = computed(() => store.getters["landing/derivatives"]);
+    const derivatives = computed(() => {
+      const arr = store.getters["landing/derivatives"]
+      if(typeDirevative.value === 'ALGA') return arr.slice(0,5)
+      if(typeDirevative.value === 'Market')return arr.slice(5)
+    });
     const { charts, getChart } = useChart();
     const typeDirevative = ref('ALGA')
-    const typesDirevative = ['ALGA', 'Market', 'Influencer']
+    const typesDirevative = ['ALGA', 'Market']
     const getChartData = (id) => {
         return getChart(id)?.chart.map((item) => [
           +item.timestamp * 1000,

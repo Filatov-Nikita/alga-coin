@@ -3,10 +3,10 @@
   <div
     class="tw-container tw-px-0 content-page tw-border-t tw-border-gray-border"
   >
-    <div class=" tw-hidden xl:tw-grid xl:tw-content-between tw-grid-rows-1_auto">
+    <div class=" tw-hidden xl:tw-grid xl:tw-content-between tw-grid-rows-1_auto tw-pb-5">
       <div class=" tw-overflow-auto">
         
-        <h4 class="tw-px-9 tw-py-8" @click="openList('alga')">{{typeDirevative}}Derivatives:</h4>
+        <h4 class="tw-px-9 tw-py-8" >{{ t("titleSidebar") }}:</h4>
         <div class=" tw-grid tw-gap-6">
 
           <div v-for="item in typesDirevative" class=" accordion" :class="{active:typeDirevative === item }" @click="selectTypeDirevatives(item)" >
@@ -69,7 +69,7 @@
 
       </div>
       <div class=" tw-text-xxs tw-text-title tw-text-center">
-        © 2021-2022 ALGA. <br>
+        © 2021-2023 ALGA. <br>
         All Rights Reserved
       </div>
     </div>
@@ -114,7 +114,7 @@
               <RoundDiagram
                 class="inside__round"
                 :values="roundDiagramData(derivative['currency_shares'])"
-                s:colors="roundDiagramColors(derivative['currency_shares'])"
+                :colors="roundDiagramColors(derivative['currency_shares'])"
               >
                 <template #image>
                   <image
@@ -176,7 +176,7 @@
                     <span></span>
                     <span> cost </span>
                     <span> alteration </span>
-                    <span> table </span>
+                    
                   </div>
                 </div>
                 <ul class="table-body coinlist">
@@ -191,24 +191,25 @@
                         alt="bitcoin"
                         width="30"
                         height="30"
+                        class=" tw-rounded-full"
                       />
                       <span>{{ currency.name }}</span>
                     </div>
                     <span>{{ currency["percent_share"] }}%</span>
                     <span>{{ currency["percent_share"] }}%</span>
-                    <MiniAreaChart :values="getChartData(derivative.id)" />
+                    
                   </li>
                 </ul>
               </div>
             </div>
             <div class="tw-pb-10 statistics">
-              <div class="w statistics__top">
+              <div class="statistics__top">
                 <div class="tw-flex tw-justify-between">
                   <div>{{ t("statistics.title") }}</div>
                   <base-select
                     :options="[
                       {
-                        label: t('statistics.selectProfit', { numb: '4' }),
+                        label: t('statistics.selectProfit', { numb: '1' }),
                         id: 1,
                       },
                     ]"
@@ -220,6 +221,7 @@
                 <AreaChart
                   :valSeries="getChartData(derivative.id)"
                   class="tw-order-2 xl:tw-order-1"
+                  :key="derivative.id"
                 />
                 <div
                   class="tw-flex tw-justify-between tw-items-center tw-order-1 xl:tw-block tw-mt-5 xl:tw-order-2"
@@ -286,9 +288,7 @@
             >
           </Form>
           <p class="tw-mt-5 tw-text-xxs">
-            *После нажатия кнопки, оплатить, вы будете перенаправлены на шлюз.
-            Если ничего не открылось, просим проверить блокировку всплывающих
-            окон браузера
+            *{{ t("popup.text") }}
           </p>
         </div>
       </Transition>
@@ -311,6 +311,7 @@ const i18n = {
   messages: {
     "en-US": {
       buy: "Buy",
+      titleSidebar: 'Derivatives',
       indexderivatives: {
         title: "Index Derivatives",
         time: "from {from} to {to}",
@@ -341,10 +342,14 @@ const i18n = {
           label: "Wallet number",
         },
         request: "Leave a request",
+        text:`After clicking the button, pay, you will be redirected to the gateway.
+             If nothing opens, please check your pop-up blocker.
+             browser windows`
       },
     },
     "ru-RU": {
       buy: "Купить",
+      titleSidebar: 'Диревативы',
       indexderivatives: {
         title: "Индексные деривативы",
         time: "с {from} по {to}",
@@ -375,6 +380,9 @@ const i18n = {
           label: "Номер счета",
         },
         request: "К оплате",
+        text: `После нажатия кнопки, оплатить, вы будете перенаправлены на шлюз.
+            Если ничего не открылось, просим проверить блокировку всплывающих
+            окон браузера`
       },
     },
     de: {
@@ -455,6 +463,7 @@ export default {
     MiniAreaChart,
   },
   setup() {
+    const slide= ref(1)
     const store = useStore();
     const { charts, getChart } = useChart();
     const {
@@ -473,8 +482,21 @@ export default {
       useBuyWidthdrawalPopup();
     const { t } = useI18n(i18n);
 
-    const derivatives = computed(() => store.getters["landing/derivatives"]);
+    const derivatives = computed(() => {
+      const arr = store.getters["landing/derivatives"]
+      if(typeDirevative.value === 'ALGA') {
+        const newArr = arr.slice(0,5)
+        // slide.value = newArr[0].id;
+        return newArr
+      }
 
+      if(typeDirevative.value === 'Market'){
+        const newArr = arr.slice(5)
+        // slide.value = newArr[0].id;
+        return newArr
+      }
+    });
+    watch(()=>derivatives.value,(val)=> setTimeout(()=>slide.value = val[0].id,0) )
     const roundDiagramData = (currencys) => {
       return currencys.map((item) => +item["percent_share"]);
     };
@@ -500,11 +522,11 @@ export default {
     }
     watch(targetList, (val)=>console.log(val))
     const typeDirevative = ref('ALGA')
-    const typesDirevative = ['ALGA', 'Market', 'Influencer']
+    const typesDirevative = ['ALGA', 'Market']
     return {
-      slide: ref(1),
+      
       t,
-
+      slide,
       derivatives,
       roundDiagramData,
       roundDiagramColors,
@@ -620,12 +642,12 @@ export default {
       
       .head-items {
         display: grid;
-        grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+        grid-template-columns: 1fr 0.5fr 0.5fr ;
         margin-top: 10px;
         @screen xl {
           margin-top: 0px;
           flex-grow:1;
-          grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr;
+          grid-template-columns: 0.5fr 0.5fr 0.5fr ;
         }
       }
       & *:first-child {
@@ -646,7 +668,7 @@ export default {
         }
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+        grid-template-columns: 1fr 0.5fr 0.5fr ;
         &:not(:last-child) {
           @apply tw-border-b tw-border-gray-border;
         }

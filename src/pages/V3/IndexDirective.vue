@@ -152,13 +152,13 @@
             </div>
           </div>
           <div class="card card__border-line statistics">
-            <div class="w statistics__top">
+            <div class="statistics__top">
               <div class="tw-flex tw-justify-between">
                 <div>{{ t("statistics.title") }}</div>
                 <base-select
                   :options="[
                     {
-                      label: t('statistics.selectProfit', { numb: '4' }),
+                      label: t('statistics.selectProfit', { numb: '1' }),
                       id: 1,
                     },
                   ]"

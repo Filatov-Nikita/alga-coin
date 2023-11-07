@@ -26,12 +26,13 @@ export default function () {
 
         const requests = await resolve.map(async (derivative) => {
           $q.loading.show();
+          
           return await store.dispatch(
             "landing/getChartDerivative",
             derivative.id
           );
         });
-        console.log(requests);
+        
         Promise.all(requests).then((responses) => {
           console.log(responses);
           charts.value = responses;

@@ -45,7 +45,7 @@
                 </li>
               </router-link>
               <router-link
-                :to="{ name: 'messages' }"
+                :to="{ name: 'history' }"
                 custom
                 v-slot="{ isExactActive, navigate }"
               >
@@ -223,7 +223,7 @@
             </li>
           </router-link>
           <router-link
-            :to="{ name: 'messages' }"
+            :to="{ name: 'history' }"
             custom
             v-slot="{ isExactActive, navigate }"
           >
@@ -270,7 +270,7 @@ const i18n = {
   messages: {
     "ru-RU": {
       nav: ["Деривативы", "Портфолио",
-      'Сообщения'
+      'История'
       //  "История", "Поддержка", "Рефералы"
       ],
       "log-out": "Выйти",
@@ -281,7 +281,7 @@ const i18n = {
       nav: [
         "Index Derivatives",
         "My Portfolio",
-        "Messages"
+        "History"
         // "History",
         // "Support",
         // "Referrals",

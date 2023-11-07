@@ -12,7 +12,7 @@
           />
 
           <div class="tw-hidden xl:tw-flex xl:tw-gap-10">
-            <button @click="$router.push({ name: 'about' })">About as</button>
+            <button @click="$router.push({ name: 'about' })">About us</button>
             <button>Support</button>
           </div>
           <div>

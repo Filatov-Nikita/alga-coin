@@ -148,138 +148,6 @@
                     </div>
                   </div>
                 </q-carousel-slide>
-                <q-carousel-slide name="4" class="tw-flex tw-gap-5 tw-mb-15">
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/sharipov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.4.name") }} <br />
-                        {{ t("team.peoples.4.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.4.bio") }}
-                      </p>
-                    </div>
-                  </div>
-                </q-carousel-slide>
-                <q-carousel-slide name="5" class="tw-flex tw-gap-5 tw-mb-15">
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/razyapov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.5.name") }} <br />
-                        {{ t("team.peoples.5.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.5.bio") }}
-                      </p>
-                    </div>
-                  </div>
-                </q-carousel-slide>
-                <q-carousel-slide name="6" class="tw-flex tw-gap-5 tw-mb-15">
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/yunusov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.6.name") }} <br />
-                        {{ t("team.peoples.6.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.6.bio") }}
-                      </p>
-                    </div>
-                  </div>
-                </q-carousel-slide>
-                <q-carousel-slide name="7" class="tw-flex tw-gap-5 tw-mb-15">
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/karimov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.7.name") }} <br />
-                        {{ t("team.peoples.7.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.7.bio") }}
-                      </p>
-                    </div>
-                  </div>
-                </q-carousel-slide>
-                <q-carousel-slide name="8" class="tw-flex tw-gap-5 tw-mb-15">
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/tabakov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.8.name") }} <br />
-                        {{ t("team.peoples.8.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.8.bio") }}
-                      </p>
-                    </div>
-                  </div>
-                </q-carousel-slide>
-                <q-carousel-slide name="9" class="tw-flex tw-gap-5 tw-mb-15">
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/lobastov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.9.name") }} <br />
-                        {{ t("team.peoples.9.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.9.bio") }}
-                      </p>
-                    </div>
-                  </div>
-                </q-carousel-slide>
               </q-carousel>
             </div>
             <div class="tw-hidden xl:tw-block xl:tw-mt-10 tw-relative">
@@ -358,136 +226,9 @@
                     </div>
                   </div>
                 </q-carousel-slide>
-                <q-carousel-slide name="2" class="tw-flex tw-gap-5">
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/sharipov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.4.name") }} <br />
-                        {{ t("team.peoples.4.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.4.bio") }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/razyapov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.5.name") }} <br />
-                        {{ t("team.peoples.5.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.5.bio") }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/yunusov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.6.name") }} <br />
-                        {{ t("team.peoples.6.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.6.bio") }}
-                      </p>
-                    </div>
-                  </div>
-                </q-carousel-slide>
-                <q-carousel-slide name="3" class="tw-flex tw-gap-5">
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/karimov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.7.name") }} <br />
-                        {{ t("team.peoples.7.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.7.bio") }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/tabakov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.8.name") }} <br />
-                        {{ t("team.peoples.8.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.8.bio") }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="star">
-                    <div class="star__avatar">
-                      <div class="star-avatar__wrapper">
-                        <img
-                          class="star-avatar__img"
-                          src="./img/lobastov.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div class="star__content">
-                      <h4 class="star__content-title">
-                        {{ t("team.peoples.9.name") }} <br />
-                        {{ t("team.peoples.9.lastName") }}
-                      </h4>
-                      <p class="star__content-text">
-                        {{ t("team.peoples.9.bio") }}
-                      </p>
-                    </div>
-                  </div>
-                </q-carousel-slide>
+                
               </q-carousel>
-
+<!-- 
               <button
                 class="arrow tw-absolute tw--left-15 tw-transform tw--translate-y-1/2 tw-top-1/2"
                 @click="$refs.carousel_star.previous()"
@@ -499,7 +240,7 @@
                 @click="$refs.carousel_star.next()"
               >
                 <q-icon name="chevron_right" size="30px" color="arrow-brand" />
-              </button>
+              </button> -->
             </div>
           </div>
         </div>
@@ -670,16 +411,7 @@
         </div>
       </div>
     </section>
-    <section class="section tokenomics">
-      <div class="tw-container">
-        <h2 class="title title tw-mb-4 xl:tw-mb-14">
-          {{ t("tokenomics.title") }}
-        </h2>
-        <div class="tokenomics__card">
-          <Tokenomics />
-        </div>
-      </div>
-    </section>
+    
     <Teleport to="body">
       <transition
         appear
@@ -746,6 +478,7 @@ import MarkIcon from "src/components/V3/MarkIcon.vue";
 const i18n = {
   messages: {
     "ru-RU": {
+      lk: "Личный кабинет",
       dropdown: {
         buttons: {
           register: "Регистрация",
@@ -768,60 +501,61 @@ const i18n = {
         stages: {
           1: {
             title: "Этап 1",
-            subtitle: "Март - Июнь 2022",
+            subtitle: "Декабрь - Февраль 2023",
             items: [
               "Разработка концепции и брендбука проекта",
               "Разработка архитектуры платформы",
-              "Создание и наполнение сайта (дизайн, верстка, мобильная адаптация, разработка ядра учетной записи пользователя)",
+              "Создание сайта (дизайн, верстка, мобильная адаптация, разработка ядра личного кабинета) ",
             ],
           },
           2: {
             title: "Этап 2",
-            subtitle: "Июнь - Сентябрь 2022",
+            subtitle: "Март - Июнь 2023",
             items: [
-              "Разработка платформы MVP",
+              "Старт разработки MVP платформы ",
               "Разработка маркетингового плана",
-              "Создание и наполнение соцсетей (Facebook, Instagram, Telegram, Reddit)",
-              "Старт предварительной маркетинговой кампании",
+              "Создание и наполнение социальных сетей (Фейсбук, Инстаграм, Телеграм, Реддит)",
+              "Старт первичной маркетинговой компании",
             ],
           },
           3: {
             title: "Этап 3",
-            subtitle: "Сентябрь - Январь 2023",
+            subtitle: "Июль - Октябрь 2023",
             items: [
-              "Создание компании и получение юридических документов",
-              "Начало сбора средств",
+              "Регистрация компании и получение правовых документов",
+              "Начало инвестиционного раунда",
               "Открытие офисов: Дубай, Москва, Уфа, Казань",
-              "Тестирование MVP и QA",
+              "Тестирование функционала MVP платформы",
+              "Прохождение аудита платформы "
             ],
           },
           4: {
             title: "Этап 4",
-            subtitle: "Январь - Апрель 2023",
+            subtitle: "Ноябрь 2023",
             items: [
-              "Запуск глобальной маркетинговой кампании",
+              "Запуск глобальной маркетинговой компании ALGA ",
               "Проведение IEO на CEX",
               "Листинг CEX",
-              "Запуск платформы MVP",
+              "Запуск MVP платформы ALGA",
             ],
           },
           5: {
             title: "Этап 5",
-            subtitle: "Апрель - Июль 2023",
+            subtitle: "Март - Июнь 2024",
             items: [
-              "Обновление функционала платформы",
-              "Запуск программы индексов Alga Advisors",
-              "Разработка мобильных приложений",
+              "Обновление функционала платформы ALGA ",
+              "Запуск программы с добавлением индексовот адвайзеров платформы",
+              "Разработка мобильного приложения",
             ],
           },
           6: {
             title: "Этап 6",
-            subtitle: "Июль - Октябрь 2023",
+            subtitle: "Июль - Октябрь 2024",
             items: [
-              "Листинг на других централизованных биржах",
-              "Разработка собственной индексной биржи",
+              "Листинг на других CEX биржах",
+              "Старт разработки собственной индексной биржи",
               "Увеличение количества индексов до 15",
-              "Партнерские соглашения с солидными хедж-фондами",
+              "Подписание партнёрских соглашений с крупными хедж-фондами",
             ],
           },
         },
@@ -902,6 +636,7 @@ const i18n = {
     },
 
     "en-US": {
+      lk: "Personal",
       dropdown: {
         buttons: {
           register: "Registration",
@@ -925,7 +660,7 @@ const i18n = {
         stages: {
           1: {
             title: "Stage 1",
-            subtitle: "March-June, 2022",
+            subtitle: "December-February, 2023",
             items: [
               "Development of the concept and brand book of the project",
               "Platform architecture development",
@@ -934,50 +669,51 @@ const i18n = {
           },
           2: {
             title: "Stage 2",
-            subtitle: "June-September, 2022",
+            subtitle: "March-June, 2023",
             items: [
               "Development of platform MVP",
               "Development of the marketing plan",
               "Creation and content of socials (Facebook, Instagram, Telegram, Reddit)",
-              "Launch the preliminary marketing campaign",
+              "Start of the preliminary marketing campaign",
             ],
           },
           3: {
             title: "Stage 3",
-            subtitle: "September - Junuary 2023",
+            subtitle: "July-October, 2023",
             items: [
-              "Company establishment and obtaining of legal documents",
-              "Launch the fundraising campaign",
-              "Offices establishment: Dubai, Moscow, Ufa, Kazan",
-              "MVP testing and QA",
+              "Testing index algorithms",
+              "Testing the functionality of the MVP platform",
+              "Platform security audit completion",
             ],
           },
           4: {
             title: "Stage 4",
-            subtitle: "Junuary - April 2023",
+            subtitle: "November 2023 -February 2024",
             items: [
-              "Launch of the global marketing compaigh",
-              "Perform IEO on CEX",
-              "CEX listing",
-              "Platform MVP launch",
+              "Launch of global marketing company ALGA",
+              "Adding Fan Indexes (3)",
+              "Launch of the Market Index group (9 индексов)",
+              "Launch of MVP of the ALGA platform",
+              "Start of Mobile Application Development"
             ],
           },
           5: {
             title: "Stage 5",
-            subtitle: "April  - Jule 2023",
+            subtitle: "March - June, 2024",
             items: [
-              "Platform functionality update",
-              "Launch of the Alga Advisors indexes",
-              "Mobile app development",
+              "Update the functionality of the ALGA platform with the integration of our own index backtester",
+              "Launching a program with the addition of influencer indexes",
+              "Development and inclusion of a backtester for creating your own indexes",
+              "Conducting an IEO at CEX"
             ],
           },
           6: {
             title: "Stage 6",
-            subtitle: "Jule - Oktober 2023",
+            subtitle: "July-October 2024",
             items: [
-              "Listing on other Centralized exchanges",
-              "Development of the own index exchange",
-              "Increasing number of indexes to 15",
+              "Listing on CEX exchanges",
+              "Development of a social network for the ability to share your own indexes with further connection to them",
+              "Start of development of your own index exchange",
               "Partnership agreements with solid hedge-funds",
             ],
           },
