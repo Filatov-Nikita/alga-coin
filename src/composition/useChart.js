@@ -23,7 +23,6 @@ export default function () {
       $q.loading.show();
       await store.dispatch("landing/getDerivatives").then(async (resolve) => {
         $q.loading.show();
-
         const requests = await resolve.map(async (derivative) => {
           $q.loading.show();
           

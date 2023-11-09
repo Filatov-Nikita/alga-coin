@@ -129,7 +129,7 @@
         </div>
       </div>
     </header>
-    <Direvatives/>
+    <Direvatives :charts="charts"/>
     <section class="section backers-partner">
       <div class="tw-container">
         <h2 class="title tw-mb-7.5">{{ t("backers.title") }}</h2>
@@ -996,6 +996,7 @@ export default {
       ]);
     };
     return {
+      charts,
       locale,
       newLocale,
       t,

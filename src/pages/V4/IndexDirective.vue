@@ -228,7 +228,7 @@
                 >
                   <div
                     class="tw-mb-2.5"
-                    v-html="t('statistics.profitText', { numb: '4' })"
+                    v-html="t('statistics.profitText', { numb: '1' })"
                   ></div>
                   <div class="tw-text-md2 tw-flex tw-gap-x-2.5">
                     <MarkIcon :mark="getChart(derivative.id).profitability" />

@@ -42,7 +42,7 @@
                 <div>
                   <p
                     class="tw-text-white"
-                    v-html="t('indexD.card.profitability.1', { numb: '4' })"
+                    v-html="t('indexD.card.profitability.1', { numb: '1' })"
                   ></p>
                   <div class="tw-flex tw-gap-x-2.5">
                     <MarkIcon :mark="getChart(derivative.id)?.profitability" />
@@ -122,7 +122,7 @@
                     <div>
                       <p
                         class="tw-text-white"
-                        v-html="t('indexD.card.profitability.1', { numb: '4' })"
+                        v-html="t('indexD.card.profitability.1', { numb: '1' })"
                       ></p>
                       <div class="tw-flex tw-gap-x-2.5">
                         <MarkIcon
@@ -823,7 +823,10 @@ export default {
     MiniAreaChart,
     MarkIcon
   },
-  setup(){
+  props: {
+    charts: Array
+  },
+  setup(props){
     const $i18n = useI18n();
     const { t } = useI18n(i18n);
     const store = useStore();
@@ -831,10 +834,17 @@ export default {
       const arr = store.getters["landing/derivatives"]
       if(typeDirevative.value === 'ALGA') return arr.slice(0,5)
       if(typeDirevative.value === 'Market')return arr.slice(5)
+      
     });
-    const { charts, getChart } = useChart();
+    console.log('hiojho')
+    
     const typeDirevative = ref('ALGA')
     const typesDirevative = ['ALGA', 'Market']
+    const getChart = (id) => {
+    if (props.charts) {
+      return props.charts.find((chart) => chart["index_derivative_id"] === id);
+    }
+  };
     const getChartData = (id) => {
         return getChart(id)?.chart.map((item) => [
           +item.timestamp * 1000,
