@@ -4,7 +4,7 @@
   >
     <div class="xl:tw-flex tw-justify-between tw-mb-14">
       <h2 class=" tw-mb-3 xl:tw-mb-0">{{ t("title") }}</h2>
-      <div class=" tw-flex-wrap tw-justify-center tw-flex tw-gap-3 xl:tw-gap-14">
+      <div class=" tw-flex-wrap tw-justify-end tw-flex tw-gap-3 xl:tw-gap-14">
         <div>
           <div
             class="tw-text-xxs-1 tw-text-gray tw-flex tw-items-center tw-justify-end tw-gap-1.5 tw-mb-4"
@@ -498,7 +498,7 @@ onMounted(async () => {
   }
 });
 
-const activeChart = ref(5);
+const activeChart = ref(4);
 </script>
 
 <style lang="scss" scoped>
