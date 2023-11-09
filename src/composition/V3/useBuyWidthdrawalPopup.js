@@ -69,7 +69,6 @@ export default function () {
   const targetClick = (e) => {
     let currentElem = e.target;
     let open = false;
-    // console.log(currentElem);
     while (currentElem) {
       if (currentElem.hasAttribute("data-index")) {
         open = true;

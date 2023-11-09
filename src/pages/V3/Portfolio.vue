@@ -426,8 +426,6 @@ const { popup, isPopup, popupContent, buy, widthdrawal, popupAction } =
 
 const activeIndex = ref(null);
 const amountPopup = computed(() => {
-  console.log(indexList.value);
-  console.log(popupContent.value.id);
   return indexList.value.find(
     (item) => item.inder.id === popupContent.value.id
   );

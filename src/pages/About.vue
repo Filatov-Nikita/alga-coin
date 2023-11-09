@@ -106,7 +106,6 @@ export default {
             arrow.value?.classList.remove("show-arrow");
           if (!arrow.value?.classList.contains("hidden-arrow")) {
             arrow.value?.classList.add("hidden-arrow");
-            console.log(window.pageYOffset);
             setTimeout(() => {
               if (arrow.value?.classList.contains("hidden-arrow"))
                 arrow.value.style.display = "none";

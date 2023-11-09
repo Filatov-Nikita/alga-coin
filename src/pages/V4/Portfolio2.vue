@@ -680,8 +680,6 @@ const getChartData = (id) => {
 };
 const activeIndex = ref(2);
 const amountPopup = computed(() => {
-  console.log(indexList.value);
-  console.log(popupContent.value.id);
   return indexList.value.find(
     (item) => item.inder.id === popupContent.value.id
   );

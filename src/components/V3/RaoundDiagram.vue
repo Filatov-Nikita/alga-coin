@@ -104,11 +104,7 @@ export default {
       type: Boolean,
     },
   },
-  setup() {
-    // onMounted(()=>{
-    //   console.log(document.querySelectorAll('circle'));
-    // })
-  },
+  
   data() {
     return {
       angleOffset: -90,

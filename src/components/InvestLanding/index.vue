@@ -1089,7 +1089,7 @@ export default {
     const langDrop = ref(false);
     const $i18n = useI18n();
     const locale = computed(() => {
-      console.log($i18n.locale.value);
+      
       if ($i18n.locale.value === "en-US" || $i18n.locale.value === "en")
         return "English";
       if ($i18n.locale.value === "ru-RU" || $i18n.locale.value === "ru")
@@ -1141,7 +1141,6 @@ export default {
   },
   methods: {
     scrollMeTo(refName) {
-      console.log("hio");
       var element = this.$refs[refName];
       var top = element.offsetTop;
       window.scrollTo(0, top);

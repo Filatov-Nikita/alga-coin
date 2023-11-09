@@ -129,7 +129,6 @@ export default {
       return data;
     },
     async getChartDerivativeNewTime({ commit }, obj) {
-      // console.log(obj)
       const { data } = await landingAPI.getChartDerivative(obj.id, obj.time);
       return data;
     },

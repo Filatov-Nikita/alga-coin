@@ -160,7 +160,6 @@ const isPopup = ref(false);
 const scollWindow = (e) => {
   if (isPopup.value) {
     isPopup.value = false;
-    console.log(e);
   }
 };
 
@@ -168,7 +167,6 @@ const targetClick = (e) => {
   if (isPopup.value) {
     isPopup.value = false;
   }
-  // console.log(linkName.value);
 };
 onMounted(() => {
   window.addEventListener("scroll", scollWindow);
@@ -192,7 +190,6 @@ const sendAppeal = async (values, { resetForm }) => {
   try {
     await store.dispatch("profile/sendMessageSupport", formData);
     isPopup.value = true;
-    console.log(values);
     resetForm();
     file.value = null;
   } catch (e) {

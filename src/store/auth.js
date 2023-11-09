@@ -43,7 +43,6 @@ export default {
       return true;
     },
     async getVerifingCode(_c, { mail }) {
-      console.log(mail);
       await AuthAPI.getVerifingCode({ mail });
       return true;
     },

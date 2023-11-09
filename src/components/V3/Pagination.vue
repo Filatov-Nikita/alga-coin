@@ -35,7 +35,6 @@ const navigationItem = (e)=>{
 }
 
 const setActiveItem = (index)=>{
-  console.log(items.value);
   if(index >= active.value){
     active.value = index;
     if(index >=  max.value-1)
@@ -44,22 +43,17 @@ const setActiveItem = (index)=>{
   }
   if (index < active.value) {
     active.value = index;
-    console.log(index);
-    console.log(index !==(items.value.length - (max.value-1)) );
     if (index !== (items.value.length - (max.value - 1)) ){
       
       pos.value.left = pos.value.left - items.value[index-1 + (max.value)].getBoundingClientRect().left + items.value[(index - 2) + (max.value )].getBoundingClientRect().left
       content.value.scrollLeft = pos.value.left  
     }else {
-      console.log(items.value[items.value.length-1]);
-      console.log(items.value[index - 2 + (max.value)]);
       pos.value.left = pos.value.left - items.value[items.value.length - 2].getBoundingClientRect().left + items.value[items.value.length - 3].getBoundingClientRect().left
       content.value.scrollLeft = pos.value.left  
     }
   }
 }
 const next = ()=>{
-  console.log('next');
   setActiveItem(active.value +1)
 }
 const prev = () => {
@@ -67,63 +61,14 @@ const prev = () => {
 }
 
 
-// const mouseDownHandler = function (e) {
-
-//   content.value.style.cursor = 'grabbing';
-//   content.value.style.userSelect = 'none';
-//   pos.value = {
-//     // The current scroll
-//     left: content.value.scrollLeft,
-//     top: content.value.scrollTop,
-//     // Get the current mouse position
-//     x: e.clientX,
-//     y: e.clientY,
-//   };
-
-//   console.log(e.clientX);
-
-//   document.addEventListener('mousemove', mouseMoveHandler);
-//   document.addEventListener('mouseup', mouseUpHandler);
-// };
-
-
-// const mouseMoveHandler = function (e) {
-//   // How far the mouse has been moved
-//   const dx = e.clientX - pos.value.x;
-//   const dy = e.clientY - pos.value.y;
-//   console.log(dx);
-//   // Scroll the element
-//   content.value.scrollTop = pos.value.top - dy;
-//   content.value.scrollLeft = pos.value.left - dx;
-// };
-
-// const mouseUpHandler = function () {
-//   document.removeEventListener('mousemove', mouseMoveHandler);
-//   document.removeEventListener('mouseup', mouseUpHandler);
-
-//   content.value.style.cursor = 'grab';
-//   content.value.style.removeProperty('user-select');
-// };
 
 const widthMax = computed(()=>{
-  // if (items.value?.length > 0){
-  //   if(items.value.length <= max.value){
-  //     console.log(items.value[items.value.length-1])
-  //   }else {
-  //     console.log(items.value[max.value - 1 + active.value].getBoundingClientRect().right - items.value[active.value].getBoundingClientRect().left);
-  //     return {
-  //       width: items.value[max.value - 1 + active.value ].getBoundingClientRect().right- items.value[active.value].getBoundingClientRect().left  + 'px'
-  //     }
-  //     // console.log(items.value[max.value - 1].getBoundingClientRect())
-  //   }
-  // }
   return {width: '120px'}
 })
 onBeforeMount((()=>items.value = []))
 onMounted(() => {
   wMiddle.value = content.value.getBoundingClientRect().right - content.value.getBoundingClientRect().left
   add.value =false
-  // content.value.addEventListener('mousedown', mouseDownHandler);
 }
   )
 

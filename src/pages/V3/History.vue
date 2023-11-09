@@ -284,12 +284,6 @@ const buyList = computed(() => store.getters["profile/getBuyList"]);
 const widthdrawalList = computed(
   () => store.getters["profile/getWidthdrawalList"]
 );
-// store.dispatch("profile/listHistoryBuy");
-// await Promise.all([
-//   store.dispatch("profile/listHistoryBuy"),
-//   store.dispatch("profile/listHistoryWidthdrawal"),
-// ]);
-// console.log(store.dispatch("profile/listHistoryWidthdrawal"));
 const activeNav = ref(1);
 const activeContent = ref(1);
 const fadeIn = ref("animated fadeInLeft");

@@ -431,14 +431,12 @@ const currentLinks = computed(() => {
 const scollWindow = (e) => {
   if (linkName.value !== "") {
     linkName.value = "";
-    console.log(e);
   }
 };
 
 const targetClick = (e) => {
   let currentElem = e.target;
   let open = false;
-  // console.log(currentElem);
   while (currentElem) {
     if (currentElem.hasAttribute("data-link")) {
       open = true;
@@ -450,12 +448,8 @@ const targetClick = (e) => {
     linkName.value &&
     !e.composedPath().includes(popupFooter.value)
   ) {
-    console.log(open);
-    console.log(e.target);
-    console.log(currentElem);
     linkName.value = "";
   }
-  // console.log(linkName.value);
 };
 onMounted(() => {
   window.addEventListener("scroll", scollWindow);

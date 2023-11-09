@@ -163,7 +163,6 @@ export default {
   actions: {
     async show({ commit }) {
       const profileData = await ProfileAPI.show();
-      console.log(profileData);
       commit("setProfile", profileData);
       commit("setName", profileData.data.name);
       return profileData;
@@ -171,7 +170,6 @@ export default {
 
     async editName(_c, name) {
       const profileData = await ProfileAPI.editName(name);
-      console.log(name);
       _c.commit("setName", name);
       return profileData;
     },
@@ -181,7 +179,6 @@ export default {
       return profileData;
     },
     async sendMessageSupport(_c, body) {
-      console.log(body);
       const res = await ProfileAPI.sendAppear(body);
       return res;
     },
@@ -207,7 +204,6 @@ export default {
     },
     async getBalanceProfile(_c) {
       const { data } = await ProfileAPI.balanceProfile();
-      console.log(data);
       _c.commit("setBalance", data);
     },
   },

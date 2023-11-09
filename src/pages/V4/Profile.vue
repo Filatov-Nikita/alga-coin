@@ -209,7 +209,7 @@ export default {
     };
 
     const updateEmail = () => {
-      console.log("test");
+      
     };
     const updatePassword = async (values, { setErrors }) => {
       try {
@@ -258,7 +258,6 @@ export default {
     const isSubmittingPhone = ref(false);
 
     const isErrorEmail = (val) => {
-      console.log(val);
       isSubmittingEmail.value = val;
     };
     const isErrorPassword = (val) => {

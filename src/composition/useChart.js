@@ -33,7 +33,6 @@ export default function () {
         });
         
         Promise.all(requests).then((responses) => {
-          console.log(responses);
           charts.value = responses;
         });
       });

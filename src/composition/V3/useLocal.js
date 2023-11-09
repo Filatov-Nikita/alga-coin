@@ -8,7 +8,6 @@ export default function () {
     activeSelectLang.value = false;
   };
   const locale = computed(() => {
-    console.log($i18n.locale.value);
     if ($i18n.locale.value === "en-US" || $i18n.locale.value === "en")
       return "English";
     if ($i18n.locale.value === "ru-RU" || $i18n.locale.value === "ru")

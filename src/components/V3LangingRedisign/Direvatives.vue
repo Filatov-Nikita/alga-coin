@@ -836,7 +836,6 @@ export default {
       if(typeDirevative.value === 'Market')return arr.slice(5)
       
     });
-    console.log('hiojho')
     
     const typeDirevative = ref('ALGA')
     const typesDirevative = ['ALGA', 'Market']

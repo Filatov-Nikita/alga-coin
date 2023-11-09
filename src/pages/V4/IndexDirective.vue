@@ -520,7 +520,7 @@ export default {
     const selectTypeDirevatives = (type)=>{
       typeDirevative.value= type
     }
-    watch(targetList, (val)=>console.log(val))
+    
     const typeDirevative = ref('ALGA')
     const typesDirevative = ['ALGA', 'Market']
     return {

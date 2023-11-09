@@ -62,10 +62,7 @@ export default {
     },
   },
 
-  created() {
-    // this.series[0].data = this.values
-    // console.log(this.series)
-  },
+  
 };
 </script>
 
