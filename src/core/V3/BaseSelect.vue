@@ -1,23 +1,14 @@
 <template>
-  <div class="dropdown-select" :class="{ active: dropdown }">
-    <div @click="dropdown = !dropdown" class="dropdown-select__head">
-      <span>
-        {{ selection?.label }}
-      </span>
+  <div class="select">
+    <div class="select__head">
+      <img
+        src="https://admin.alga.finance/storage/coin_images/7rQbWbecOrwZdODcQ1w2who2iLSPonLCRt68AuvU.svg"
+        alt=""
+        width="16"
+        height="16"
+      />
+      <span> LTC </span>
       <q-icon name="r_keyboard_arrow_down" size="15px" class="arrow-icon" />
-    </div>
-    <div class="dropdown-select__body" :class="{ active: dropdown }">
-      <ul class="options">
-        <li
-          v-for="option in options"
-          :key="option.id"
-          class="option"
-          :class="{ disabled: selection.id === option.id }"
-          @click="setSelect(option.id)"
-        >
-          {{ option.label }}
-        </li>
-      </ul>
     </div>
   </div>
 </template>
@@ -33,18 +24,7 @@ export default {
     },
   },
   setup(props) {
-    const dropdown = ref(false);
-    const selection = ref({});
-    selection.value = props.options[0];
-    return {
-      selection,
-      dropdown,
-      setSelect: function (id) {
-        this.selection = props.options.find((option) => option.id === id);
-        console.log(selection);
-        dropdown.value = false;
-      },
-    };
+    
   },
 };
 </script>
