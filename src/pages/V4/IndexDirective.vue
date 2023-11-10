@@ -83,16 +83,18 @@
           {{ t("indexderivatives.title") }}
         </h2>
       </div>
+      
       <div class=" tw-flex xl:tw-hidden xl:tw-gap-5 tw-gap-3 tw-mb-5">
           <base-button
-                  v-for="item in typesDirevative"
-                  class="button button__dense "
-                  :design="typeDirevative === item ? 'green': 'border'"
-                  @click="selectTypeDirevatives(item)"
-                >
-                {{ item }}
-                </base-button>
-        </div>
+                v-for="item in typesDirevative"
+                class="button button__dense "
+                :design="typeDirevative === item ? 'green': 'border'"
+                @click="selectTypeDirevatives(item)"
+              >
+              {{ item }}
+              </base-button>
+      </div>
+      
       <q-carousel
         swipeable
         animated
@@ -126,6 +128,13 @@
                 </template>
               </RoundDiagram>
             </div>
+            
+              <base-button
+                  data-index
+                  @click="stage2($event, derivative.id)"
+                  class="button  tw-w-full xl:tw-hidden xl:tw-w-auto"
+                  >{{ t("buy") }}</base-button
+                >
             <div class="tw-flex-grow">
               <div class="item tw-mb-5 tw-flex tw-justify-between">
                 <div class="tw-flex tw-gap-10 tw-items-center">
@@ -144,7 +153,7 @@
                 <base-button
                   data-index
                   @click="stage2($event, derivative.id)"
-                  class="button tw-w-full tw-hidden xl:tw-block xl:tw-w-auto"
+                  class="button  tw-w-full tw-hidden xl:tw-block xl:tw-w-auto"
                   >{{ t("buy") }}</base-button
                 >
               </div>
@@ -240,7 +249,7 @@
           </div>
         </q-carousel-slide>
       </q-carousel>
-
+      
       <Transition
         appear
         mode="out-in"
@@ -250,7 +259,7 @@
         <div
           v-show="isPopup"
           data-popup
-          class="card card__border-line tw-absolute tw-w-full tw-top-1/2"
+          class="card card__border-line tw-absolute tw-w-full tw-top-1/2 tw-left-0"
           ref="popup"
         >
           <div class="tw-text-lg tw-leading-snug xl:tw-text-md2 tw-mb-2.5">
