@@ -28,9 +28,7 @@ const routes = [
       },
     ],
   },
-  
-  
-  
+
   {
     path: "/lk",
     component: () => import("layouts/V4/Baselayout.vue"),
@@ -58,7 +56,7 @@ const routes = [
         },
         {
           path: "portfolio2",
-          component: () => import("pages/V4/Portfolio2.vue"),
+          component: () => import("pages/V3/Portfolio.vue"),
           name: "portfolio2",
         },
         {
@@ -75,8 +73,7 @@ const routes = [
           path: "trading",
           component: () => import("pages/V4/Trading.vue"),
           name: "trading",
-        },
-        
+        }
       ),
     ],
   },
