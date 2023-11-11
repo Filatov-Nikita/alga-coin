@@ -1,0 +1,7 @@
+{
+  "appId": "ru.algacoin.app",
+  "appName": "alga coin",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www"
+}

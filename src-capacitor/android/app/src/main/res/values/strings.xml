@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">alga coin</string>
+    <string name="title_activity_main">alga coin</string>
+    <string name="package_name">ru.algacoin.app</string>
+    <string name="custom_url_scheme">ru.algacoin.app</string>
+</resources>

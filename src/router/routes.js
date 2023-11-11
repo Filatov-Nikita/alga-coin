@@ -1,36 +1,36 @@
 import { markAuth } from "./utilities/auth";
 
 const routes = [
+  // {
+  //   path: "/",
+  //   component: () => import("layouts/V3/Landing/BaseLayout.vue"),
+  //   children: [
+  //     {
+  //       path: "",
+  //       component: () => import("pages/Landing.vue"),
+  //       name: "home",
+  //     },
+  //     {
+  //       path: "/about",
+  //       component: () => import("pages/About.vue"),
+  //       name: "about",
+  //     },
+
+  //     {
+  //       path: "/tokenomics",
+  //       component: () => import("pages/V3/Tokenomics.vue"),
+  //       name: "tokenomics",
+  //     },
+  //     {
+  //       path: "/debug",
+  //       component: () => import("pages/DebugComponents.vue"),
+  //       name: "debug",
+  //     },
+  //   ],
+  // },
+
   {
     path: "/",
-    component: () => import("layouts/V3/Landing/BaseLayout.vue"),
-    children: [
-      {
-        path: "",
-        component: () => import("pages/Landing.vue"),
-        name: "home",
-      },
-      {
-        path: "/about",
-        component: () => import("pages/About.vue"),
-        name: "about",
-      },
-
-      {
-        path: "/tokenomics",
-        component: () => import("pages/V3/Tokenomics.vue"),
-        name: "tokenomics",
-      },
-      {
-        path: "/debug",
-        component: () => import("pages/DebugComponents.vue"),
-        name: "debug",
-      },
-    ],
-  },
-
-  {
-    path: "/lk",
     component: () => import("layouts/V4/Baselayout.vue"),
     children: [
       ...markAuth(
@@ -50,7 +50,7 @@ const routes = [
           name: "history",
         },
         {
-          path: "portfolio",
+          path: "",
           component: () => import("pages/V4/Portfolio.vue"),
           name: "portfolio",
         },
