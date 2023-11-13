@@ -1,10 +1,10 @@
 <template>
   <q-page
-    class="tw-flex tw-flex-col tw-relative tw-overflow-hidden tw-container tw-pb-20 "
+    class="tw-flex tw-flex-col tw-relative tw-overflow-hidden tw-container tw-pb-20"
   >
     <div class="xl:tw-flex tw-justify-between tw-mb-14">
-      <h2 class=" tw-mb-3 xl:tw-mb-0">{{ t("title") }}</h2>
-      <div class=" tw-flex-wrap tw-justify-end tw-flex tw-gap-3 xl:tw-gap-14">
+      <h2 class="tw-mb-3 xl:tw-mb-0">{{ t("title") }}</h2>
+      <div class="tw-flex-wrap tw-justify-end tw-flex tw-gap-3 xl:tw-gap-14">
         <div>
           <div
             class="tw-text-xxs-1 tw-text-gray tw-flex tw-items-center tw-justify-end tw-gap-1.5 tw-mb-4"
@@ -38,46 +38,19 @@
               />
             </svg>
 
-            <span> Monthly change </span>
+            <span> {{ t("monthly_change") }} </span>
           </div>
           <div class="tw-text-xxs tw-flex tw-justify-end tw-gap-2.5">
             <span> $0 </span>
             <span class="tw-text-green"> 0% </span>
           </div>
         </div>
-
       </div>
     </div>
-    <div class=" tw-grid xl:tw-flex tw-gap-6.25">
+    <div class="tw-grid xl:tw-flex tw-gap-6.25">
       <div class="xl:tw-w-1/2">
-        <!-- <div class="tw-flex tw-justify-between tw-mb-7.5">
-          <div class="btns">
-            <button class="tw-px-9 tw-h-full tw-bg-green tw-rounded-lg2">
-              Exchanges
-            </button>
-            <button class="tw-px-9 tw-h-full">Coins</button>
-          </div>
-          <div class="field-search">
-            <input type="text" placeholder="Search..." />
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M2.11543 2.62542C3.46992 1.37126 5.307 0.666687 7.22253 0.666687C8.17101 0.666687 9.1102 0.839665 9.98647 1.17574C10.8628 1.51182 11.659 2.00442 12.3296 2.62542C13.0003 3.24641 13.5323 3.98364 13.8953 4.79501C14.2582 5.60638 14.4451 6.476 14.4451 7.35422C14.4451 8.23243 14.2582 9.10205 13.8953 9.91342C13.7013 10.3471 13.459 10.7595 13.1731 11.1444L18 15.6138L16.1429 17.3334L11.3159 12.864C10.9003 13.1287 10.4548 13.3531 9.98647 13.5327C9.1102 13.8688 8.17101 14.0417 7.22253 14.0417C5.307 14.0417 3.46992 13.3372 2.11543 12.083C0.760943 10.8289 0 9.12786 0 7.35422C0 5.58057 0.760943 3.87957 2.11543 2.62542ZM7.22253 3.09852C6.00355 3.09852 4.8345 3.54688 3.97256 4.34498C3.11061 5.14308 2.62637 6.22553 2.62637 7.35422C2.62637 8.4829 3.11061 9.56535 3.97256 10.3634C4.8345 11.1615 6.00355 11.6099 7.22253 11.6099C7.82611 11.6099 8.42377 11.4998 8.9814 11.286C9.53903 11.0721 10.0457 10.7586 10.4725 10.3634C10.8993 9.96827 11.2378 9.49913 11.4688 8.9828C11.6998 8.46648 11.8187 7.91308 11.8187 7.35422C11.8187 6.79535 11.6998 6.24195 11.4688 5.72563C11.2378 5.20931 10.8993 4.74016 10.4725 4.34498C10.0457 3.9498 9.53903 3.63633 8.9814 3.42246C8.42377 3.20859 7.82611 3.09852 7.22253 3.09852Z"
-                fill="#575656"
-              />
-            </svg>
-          </div>
-        </div> -->
-
         <div class="total-card tw-mb-8">
-          <button class="filter">
+          <!-- <button class="filter">
             <svg
               width="32"
               height="32"
@@ -126,23 +99,235 @@
                 stroke-width="2"
               />
             </svg>
-          </button>
-          <h3 class="tw-text-sm tw-mb-4">Total</h3>
+          </button> -->
+          <h3 class="tw-text-sm tw-mb-4">{{ t("card.title") }}</h3>
           <div class="tw-flex tw-items-center tw-gap-0.5 tw-mb-6">
-            <span class="tw-text-md2"> $0.00</span>
-            <span class="tw-text-xs tw-text-title"> ≈ </span>
-            <span class="tw-text-xxs tw-text-title"> 0 BTC </span>
+            <span class="tw-text-md2">
+              ${{ (+balance.actual_balance).toFixed(2) }}</span
+            >
           </div>
           <div class="tw-flex tw-gap-3">
             <span class="tw-flex tw-gap-0.5 tw-text-xxs tw-text-green">
-              <MarkIcon :mark="true" class="tw-w-2" />
-              $0.00
+              <MarkIcon
+                :mark="balance.is_profit_positive ? 1 : -1"
+                class="tw-w-2"
+              />
+              ${{
+                (
+                  (+balance.relative_profit * 100) /
+                  +balance.actual_balance
+                ).toFixed(2)
+              }}
             </span>
-            <span class="tw-text-xxs tw-text-green"> +0.00$ </span>
+            <span
+              class="tw-text-xxs"
+              :class="[
+                balance.is_profit_positive
+                  ? 'tw-text-green'
+                  : 'tw-text-invalid',
+              ]"
+              v-if="balance.relative_profit"
+              >{{ balance.is_profit_positive ? "+" : "-" }}
+              {{ (+balance.relative_profit).toFixed(2) }}%
+            </span>
           </div>
         </div>
 
-        
+        <div class="" v-if="indexList?.length > 0">
+          <h4 class="tw-mb-5">{{ t("index-title") }}</h4>
+        </div>
+        <div class="table" v-if="indexList?.length > 0">
+          <div class="table-head tw-mb-5">
+            <div
+              class="tw-text-xxs-1 tw-text-text-gray tw-flex tw-items-center tw-gap-4"
+            >
+              <svg
+                width="9"
+                height="9"
+                viewBox="0 0 9 9"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="tw-hidden xl:tw-block"
+              >
+                <path
+                  d="M8.26737 3.78007L8.26742 3.78007C8.34946 3.79199 8.39494 3.81516 8.4149 3.82929C8.42116 3.83373 8.4248 3.83707 8.42678 3.83921C8.42643 3.84211 8.42546 3.84695 8.423 3.85422C8.41516 3.87739 8.39198 3.92287 8.33262 3.98073L8.33261 3.98074L6.67165 5.59973L6.48341 5.78322L6.52785 6.04231L6.92001 8.32843C6.92001 8.32844 6.92001 8.32845 6.92001 8.32845C6.93476 8.41444 6.92613 8.46047 6.92134 8.47807C6.91872 8.48773 6.91602 8.49336 6.91459 8.49603C6.91406 8.497 6.91359 8.49779 6.91321 8.49839C6.9107 8.49905 6.90571 8.49998 6.89761 8.49998H6.89757C6.87565 8.49998 6.82708 8.49339 6.74924 8.45247L6.74923 8.45247L4.69614 7.37311L4.46347 7.25079L4.2308 7.37311L2.17771 8.45251L2.17761 8.45256C2.09997 8.4934 2.05141 8.5 2.02941 8.5C2.02131 8.5 2.01632 8.49906 2.01382 8.49841C2.01344 8.4978 2.01297 8.49701 2.01244 8.49603C2.011 8.49336 2.00831 8.48773 2.00568 8.47807C2.0009 8.46049 1.99227 8.41446 2.00701 8.32847C2.00701 8.32846 2.00701 8.32845 2.00701 8.32844L2.39912 6.04228L2.44356 5.7832L2.25532 5.59971L0.594359 3.98072C0.594351 3.98072 0.594344 3.98071 0.594336 3.9807C0.53499 3.92284 0.511811 3.87736 0.50397 3.85418C0.501516 3.84693 0.500537 3.84209 0.500182 3.83918C0.502177 3.83704 0.505811 3.8337 0.51206 3.82928C0.532022 3.81514 0.577507 3.79197 0.659544 3.78006L0.659592 3.78005L2.95502 3.44647L3.21516 3.40867L3.33149 3.17294L4.35798 1.09298C4.39467 1.01864 4.43077 0.982533 4.45039 0.967914C4.45653 0.963339 4.46082 0.960915 4.46348 0.959681C4.46613 0.960915 4.47042 0.96334 4.47657 0.967917C4.49619 0.982539 4.53229 1.01865 4.56899 1.09299C4.56899 1.09299 4.56899 1.093 4.569 1.09301L5.59552 3.17297L5.71185 3.40868L5.97198 3.44649L8.26737 3.78007ZM8.42888 3.84199C8.42881 3.84197 8.42851 3.84157 8.42813 3.84077L8.42888 3.84199ZM8.42695 3.83715C8.42678 3.83625 8.4268 3.83574 8.42685 3.83572C8.4269 3.8357 8.42698 3.83615 8.42695 3.83715ZM2.01502 8.50009L2.015 8.50007L2.01502 8.50009ZM0.500111 3.83566C0.500161 3.83569 0.500177 3.83619 0.500009 3.83708C0.499976 3.83607 0.500061 3.83563 0.500111 3.83566ZM0.498807 3.84078C0.498419 3.8416 0.498109 3.842 0.498051 3.842L0.498807 3.84078ZM4.4668 0.958526C4.46679 0.958583 4.46631 0.958754 4.46541 0.95887L4.4668 0.958526ZM4.46154 0.95887C4.46064 0.958754 4.46016 0.958582 4.46015 0.958526L4.46154 0.95887Z"
+                  stroke="#9596A3"
+                />
+              </svg>
+              <div class="tw-flex tw-gap-1 tw-items-center">
+                <span> {{ t("index-table.header[0]") }} </span>
+              </div>
+            </div>
+
+            <div
+              class="tw-text-xxs-1 tw-text-text-gray tw-flex tw-gap-1 tw-items-center"
+            >
+              <span> {{ t("index-table.header[1]") }} </span>
+            </div>
+
+            <div
+              class="tw-text-xxs-1 tw-text-text-gray tw-flex tw-gap-1 tw-items-center"
+            >
+              <span> {{ t("index-table.header[2]") }} </span>
+            </div>
+
+            <div
+              class="tw-text-xxs-1 tw-text-text-gray tw-flex tw-gap-1 tw-items-center"
+            >
+              <span> {{ t("index-table.header[3]") }} </span>
+            </div>
+            <div></div>
+          </div>
+          <div class="table-body">
+            <div
+              class="item"
+              v-for="ind in indexList"
+              :key="ind.id"
+              :class="{ active: activeIndex === ind.inder.id }"
+              data-index
+            >
+              <div class="item__head" @click="choiseIndex(ind.inder.id)">
+                <div class="tw-flex tw-items-center tw-gap-2">
+                  <svg
+                    width="12"
+                    height="11"
+                    viewBox="0 0 12 11"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="tw-hidden xl:tw-block tw-flex-shrink-0"
+                  >
+                    <path
+                      d="M10.2722 4.00054L10.2722 4.00053L7.42495 3.58676L7.16482 3.54895L7.04849 3.31324L5.77519 0.733244C5.77519 0.733237 5.77518 0.73323 5.77518 0.733224C5.66761 0.51531 5.56067 0.5 5.53651 0.5C5.51235 0.5 5.40541 0.515311 5.29787 0.73322L4.0246 3.31321L3.90827 3.54893L3.64814 3.58674L0.800874 4.00051L0.800826 4.00052C0.560554 4.03541 0.512821 4.13227 0.50529 4.15538L10.2722 4.00054ZM10.2722 4.00054C10.5127 4.03546 10.5603 4.13242 10.5677 4.15541L10.5677 4.15547C10.5752 4.17844 10.5937 4.28487 10.4197 4.45446L10.4197 4.45447L8.35944 6.46268L8.1712 6.64617L8.21564 6.90526L8.70208 9.74098C8.72303 9.86313 8.71223 9.93805 8.70126 9.97843C8.69028 10.0188 8.67471 10.0409 8.6656 10.0517L8.66556 10.0517C8.64743 10.0732 8.61656 10.0943 8.55582 10.0943H8.55578C8.50491 10.0943 8.42552 10.0792 8.31585 10.0216L8.08318 10.4641L8.31584 10.0215L5.76918 8.68271L5.53651 8.56038L5.30384 8.68271L2.75717 10.0216L2.75708 10.0216C2.64761 10.0792 2.56822 10.0943 2.51729 10.0943C2.45662 10.0943 2.42571 10.0733 2.40754 10.0517L2.40752 10.0517C2.39841 10.0409 2.38284 10.0188 2.37186 9.97844C2.36089 9.93807 2.35009 9.86316 2.37103 9.74103C2.37103 9.74102 2.37103 9.74101 2.37103 9.741L2.85741 6.90523L2.90184 6.64614M10.2722 4.00054L2.90184 6.64614M2.90184 6.64614L2.7136 6.46266M2.90184 6.64614L2.7136 6.46266M2.7136 6.46266L0.653338 4.45445C0.653331 4.45444 0.653323 4.45443 0.653316 4.45443M2.7136 6.46266L0.653316 4.45443M0.653316 4.45443C0.479468 4.28494 0.497788 4.17854 0.505274 4.15542L0.653316 4.45443Z"
+                      stroke="#9596A3"
+                    />
+                  </svg>
+                  <q-img
+                    :src="ind.inder.image.url"
+                    class="tw-w-3 tw-h-3 xl:tw-w-4 xl:tw-h-4 tw-rounded-full"
+                  />
+
+                  <span> {{ ind.inder.name }} </span>
+                </div>
+                <div>{{ $t("days", ind.inder["closing_in_days"]) }}</div>
+                <div v-if="ind.total.actual_amount">
+                  {{ (+ind.total.actual_amount).toFixed(2) }}
+                  <span class="tw-text-text-gray"> {{ ind.total.coin }}</span>
+                </div>
+                <div class="tw-flex tw-gap-1">
+                  <span
+                    v-if="ind.total.absolute_profit"
+                    :class="[
+                      ind.total.is_profit_positive
+                        ? 'tw-text-green'
+                        : 'tw-text-invalid',
+                    ]"
+                  >
+                    {{ ind.total.is_profit_positive ? "+" : "-" }}
+                    {{ (+ind.total.absolute_profit).toFixed(2) }}
+                  </span>
+                  <span class="tw-text-text-gray"> {{ ind.total.coin }}</span>
+                </div>
+                <button class="icon tw-place-self-center">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 19 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.7002 8L9.5002 11.8L13.3002 8"
+                      stroke="#D9D9D9"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="9.5"
+                      cy="9.5"
+                      r="9.25"
+                      stroke="#9596A3"
+                      stroke-width="0.5"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <Transition
+                appear
+                mode="out-in"
+                enter-active-class="animated fadeIn"
+                leave-active-class="animated fadeOut"
+              >
+                <div class="item__body" v-if="activeIndex === ind.inder.id">
+                  <div class="tw-grid tw-gap-2">
+                    <div class="tw-flex tw-gap-4 tw-mb-2">
+                      <button
+                        :disabled="!ind.action_flags.buyable"
+                        class="tw-underline tw-cursor-pointer"
+                        @click="buy($event, ind.inder.id)"
+                      >
+                        {{ t("index-table.body.action.buy") }}
+                      </button>
+                      <button
+                        :disabled="!ind.action_flags.withdrawable"
+                        class="tw-underline tw-cursor-pointer"
+                        @click="widthdrawal($event, ind.inder.id)"
+                      >
+                        {{ t("index-table.body.action.widthdrawal") }}
+                      </button>
+                    </div>
+                    <div>
+                      <div
+                        class="index-grid tw-items-center"
+                        v-for="contract in ind.orders"
+                        :key="contract.id"
+                      >
+                        <div class="">
+                          <p class="tw-text-xxs">
+                            {{ contract["created_at"] }}
+                          </p>
+                        </div>
+
+                        <div></div>
+                        <div>
+                          {{ (+contract["actual_amount"]).toFixed(2) }}
+                          <span class="tw-text-text-gray">
+                            {{ contract.coin }}</span
+                          >
+                        </div>
+                        <div>
+                          <span
+                            :class="
+                              contract.is_profit_positive
+                                ? 'tw-text-green'
+                                : 'tw-text-invalid'
+                            "
+                          >
+                            {{ contract.is_profit_positive ? "+" : "-" }}
+                            {{ (+contract.absolute_profit).toFixed(2) }}
+                          </span>
+                          <span class="tw-text-text-gray"> USDT</span>
+                        </div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Transition>
+            </div>
+          </div>
+        </div>
+        <div
+          v-else
+          class="tw-flex tw-flex-col tw-gap-5 xl:tw-items-center xl:tw-flex-row"
+        >
+          <span class="tw-text-sm xl:tw-text-md2">
+            {{ t("index-not") }}
+          </span>
+          <base-button
+            @click="$router.push({ name: 'index-directive' })"
+            class="button"
+            >{{ t("index-not-btn") }}</base-button
+          >
+        </div>
       </div>
       <div class="xl:tw-w-1/2">
         <div class="chart-card tw-mb-8" v-if="charts.length > 0">
@@ -188,102 +373,85 @@
             class="tw-order-2 xl:tw-order-1"
           />
         </div>
-        <div class="swap-card">
-          <div class="tw-mb-5 tw-flex tw-justify-between tw-items-center">
-            <span class="tw-text-md2 tw-font-medium"> Swap </span>
-            
-          </div>
-          <div class="tw-flex tw-justify-end tw-mb-1.5">
-            <button class="tw-bg-title tw-rounded-lg tw-h-8 tw-px-4">
-              Max
-            </button>
-          </div>
-          <div class="tw-mb-4">
-            <div class="tw-text-xxs-1 tw-mb-3">
-              <span class="tw-text-text-gray"> From </span>
-            </div>
-            <div class="field-select">
-              <input type="text" placeholder="0.00" />
-              <div class="select">
-                <img
-                  src="https://admin.alga.finance/storage/coin_images/7rQbWbecOrwZdODcQ1w2who2iLSPonLCRt68AuvU.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                />
-                <span> LTC </span>
-                <svg
-                  width="10"
-                  height="6"
-                  viewBox="0 0 10 6"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L4.8 4.8L8.6 1"
-                    stroke="#D9D9D9"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div class="tw-text-xxs-1 tw-mt-3">
-              <span class="tw-text-text-gray"> Available: </span>
-              0.00006000 LTC
-            </div>
-          </div>
-
-          <div>
-            <div class="tw-text-xxs-1 tw-mb-3">
-              <span class="tw-text-text-gray"> To (estimated) </span>
-            </div>
-            <div class="field-select">
-              <input type="text" placeholder="0.00" />
-              <div class="select">
-                <img
-                  src="https://admin.alga.finance/storage/coin_images/7rQbWbecOrwZdODcQ1w2who2iLSPonLCRt68AuvU.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                />
-                <span> LTC </span>
-                <svg
-                  width="10"
-                  height="6"
-                  viewBox="0 0 10 6"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L4.8 4.8L8.6 1"
-                    stroke="#D9D9D9"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <div class="tw-flex tw-justify-end tw-mt-10">
-            <button
-              class="tw-bg-title-light tw-rounded-xl tw-px-12 tw-h-12 tw-opacity-40 tw-flex tw-items-center tw-justify-center tw-gap-2"
-            >
-              <svg
-                width="14"
-                height="12"
-                viewBox="0 0 14 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M2.84615 11.3333L1 7.3333H13" stroke="#fff" />
-                <path d="M11.1538 0.666626L13 4.66663H1" stroke="#fff" />
-              </svg>
-              <span> Swap </span>
-            </button>
-          </div>
-        </div>
+        <Swap :derivatives="derivatives" />
       </div>
     </div>
+    <!-- popup -->
+    <Transition
+      appear
+      mode="out-in"
+      enter-active-class="animated zoomIn"
+      leave-active-class="animated zoomOut"
+    >
+      <div
+        v-show="isPopup"
+        data-popup
+        class="card card__border-line tw-absolute tw-w-full tw-top-1/2 tw-left-0"
+        ref="popup"
+      >
+        <template v-if="popupContent.popup_name === 'widthdrawal'">
+          <div class="tw-text-md2 tw-leading-snug xl:tw-text-md2 tw-mb-2.5">
+            {{ t("popup.title") }}
+          </div>
+          <p class="tw-text-purple-dark tw-text-base xl:tw-text-sm tw-mb-5">
+            {{ t("popup.text") }}
+            {{
+              amountPopup
+                ? `${(+amountPopup.total.actual_amount).toFixed(2)} ${
+                    amountPopup.total.coin
+                  }`
+                : "0 USDT"
+            }}
+          </p>
+          <Form
+            class="tw-flex tw-flex-col xl:tw-flex-row tw-gap-2.5"
+            @submit="popupAction"
+            v-slot="{ isSubmitting }"
+          >
+            <div class="tw-flex tw-flex-col tw-flex-grow">
+              <label
+                class="tw-text-purple-dark tw-text-xs tw-leading-4"
+                for="wallet"
+                >{{ t("popup.wallet-number.label") }}</label
+              >
+              <AppInput id="wallet" rules="" name="address" />
+            </div>
+            <base-button
+              class="xl:tw-self-end xl:tw-w-1/3"
+              type="submit"
+              :disabled="isSubmitting"
+              >{{ t("popup.request") }}</base-button
+            >
+          </Form>
+        </template>
+        <template v-else-if="popupContent.popup_name === 'buy'">
+          <div class="tw-text-md2 tw-leading-snug xl:tw-text-md2 tw-mb-2.5">
+            {{ t("popup.titleBuy") }}
+          </div>
+          <Form
+            class="tw-flex tw-flex-col xl:tw-flex-row tw-gap-2.5"
+            @submit="popupAction"
+            v-slot="{ isSubmitting }"
+          >
+            <div class="tw-flex tw-flex-col xl:tw-w-1/3">
+              <label
+                class="tw-text-purple-dark tw-text-xs tw-leading-4"
+                for="amount"
+                >{{ t("popup.amount.label") }}</label
+              >
+              <AppInput id="amount" rules="" name="amount" />
+            </div>
+
+            <base-button
+              class="xl:tw-self-end xl:tw-w-1/3"
+              type="submit"
+              :disabled="isSubmitting"
+              >{{ t("popup.request") }}</base-button
+            >
+          </Form>
+        </template>
+      </div>
+    </Transition>
   </q-page>
 </template>
 
@@ -297,9 +465,11 @@ import MarkIcon from "src/components/V3/MarkIcon.vue";
 import AreaChart from "src/components/V3/AreaChart.vue";
 import BtnsAnimate from "src/components/BtnsAnimate.vue";
 import useChart from "src/composition/useChart.js";
+import Swap from "src/components/SwapCard.vue";
 const i18n = {
   messages: {
     "ru-RU": {
+      monthly_change: "Ежемесячное изменение",
       title: "Моё Портфолио",
       card: {
         title: "Баланс",
@@ -338,6 +508,7 @@ const i18n = {
       },
     },
     "en-US": {
+      monthly_change: "Monthly change",
       title: "My Prortfolio",
       card: {
         title: "Balance",
@@ -452,6 +623,7 @@ const $q = useQuasar();
 const store = useStore();
 const { popup, isPopup, popupContent, buy, widthdrawal, popupAction } =
   useBuyWidthdrawalPopup();
+const derivatives = computed(() => store.getters["landing/derivatives"]);
 const { charts, getChart } = useChart();
 const getChartData = (id) => {
   return getChart(id)?.chart.map((item) => [
@@ -503,7 +675,14 @@ const activeChart = ref(4);
 //$
 .index-grid {
   display: grid;
-  grid-template-columns: 320px 140px 130px 146px 140px;
+  grid-template-columns: 64px 60px 70px 85px auto auto;
+  gap: 5px;
+  @screen xl {
+    grid-template-columns: minmax(0, 98px) minmax(0, 86px) minmax(0, 114px) minmax(
+        0,
+        110px
+      );
+  }
 }
 
 .index-content {
@@ -599,19 +778,27 @@ const activeChart = ref(4);
 
 .table {
   &-head {
+    @apply tw-px-2 xl:tw-px-4;
     display: grid;
-    grid-template-columns: 1fr 0.4fr 0.4fr 0.4fr 0.2fr;
-    padding: 0 27px 0 16px;
-    gap: 10px;
-    .icon {
-      @apply tw-transition-transform tw-duration-300 tw-ease-out;
+    gap: 5px;
+    grid-template-columns:
+      80px 60px 70px 85px auto
+      auto;
+    @screen xl {
+      grid-template-columns:
+        minmax(0, 150px) minmax(0, 85px) minmax(0, 115px) minmax(0, 110px)
+        auto;
     }
   }
   &-body {
     display: grid;
     gap: 15px;
     .item {
-      padding: 14px 27px 14px 16px;
+      @apply tw-px-2 xl:tw-px-4 tw-py-3.5;
+      display: grid;
+      gap: 20px;
+      cursor: pointer;
+
       border: 1.04002px solid #575656;
       filter: drop-shadow(0px 155.373px 62.149px rgba(1, 3, 24, 0.01))
         drop-shadow(0px 87.2091px 52.125px rgba(1, 3, 24, 0.05))
@@ -620,17 +807,30 @@ const activeChart = ref(4);
         drop-shadow(0px 0px 0px rgba(1, 3, 24, 0.1));
       border-radius: 7.80016px;
       &__head {
-        @apply tw-text-xxs;
+        @apply tw-text-xxs-1 xl:tw-text-xxs tw-items-center;
         display: grid;
-        grid-template-columns: 1fr 0.4fr 0.4fr 0.4fr 0.2fr;
-        gap: 10px;
-
+        gap: 5px;
+        grid-template-columns: 80px 60px 70px 85px auto;
+        @screen xl {
+          grid-template-columns:
+            minmax(0, 150px) minmax(0, 85px) minmax(0, 115px)
+            minmax(0, 110px) auto;
+        }
       }
       &__body {
-        @apply tw-text-xxs;
-        padding-left: 52px;
-        color: #A5A5A5;
-        margin-top: 20px;
+        @apply tw-text-xxs-1 xl:tw-text-xxs;
+        padding-left: 16px;
+        @screen xl {
+          padding-left: 43px;
+        }
+        color: #a5a5a5;
+        margin-top: 0px;
+      }
+      .icon {
+        @apply tw-transition-transform tw-duration-300 tw-ease-out;
+      }
+      &.active .icon {
+        @apply tw-transform tw-rotate-180;
       }
       &.active,
       &:hover {

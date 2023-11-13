@@ -12,7 +12,7 @@
           {{ selected.label }}
         </span>
       </div>
-      <div v-else>{{ defaultLabel }}</div>
+      <div v-else>{{ t("default") }}</div>
       <q-icon name="r_keyboard_arrow_down" size="15px" class="arrow-icon" />
     </div>
     <div class="select__body">
@@ -38,6 +38,19 @@
 </template>
 <script setup>
 import { onMounted, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
+
+const i18n = {
+  messages: {
+    "ru-RU": {
+      default: "Выберите значение",
+    },
+    "en-US": {
+      default: "Select value",
+    },
+  },
+};
+const { t } = useI18n(i18n);
 const props = defineProps({
   modelValue: {
     required: true,
@@ -47,10 +60,6 @@ const props = defineProps({
   options: {
     required: true,
     type: Array,
-  },
-  defaultLabel: {
-    default: "Выберите значение",
-    type: String,
   },
 });
 const emit = defineEmits(["update:modelValue"]);
