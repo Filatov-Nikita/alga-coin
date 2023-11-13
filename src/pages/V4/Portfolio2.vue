@@ -1,10 +1,10 @@
 <template>
   <q-page
-    class="tw-flex tw-flex-col tw-relative tw-overflow-hidden tw-container tw-pb-20 "
+    class="tw-flex tw-flex-col tw-relative tw-overflow-hidden tw-container tw-pb-20"
   >
     <div class="xl:tw-flex tw-justify-between tw-mb-14">
-      <h2 class=" tw-mb-3 xl:tw-mb-0">{{ t("title") }}</h2>
-      <div class=" tw-flex-wrap tw-justify-center tw-flex tw-gap-3 xl:tw-gap-14">
+      <h2 class="tw-mb-3 xl:tw-mb-0">{{ t("title") }}</h2>
+      <div class="tw-flex-wrap tw-justify-center tw-flex tw-gap-3 xl:tw-gap-14">
         <div>
           <div
             class="tw-text-xxs-1 tw-text-gray tw-flex tw-items-center tw-justify-end tw-gap-1.5 tw-mb-4"
@@ -45,10 +45,9 @@
             <span class="tw-text-green"> 0% </span>
           </div>
         </div>
-
       </div>
     </div>
-    <div class=" tw-grid xl:tw-flex tw-gap-6.25">
+    <div class="tw-grid xl:tw-flex tw-gap-6.25">
       <div class="xl:tw-w-1/2">
         <!-- <div class="tw-flex tw-justify-between tw-mb-7.5">
           <div class="btns">
@@ -130,8 +129,6 @@
           <h3 class="tw-text-sm tw-mb-4">Total</h3>
           <div class="tw-flex tw-items-center tw-gap-0.5 tw-mb-6">
             <span class="tw-text-md2"> $0.00</span>
-            <span class="tw-text-xs tw-text-title"> ≈ </span>
-            <span class="tw-text-xxs tw-text-title"> 0 BTC </span>
           </div>
           <div class="tw-flex tw-gap-3">
             <span class="tw-flex tw-gap-0.5 tw-text-xxs tw-text-green">
@@ -249,8 +246,7 @@
           </div>
           <div class="table-body">
             <div class="item active">
-              <div class=" item__head">
-
+              <div class="item__head">
                 <div class="tw-flex tw-items-center tw-gap-2">
                   <svg
                     width="12"
@@ -300,17 +296,16 @@
                 </button>
               </div>
               <div class="item__body">
-                <div class=" tw-mb-2">
-                  from 12.08.2020 to 12.12.2020
-                </div>
+                <div class="tw-mb-2">from 12.08.2020 to 12.12.2020</div>
                 <div>
-                  Index Portu — the index that was opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates in 1999 and opens the index that was opened by Bill Gates
+                  Index Portu — the index that was opened by Bill Gates in 1999
+                  and opens the index that was opened by Bill Gates in 1999 and
+                  opens the index that was opened by Bill Gates
                 </div>
               </div>
             </div>
             <div class="item">
-              <div class=" item__head">
-
+              <div class="item__head">
                 <div class="tw-flex tw-items-center tw-gap-2">
                   <svg
                     width="12"
@@ -410,7 +405,6 @@
         <div class="swap-card">
           <div class="tw-mb-5 tw-flex tw-justify-between tw-items-center">
             <span class="tw-text-md2 tw-font-medium"> Swap </span>
-            
           </div>
           <div class="tw-flex tw-justify-end tw-mb-1.5">
             <button class="tw-bg-title tw-rounded-lg tw-h-8 tw-px-4">
@@ -843,12 +837,11 @@ const activeChart = ref(5);
         display: grid;
         grid-template-columns: 1fr 0.4fr 0.4fr 0.4fr 0.2fr;
         gap: 10px;
-
       }
       &__body {
         @apply tw-text-xxs;
         padding-left: 52px;
-        color: #A5A5A5;
+        color: #a5a5a5;
         margin-top: 20px;
       }
       &.active,

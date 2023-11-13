@@ -92,7 +92,6 @@ export default function () {
         break;
       } else currentElem = currentElem.parentElement;
     }
-
     if (isPopup.value) {
       const pageHeight = window.innerHeight + window.pageYOffset;
       const windowHeight =
@@ -112,9 +111,11 @@ export default function () {
           "px";
       }, 0);
     }
+    console.log(isPopup.value);
   };
   const buy = (e, id) => {
     popupContent.value = { popup_name: "buy", id: id };
+
     targetPopup(e);
   };
   const widthdrawal = (e, id) => {
