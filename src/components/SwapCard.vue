@@ -1,5 +1,5 @@
 <template>
-  <Form @submit="swap" v-slot="{ validate }" class="swap-card">
+  <Form @submit="swap" v-slot="{ validate }" class="swap-card tw-relative">
     <div class="tw-mb-5 tw-flex tw-justify-between tw-items-center">
       <span class="tw-text-md2 tw-font-medium"> {{ t("swap") }} </span>
     </div>
@@ -33,7 +33,7 @@
     <div class="tw-flex tw-justify-end tw-mt-10">
       <button
         type="submit"
-        :disabled="!(select1 !== null && select2 !== null)"
+        :disabled="!(select1 !== null && select2 !== null && inp1 && inp2)"
         class="tw-bg-title-light tw-text-white tw-rounded-xl tw-px-12 tw-h-12 tw-flex tw-items-center tw-justify-center tw-gap-2"
       >
         <svg
@@ -49,11 +49,34 @@
         <span> {{ t("swap") }} </span>
       </button>
     </div>
+
+    <Transition
+      appear
+      mode="out-in"
+      enter-active-class="animated zoomIn"
+      leave-active-class="animated zoomOut"
+    >
+    <div @click="targetModal" v-show="isPopup" ref="modal" class=" tw-fixed tw-w-full tw-h-full tw-top-0 tw-left-0  tw-z-30" style="z-index:10000;">
+
+      <div
+        
+        data-popup
+        class="card card__border-line tw-absolute tw-w-full tw-top-1/2 tw-transform tw--translate-y-1/2 tw-left-0"
+        ref="popup"
+      >
+      <div class="tw-text-md2 tw-text-center tw-leading-snug xl:tw-text-md2 tw-mb-2.5">
+            
+            Order created
+          </div>
+      </div>
+    </div>
+    </Transition>
   </Form>
+  
 </template>
 <script setup>
 import { useI18n } from "vue-i18n";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 const props = defineProps({
   derivatives: Array,
 });
@@ -73,6 +96,12 @@ const i18n = {
   },
 };
 const { t } = useI18n(i18n);
+const isPopup = ref(false)
+
+const targetModal = (e)=>{
+  if(e.target === modal.value) isPopup.value = false
+}
+const modal = ref()
 const select1 = ref(null);
 const inp1 = ref("");
 const select2 = ref(null);
@@ -95,8 +124,7 @@ const opts1 = computed(() => {
     : [];
 });
 const swap = (v) => {
-  console.log(v);
-  console.log("sfsd");
+  isPopup.value = true
 };
 const opts2 = computed(() => {
   const newArr = props.derivatives?.map((item) => {
@@ -115,6 +143,10 @@ const opts2 = computed(() => {
       })
     : [];
 });
+watch(isPopup,(val)=>{
+  // if(val) window.addEventListener('click',targetModal)
+  // else window.addEventListener('click',targetModal)
+})
 </script>
 <style lang="scss" scoped>
 .swap-card {

@@ -23,6 +23,14 @@
 @import "./invest-landing.scss";
 @import "./v3/ui.scss";
 
+.env-t {
+  padding-top: max(20px, env(safe-area-inset-top, 20px));
+}
+
+.env-b {
+  padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+}
+
 .q-carousel__next-arrow--horizontal {
   top: 0px;
   right: 40px;

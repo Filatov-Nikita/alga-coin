@@ -1,0 +1,14 @@
+{
+  "params": {
+    "skipTrim": true,
+    "icon": "public/icon.png",
+    "background": "./public/icon.png",
+    "splashscreenIconRatio": "0",
+    "themeColor": "0B0E11",
+    "padding": [
+      0,
+      0
+    ]
+  },
+  "assets": []
+}

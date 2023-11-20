@@ -1,7 +1,7 @@
 <template>
   <!-- slider -->
   <div
-    class="tw-container tw-px-0 content-page tw-border-t tw-border-gray-border"
+    class="tw-container tw-px-0 content-page "
   >
     <div class=" tw-hidden xl:tw-grid xl:tw-content-between tw-grid-rows-1_auto tw-pb-5">
       <div class=" tw-overflow-auto">
@@ -74,17 +74,17 @@
       </div>
     </div>
     <div
-      class="tw-flex tw-flex-col tw-relative tw-px-4 xl:tw-px-15 tw-pt-6.25 tw-border-l tw-border-gray-border"
+      class="tw-flex tw-flex-col tw-relative tw-px-4 xl:tw-px-15 tw-border-l tw-border-gray-border"
     >
       <div
-        class="item tw-flex tw-justify-between tw-items-center tw-mb-6 xl:tw-mb-10"
+        class="item tw-flex tw-justify-center tw-text-center tw-items-center tw-mb-6 xl:tw-mb-10"
       >
         <h2>
           {{ t("indexderivatives.title") }}
         </h2>
       </div>
       
-      <div class=" tw-flex xl:tw-hidden xl:tw-gap-5 tw-gap-3 tw-mb-5">
+      <div class=" tw-flex xl:tw-hidden tw-justify-center xl:tw-gap-5 tw-gap-3 tw-mb-5">
           <base-button
                 v-for="item in typesDirevative"
                 class="button button__dense "
@@ -112,7 +112,7 @@
           <div
             class="tw-mb-7.5 xl:tw-mb-10 index-directive tw-grid xl:tw-flex tw-items-center tw-gap-8"
           >
-            <div style="width: 170px" class=" tw-justify-items-center">
+            <div style="width: 170px" class=" tw-justify-items-center tw-mx-auto">
               <RoundDiagram
                 class="inside__round"
                 :values="roundDiagramData(derivative['currency_shares'])"
@@ -129,12 +129,7 @@
               </RoundDiagram>
             </div>
             
-              <base-button
-                  data-index
-                  @click="stage2($event, derivative.id)"
-                  class="button  tw-w-full xl:tw-hidden xl:tw-w-auto"
-                  >{{ t("buy") }}</base-button
-                >
+              
             <div class="tw-flex-grow">
               <div class="item tw-mb-5 tw-flex tw-justify-between">
                 <div class="tw-flex tw-gap-10 tw-items-center">
@@ -156,7 +151,14 @@
                   class="button  tw-w-full tw-hidden xl:tw-block xl:tw-w-auto"
                   >{{ t("buy") }}</base-button
                 >
+                
               </div>
+              <base-button
+                  data-index
+                  @click="stage2($event, derivative.id)"
+                  class="button tw-mb-4  tw-w-full xl:tw-hidden xl:tw-w-auto"
+                  >{{ t("buy") }}</base-button
+                >
               <p class="text">
                 {{ derivative.description }}
               </p>
@@ -214,15 +216,15 @@
             <div class="tw-pb-10 statistics">
               <div class="statistics__top">
                 <div class="tw-flex tw-justify-between">
-                  <div>{{ t("statistics.title") }}</div>
-                  <base-select
+                  <!-- <div>{{ t("statistics.title") }}</div> -->
+                  <!-- <base-select
                     :options="[
                       {
                         label: t('statistics.selectProfit', { numb: '1' }),
                         id: 1,
                       },
                     ]"
-                  />
+                  /> -->
                 </div>
               </div>
 
