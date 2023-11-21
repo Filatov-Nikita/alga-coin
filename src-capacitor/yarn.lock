@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@capacitor/android@^5.0.0-beta.0":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@capacitor/android/-/android-5.5.1.tgz#128dc5ab00f68c80d64ea18e961876b34b4ed859"
-  integrity sha512-WTnPnpaEvTtaEtTNRbh06Y1afF7A4plY/4uajAL0WW8tdR1FxieadF357yKGiAT6CudI/B+eOu6rxn6qWuphKg==
+"@capacitor/app@^5.0.0":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@capacitor/app/-/app-5.0.6.tgz#2ee02551115fd2e92dc7e81bc30a6c6fa78efa66"
+  integrity sha512-6ZXVdnNmaYILasC/RjQw+yfTmq2ZO7Q3v5lFcDVfq3PFGnybyYQh+RstBrYri+376OmXOXxBD7E6UxBhrMzXGA==
 
 "@capacitor/cli@^5.0.0":
   version "5.5.1"
@@ -41,6 +41,11 @@
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/@capacitor/ios/-/ios-5.5.1.tgz#e07d0752b8934215a9defc2d22a537060f2dd7f7"
   integrity sha512-h00qt8u32t8eEbIkuG4IjR0r34YZC0sIXglDH8fRDdA84xDkTybmz3WtdpRWDzh6ukE2RIY7rmD7p410WSJ2yA==
+
+"@capacitor/splash-screen@^5.0.0":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@capacitor/splash-screen/-/splash-screen-5.0.6.tgz#d29320de49cc68add59e17fecb64aa2f1a08447f"
+  integrity sha512-9B8wSm89D+LlshFw8B+mjPU8pJNf1WOx2mkMjMvcH0/EqxNaE+ZaO8lPCX+9WvWSEZs3O3l11qiSnOFHeK0t9A==
 
 "@ionic/cli-framework-output@^2.2.5":
   version "2.2.7"
@@ -134,9 +139,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "20.9.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.0.tgz#bfcdc230583aeb891cf51e73cfdaacdd8deae298"
-  integrity sha512-nekiGu2NDb1BcVofVcEKMIwzlx4NjHlcjhoxxKBNLtz15Y1z7MYf549DFvkHSId02Ax6kGwWntIBPC3l/JZcmw==
+  version "20.9.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.2.tgz#002815c8e87fe0c9369121c78b52e800fadc0ac6"
+  integrity sha512-WHZXKFCEyIUJzAwh3NyyTHYSR35SevJ6mZ1nWwJafKtiQbqRTIKSRcw3Ma3acqgsent3RRDqeVwpHntMk+9irg==
   dependencies:
     undici-types "~5.26.4"
 
@@ -369,9 +374,9 @@ lru-cache@^6.0.0:
     yallist "^4.0.0"
 
 "lru-cache@^9.1.1 || ^10.0.0":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.0.1.tgz#0a3be479df549cca0e5d693ac402ff19537a6b7a"
-  integrity sha512-IJ4uwUTi2qCccrioU6g9g/5rvvVl13bsdczUUcqbciD9iLr095yj8DQKdObriEvuNSx325N1rV1O0sJFszx75g==
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.0.3.tgz#b40014d7d2d16d94130b87297a04a1f24874ae7c"
+  integrity sha512-B7gr+F6MkqB3uzINHXNctGieGsRTMwIBgxkp0yq/5BwcuDzD4A8wQpHQW6vDAm1uKSLQghmRdD9sKqf2vJ1cEg==
 
 minimatch@^8.0.2:
   version "8.0.4"

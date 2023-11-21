@@ -1,6 +1,6 @@
 import Service from "src/api/utilities/server";
 
-const api = new Service("http://alga.test", {
+const api = new Service("https://admin.alga.finance", {
   apiPath: "api",
   timeout: 10000,
   tokenName: "b2c",
